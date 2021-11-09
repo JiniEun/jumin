@@ -1,14 +1,15 @@
 # Spring Boot 기반 웹 프로젝트
 
 > ## Dongne
-<br>
+>
+> <br>
 
 - main page
+  날씨, 뉴스
+  (image)
+  (기능 간단요약)
 
-(image)
-(기능 간단요약)
-
-- 
+-
 
 - 회원가입/수정/탈퇴
 
@@ -16,17 +17,15 @@
 
 - 마이페이지 (구매내역 조회, 개인 정보 수정)
 
-
-
 - 고객센터 공지사항
 
 - 고객센터 Q&A 챗봇
 
-
 <br><br>
 
 > ## 개발 환경
-<br>
+>
+> <br>
 
 - ![Java](https://img.shields.io/badge/-Java-007396?logo=java&logoColor=white&style=flat-square&logoHeight=50) / ![SpringBoot](https://img.shields.io/badge/-Springboot-6DB33F?logo=springboot&logoColor=white&style=flat-square&logoHeight=50)
 - AWS - Oracle DB
