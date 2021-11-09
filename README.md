@@ -1,8 +1,8 @@
 # Spring Boot 기반 웹 프로젝트
 
 > ## Dongne
->
-> <br>
+
+<br>
 
 - main page
 
@@ -25,8 +25,8 @@
 <br><br>
 
 > ## 개발 환경
->
-> <br>
+
+<br>
 
 - ![Java](https://img.shields.io/badge/-Java-007396?logo=java&logoColor=white&style=flat-square&logoHeight=50) / ![SpringBoot](https://img.shields.io/badge/-Springboot-6DB33F?logo=springboot&logoColor=white&style=flat-square&logoHeight=50)
 - AWS - Oracle DB
