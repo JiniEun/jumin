@@ -22,4 +22,9 @@
     <put-attribute name="body"
       value="/WEB-INF/views/user/loginForm.jsp" />
   </definition>
+  <definition name="/user/create" extends="main">
+    <put-attribute name="title" value="회원가입"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/user/createForm.jsp" />
+  </definition>
 </tiles-definitions>

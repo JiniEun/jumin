@@ -19,4 +19,9 @@ public class UserController {
 
 		return "/user/login";
 	}
+	
+	@GetMapping("/user/create")
+	public String create(HttpServletRequest request) {
+		return "/user/create";
+	}
 }

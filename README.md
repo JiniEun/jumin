@@ -5,8 +5,9 @@
 
 - main page
 
-(image)
-(기능 간단요약)
+ 날씨, 뉴스 <br>
+(image) <br>
+(기능 간단요약) <br>
 
 - 
 
