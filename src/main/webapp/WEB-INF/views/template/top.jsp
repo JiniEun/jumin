@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,7 @@
 	<nav class="navbar-nav fixed-top">
 		<div class="container-fluid">
 			<div class="float-right">
-				<a href="#" class="btn btn-sm" tabindex="-1" role="button"
+				<a href="${root}/user/login" class="btn btn-sm" tabindex="-1" role="button"
 					aria-disabled="true" style="border-color: #5BA6A6; color: #5BA6A6;">login</a>
 			</div>
 		</div>
@@ -67,7 +68,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="./main.html">Home <span class="sr-only">(current)</span></a>
+					href="${root}/">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
 					<ul class="navbar-nav">
@@ -119,8 +120,8 @@
 							data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
 							<ul class="dropdown-menu dropdown-menu-dark"
 								aria-labelledby="navbarDarkDropdownMenuLink">
-								<li><a class="dropdown-item" href="#">공지사항</a></li>
-								<li><a class="dropdown-item" href="#">Q&A</a></li>
+								<li><a class="dropdown-item" href="${root}/notice/list">공지사항</a></li>
+								<li><a class="dropdown-item" href="${root}/notice/chatbot">Q&A</a></li>
 							</ul></li>
 					</ul>
 				</div>

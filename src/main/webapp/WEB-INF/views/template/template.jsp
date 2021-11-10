@@ -5,6 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title"/></title>
+<style>
+#footer{
+position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+	padding: 15px 0;
+
+	text-align: center;
+
+}
+</style>
 </head>
 <body>
  
@@ -17,7 +33,7 @@
 <!-- 내용 끝 -->
  
 <!-- 하단 부분 -->
-<tiles:insertAttribute name="footer"/>
+<div id="footer"><tiles:insertAttribute name="footer"/></div>
 <!-- 하단부 끝 -->
 </body>
 </html>
