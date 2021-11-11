@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,8 @@
 	crossorigin="anonymous">
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
 	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
@@ -47,17 +50,20 @@
 </head>
 <body>
 	<!--상단메뉴-->
-	<nav class="navbar-nav fixed-top">
+	<nav class="navbar-nav">
 		<div class="container-fluid">
 			<div class="float-right">
-				<a href="#" class="btn btn-sm" tabindex="-1" role="button"
-					aria-disabled="true" style="border-color: #5BA6A6; color: #5BA6A6;">login</a>
+				<a href="${root}/user/create" tabindex="-1" aria-disabled="true"
+					style="border-color: #5BA6A6; color: #5BA6A6;">sign up</a> <a
+					href="${root}/user/login" class="btn btn-sm" tabindex="-1"
+					role="button" aria-disabled="true"
+					style="border-color: #5BA6A6; color: #5BA6A6;">login</a>
 			</div>
 		</div>
 	</nav>
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
-			<a class="navbar-brand" href="#" style="color: #5BA6A6;">Logo
+			<a class="navbar-brand" href="${root}/" style="color: #5BA6A6;">Logo
 				image</a>
 		</div>
 	</nav>
@@ -66,9 +72,9 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link"
-					href="./main.html">Home <span class="sr-only">(current)</span></a>
-				</li>
+				<li class="nav-item active"><a class="nav-link" href="${root}/">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
 				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown"><a
@@ -119,8 +125,8 @@
 							data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
 							<ul class="dropdown-menu dropdown-menu-dark"
 								aria-labelledby="navbarDarkDropdownMenuLink">
-								<li><a class="dropdown-item" href="#">공지사항</a></li>
-								<li><a class="dropdown-item" href="#">Q&A</a></li>
+								<li><a class="dropdown-item" href="${root}/notice/list">공지사항</a></li>
+								<li><a class="dropdown-item" href="${root}/notice/chatbot">Q&A</a></li>
 							</ul></li>
 					</ul>
 				</div>

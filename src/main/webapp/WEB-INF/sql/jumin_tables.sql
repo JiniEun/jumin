@@ -15,12 +15,19 @@ address2				VARCHAR2(50)	NULL ,
 gender					VARCHAR(10) 	NULL ,
 birth					DATE NOT NULL,
 rdate					DATE NOT NULL,
+<<<<<<< HEAD
 fileName				VARCHAR2(50) NOT NULL,
 grade					VARCHAR2(1)  DEFAULT 'H'  NOT NULL
 ); --13
 
 ALTER TABLE users MODIFY fileName VARCHAR2(50) NULL;
 
+=======
+fileName				VARCHAR2(50)  NOT NULL,
+grade					VARCHAR2(1)  DEFAULT 'H'  NOT NULL
+); --13
+
+>>>>>>> feature/user
 COMMENT ON TABLE users is '회원';
 COMMENT ON COLUMN users.ID is '아이디';
 COMMENT ON COLUMN users.uname is '성명';
