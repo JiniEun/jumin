@@ -15,9 +15,11 @@ address2				VARCHAR2(50)	NULL ,
 gender					VARCHAR(10) 	NULL ,
 birth					DATE NOT NULL,
 rdate					DATE NOT NULL,
-fileName				VARCHAR2(50)  NOT NULL,
+fileName				VARCHAR2(50) NOT NULL,
 grade					VARCHAR2(1)  DEFAULT 'H'  NOT NULL
 ); --13
+
+ALTER TABLE users MODIFY fileName VARCHAR2(50) NULL;
 
 COMMENT ON TABLE users is '회원';
 COMMENT ON COLUMN users.ID is '아이디';
@@ -130,6 +132,8 @@ userID 						VARCHAR2(20)	NOT NULL,
 FOREIGN KEY(userID) REFERENCES users(ID) ON DELETE CASCADE
 );
 
+ALTER TABLE fboard ADD nickname VARCHAR2(20)	NOT NULL;
+
 COMMENT ON TABLE fboard is '매칭게시판';
 COMMENT ON COLUMN fboard.fbID is '글 번호';
 COMMENT ON COLUMN fboard.category is '카테고리';
@@ -139,6 +143,7 @@ COMMENT ON COLUMN fboard.password is '패스워드';
 COMMENT ON COLUMN fboard.viewcnt is '조회수';
 COMMENT ON COLUMN fboard.rdate is '등록일';
 COMMENT ON COLUMN fboard.userID is '작성자 아이디';
+COMMENT ON COLUMN fboard.nickname is '작성자 별명';
 
 CREATE TABLE club(
 clID                           NUMBER  NOT NULL  PRIMARY KEY,
@@ -152,6 +157,8 @@ ID 						VARCHAR2(20)	NOT NULL,
 FOREIGN KEY(ID) REFERENCES users(ID) ON DELETE CASCADE
 );
 
+ALTER TABLE club ADD nickname VARCHAR2(20)	NOT NULL;
+
 COMMENT ON TABLE club is '동호회게시판';
 COMMENT ON COLUMN club.clID is '글 번호';
 COMMENT ON COLUMN club.title is '제목';
@@ -161,7 +168,7 @@ COMMENT ON COLUMN club.viewcnt is '조회수';
 COMMENT ON COLUMN club.rdate is '등록일';
 COMMENT ON COLUMN club.fileName is '업로드사진';
 COMMENT ON COLUMN club.ID is '작성자 아이디';
-
+COMMENT ON COLUMN club.nickname is '작성자 별명';
 
 
 CREATE TABLE clReply(
@@ -174,13 +181,15 @@ FOREIGN KEY(clID) REFERENCES club(clID) ON DELETE CASCADE,
 FOREIGN KEY(ID) REFERENCES users(ID) ON DELETE CASCADE
 );
 
+ALTER TABLE clReply ADD nickname VARCHAR2(20)	NOT NULL;
+
 COMMENT ON TABLE clReply is '동호회게시판 댓글';
 COMMENT ON COLUMN clReply.clrID is '댓글 번호';
 COMMENT ON COLUMN clReply.content is '내용';
 COMMENT ON COLUMN clReply.rdate is '등록일';
 COMMENT ON COLUMN clReply.clID is '동호회 글 번호';
 COMMENT ON COLUMN clReply.ID is '작성자 아이디';
-
+COMMENT ON COLUMN clReply.nickname is '작성자 별명';
 
 CREATE TABLE market(
                 mId         NUMBER           NOT NULL,
@@ -195,6 +204,7 @@ CREATE TABLE market(
         PRIMARY KEY (mId),
         FOREIGN KEY (id) REFERENCES users     
 );
+ALTER TABLE market ADD nickname VARCHAR2(20)	NOT NULL;
  
  
 CREATE TABLE mReply(
@@ -208,6 +218,8 @@ CREATE TABLE mReply(
         FOREIGN KEY (mId) REFERENCES market,
         FOREIGN KEY (id) REFERENCES users
 );
+
+ALTER TABLE mReply ADD nickname VARCHAR2(20)	NOT NULL;
 
 CREATE TABLE community(
                 cId         NUMBER           NOT NULL,
@@ -223,6 +235,8 @@ CREATE TABLE community(
         FOREIGN KEY (id) REFERENCES users  
 );
 
+ALTER TABLE community ADD nickname VARCHAR2(20)	NOT NULL;
+
 CREATE TABLE cReply(
             crID        NUMBER           NOT NULL,
             rdate       DATE             NOT NULL,
@@ -235,6 +249,7 @@ CREATE TABLE cReply(
         FOREIGN KEY (id) REFERENCES users
 );
 
+ALTER TABLE cReply ADD nickname VARCHAR2(20)	NOT NULL;
 
 
 
