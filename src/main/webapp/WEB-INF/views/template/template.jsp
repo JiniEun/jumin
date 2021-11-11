@@ -7,18 +7,19 @@
 <title><tiles:getAsString name="title"/></title>
 <style>
 #footer{
-position: absolute;
 
-    left: 0;
+
+   /*  left: 0;
 
     bottom: 0;
 
-    width: 100%;
-
-	padding: 15px 0;
-
-	text-align: center;
-
+    width: 100%; */
+	margin-top: auto;
+	height:10%;
+} 
+.body{
+	min-height: 550px;
+	height:80%;
 }
 </style>
 </head>
@@ -29,11 +30,11 @@ position: absolute;
 <!-- 상단 메뉴 끝 -->
  
 <!-- 내용 시작 -->
-<tiles:insertAttribute name="body"/>
+<div class="body"><tiles:insertAttribute name="body"/></div>
 <!-- 내용 끝 -->
  
 <!-- 하단 부분 -->
-<div id="footer"><tiles:insertAttribute name="footer"/></div>
+<div id="footer" class="sticky-footer"><tiles:insertAttribute name="footer"/></div>
 <!-- 하단부 끝 -->
 </body>
 </html>

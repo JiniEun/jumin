@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dongne.user.UserMapper">
+
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from users
+		<where>
+			<choose>
+				<when test="col=='uname'">
+					uname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='id'">
+					ID like '%'||#{word}||'%'
+				</when>
+				<when test="col=='email'">
+					email like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+	<select id="list" parameterType="Map"
+		resultType="com.dongne.user.UserDTO">
+		SELECT ID, uname, nickname, email, phone, address1, address2, gender, birth,
+		fileName, r
+		from(
+			SELECT ID, uname, nickname, email, phone, address1, address2, gender, birth,
+		fileName, rownum r
+			from(
+				SELECT ID, uname, nickname, email, phone, address1, address2, gender, birth,
+		fileName
+				FROM users
+				<where>
+					<choose>
+						<when test="col=='mname'">
+							uname like '%'||#{word}||'%'
+						</when>
+						<when test="col=='id'">
+							ID like '%'||#{word}||'%'
+						</when>
+						<when test="col=='email'">
+							email like '%'||#{word}||'%'
+						</when>
+					</choose>
+				</where>
+				ORDER BY rdate DESC
+				)
+		<![CDATA[       
+		     )where r >= #{sno} and r <= #{eno}
+		]]>
+	</select>
+
+	<update id="updateFile" parameterType="Map">
+		update users
+		set fileName = #{fileName}
+		where ID = #{ID}
+	</update>
+	<update id="update" parameterType="com.dongne.user.UserDTO">
+		update users
+		set
+		email = #{email},
+		nickname = #{nickname},
+		phone = #{phone},
+		address1 = #{address1},
+		address2 = #{address2},
+		where ID = #{ID}
+	</update>
+
+	<select id="read" parameterType="String"
+		resultType="com.dongne.user.UserDTO">
+		select *
+		from users
+		where ID = #{ID}
+	</select>
+
+	<select id="getGrade" parameterType="String" resultType="String">
+		select grade from users
+		where ID = #{ID}
+	</select>
+	<select id="loginCheck" parameterType="Map" resultType="int">
+		select count(*) from users
+		where ID = #{ID}
+		and password = #{password}
+	</select>
+
+	<select id="duplicatedId" parameterType="String"
+		resultType="int">
+		SELECT COUNT(id)
+		FROM users
+		WHERE ID = #{ID}
+	</select>
+	<select id="duplicatedEmail" parameterType="String"
+		resultType="int">
+		SELECT COUNT(email)
+		FROM users
+		WHERE email=#{email}
+	</select>
+
+	<insert id="create" parameterType="com.dongne.user.UserDTO">
+		INSERT INTO users(ID, password, uname, nickname, email, phone,
+		address1, address2, gender, birth, rdate,grade)
+		VALUES(#{ID}, #{password},#{uname}, #{nickname}, #{email}, #{phone},
+		#{address1}, #{address2}, #{gender}, #{birth}, sysdate,'H')
+	</insert>
+
+</mapper>
