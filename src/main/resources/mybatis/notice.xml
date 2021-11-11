@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dongne.notice.NoticeMapper">
+	<insert id="create" parameterType="com.dongne.notice.NoticeDTO">
+		insert into notice(nID, title, content, password, viewcnt, rdate, ID)
+		values((select
+		nvl(max(nID),0)+1 from notice), #{title}, #{content}, #{password},0,sysdate, #{ID})
+	</insert>
+	  <!-- 패스워드 검사 -->
+  	<select id="checkPassword" resultType="int" parameterType="HashMap">
+    	SELECT COUNT(*) AS cnt
+    	FROM notice
+    	WHERE nID=#{nID} AND password=#{password}
+  	</select>   
+	<update id="update" parameterType="com.dongne.notice.NoticeDTO">
+		update notice
+		set title=#{title}, content=#{content}, ID=#{ID}
+		where nID =#{nID}
+	</update>
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM notice
+		WHERE nID=#{nID}
+	</delete>  
+	
+	<select id="read" parameterType="int"
+		resultType="com.dongne.notice.NoticeDTO">
+		select nID, title, content, password, viewcnt, rdate, ID
+		from notice
+		where nID = #{nID}
+	</select>
+	<!-- 조회수 증가 -->
+	<update id="upCnt" parameterType="int">
+		update notice
+		set viewcnt = viewcnt + 1
+		where nID = #{nID}
+	</update>
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from notice
+		<where>
+			<choose>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+	<select id="list" parameterType="Map"
+		resultType="com.dongne.notice.NoticeDTO">
+		select nID, title, content, password, viewcnt, rdate, r
+		from (
+			select nID, title, content, password, viewcnt, rdate, rownum r
+			from(
+				select nID, title, content, password, viewcnt, rdate
+				from notice
+				<where>
+				<choose>
+					<when test="col=='title'">
+						title like '%'||#{word}||'%'
+					</when>
+					<when test="col=='content'">
+						content like '%'||#{word}||'%'
+					</when>
+				</choose>
+			  </where>
+		       order by nID desc
+			)
+     	<![CDATA[       
+         )where r >= #{sno} and r <= #{eno}
+     	]]>
+	</select>
+</mapper>
