@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dongne.tour.TreplyMapper">
+	
+<insert id="create"
+		parameterType="com.dongne.tour.TourDTO">
+		insert into tReply(trID, ID, content, rdate )
+		values((select nvl(max(tID),0)+1 from tour),
+		#{ID},#{content},
+               sysdate)
+</insert>
+
+
+<delete id="delete" parameterType="int">
+		DELETE FROM tReply
+		WHERE trID=#{trID}
+</delete>  
+
+<select id="list" parameterType="Map" resultType="com.dongne.tour.TreplyDTO">
+select trid, content, rdate, id, tid, r
+FROM(
+        select trid, content, rdate, id, tid, rownum r
+        FROM(
+                select trid, content, rdate, id, tid
+                from TREPLY
+                where tid = #{tid}
+                order by rnum DESC
+           )
+		<![CDATA[
+		)WHERE r >= #{sno} and r <= #{eno}
+		]]>
+</select>
+ 
+<select id="total" resultType="int" parameterType="int">
+select count(*) from reply
+where tid=#{tid}
+</select>
+
+
+</mapper>
+

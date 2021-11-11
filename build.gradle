@@ -32,6 +32,7 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'  
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
+	implementation group: 'org.json', name: 'json', version: '20201115'
 }
 
 test {

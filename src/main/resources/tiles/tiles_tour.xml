@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+  <!-- main -->
+  <definition name="main"
+    template="/WEB-INF/views/template/template.jsp">
+    <put-attribute name="header"
+      value="/WEB-INF/views/template/top.jsp" />
+      <put-attribute name="footer"
+      value="/WEB-INF/views/template/bottom.jsp" />
+  </definition>
+  
+  <definition name="/home" extends="main">
+    <put-attribute name="title" value="기본페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/index.jsp" />
+  </definition>
+  
+  <definition name="/tour/create" extends="main">
+    <put-attribute name="title" value="동네스팟"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/tour/create.jsp" />
+  </definition>
+  
+  <definition name="/tour/read" extends="main">
+    <put-attribute name="title" value="동네스팟 조회"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/tour/read.jsp" />
+  </definition>
+  
+  <definition name="/tour/update" extends="main">
+    <put-attribute name="title" value="내용 수정"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/tour/update.jsp" />
+  </definition>
+  
+  <definition name="/tour/delete" extends="main">
+    <put-attribute name="title" value="글삭제"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/tour/delete.jsp" />
+  </definition>
+
+  <definition name="/tour/list" extends="main">
+    <put-attribute name="title" value="tour 목록"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/tour/list.jsp" />
+  </definition>
+
+
+
+</tiles-definitions>
