@@ -37,6 +37,12 @@ public class ClubServiceImpl implements ClubService {
 			return mapper.list(map);
 		}
 	  
+	  @Override
+		public int updateFile(Map map) {
+			// TODO Auto-generated method stub
+			return mapper.updateFile(map);
+		}
+	  
 	  
 	  @Override
 		public ClubDTO read(int clID) {

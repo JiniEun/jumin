@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-<h5 class="col-sm-offset-2 col-sm-10">동네모임-동호회</h5>
+<h5 class="col-sm-offset-2 col-sm-10">동네모임-동호회 게시글 작성</h5>
 <form class="form-horizontal" 
       action="./create"
       method="post"

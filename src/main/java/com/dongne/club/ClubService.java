@@ -10,6 +10,7 @@ public interface ClubService {
 	  int update(ClubDTO dto); 
 	  int total(Map map);
 	  List<ClubDTO> list(Map map);
+	  int updateFile(Map map);
 	  ClubDTO read(int clID);
 	  void upViewcnt(int clID);
 	  int passwd(Map map); 

@@ -76,55 +76,61 @@ public class ClubContoller {
 
 	    return "/club/list";
 	  }
-	
-	@GetMapping("/club/update")
-	  public String update(int clID, Model model) {
-	    
-	    model.addAttribute("dto", service.read(clID));
-	 
-	    return "/club/update";
-	  }
-	
-	 @PostMapping("/club/update")
-	  public String update(ClubDTO dto, String oldfile, RedirectAttributes redirect, HttpServletRequest request) throws IOException {
-	    String basePath = Club.getUploadDir();
+	@PostMapping("/club/updateFile")
+	public String updateFile(MultipartFile fileNameMF, String oldfile, int clID, HttpServletRequest request)
+			throws IOException {
+		//String basePath = new ClassPathResource("/static/pstorage").getFile().getAbsolutePath();
+		String basePath = Club.getUploadDir();
 
-	    if(dto.getFileNameMF().getSize() > 0) {
-	    	if (oldfile != null) { // 원본파일 삭제
-				Utility.deleteFile(basePath, oldfile);
-			dto.setFileName(Utility.saveFileSpring(dto.getFileNameMF(), basePath));
-			dto.setFilesize((int)dto.getFileNameMF().getSize());
-			}
-	    }
-	    
-	    Map map = new HashMap();
-	    map.put("clID", dto.getClID());
-	    map.put("password", dto.getPassword());
-	  
-	    boolean pflag = false;
-	
-	int cnt = service.passwd(map);
-	if(cnt>0)
-		pflag = true;
-	boolean flag = false;
+		if (oldfile != null) { // 원본파일 삭제
+			Utility.deleteFile(basePath, oldfile);
+		}
 
-	if(pflag) {
-		int cnt2 = service.update(dto);
-		if(cnt2>0)
-			flag = true;
+		// pstorage에 변경 파일 저장
+		Map map = new HashMap();
+		map.put("clID", clID);
+		map.put("fileName", Utility.saveFileSpring(fileNameMF, basePath));
+
+		// 디비에 파일명 변경
+		int cnt = service.updateFile(map);
+
+		if (cnt == 1) {
+			return "redirect:./list";
+		} else {
+			return "./error";
+		}
 	}
 
-	if(!pflag) {
-		return "./passwdError";
-	} else if (flag) {
-		redirect.addAttribute("col", request.getParameter("col"));
-		redirect.addAttribute("word", request.getParameter("word"));
-		redirect.addAttribute("nowPage", request.getParameter("nowPage"));
-		return "redirect:./list";
-	} else {
-		return "error";
+	@GetMapping("/club/updateFile/{clID}/{oldfile}")
+	public String updateFileForm(@PathVariable("clID") int clID, @PathVariable("oldfile") String oldfile,
+			Model model) {
+		model.addAttribute("clID", clID);
+		model.addAttribute("oldfile", oldfile);
+
+		return "/club/updateFile";
 	}
-	  }
+	
+	@PostMapping("/club/update")
+	public String update(ClubDTO dto) {
+		int cnt = service.update(dto);
+
+		if (cnt == 1) {
+			return "redirect:./list";
+		} else {
+			return "error";
+		}
+	}
+
+	@GetMapping("/club/update/{clID}")
+	public String update(@PathVariable("clID") int clID, Model model) {
+
+		ClubDTO dto = service.read(clID);
+
+		model.addAttribute("dto", dto);
+
+		return "/club/update";
+
+	}
 	
 	 @GetMapping("/club/create")
 	  public String create() {

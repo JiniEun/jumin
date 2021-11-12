@@ -35,7 +35,7 @@
 <body>
 	<div class="container">
 
-		<h2>조회</h2>
+		<h5>조회</h5>
 		<div class="panel panel-default">
 			<div class="panel-heading">작성자</div>
 			<div class="panel-body">${dto.nickname}</div>
@@ -54,7 +54,7 @@
 
 		</div>
 		<div>
-					<button type="button" class="btn" onclick="location.href='${root}/notice/create'">등록</button>
+					<button type="button" class="btn" onclick="location.href='${root}/club/create'">등록</button>
 					<button type="button" class="btn" onclick="updateM()">수정</button>
 					<button type="button" class="btn" onclick="deleteM()">삭제</button>
 					<button type="button" class="btn" onclick="listM()">목록</button>

@@ -14,7 +14,7 @@
 <body> 
  
 <div class="container">
-<h1 class="col-sm-offset-2 col-sm-10">공지 수정</h1>
+<h5 class="col-sm-offset-2 col-sm-10">동네모임-동호회 게시글 수정</h5>
 <form class="form-horizontal" 
       action="./update"
       method="post"
