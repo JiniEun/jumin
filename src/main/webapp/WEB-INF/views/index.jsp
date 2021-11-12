@@ -5,55 +5,58 @@
 <head>
 <title>기본페이지</title>
 <meta charset="utf-8">
-<style></style>
-<script src="http://code.jquery.com/jquery-lastest.js"></script>
+<!-- <link href="./css/mainPage.css" rel="stylesheet" type="text/css">  -->
+<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="./js/weather.js"></script>
 <script type="text/JavaScript">
-$(function() {        
+
+/* 	$(function() {  
+	let weatherIcon ={
+			'01' : 'fas fa-sun',
+			'02' : 'fas fa-cloud-sun',
+			'03' : 'fas fa-cloud',
+			'04' : 'fas fa-cloud-meatball',
+			'09' : 'fas fa-cloud-sun-rain',
+			'10' : 'fas fa-cloud-showers-heavy',
+			'11' : 'fas fa-poo-storm',
+			'13' : 'fas fa-snowflake',
+			'50' : 'fas fa-smog'
+	};
     // Geolocation API에 액세스할 수 있는지를 확인
     if (navigator.geolocation) {
         //위치 정보를 얻기
         navigator.geolocation.getCurrentPosition (function(pos) {
             $('#latitude').html(pos.coords.latitude);     // 위도
-            $('#longitude').html(pos.coords.longitude); // 경도
-        });
-    } else {
+            $('#longitude').html(pos.coords.longitude);   // 경도
+        })
+        console.log(latitude, longitude);
+        $.ajax({
+        	//url : 'https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=e586ddbaf2d677ed76dfd0d7b9e58c31&units=metric',
+        	url : 'https://api.openweathermap.org/data/2.5/weather?lat=37&lon=137&appid=e586ddbaf2d677ed76dfd0d7b9e58c31&units=metric',
+        	dataType:'JSON',
+        	type : 'GET',
+        	seccess : function(data){
+        		
+        		 
+        		
+        		//var $icon = (data.weather[0].icon).substr(0,2);
+        		var $Temp = math.floor(data.main.temp) + 'º';
+        		var $city = data.name;
+        		
+        		
+        		
+        		$('.wIcon').append('<i class="'+weatherIcon[$Icon] + '"></i>');
+        		$('.rTemp').prepend($Temp);
+        		$('.rCity').append($city);
+        		
+        		
+        	}
+		})
+    } console.log(latitude,longitude);
+	else {
         alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
     }
-function askForCoords(){
-        navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
-      }
-      
-function handleGeoSucces(position){
-    const latitude =  position.coords.latitude;
-    const longitude = position.coords.longitude;
-    const coordsObj = {
-      latitude,
-      longitude
-    };
-    saveCoords(coordsObj);
-    getWeather(latitude, longitude);
-  }
-
-  function handleGeoError(position){
-    console.log('Cant get your position.');
-  }      
-
-
-function getWeather(lat, lon){
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-    )
-      .then(function(response){
-      return response.json();
-    })
-      .then(function(json){
-        console.log(json);
-        const temparature = json.main.temp;  //온도
-        const place = json.name;   // 사용자 위치
-        weather.innerText = `${temparature} @${place}`;
-
-      });
-  }
+	}); */
 
 
 </script>
@@ -61,13 +64,25 @@ function getWeather(lat, lon){
 <body>
 	<div class="container">
 		<p>Main</p>
-		<li>위도:<span id="lat"></span></li>
-        <li>경도:<span id="lon"></span></li>
-        <li>온도:<span id="temparature"></span></li>
-        <li>위치:<span id="place"></span></li>
-        <img src="./images/jeans.jpg" alt="Jeans">
 		
+		<!-- <span id="latitude"></span>|<span id="longitude"></span> --> 
+		<img id="wicon" src="#"><br>
+		<span id="rtemp"></span><br> 
+		<span id="rLoc"></span> 
+			
+		<img src="#" alt="">
+        <img src="#" alt="">
+        <img src="#" alt="">
 
-	</div>
+
+		
+	
+	<!--</div>
+	 <div class="weather">
+		<div class = 'wIcon'></div>
+		<div class = 'rTemp'></div>
+		<div class = 'rCity'></div>
+	</div> -->
+	
 </body>
 </html>
