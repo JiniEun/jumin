@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <footer class="sticky-footer"><!--container-fluid navbar-fixed-bottom">-->
+    <footer class="container-fluid navbar-fixed-bottom" style="text-align: center;"><!--container-fluid navbar-fixed-bottom">  sticky-footer-->
         <hr />
         <div></div>
         <div>@ 2021 Jumin Project</div>
