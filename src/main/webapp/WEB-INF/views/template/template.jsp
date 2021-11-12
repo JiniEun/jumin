@@ -7,14 +7,12 @@
 <title><tiles:getAsString name="title"/></title>
 <style>
 #footer{
-
-
    /*  left: 0;
 
     bottom: 0;
 
     width: 100%; */
-	margin-top: auto;
+	margin-top: auto; 
 	height:10%;
 } 
 .body{

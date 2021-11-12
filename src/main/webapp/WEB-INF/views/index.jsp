@@ -81,6 +81,7 @@
 		<div class = 'rTemp'></div>
 		<div class = 'rCity'></div>
 	</div> -->
+	</div>
 	
 </body>
 </html>
