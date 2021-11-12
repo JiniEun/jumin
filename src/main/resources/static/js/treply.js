@@ -2,10 +2,10 @@ console.log("*****Reply Module........");
 class ReplyService {
     getList(param) {
         return new Promise((resolve, reject) => {
-            var bbsno = param.bbsno;
+            var tid = param.tid;
             var sno = param.sno;
             var eno = param.eno;
-            //alert(param.bbsno);
+            //alert(param.tid);
             $.getJSON("./treply/list/" + tid + "/" + sno + "/" + eno ,
                 function (data) {
                     //alert(data);

@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+	
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,19 +17,9 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/static/css/tour_read.css">
-    <script type="text/javascript" src="/resources/static/js/treply.js"></script>
-    <script type="text/javascript" src="/resources/static/js/treplyprocess.js"></script>
-        <script type="text/javascript">
-  var bbsno = "${dto.bbsno}"; 
-  var sno = "${sno}";
-  var eno = "${eno}";
- <!-- 댓글용 paging, 게시판 검색 -->
-  var nPage = "${nPage}";
-  var nowPage = "${param.nowPage}";
-  var colx = "${param.col}";
-  var wordx = "${param.word}";
-  </script>
-    <title>Document</title>
+    
+    
+    <title>동네스팟 조회</title>
 </head>
 <body>
 <div class="container">   
@@ -54,27 +47,36 @@
         <article>${dto.contents}</article>
     </section>
 
-    <section class="reply">
-        <textarea id="reply" name="reply" type="text"></textarea>
-        <button class="rebtn">댓글 등록</button>
-    </section>
 
-    <section class="reshow">
-        <div id="rc">{dto.reply}</div>
-    </section>
-
-    <section class="repaging">
-        <span>{paging}</span>
-    </section>
-
-    <section class="btn">
-        <button>목록</button>
-        <button>수정</button>
-        <button>삭제</button>
-    </section>
-
+	<!-- reply -->
+	<form name="replyForm">
+	    <section class="reply">
+	    	<input type="hidden" name="tid" value="${dto.tid}"/>
+	        <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+	        <button class="rebtn" id="rebtn" name="rebtn">댓글 등록</button>
+	    </section>
+	
+	    <section class="reshow">
+	        <div id="rc">{dto.content}</div>
+	        <div class="replyList"></div>
+	    </section>
+	
+	    <section class="repaging">
+	        <span>{paging}</span>
+	    </section>
+	</form>
+	
+	    <section class="btn">
+	        <button>목록</button>
+	        <button>수정</button>
+	        <button>삭제</button>
+	    </section>
+	
 </div>
-    
+
+
+
+<%@ include file="reply.jsp" %>
 
 </body>
 </html>

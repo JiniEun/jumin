@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="filenameMF">파일</label>
                 <div class="col-sm-6">
-                    <input type="file" name="filenameMF" id="filenameMF" class="form-control">
+                    <input multiple="multiple" type="file" name="filenameMF" id="filenameMF" class="form-control">
                 </div>
             </div>
 
