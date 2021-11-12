@@ -105,7 +105,7 @@
 							data-bs-toggle="dropdown" aria-expanded="false"> 동네 모임 </a>
 							<ul class="dropdown-menu dropdown-menu-dark"
 								aria-labelledby="navbarDarkDropdownMenuLink">
-								<li><a class="dropdown-item" href="#">동호회</a></li>
+								<li><a class="dropdown-item" href="${root}/club/list">동호회</a></li>
 								<li><a class="dropdown-item" href="#">동네친구</a></li>
 							</ul></li>
 					</ul>

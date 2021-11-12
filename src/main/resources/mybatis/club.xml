@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dongne.club.ClubMapper">
+
+  <!-- 패스워드 검사 -->
+  <select id="passwd" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) AS cnt
+    FROM club
+    WHERE clID=#{clID} AND password=#{password}
+  </select>
+  
+  <!-- 수정 -->
+  <update id="update" parameterType="com.dongne.club.ClubDTO">
+      update club
+      <set>
+         nickname = #{nickname},
+         title = #{title},
+         content = #{content},
+         <if test="filesize > 0">
+            fileName = #{fileName},
+            filesize = #{filesize}
+         </if>
+      </set>
+      where clID = #{clID}
+   </update>
+   
+  <!-- 삭제 -->
+   <delete id="delete" parameterType="int">
+       DELETE FROM club
+       WHERE clID = #{clID}
+    </delete>
+    
+  <!-- 조회수 증가 -->
+    <update id="upViewcnt" parameterType="int">
+    update club              
+    set viewcnt = viewcnt + 1 
+    where clID = #{clID}         
+  </update>
+  
+  <!-- 조회 -->
+  <select id="read" parameterType="int"
+      resultType="com.dongne.club.ClubDTO">
+      SELECT clID, nickname, title, content, viewcnt, rdate, fileName
+      FROM club
+      WHERE clID = #{clID}
+   </select>
+   
+  <!-- 등록 -->
+  <insert id="create" parameterType="com.dongne.club.ClubDTO">
+      insert into club(clID, nickname, title, content, password, rdate, fileName)
+      values((select nvl(max(clID),0) + 1 as clID from club),
+      #{nickname}, #{title}, #{content}, #{password} ,sysdate,#{fileName})
+   </insert>
+  
+  <!-- 목록 -->
+   <select id="list" parameterType="Map" resultType="com.dongne.club.ClubDTO">
+    SELECT clID, title, content, nickname, password, viewcnt, rdate
+		FROM club
+    <where>
+              <choose>
+                  <when test="col=='nickname'">
+                      wname like '%'||#{word}||'%'
+                  </when>
+                  <when test="col=='title'">
+                      title like '%'||#{word}||'%'
+                  </when>
+                  <when test="col=='content'">
+                      content like '%'||#{word}||'%'
+                  </when>
+                  <when test="col=='title_content'">
+                     title like '%'||#{word}||'%'
+                     or
+                     content like '%'||#{word}||'%'
+                  </when>
+              </choose>
+           </where>
+    ORDER BY clID DESC
+  </select>
+  
+  <!--total-->
+  <select id="total" resultType="int" parameterType="Map">
+    select count(*) from club
+    <where>
+              <choose>
+                      <when test="col=='nickname'">
+                      wname like '%'||#{word}||'%'
+                  </when>
+                  <when test="col=='title'">
+                      title like '%'||#{word}||'%'
+                  </when>
+                  <when test="col=='content'">
+                      content like '%'||#{word}||'%'
+                  </when>
+                  <when test="col=='title_content'">
+                     title like '%'||#{word}||'%'
+                     or
+                     content like '%'||#{word}||'%'
+                  </when>
+              </choose>
+           </where>
+  </select>
+
+   
+
+
+  
+</mapper>
