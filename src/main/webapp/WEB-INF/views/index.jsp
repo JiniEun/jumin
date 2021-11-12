@@ -5,8 +5,6 @@
 <head>
 <title>기본페이지</title>
 <meta charset="utf-8">
-<!-- <link href="./css/mainPage.css" rel="stylesheet" type="text/css">  -->
-<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="./js/weather.js"></script>
 <script type="text/JavaScript">
 
