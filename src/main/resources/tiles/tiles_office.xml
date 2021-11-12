@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+  <!-- main -->
+  <definition name="main"
+    template="/WEB-INF/views/template/template.jsp">
+    <put-attribute name="header"
+      value="/WEB-INF/views/template/top.jsp" />
+      <put-attribute name="footer"
+      value="/WEB-INF/views/template/bottom.jsp" />
+  </definition>
+  
+  <definition name="/home" extends="main">
+    <put-attribute name="title" value="기본페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/index.jsp" />
+  </definition>
+  
+  <definition name="office/create" extends="main">
+    <put-attribute name="title" value="관공서 생성"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/office/create.jsp" />
+  </definition>
+  
+  <definition name="/office/list" extends="main">
+    <put-attribute name="title" value="목록"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/office/list.jsp" />
+  </definition>
+  
+  <definition name="/office/update" extends="main">
+    <put-attribute name="title" value="내용 수정"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/office/update.jsp" />
+  </definition>
+  
+  <definition name="/office/delete" extends="main">
+    <put-attribute name="title" value="글삭제"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/office/delete.jsp" />
+  </definition>
+
+</tiles-definitions>

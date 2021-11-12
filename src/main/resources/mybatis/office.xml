@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dongne.office.OfficeMapper">
+	
+<insert id="create" parameterType="com.dongne.office.OfficeDTO">
+		insert into office(oid, oname, address, webaddress, phone, filename, contents, id)
+		values((select nvl(max(oid),0)+1 from office),
+		#{oname}, #{address}, #{webaddress},#{phone}, #{filename},#{contents},#{oid})
+</insert>
+	
+
+<select id="list" resultType="com.dongne.office.OfficeDTO">
+        select * from office
+</select>
+
+<select id="read" parameterType="int" resultType="com.dongne.office.OfficeDTO">
+        select * from office
+        where oid=#{oid}
+</select>
+	
+
+<update id="update"
+		parameterType="com.dongne.office.OfficeDTO">
+		update office
+		set oname =#{oname},
+		address =#{address},
+		webaddress =#{webaddress},
+		phone =#{phone},
+		contents = #{contents},
+		rdate = sysdate
+		where oid =#{oid}
+</update>
+	
+
+<update id="updateFile" parameterType="Map">
+		update office
+		set filename = #{filename}
+		where oid = #{oid}
+</update>
+
+
+<delete id="delete" parameterType="int">
+		DELETE FROM office
+		WHERE oid=#{oid}
+</delete>  
+
+</mapper>
+
