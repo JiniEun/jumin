@@ -180,5 +180,34 @@ public class UserController {
 		}
 	}
 	
+	@GetMapping("/user/update")
+	public String update(String id, HttpSession session, Model model) {
+
+		if (id == null) {
+			id = (String) session.getAttribute("ID");
+		}
+
+		UserDTO dto = service.read(id);
+
+		model.addAttribute("dto", dto);
+
+		return "/user/update";
+	}
+
+	@PostMapping("/user/update")
+	public String update(UserDTO dto, Model model) {
+		
+		System.out.println(dto.toString());
+		
+		int cnt = service.update(dto);
+
+		if (cnt == 1) {
+			model.addAttribute("ID", dto.getID());
+			return "redirect:./mypage";
+		} else {
+			return "error";
+		}
+	}
+	
 
 }

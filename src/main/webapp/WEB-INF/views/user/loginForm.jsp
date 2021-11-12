@@ -63,7 +63,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-8">
-							<button type="submit" class="btn btn-color">로그인</button>
+							<button type="submit" class="btn btn-color" onclick="location.href='../'">로그인</button>
 							<button type="button" class="btn btn-color"
 								onclick="location.href='create'">회원가입</button>
 							<button type="button" class="btn">아이디 찾기</button>

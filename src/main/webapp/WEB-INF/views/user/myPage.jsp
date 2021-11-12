@@ -26,45 +26,56 @@
 </style>
 </head>
 <body>
-<div class="container-lg">
+<div class="container-lg" style="margin-top:10px;">
         <h2>나의 정보</h2>
         <div class="card card-default" style="max-width: 900px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="../회원관련/images/profile.png" class="img-fluid rounded-start" alt="...">
-                </div>
+					<div class="d-flex justify-content-center">
+						<c:choose>
+							<c:when test="${empty dto.fileName}">
+								<img src="/images/profile.png" class="img-fluid rounded-start"
+									alt="img">
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">성명</h5>
-                        <p class="card-text">개발자 1</p>
-
                         <h5 class="card-title">아이디</h5>
-                        <p class="card-text">아이디입니다.</p>
+						<p class="card-text">${dto.ID}</p>
+						
+						<h5 class="card-title">성명</h5>
+						<p class="card-text">${dto.uname}</p>
+
+						<h5 class="card-title">별명</h5>
+						<p class="card-text">${dto.nickname}</p>
 
                         <h5 class="card-title">성별</h5>
-                        <p class="card-text">여자</p>
+                        <p class="card-text">${dto.gender}</p>
 
                         <h5 class="card-title">생년월일</h5>
-                        <p class="card-text">11.04.2010</p>
+                        <p class="card-text">${dto.birth}</p>
 
                         <h5 class="card-title">이메일 주소</h5>
-                        <p class="card-text">you@example.com</p>
+                        <p class="card-text">${dto.email}</p>
 
                         <h5 class="card-title">전화번호</h5>
-                        <p class="card-text">010-0000-0000</p>
+                        <p class="card-text">${dto.phone }</p>
 
                         <h5 class="card-title">주소</h5>
-                        <p class="card-text">주소입니다.</p>
-
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <p class="card-text">${dto.address1 }</p>
+                        <p class="card-text">${dto.address2 }</p>
+                        
                     </div>
                 </div>
             </div>
         </div>
         <br>
         <div>
-            <button type="button" class="btn btn-color">회원 정보 변경</button>
-            <button type="button" class="btn btn-color">회원 탈퇴</button>
+            <button type="button" class="btn btn-color" onclick="location.href='update'">회원 정보 변경</button>
         </div>
     </div>
 </body>
