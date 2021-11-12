@@ -60,12 +60,14 @@ public class UserController {
 	@PostMapping("user/login")
 	public String login(@RequestParam Map<String, String> map, HttpSession session, HttpServletResponse response,
 			Model model) {
-		
-		System.out.println(map);
 
 		int cnt = service.loginCheck(map);
+		
+		System.out.println(map);
+		System.out.println(cnt);
 
 		if (cnt > 0) {
+			System.out.println(cnt);
 			String grade = service.getGrade(map.get("ID"));
 			session.setAttribute("ID", map.get("ID"));
 			session.setAttribute("grade", grade);
@@ -89,7 +91,6 @@ public class UserController {
 				cookie = new Cookie("c_id_val", "");// 쿠키 삭제
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
-
 			}
 		}
 
@@ -178,5 +179,6 @@ public class UserController {
 			return "/user/mypage";
 		}
 	}
+	
 
 }

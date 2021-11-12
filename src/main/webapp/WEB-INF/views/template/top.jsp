@@ -1,6 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath }" />
+<c:choose>
+	<c:when
+		test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
+		<c:set var="str">관리자입니다.</c:set>
+	</c:when>
+	<c:when
+		test="${not empty sessionScope.ID && sessionScope.grade != 'A'}">
+		<c:set var='str'>안녕하세요  ${sessionScope.ID } 님!</c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="str">기본 페이지 입니다.</c:set>
+	</c:otherwise>
+</c:choose>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,44 +33,46 @@
 	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
 	crossorigin="anonymous"></script>
 <style type="text/css">
+.btn-color {
+	border-color: #5BA6A6;
+	color: #5BA6A6;
+}
 </style>
-<!-- <script type="text/javascript">
-	$(function() {
-		$.ajax({
-			url : "/contents/getCategory",
-			type : "GET",
-			//data: JSON.stringify(),
-			//contentType: "application/json; charset=utf-8;",
-			dataType : "json",
-			success : function(data) {
-				// alert("success:"+data.length);
-				// alert(data[0].CATENO);
-				// alert(data[0].CATENAME)
-				for (var i = 0; i < data.length; i++) {
-					$('#pmenu').append(
-							"<li><a href='/contents/mainlist/"+data[i].CATENO+"'>"
-									+ data[i].CATENAME + "</a></li>");
-				}
-
-			},
-			error : function(request, status, error) {
-				alert("code = " + request.status + " message = "
-						+ request.responseText + " error = " + error); // 실패 시 처리
-			}
-		});//ajax end
-	});//페이지로딩
-</script> -->
 </head>
 <body>
 	<!--상단메뉴-->
 	<nav class="navbar-nav">
-		<div class="container-fluid">
+		<div class="container-fluid" style="margin-top: 5px;">
+			<div class="float-left">
+				<a id="grade" style="color: black;"><span
+					class="glyphicon glyphicon-grain" style="color: black;"></span>
+					${str}</a>
+			</div>
 			<div class="float-right">
-				<a href="${root}/user/create" tabindex="-1" aria-disabled="true"
-					style="border-color: #5BA6A6; color: #5BA6A6;">sign up</a> <a
-					href="${root}/user/login" class="btn btn-sm" tabindex="-1"
-					role="button" aria-disabled="true"
-					style="border-color: #5BA6A6; color: #5BA6A6;">login</a>
+				<c:choose>
+					<c:when test="${empty sessionScope.ID }">
+						<a href="${root}/user/create" tabindex="-1" aria-disabled="true"
+							style="color: #5BA6A6; margin-right: 10px;">sign up</a>
+						<a href="${root}/user/login" class="btn btn-sm btn-color"
+							tabindex="-1" role="button" aria-disabled="true">login</a>
+					</c:when>
+					<c:when
+						test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
+						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
+							style="color: #5BA6A6; margin-right: 10px;">My Page</a>
+						<a href="${root}/user/mypage" class="btn btn-sm btn-color"
+							tabindex="-1" role="button" aria-disabled="true" style="margin-right: 10px;">setting</a>
+						<a href="${root}/user/logout" class="btn btn-sm btn-color"
+							tabindex="-1" role="button" aria-disabled="true">logout</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
+							style="color: #5BA6A6; margin-right:10px;">My Page</a>
+						<a href="${root}/user/logout" class="btn btn-sm btn-color"
+							tabindex="-1" role="button" aria-disabled="true">logout</a>
+					</c:otherwise>
+				</c:choose>
+
 			</div>
 		</div>
 	</nav>
