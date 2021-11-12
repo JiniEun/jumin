@@ -55,3 +55,6 @@ COMMENT ON COLUMN notice.ID is '작성자 아이디';
 
 
 
+
+
+
