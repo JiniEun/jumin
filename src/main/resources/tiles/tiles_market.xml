@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+  <!-- main -->
+  
+  <definition name="/market/list" extends="main">
+    <put-attribute name="title" value="목록페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/market/list.jsp" />
+  </definition>
+  <definition name="/market/create" extends="main">
+    <put-attribute name="title" value="등록페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/market/createForm.jsp" />
+  </definition>
+  
+</tiles-definitions>

@@ -117,7 +117,7 @@
 					</ul>
 				</div>
 				<li class="nav-item"><a class="nav-link"
-					href="./market_main.html">동네 장터</a></li>
+					href="${root}/market/list">동네 장터</a></li>
 				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown"><a
