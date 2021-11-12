@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		nickname = #{nickname},
 		phone = #{phone},
 		address1 = #{address1},
-		address2 = #{address2},
+		address2 = #{address2}
 		where ID = #{ID}
 	</update>
 
