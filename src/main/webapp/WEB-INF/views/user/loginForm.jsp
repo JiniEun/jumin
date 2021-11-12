@@ -29,9 +29,8 @@
 	<div class="container-sm">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-
 				<h1 class="col-sm-offset-2 col-sm-10">로그인</h1>
-				<form class="form-horizontal" action="/user/login" method="post">
+				<form class="form-horizontal" action="login" method="post">
 					<input type="hidden" name="rurl" value="${param.rurl}"> <input
 						type="hidden" name="bbsno" value="${param.bbsno}"> <input
 						type="hidden" name="nowPage" value="${param.nowPage}"> <input

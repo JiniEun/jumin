@@ -185,7 +185,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="phone">전화번호</label> <input type="tel"
-							class="form-control" id="phone" name="phone" placeholder="repassword"
+							class="form-control" id="phone" name="phone" placeholder="010-0000-0000"
 							pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
 						<div class="invalid-feedback">전화번호를 입력해주세요</div>
 					</div>
