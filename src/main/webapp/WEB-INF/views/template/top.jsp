@@ -117,7 +117,7 @@
 					</ul>
 				</div>
 				<li class="nav-item"><a class="nav-link"
-					href="./market_main.html">동네 장터</a></li>
+					href="${root}/market/list">동네 장터</a></li>
 				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown"><a
@@ -126,7 +126,7 @@
 							data-bs-toggle="dropdown" aria-expanded="false"> 동네 모임 </a>
 							<ul class="dropdown-menu dropdown-menu-dark"
 								aria-labelledby="navbarDarkDropdownMenuLink">
-								<li><a class="dropdown-item" href="#">동호회</a></li>
+								<li><a class="dropdown-item" href="${root}/club/list">동호회</a></li>
 								<li><a class="dropdown-item" href="#">동네친구</a></li>
 							</ul></li>
 					</ul>

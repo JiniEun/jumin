@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+  <definition name="/club/create" extends="main">
+    <put-attribute name="title" value="동호회글생성"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/club/createForm.jsp" />
+  </definition>
+  <definition name="/club/list" extends="main">
+    <put-attribute name="title" value="동호회목록"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/club/list.jsp" />
+  </definition>
+  <definition name="/club/read" extends="main">
+    <put-attribute name="title" value="동호회조회"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/club/read.jsp" />
+  </definition>
+  <definition name="/club/update" extends="main">
+    <put-attribute name="title" value="동호회수정"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/club/updateForm.jsp" />
+  </definition>
+  <definition name="/club/delete" extends="main">
+    <put-attribute name="title" value="동호회삭제"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/club/deleteForm.jsp" />
+  </definition>
+ 
+</tiles-definitions>
