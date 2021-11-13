@@ -18,6 +18,7 @@ public class TilesConfiguration {
       configurer.setDefinitions(new String[]{"classpath:/tiles/tiles_office.xml"});
 
       configurer.setDefinitions(new String[]{"classpath:/tiles/tiles_user.xml"});
+      
 
       configurer.setCheckRefresh(true);
       return configurer;
