@@ -13,11 +13,11 @@ $('[name=rebtn]').click(function(){ //댓글 등록 버튼 클릭시
  
  
 //댓글 목록 
-function replyList(tid,pageNum){
+function replyList(tid,page){
     $.ajax({
         url : '/reply/list',
         type : 'get',
-        data : {'tid':tid, 'pageNum' : pageNum},
+        data : {'tid':tid, 'page' : page},
         success : function(data){
         	var page = data.page;
             var startpage = data.startpage;

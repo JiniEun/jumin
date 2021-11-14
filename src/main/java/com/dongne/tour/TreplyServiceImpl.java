@@ -27,9 +27,9 @@ public class TreplyServiceImpl implements TreplyService {
 	}
 
 	@Override
-	public List<TreplyDTO> list(int tid) {
+	public List<TreplyDTO> list(Map map) {
 		// TODO Auto-generated method stub
-		return mapper.list(tid);
+		return mapper.list(map);
 	}
 
 	@Override

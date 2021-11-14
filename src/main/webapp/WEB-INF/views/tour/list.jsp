@@ -136,7 +136,7 @@
       </div>
     </div>
   
-  <div class="paging">${ paging}</div>
+  <div class="paging">${paging}</div>
   
   </div>
 

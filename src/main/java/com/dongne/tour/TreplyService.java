@@ -17,8 +17,10 @@ public interface TreplyService {
 
 	int update(TreplyDTO dto);
 
-	List<TreplyDTO> list(int tid);
+	List<TreplyDTO> list(Map map);
 
 	int total(int tid);
+
+	 
 
 }

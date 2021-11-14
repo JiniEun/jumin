@@ -29,7 +29,7 @@ public class TreplyController {
 		
 		int limit = 3;
 	    int listcount = service.total(tid);
-	 // 총 페이지수
+	    // 총 페이지수
 	      int maxpage = (listcount + limit - 1) / limit; // (13 + 9) / 10
 
 	      // 시작 페이지수
@@ -50,13 +50,22 @@ public class TreplyController {
 	      System.out.println("startPage :" + startpage);
 	      System.out.println("endPage : "+ endpage);
 	      
-	      
-	      
-	      Map map = new HashMap();
-	      map.put("list", service.list(tid));
-	      map.put("page",  page);
-	      map.put("startpage",  startpage);
-	      map.put("endpage",  endpage);
+		int nowPage = page;// 현재 보고있는 페이지
+			
+		int recordPerPage = 3;// 한페이지당 보여줄 레코드갯수
+
+		// DB에서 가져올 순번-----------------
+		int sno = ((nowPage - 1) * recordPerPage) + 1;
+		int eno = nowPage * recordPerPage;
+		
+		Map map = new HashMap();
+		map.put("tid", tid);
+		map.put("sno", sno);
+		map.put("eno", eno);
+	    map.put("list", service.list(map));
+	    map.put("page",  page);
+	    map.put("startpage",  startpage);
+	    map.put("endpage",  endpage);
 	      
 		return map;
 	}
