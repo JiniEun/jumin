@@ -111,8 +111,8 @@
 							data-bs-toggle="dropdown" aria-expanded="false"> 동네 나들이 </a>
 							<ul class="dropdown-menu dropdown-menu-dark"
 								aria-labelledby="navbarDarkDropdownMenuLink">
-								<li><a class="dropdown-item" href="#">관공서</a></li>
-								<li><a class="dropdown-item" href="#">여행지</a></li>
+								<li><a class="dropdown-item" href="${root}/office/list">관공서</a></li>
+								<li><a class="dropdown-item" href="${root}/tour/list">여행지</a></li>
 							</ul></li>
 					</ul>
 				</div>

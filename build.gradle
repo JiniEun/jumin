@@ -32,10 +32,14 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'  
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
+<<<<<<< HEAD
+	implementation group: 'org.json', name: 'json', version: '20201115'
+=======
 	// https://mvnrepository.com/artifact/commons-io/commons-io       
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
  	// https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
  	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.3'
+>>>>>>> f73a742058b3ffec2a55c14cf38a2fd7bce4c2cb
 }
 
 test {

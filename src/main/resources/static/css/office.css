@@ -1,0 +1,131 @@
+.header{
+    height:7vw;
+    background-color:red;
+    top: 0px;
+}
+
+.footer{
+    height:5vw;
+    background-color:red;
+    margin-top : 20px;
+}
+
+body{
+    font-family : Roboto Mono;
+}
+
+button,
+button:focus{
+    border:none;
+    padding : 0px;
+    cursor:pointer;
+    outline : none;
+    background-color : white;
+}
+
+.title{
+    align-items: center;
+    justify-content: space-between;
+    margin:5px auto;
+    width:60%;
+    display: flex;
+    height:50px;
+}
+
+.title .search{
+    top:0px;
+    position:sticky;
+}
+
+.container{
+    margin : 0 auto;
+    width : 80%;
+    display: grid;
+    grid-template-rows:500px;
+    grid-template-columns:1.3fr 2fr;
+    column-gap:10px;
+    row-gap:10px;
+    grid-auto-flow : row-dense;
+}
+
+.item:nth-child(1){
+    background-color: white;
+    grid-column:2/3;
+    grid-row:1/4;
+    top:0px;
+    height:1200px;
+    position:sticky;
+    margin-left : 10px;
+}
+
+.item:nth-child(1) img{
+    height:900px;
+    margin-top:10px;
+    border : 3px solid 
+}
+
+
+
+.item{
+    grid-column:1/2;
+    
+    height:500px;
+    padding-bottom : 0px;
+}
+
+img {
+    width: 100%;
+    height:100%;
+    object-fit: fill;
+    border-radius:3%;
+    border-color : #0077c2;
+  }
+
+.description{
+    grid-column:1/2;
+    background-color: white;
+    color:black;
+    height: 225px;
+    border-style:solid;
+    border-width:3px;
+    border-color : #0077c2;
+    border-radius:1ch;
+    padding : 10px;
+}
+
+.description:hover{
+    border-color : #0077c2;;
+    border-width : 5px;
+}
+
+.description div{
+    margin-top :15px;
+}
+
+
+.description span{
+    color : #0077c2;
+    
+}
+
+.description .contents{
+    display : flex;
+}
+
+.description .contents .moreBtn{
+    margin-left: 10px;
+}
+
+.description .contents .detail{
+    width: 400px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+.description .contents .detail_clamp{
+    width: 400px;
+    display: -webkit-box;
+    overflow: visible;
+}
