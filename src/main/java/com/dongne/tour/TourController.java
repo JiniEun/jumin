@@ -9,10 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,13 +25,17 @@ public class TourController {
 	private TourService service;
 	
 	@GetMapping("/tour/create")
-	public String create() {
-				
+	public String create(HttpSession session, Model model) {
+		
+		String writer=(String)session.getAttribute("ID");
+
+		model.addAttribute("writer", writer);
+		
 		return "/tour/create";
 	}
 	
 	@PostMapping("/tour/create")
-	public String create(TourDTO dto) {
+	public String create(TourDTO dto, HttpSession session) {
 		
 		String upDir = Tour.getUploadDir();
 		
@@ -43,6 +47,7 @@ public class TourController {
 		} else {
 			dto.setFilename("default.png");
 			};
+		
 		
 		if(service.create(dto)>0) {
 			return "redirect:/tour/list";
@@ -88,22 +93,23 @@ public class TourController {
 	@GetMapping("/tour/update")
 	public String update(int tid, Model model) {
 		
+		System.out.println("1");
 		model.addAttribute("dto",service.read(tid));
 		
 		return "/tour/update";
 	}
 	
 	@PostMapping("/tour/update")
-	public String update(TourDTO dto, HttpSession session) {
+	public String update(TourDTO dto,HttpSession session) {
 		
-		String writer=dto.getWriter();
-		String sID=(String)session.getAttribute("id");
+		String writer= dto.getWriter();
+		String sID=(String)session.getAttribute("ID");
+		int tid=dto.getTid();
+		
 		int cnt=0;
 		
-		if(writer==sID) {
+		if(writer.compareTo(sID)==0) {
 			cnt = service.update(dto);
-		}else {
-			return "error";
 		}
 		
 		if(cnt==1) {
@@ -114,18 +120,26 @@ public class TourController {
 	}
 	
 	@GetMapping("/tour/delete")
-	public String delete() {
-		return "redirect:./tour/delete";
+	public String delete(int tid, Model model) {
+		
+		System.out.println("1");
+		model.addAttribute("dto",service.read(tid));
+		System.out.println("2");
+		return "/tour/delete";
 	}
 	
 	@PostMapping("/tour/delete")
-	public String delete(HttpServletRequest request, int tid, String writer, HttpSession session) {
+	public String delete(TourDTO dto, HttpServletRequest request, HttpSession session) {
+		System.out.println("3");
 		
+		int tid=dto.getTid();
+		String writer= dto.getWriter();
+		String sID=(String)session.getAttribute("ID");
 		
-		String sID=(String)session.getAttribute("id");
+		System.out.println("4");
 		int cnt=0;
 		
-		if(writer==sID) {
+		if(writer.compareTo(sID)==0) {
 			cnt = service.delete(tid);
 		}else {
 			return "error";

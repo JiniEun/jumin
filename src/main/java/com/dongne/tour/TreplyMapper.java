@@ -13,8 +13,12 @@ public interface TreplyMapper {
 
 	int delete(int trid);
 
-	List<TreplyDTO> list();
+	List<TreplyDTO> list(int tid);
 
 	int total(Map map);
+
+	int update(TreplyDTO dto);
+
+	
 
 }

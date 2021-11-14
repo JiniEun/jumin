@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,42 +18,42 @@
 </head>
 <body>
     <div class="container">
-        <h2 class="col-sm-offset-2 col-sm-10">공지 생성</h2>
-        <form class="form-horizontal" action="/notice/create" method="post" onsubmit="return checkIn(this)">
-    
+        <h2 class="col-sm-offset-2 col-sm-10">글 수정</h2>
+        <form class="form-horizontal" 
+        	action="/tour/update" 
+        	method="post" 
+        	enctype="multipart/form-data"
+        	onsubmit="return checkIn(this)">
+    		
+    		<input type="hidden" name="tid" id="tid" class="form-control" value="${dto.tid}">
             <div class="form-group">
-                <label class="control-label col-sm-2" for="wname">작성자</label>
+                <label class="control-label col-sm-2" for="writer">작성자</label>
                 <div class="col-sm-6">
-                    <input type="text" name="wname" id="wname" class="form-control">
+                    <input type="text" name="writer" id="writer" class="form-control" value="${dto.writer}" readonly>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="title">제목</label>
                 <div class="col-sm-8">
-                    <input type="text" name="title" id="title" class="form-control">
+                    <input type="text" name="title" id="title" class="form-control" value="${dto.title}">
                 </div>
             </div>
     
             <div class="form-group">
-                <label class="control-label col-sm-2" for="content">내용</label>
+                <label class="control-label col-sm-2" for="contents">내용</label>
                 <div class="col-sm-8">
-                    <textarea rows="12" cols="7" id="content" name="content" class="form-control"></textarea>
+                    <textarea rows="12" cols="7" id="contents" name="contents" class="form-control">${dto.contents}</textarea>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="passwd">파일</label>
+                <label class="control-label col-sm-2" for="filenameMF">파일</label>
                 <div class="col-sm-6">
-                    <input type="password" name="passwd" id="passwd" class="form-control">
+                    <input multiple="multiple" type="file" name="filenameMF" id="filenameMF" class="form-control">
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="passwd">비밀번호</label>
-                <div class="col-sm-6">
-                    <input type="password" name="passwd" id="passwd" class="form-control">
-                </div>
-            </div>
+            
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-5">
                     <button class="btn btn-default">등록</button>

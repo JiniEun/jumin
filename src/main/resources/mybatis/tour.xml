@@ -26,7 +26,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update tour
 		set title =#{title},
 		contents = #{contents},
-		score = #{score},
 		rdate = sysdate
 		where tid =#{tid}
 </update>
@@ -62,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="list" parameterType="Map"
 		resultType="com.dongne.tour.TourDTO">
-		select tid, title, score, writer, rdate, filename, r
+		select tid, title, score, writer,rdate, filename, r
 		from (
 			select tid, title,score, writer, rdate, filename, rownum r
 			from(

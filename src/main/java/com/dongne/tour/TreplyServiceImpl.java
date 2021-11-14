@@ -27,9 +27,9 @@ public class TreplyServiceImpl implements TreplyService {
 	}
 
 	@Override
-	public List<TreplyDTO> list() {
+	public List<TreplyDTO> list(int tid) {
 		// TODO Auto-generated method stub
-		return mapper.list();
+		return mapper.list(tid);
 	}
 
 	@Override
@@ -37,5 +37,19 @@ public class TreplyServiceImpl implements TreplyService {
 		// TODO Auto-generated method stub
 		return mapper.total(map);
 	}
+
+	@Override
+	public int update(TreplyDTO dto) {
+		// TODO Auto-generated method stub
+		return mapper.update(dto);
+	}
+
+	@Override
+	public int total(int tid) {
+		// TODO Auto-generated method stub
+		return mapper.total(tid);
+	}
+
+	
 
 }

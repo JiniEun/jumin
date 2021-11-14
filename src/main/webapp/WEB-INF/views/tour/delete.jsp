@@ -14,8 +14,13 @@
   <div class="container">
 
     <h2 class="col-sm-offset-2 col-sm-10">삭제</h2>
-    <form class="form-horizontal" action="/contents/delete" method="post">
-      <input type="hidden" name="contentsno" value="${contentsno}">
+    <form class="form-horizontal" 
+    	action="/tour/delete" 
+    	method="post">
+      
+      
+      <input type="hidden" name="tid" value="${dto.tid}">
+	  <input type="hidden" name="writer" value="${dto.writer}">
 
       <p id="red" class="col-sm-offset-2 col-sm-6">삭제하면 복구할 수 없습니다</p>
 

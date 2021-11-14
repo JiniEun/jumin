@@ -29,11 +29,11 @@
         	method="post" 
         	enctype="multipart/form-data"
         	onsubmit="return checkIn(this)">
-    
+    		
             <div class="form-group">
                 <label class="control-label col-sm-2" for="writer">작성자</label>
                 <div class="col-sm-6">
-                    <input type="text" name="writer" id="writer" class="form-control">
+                    <input type="text" readonly name="writer" id="writer" class="form-control" value="${writer}">
                 </div>
             </div>
             <div class="form-group">
@@ -71,7 +71,7 @@
             </div>
         </form>
     </div>
-    
+    <!--  
     <div class="container">
   <h2>파일업로드</h2>
   <form name="dataForm" id="dataForm" onsubmit="return registerAction()">
@@ -91,6 +91,8 @@
 </div>
 
 <%@ include file="uploadfile.jsp" %>
+-->
+
 
 </body>
 </html>

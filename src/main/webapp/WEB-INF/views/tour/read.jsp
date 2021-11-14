@@ -7,8 +7,6 @@
 <html lang="en">
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	
-	
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +16,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/static/css/tour_read.css">
     
+    <script type="text/javascript">
+
+	function updateM() {
+		var url = "/tour/update";
+		url += "?tid=${dto.tid}";
+		location.href = url;
+	}
+	function deleteM() {
+		var url = "/tour/delete";
+		url += "?tid=${dto.tid}";
+		location.href = url;
+	}
+
+</script>
     
     <title>동네스팟 조회</title>
 </head>
@@ -57,7 +69,6 @@
 	    </section>
 	
 	    <section class="reshow">
-	        <div id="rc">{dto.content}</div>
 	        <div class="replyList"></div>
 	    </section>
 	
@@ -68,8 +79,8 @@
 	
 	    <section class="btn">
 	        <button>목록</button>
-	        <button>수정</button>
-	        <button>삭제</button>
+	        <button onclick="updateM()">수정</button>
+	        <button onclick="deleteM()">삭제</button>
 	    </section>
 	
 </div>
