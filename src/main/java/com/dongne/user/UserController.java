@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -57,12 +58,12 @@ public class UserController {
 		return "/user/login";
 	}
 
-	@PostMapping("user/login")
+	@PostMapping("/user/login")
 	public String login(@RequestParam Map<String, String> map, HttpSession session, HttpServletResponse response,
 			Model model) {
 
 		int cnt = service.loginCheck(map);
-		
+
 		System.out.println(map);
 		System.out.println(cnt);
 
@@ -155,7 +156,7 @@ public class UserController {
 	public String create(UserDTO dto, HttpServletRequest request) {
 
 		System.out.println(dto.toString());
-		
+
 		if (service.create(dto) > 0) {
 			return "redirect:/";
 		} else {
@@ -179,7 +180,7 @@ public class UserController {
 			return "/user/mypage";
 		}
 	}
-	
+
 	@GetMapping("/user/update")
 	public String update(String id, HttpSession session, Model model) {
 
@@ -196,9 +197,9 @@ public class UserController {
 
 	@PostMapping("/user/update")
 	public String update(UserDTO dto, Model model) {
-		
+
 		System.out.println(dto.toString());
-		
+
 		int cnt = service.update(dto);
 
 		if (cnt == 1) {
@@ -208,6 +209,37 @@ public class UserController {
 			return "error";
 		}
 	}
-	
+
+	@GetMapping("/user/delete")
+	public String delete() {
+
+		return "/user/delete";
+
+	}
+
+	@PostMapping("/user/delete")
+	public String delete(HttpServletRequest request, String ID, String password, HttpSession session) {
+
+		Map map = new HashMap();
+		map.put("ID", ID);
+		map.put("password", password);
+		int pcnt = service.password(map);
+
+		int cnt = 0;
+		if (pcnt == 1) {
+
+			cnt = service.delete(ID);
+		}
+
+		if (pcnt != 1) {
+			return "/user/passwdError";
+		} else if (cnt == 1) {
+			session.invalidate();
+			return "redirect:/";
+		} else {
+			return "error";
+		}
+
+	}
 
 }

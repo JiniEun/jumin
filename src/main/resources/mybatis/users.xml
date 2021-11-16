@@ -105,5 +105,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{ID}, #{password},#{uname}, #{nickname}, #{email}, #{phone},
 		#{address1}, #{address2}, #{gender}, #{birth}, sysdate,'H')
 	</insert>
+	
+	  <!-- 패스워드 검사 -->
+  	<select id="password" resultType="int" parameterType="HashMap">
+    	SELECT COUNT(*) AS cnt
+    	FROM users
+    	WHERE ID=#{ID} AND password=#{password}
+  	</select>   
+  	
+	<delete id="delete" parameterType="String">
+		DELETE FROM users
+		WHERE ID=#{ID}
+	</delete>  
 
 </mapper>
