@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="wname">작성자</label>
                 <div class="col-sm-2">
-                    <input type="text" name="wname" id="wname" class="form-control">
+                    <p>${id }</p>
                 </div>
             </div>
             <div class="form-group">
@@ -32,9 +32,9 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="passwd">비밀번호</label>
+                <label class="control-label col-sm-2" for="password">비밀번호</label>
                 <div class="col-sm-2">
-                    <input type="password" name="passwd" id="passwd" class="form-control">
+                    <input type="password" name="password" id="password" class="form-control">
 
                 </div>
             </div>
