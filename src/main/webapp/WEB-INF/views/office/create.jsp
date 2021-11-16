@@ -30,9 +30,9 @@
         	onsubmit="return checkIn(this)">
     
             <div class="form-group">
-                <label class="control-label col-sm-2" for="writer">작성자</label>
+                <label class="control-label col-sm-2" for="id">작성자</label>
                 <div class="col-sm-6">
-                    <input type="text" name="writer" id="writer" class="form-control">
+                    <input type="text" readonly name="id" id="id" class="form-control" value="${writer}">
                 </div>
             </div>
             <div class="form-group">

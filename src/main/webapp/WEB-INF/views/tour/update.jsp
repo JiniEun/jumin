@@ -45,6 +45,13 @@
                     <textarea rows="12" cols="7" id="contents" name="contents" class="form-control">${dto.contents}</textarea>
                 </div>
             </div>
+            
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="score">점수</label>
+                <div class="col-sm-8">
+                    <input type="text" name="score" id="score" class="form-control" value="${dto.score}">
+                </div>
+            </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="filenameMF">파일</label>

@@ -1,5 +1,6 @@
 package com.dongne.tour;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,12 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dongne.utility.Utility;
 
@@ -93,22 +96,34 @@ public class TourController {
 	@GetMapping("/tour/update")
 	public String update(int tid, Model model) {
 		
-		System.out.println("1");
 		model.addAttribute("dto",service.read(tid));
 		
 		return "/tour/update";
 	}
-	
+		
 	@PostMapping("/tour/update")
 	public String update(TourDTO dto,HttpSession session) {
 		
+		String upDir = Tour.getUploadDir();
+		// 기존파일 지우고,
+		String oldfile=dto.getFilename();
+		Utility.deleteFile(upDir, oldfile);
+		//아이디 체크하고
 		String writer= dto.getWriter();
 		String sID=(String)session.getAttribute("ID");
-		int tid=dto.getTid();
+	
 		
 		int cnt=0;
 		
 		if(writer.compareTo(sID)==0) {
+			//새로운 파일 업로드
+			String fname = Utility.saveFileSpring(dto.getFilenameMF(), upDir);
+			int size = (int) dto.getFilenameMF().getSize();
+			if (size > 0) {
+				dto.setFilename(fname);
+			} else {
+				dto.setFilename("default.png");
+				};
 			cnt = service.update(dto);
 		}
 		
@@ -122,21 +137,28 @@ public class TourController {
 	@GetMapping("/tour/delete")
 	public String delete(int tid, Model model) {
 		
-		System.out.println("1");
+		
 		model.addAttribute("dto",service.read(tid));
-		System.out.println("2");
+		
 		return "/tour/delete";
 	}
 	
 	@PostMapping("/tour/delete")
-	public String delete(TourDTO dto, HttpServletRequest request, HttpSession session) {
-		System.out.println("3");
+	public String delete(int tid, HttpServletRequest request, HttpSession session) {
 		
-		int tid=dto.getTid();
+		TourDTO dto=service.read(tid);
+		
+		String upDir = Tour.getUploadDir();
+		System.out.println("경로 : " + upDir);
+		// 기존파일 지우고,
+		String oldfile=dto.getFilename();
+		System.out.println("파일명 : " + oldfile);
+		Utility.deleteFile(upDir, oldfile);
+		
+		
 		String writer= dto.getWriter();
 		String sID=(String)session.getAttribute("ID");
 		
-		System.out.println("4");
 		int cnt=0;
 		
 		if(writer.compareTo(sID)==0) {

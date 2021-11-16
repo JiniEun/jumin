@@ -7,7 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    
     
     <title>Document</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
@@ -15,6 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+    
     <script type="text/javascript">
         window.onload=function(){
         	console.log("hi");
@@ -28,11 +32,32 @@
         });}
     </script>
 
+	    <script type="text/javascript">
+
+	function updateM(oid) {
+		var url = "./admin/office/update";
+		url += "?oid="+oid;
+		location.href = url;
+		}
+		function deleteM(oid) {
+		var url = "/admin/office/delete";
+		url += "?oid="+oid;
+		location.href = url;
+		}
+
+	</script>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92xk29w19e&submodules=geocoder"></script>
+    
 </head>
 <body>
+	
     
     <h1 style="margin-left: 30px;">관공서</h1>
-    
+    <c:choose>
+	    <c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
+			<button type="button" onclick="location.href='../admin/office/create'">글쓰기</button>
+		</c:when>
+	</c:choose>
     <section class="title">
         <h2>Public Station</h2>
         <div class="search">
@@ -42,10 +67,12 @@
         </div>
     </section>
     <div class="container">
-        <div class=item>
-            <img src="/office/storage/default.png" alt="none">
+        <div class=item id="map">
+        	<div class="address" id="address"></div>
+        	<button class="submit" id="submit"></button>
+            
         </div>
-
+	
         <!--1paragraph-->
         <c:forEach var="dto" items="${list}">
 	        <div class=item>
@@ -55,7 +82,14 @@
 	 
 		        <div class="description">
 		            <div>
+		            	<input type="hidden" name="oid" value="${dto.oid}"/>
 		                <label>기관명 : </label><span>${dto.oname}</span>
+		                <c:choose>
+		                	<c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
+			                	<button onclick="updateM('${dto.oid}')">수정</button>
+		        				<button onclick="deleteM('${dto.oid}')">삭제</button>
+	        				</c:when>
+	        			</c:choose>
 		            </div>
 		            <div>
 		                <label>주소 : </label><span>${dto.address}</span>
@@ -72,5 +106,7 @@
 		        </div>
        	</c:forEach>
     </div>   
+    
+    <%@ include file="map.jsp" %>
 </body>
 </html>
