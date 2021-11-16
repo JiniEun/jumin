@@ -55,19 +55,22 @@ window.addEventListener('load', () => {
 <body>
 	<div class="container">
 		<p>Main</p>
-	</div>
-	>
-	<!-- <span id="latitude"></span>|<span id="longitude"></span> -->
+		<!-- <span id="latitude"></span>|<span id="longitude"></span> -->
 	<img id="wicon" src="#">
 	<br>
 	<span id="rtemp"></span>
 	<br>
-	<span id="rLoc"></span>
+	<span id="rLoc"></span>	
+	<img src="#" alt="">
+	<img src="#" alt="">
+	<img src="#" alt="">
+	
+	</div>
+	
+	
+	
 
-	<img src="#" alt="">
-	<img src="#" alt="">
-	<img src="#" alt="">
-
+	
 
 
 
