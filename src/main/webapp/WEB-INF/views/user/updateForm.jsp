@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +59,12 @@
 			return false;
 		}
 	}
+
+	function deleteM() {
+		var url = "../user/delete";
+		url += "?ID=${dto.ID}";
+		location.href = url;
+	}
 </script>
 </head>
 <body>
@@ -89,7 +96,7 @@
 							<div class="cards">
 								<h5 class="card-title">아이디</h5>
 								<p class="card-text">${dto.ID}</p>
-									<input type="hidden" id="ID" name="ID" value="${dto.ID}">
+								<input type="hidden" id="ID" name="ID" value="${dto.ID}">
 							</div>
 
 							<div class="cards">
@@ -134,7 +141,7 @@
 										required>
 								</div>
 							</div>
-							
+
 							<div class="cards">
 								<h5 class="card-title">주소</h5>
 								<div class="mb-3">
@@ -154,11 +161,12 @@
 						</div>
 					</div>
 				</div>
-		</div>
-		<br>
-		<div>
-			<button type="submit" class="btn btn-color">회원 정보 수정</button>
-			<button type="button" class="btn btn-color">회원 탈퇴</button>
+				<div style="margin-top: 20px;">
+					<button type="submit" class="btn btn-color">회원 정보 수정</button>
+					<button type="button" class="btn btn-color" onclick="deleteM()">회원
+						탈퇴</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>

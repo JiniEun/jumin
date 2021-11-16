@@ -14,7 +14,6 @@ function showLocation(event) {
   let longitude = event.coords.longitude
   /*document.querySelector("#latitude").textContent = latitude // 위도 표기
   document.querySelector("#longitude").textContent = longitude // 경도 표기*/
-
   //비동기 통신으로 위치기반 날씨정보 받아오기 
   let apiKey = "e586ddbaf2d677ed76dfd0d7b9e58c31"
   let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" 
@@ -22,7 +21,6 @@ function showLocation(event) {
                 + "&lon=" + longitude  // 경도값
                 + "&appid=" + apiKey //인증키 값  
                 + "&units=metric"; //화씨 > 섭씨 변환
-
 	let options = { method: 'GET' }
 	
   $.ajax(weatherUrl, options).then((response) => {  
@@ -39,16 +37,13 @@ function showLocation(event) {
       console.log(error)
     })
 }
-
 function showError(event) {
   alert("위치 정보를 얻을 수 없습니다.")
 }
-
 window.addEventListener('load', () => { 
   if(window.navigator.geolocation) {
      window.navigator.geolocation.getCurrentPosition(showLocation,showError)
   }
-
 })
 </script>
 </head>
@@ -66,15 +61,6 @@ window.addEventListener('load', () => {
 	<img src="#" alt="">
 	
 	</div>
-	
-	
-	
-
-	
-
-
-
-
 
 </body>
 </html>

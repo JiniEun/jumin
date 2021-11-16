@@ -23,5 +23,9 @@ public interface UserService {
 	int total(Map map);
 
 	List<UserDTO> list(Map map);
+	
+	int delete(String ID);
+	
+	int password(Map map);
 
 }
