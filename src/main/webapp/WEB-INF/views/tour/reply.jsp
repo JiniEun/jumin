@@ -35,7 +35,7 @@ function replyList(tid,page){
                 console.log("end : " + endpage);
 
                 a += '<div class="replyArea" style="border-bottom:1px solid darkgray; margin-bottom: 5px;">';
-                a += '<div class="replyInfo'+value.trid+'">'+'댓글번호 : '+value.trid+' / 작성자 : '+value.trid;
+                a += '<div class="replyInfo'+value.trid+'">'+'댓글번호 : '+value.trid+' / 작성자 : '+value.id;
                 a += '<button type="button" onclick="replyUpdate('+value.trid+',\''+value.content+'\');"> 수정 </button>';
                 a += '<button onclick="replyDelete('+value.trid+');"> 삭제 </button> </div>';
                 a += '<div class="replyContent'+value.trid+'"> <p> 내용 : '+value.content +'</p>';
