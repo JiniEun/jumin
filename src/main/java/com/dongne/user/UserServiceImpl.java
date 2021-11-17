@@ -72,4 +72,16 @@ public class UserServiceImpl implements UserService {
 		return mapper.list(map);
 	}
 
+	@Override
+	public int delete(String ID) {
+		// TODO Auto-generated method stub
+		return mapper.delete(ID);
+	}
+
+	@Override
+	public int password(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.password(map);
+	}
+
 }

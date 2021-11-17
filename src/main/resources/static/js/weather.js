@@ -2,8 +2,8 @@
 function showLocation(event) {
   let latitude = event.coords.latitude 
   let longitude = event.coords.longitude
-  //document.querySelector("#latitude").textContent = latitude // 위도 표기
-  //document.querySelector("#longitude").textContent = longitude // 경도 표기
+  document.querySelector("#latitude").textContent = latitude // 위도 표기
+  document.querySelector("#longitude").textContent = longitude // 경도 표기
 
   //비동기 통신으로 위치기반 날씨정보 받아오기 
   let apiKey = "e586ddbaf2d677ed76dfd0d7b9e58c31"

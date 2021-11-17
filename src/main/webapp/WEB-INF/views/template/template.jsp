@@ -8,9 +8,7 @@
 <style>
 #footer{
    /*  left: 0;
-
     bottom: 0;
-
     width: 100%; */
 	margin-top: auto; 
 	height:10%;

@@ -5,83 +5,62 @@
 <head>
 <title>기본페이지</title>
 <meta charset="utf-8">
-<script src="./js/weather.js"></script>
-<script type="text/JavaScript">
-
-/* 	$(function() {  
-	let weatherIcon ={
-			'01' : 'fas fa-sun',
-			'02' : 'fas fa-cloud-sun',
-			'03' : 'fas fa-cloud',
-			'04' : 'fas fa-cloud-meatball',
-			'09' : 'fas fa-cloud-sun-rain',
-			'10' : 'fas fa-cloud-showers-heavy',
-			'11' : 'fas fa-poo-storm',
-			'13' : 'fas fa-snowflake',
-			'50' : 'fas fa-smog'
-	};
-    // Geolocation API에 액세스할 수 있는지를 확인
-    if (navigator.geolocation) {
-        //위치 정보를 얻기
-        navigator.geolocation.getCurrentPosition (function(pos) {
-            $('#latitude').html(pos.coords.latitude);     // 위도
-            $('#longitude').html(pos.coords.longitude);   // 경도
-        })
-        console.log(latitude, longitude);
-        $.ajax({
-        	//url : 'https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=e586ddbaf2d677ed76dfd0d7b9e58c31&units=metric',
-        	url : 'https://api.openweathermap.org/data/2.5/weather?lat=37&lon=137&appid=e586ddbaf2d677ed76dfd0d7b9e58c31&units=metric',
-        	dataType:'JSON',
-        	type : 'GET',
-        	seccess : function(data){
-        		
-        		 
-        		
-        		//var $icon = (data.weather[0].icon).substr(0,2);
-        		var $Temp = math.floor(data.main.temp) + 'º';
-        		var $city = data.name;
-        		
-        		
-        		
-        		$('.wIcon').append('<i class="'+weatherIcon[$Icon] + '"></i>');
-        		$('.rTemp').prepend($Temp);
-        		$('.rCity').append($city);
-        		
-        		
-        	}
-		})
-    } console.log(latitude,longitude);
-	else {
-        alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
-    }
-	}); */
-
-
+<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- <script src="./weather.js"></script> -->
+<script>
+//지역 정보 받아오기
+function showLocation(event) {
+  let latitude = event.coords.latitude 
+  let longitude = event.coords.longitude
+  /*document.querySelector("#latitude").textContent = latitude // 위도 표기
+  document.querySelector("#longitude").textContent = longitude // 경도 표기*/
+  //비동기 통신으로 위치기반 날씨정보 받아오기 
+  let apiKey = "e586ddbaf2d677ed76dfd0d7b9e58c31"
+  let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" 
+  				+ latitude  // 위도값
+                + "&lon=" + longitude  // 경도값
+                + "&appid=" + apiKey //인증키 값  
+                + "&units=metric"; //화씨 > 섭씨 변환
+	let options = { method: 'GET' }
+	
+  $.ajax(weatherUrl, options).then((response) => {  
+      console.log(response)
+      let icon = response.weather[0].icon	//받아온 날씨의 기상 상태
+      let iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png" // 기본아이콘 경로
+      let img = document.querySelector("#wicon")
+      img.src = iconUrl 
+      document.querySelector("#rtemp").textContent 
+      = (Math.round(response.main.temp) + "ºC")  // 현재 온도
+      document.querySelector("#rLoc").textContent
+      = response.name  // 현재 위치
+    }).catch((error) => {
+      console.log(error)
+    })
+}
+function showError(event) {
+  alert("위치 정보를 얻을 수 없습니다.")
+}
+window.addEventListener('load', () => { 
+  if(window.navigator.geolocation) {
+     window.navigator.geolocation.getCurrentPosition(showLocation,showError)
+  }
+})
 </script>
 </head>
 <body>
 	<div class="container">
 		<p>Main</p>
-		
-		<!-- <span id="latitude"></span>|<span id="longitude"></span> --> 
-		<img id="wicon" src="#"><br>
-		<span id="rtemp"></span><br> 
-		<span id="rLoc"></span> 
-			
-		<img src="#" alt="">
-        <img src="#" alt="">
-        <img src="#" alt="">
-
-
-		
+		<!-- <span id="latitude"></span>|<span id="longitude"></span> -->
+	<img id="wicon" src="#">
+	<br>
+	<span id="rtemp"></span>
+	<br>
+	<span id="rLoc"></span>	
+	<img src="#" alt="">
+	<img src="#" alt="">
+	<img src="#" alt="">
 	
-	<!--</div>
-	 <div class="weather">
-		<div class = 'wIcon'></div>
-		<div class = 'rTemp'></div>
-		<div class = 'rCity'></div>
-	</div> -->
 	</div>
-	
+
 </body>
 </html>

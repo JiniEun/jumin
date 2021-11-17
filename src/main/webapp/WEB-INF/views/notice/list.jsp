@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,8 +24,9 @@
                 <input type="text" class="form-control" placeholder="검색어를 입력하세요" name="word" style="margin-right:10px;">
             </div>
             <button type="submit" class="btn" style="background-color: 	#5BA6A6; color: white; margin-right:10px;">검색</button>
+            <c:if test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
             <button type="button" class="btn" style="background-color: 	#5BA6A6; color: white;">등록</button>
-
+			</c:if>
         </form>
         <br>
         <table class="table table-hover">
