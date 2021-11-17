@@ -47,6 +47,7 @@
 
 	</script>
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92xk29w19e&submodules=geocoder"></script>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=YOUR_CLIENT_ID&submodules=panorama"></script>
     
 </head>
 <body>
@@ -72,6 +73,12 @@
         	<button class="submit" id="submit"></button>
             
         </div>
+        <button class="street" id="street">거리뷰</button>
+        <button class="marker" id="marker">마커</button>
+        <div class=item id="pano">
+        	
+        </div>
+        
 	
         <!--1paragraph-->
         <c:forEach var="dto" items="${list}">

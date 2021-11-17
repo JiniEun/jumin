@@ -137,7 +137,7 @@ public class OfficeController {
 
 		request.setAttribute("list", list);
 		
-		System.out.println(list.toString());
+		
 
 		return "/office/list";
 
