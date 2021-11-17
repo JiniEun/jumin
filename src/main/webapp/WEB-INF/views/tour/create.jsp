@@ -71,7 +71,7 @@
             </div>
         </form>
     </div>
-    <!--  
+   
     <div class="container">
   <h2>파일업로드</h2>
   <form name="dataForm" id="dataForm" onsubmit="return registerAction()">
@@ -91,7 +91,7 @@
 </div>
 
 <%@ include file="uploadfile.jsp" %>
--->
+
 
 
 </body>

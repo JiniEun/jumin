@@ -26,6 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update tour
 		set title =#{title},
 		contents = #{contents},
+		score = #{score},
+		filename=#{filename},
 		rdate = sysdate
 		where tid =#{tid}
 </update>
@@ -39,8 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <delete id="delete" parameterType="int">
-		DELETE FROM tour
-		WHERE tid=#{tid}
+		delete from tour
+		where tid=#{tid}
 </delete>  
 
 

@@ -45,6 +45,13 @@
                     <textarea rows="12" cols="7" id="contents" name="contents" class="form-control">${dto.contents}</textarea>
                 </div>
             </div>
+            
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="score">점수</label>
+                <div class="col-sm-8">
+                    <input type="text" name="score" id="score" class="form-control" value="${dto.score}">
+                </div>
+            </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="filenameMF">파일</label>
@@ -62,5 +69,26 @@
             </div>
         </form>
     </div>
+   
+  <div class="container">
+  <h2>파일업로드</h2>
+  <form name="dataForm" id="dataForm" onsubmit="return registerAction()">
+  	
+  	<button id="btn-upload" type="button" style="border: 1px solid #ddd; outline: none;">파일 추가</button>
+  	<input id="input_file" multiple="multiple" type="file" style="display:none;">
+  	
+  	<span style="font-size:10px; color: gray;">※첨부파일은 최대 10개까지 등록이 가능합니다.</span>
+  	<div class="data_file_txt" id="data_file_txt" style="margin:40px;">
+		<span>첨부 파일</span>
+		<br />
+		<div id="articlefileChange">
+		</div>
+	</div>
+  	<button type="submit" style="border: 1px solid #ddd; outline: none;">전송</button>
+  </form>
+</div>
+
+<%@ include file="uploadfile.jsp" %>
+    
 </body>
 </html>
