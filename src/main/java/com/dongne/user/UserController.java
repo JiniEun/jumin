@@ -232,7 +232,7 @@ public class UserController {
 		}
 
 		if (pcnt != 1) {
-			return "/user/passwdError";
+			return "passwdError";
 		} else if (cnt == 1) {
 			session.invalidate();
 			return "redirect:/";
