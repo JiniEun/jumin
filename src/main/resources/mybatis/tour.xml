@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set title =#{title},
 		contents = #{contents},
 		score = #{score},
+		filename=#{filename},
 		rdate = sysdate
 		where tid =#{tid}
 </update>

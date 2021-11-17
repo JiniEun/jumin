@@ -54,6 +54,12 @@
   </form>
   
   </section>
+  		<script>
+	  		filename=${dto.filename}
+	    	filename.split(",");
+	    	console.log(filename);
+  		</script>
+  			
   
   
   <div class="container">
@@ -66,7 +72,9 @@
     <c:otherwise>
     
     	<c:forEach var="dto" items="${list}" begin="0" step="2">
-	        <img src="/tour/storage/${dto.filename}" alt="iuhello.jpg"> 
+    	
+    	
+	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>
 	          <a href="javascript:read('${dto.tid}')"><span>title : ${dto.title}</span></a>
 	          <span id="score">score : ${dto.score}</span>

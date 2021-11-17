@@ -10,12 +10,7 @@ var name_array=[], address_array=[];
 var marker_array = [], infoWindow_array = [];
 
 $(window).load(function () {
-	console.log(x);
-	console.log(y);
-	console.log(x[1]);
-	console.log(y[1]);
-	
-	
+
 	// 맵, 마커 생성
 	var map = new naver.maps.Map('map', {
 	    center: new naver.maps.LatLng(y[0],x[0])
@@ -162,24 +157,8 @@ function ATC(address) {
        x.push(item.x);
        y.push(item.y);
 
-	   console.log("함수내부 : "+ x);
-	   console.log("함수내부 : "+ y);
     });
     
-}
-
-// 파노라마
-
-
-function initPanorama() {
-    pano = new naver.maps.Panorama("pano", {
-        position: new naver.maps.LatLng(y[0], x[0]),
-        pov: {
-            pan: -135,
-            tilt: 29,
-            fov: 100
-        }
-    });
 }
 
 <c:forEach var="dto" items="${list}">

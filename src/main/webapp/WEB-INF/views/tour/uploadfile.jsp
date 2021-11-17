@@ -89,7 +89,7 @@ function fileDelete(fileNum){
 	$.ajax({
    	      type: "POST",
    	   	  enctype: "multipart/form-data",
-   	      url: "/file-upload",
+   	      url: "/tour/fileUpload",
        	  data : formData,
        	  processData: false,
    	      contentType: false,
@@ -97,11 +97,11 @@ function fileDelete(fileNum){
    	    	if(JSON.parse(data)['result'] == "OK"){
    	    		alert("파일업로드 성공");
 			} else
-				alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+				alert("파일업로드 실패");
    	      },
-   	      error: function (xhr, status, error) {
-   	    	alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
-   	     return false;
+   	   error: function (xhr, status, error) {
+  	    	alert("코드가 잘못되었음");
+  	     	return false;
    	      }
    	    });
    	    return false;
