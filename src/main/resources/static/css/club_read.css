@@ -1,0 +1,66 @@
+/* .container {
+
+	padding-top: 70px;
+
+	padding-bottom: 30px;
+
+}
+/* 이거 하면 top bottom 포함해서 전체 잡고 padding 이 들어가서 일단 주석처리 했어요 확인해주세요! */
+ */
+.title {
+
+	font-weight : 700;
+
+	font-size : 22pt;
+
+	margin : 10pt;
+
+}
+
+.board_info_box {
+
+	color : #6B6B6B;
+
+	margin : 10pt;
+
+}
+
+.nickname {
+
+	font-size : 10pt;
+
+	margin-right : 10pt;
+
+}
+
+.date {
+
+	font-size : 10pt;
+
+	margin-right : 10pt;
+
+}
+
+.viewcnt {
+	font-size : 10pt;
+}
+
+.content {
+
+	color : #444343;
+
+	font-size : 12pt;
+
+	margin : 10pt;
+
+}
+
+.info{
+    display : flex;
+    width : 90%;
+    margin : auto;
+    align-items : center;
+    justify-content: space-between;
+    border :3px solid #0077c2;
+    height : 5%;
+}
