@@ -4,14 +4,14 @@
 <c:choose>
 	<c:when
 		test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
-		<c:set var="str">관리자입니다.</c:set>
+		<c:set var="str">관리자로 로그인 하셨습니다.</c:set>
 	</c:when>
 	<c:when
 		test="${not empty sessionScope.ID && sessionScope.grade != 'A'}">
 		<c:set var='str'>안녕하세요  ${sessionScope.ID } 님!</c:set>
 	</c:when>
 	<c:otherwise>
-		<c:set var="str">기본 페이지 입니다.</c:set>
+		<c:set var="str">안녕하세요 방문자님!</c:set>
 	</c:otherwise>
 </c:choose>
 <!DOCTYPE html>
@@ -24,16 +24,20 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
 	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
 	crossorigin="anonymous"></script>
-	
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap"
+	rel="stylesheet">
 <style type="text/css">
 .btn-color {
 	border-color: #5BA6A6;
@@ -46,8 +50,8 @@
 	<nav class="navbar-nav">
 		<div class="container-fluid" style="margin-top: 5px;">
 			<div class="float-left">
-				<a id="grade" style="color: black;"><span
-					class="glyphicon glyphicon-grain" style="color: black;"></span>
+				<a id="grade" style="color: #bebebc;"><span
+					class="glyphicon glyphicon-grain" style="color: #bebebc;"></span>
 					${str}</a>
 			</div>
 			<div class="float-right">
@@ -63,25 +67,24 @@
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
 							style="color: #5BA6A6; margin-right: 10px;">My Page</a>
 						<a href="${root}/user/mypage" class="btn btn-sm btn-color"
-							tabindex="-1" role="button" aria-disabled="true" style="margin-right: 10px;">setting</a>
+							tabindex="-1" role="button" aria-disabled="true"
+							style="margin-right: 10px;">setting</a>
 						<a href="${root}/user/logout" class="btn btn-sm btn-color"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:when>
 					<c:otherwise>
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
-							style="color: #5BA6A6; margin-right:10px;">My Page</a>
+							style="color: #5BA6A6; margin-right: 10px;">My Page</a>
 						<a href="${root}/user/logout" class="btn btn-sm btn-color"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:otherwise>
 				</c:choose>
-
 			</div>
 		</div>
 	</nav>
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
-			<a class="navbar-brand" href="${root}/" style="color: #5BA6A6;">Logo
-				image</a>
+			<a class="navbar-brand" href="${root}/" style="color: #027373;">Dongne</a>
 		</div>
 	</nav>
 
@@ -92,65 +95,48 @@
 				<li class="nav-item active"><a class="nav-link" href="${root}/">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDarkDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> 동네 이모저모 </a>
-							<ul class="dropdown-menu dropdown-menu-dark"
-								aria-labelledby="navbarDarkDropdownMenuLink">
-								<li><a class="dropdown-item" href="#">지역 정보</a></li>
-								<li><a class="dropdown-item" href="#">코로나 현황</a></li>
-							</ul></li>
-					</ul>
-				</div>
-				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDarkDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> 동네 나들이 </a>
-							<ul class="dropdown-menu dropdown-menu-dark"
-								aria-labelledby="navbarDarkDropdownMenuLink">
-								<li><a class="dropdown-item" href="${root}/office/list">관공서</a></li>
-								<li><a class="dropdown-item" href="${root}/tour/list">여행지</a></li>
-							</ul></li>
-					</ul>
-				</div>
+
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDarkDropdownMenuLink" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> 동네 이모저모 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">지역 정보</a> 
+						<a class="dropdown-item" href="#">코로나 현황</a>
+					</div></li>
+
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDarkDropdownMenuLink" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> 동네 나들이 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="${root}/office/list">관공서</a> 
+						<a class="dropdown-item" href="${root}/tour/list">여행지</a>
+					</div></li>
+
 				<li class="nav-item"><a class="nav-link"
 					href="${root}/market/list">동네 장터</a></li>
-				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDarkDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> 동네 모임 </a>
-							<ul class="dropdown-menu dropdown-menu-dark"
-								aria-labelledby="navbarDarkDropdownMenuLink">
-								<li><a class="dropdown-item" href="${root}/club/list">동호회</a></li>
-								<li><a class="dropdown-item" href="#">동네친구</a></li>
-							</ul></li>
-					</ul>
-				</div>
-				<li class="nav-item"><a class="nav-link" href="#">동네 커뮤니티</a></li>
-				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDarkDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-							<ul class="dropdown-menu dropdown-menu-dark"
-								aria-labelledby="navbarDarkDropdownMenuLink">
-								<li><a class="dropdown-item" href="${root}/notice/list">공지사항</a></li>
-								<li><a class="dropdown-item" href="${root}/notice/chatbot">Q&A</a></li>
-							</ul></li>
-					</ul>
-				</div>
 
-				<!-- <li class="nav-item">
-                    <a class="nav-link disabled" href="#">고객센터</a>
-                </li> -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDarkDropdownMenuLink" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> 동네 모임 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="${root}/club/list">동호회</a> 
+						<a class="dropdown-item" href="#">동네친구</a>
+					</div></li>
+
+				<li class="nav-item"><a class="nav-link" href="#">동네 커뮤니티</a></li>
+
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDarkDropdownMenuLink" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="${root}/notice/list">공지사항</a> 
+						<a class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A Chatbot</a>
+					</div></li>
+
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"

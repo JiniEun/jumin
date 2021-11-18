@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.dongne.utility.Utility;
 
 @Controller
 public class UserController {
@@ -227,7 +230,6 @@ public class UserController {
 
 		int cnt = 0;
 		if (pcnt == 1) {
-
 			cnt = service.delete(ID);
 		}
 
@@ -240,6 +242,36 @@ public class UserController {
 			return "error";
 		}
 
+	}
+
+	@GetMapping("/user/updateFile")
+	public String updateFile() {
+
+		return "/user/updateFile";
+	}
+
+	@PostMapping("/user/updateFile")
+	public String updateFile(MultipartFile fnameMF, String oldfile, HttpSession session, HttpServletRequest request) {
+//		String basePath = new ClassPathResource("/static/user/storage").getFile().getAbsolutePath();
+
+		String basePath = User.getUploadDir();
+		if (oldfile != null && !oldfile.equals("user.jpg")) { // 원본파일 삭제
+			Utility.deleteFile(basePath, oldfile);
+		}
+
+		// storage에 변경 파일 저장
+		Map map = new HashMap();
+		map.put("ID", session.getAttribute("ID"));
+		map.put("fileName", Utility.saveFileSpring(fnameMF, basePath));
+
+		// 디비에 파일명 변경
+		int cnt = service.updateFile(map);
+
+		if (cnt == 1) {
+			return "redirect:./mypage";
+		} else {
+			return "./error";
+		}
 	}
 
 }

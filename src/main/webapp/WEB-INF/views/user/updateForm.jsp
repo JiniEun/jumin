@@ -76,18 +76,20 @@
 				onsubmit="return inCheck(this)">
 				<div class="row g-0">
 					<div class="col-md-4">
-						<div class="d-flex justify-content-center">
+						<div class="d-flex justify-content-center" style="margin-bottom:10px;">
 							<c:choose>
 								<c:when test="${empty dto.fileName}">
 									<img src="/images/profile.png" class="img-fluid rounded-start"
 										alt="img">
 								</c:when>
 								<c:otherwise>
+									<img src="/user/storage/${dto.fileName }" class="img-rounded"
+										width="200px" height="200px">
 								</c:otherwise>
 							</c:choose>
 						</div>
 						<div class="d-flex justify-content-center">
-							<button type="button" class="btn btn-color">프로필 사진 변경</button>
+							<button type="button" class="btn btn-color" onclick="location.href='updateFile'">프로필 사진 변경</button>
 						</div>
 					</div>
 					<div class="col-md-8">

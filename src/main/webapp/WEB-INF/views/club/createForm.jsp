@@ -21,6 +21,19 @@
       onsubmit="return checkIn(this)"
       enctype="multipart/form-data"
       >
+  <div class="form-group" hidden>
+    <label class="control-label col-sm-2" for="id">작성자ID</label>
+    <div class="col-sm-6">
+      <input type="text" readonly name="ID" id="ID" class="form-control" value="${ID}">
+    </div>
+  </div>
+  
+  <div class="form-group">
+                <label class="control-label col-sm-2" for="writer">작성자</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly name="nickname" id="nickname" class="form-control" value="${nickname}">
+                </div>
+            </div>
 
   <div class="form-group">
     <label class="control-label col-sm-2" for="title">제목</label>
@@ -42,9 +55,9 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="passwd">비밀번호</label>
+    <label class="control-label col-sm-2" for="password">비밀번호</label>
     <div class="col-sm-6">
-      <input type="password" name="passwd" id="passwd" class="form-control">
+      <input type="password" name="password" id="password" class="form-control">
     </div>
   </div>
    <div class="form-group">
