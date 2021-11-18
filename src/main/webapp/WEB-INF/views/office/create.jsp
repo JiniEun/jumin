@@ -14,7 +14,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
         integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
         crossorigin="anonymous"></script>
-
+<script type="text/JavaScript">
+        
+ 	function checkIn(f){
+         if (f.title.value == ""){
+              alert("제목를 입력하세요");
+              f.title.focus();
+              return false;
+         }
+         if (f.contents.value == '') {
+             window.alert('내용을 입력해 주세요.');
+             f.contents.focus();
+             return false;
+         }
+         if (f.address.value == ""){
+             alert("주소를 입력해주세요");
+             f.address.focus();
+             return false;
+         }
+         
+         if (f.phone.value == ""){
+             alert("전화번호를 입력해주세요");
+             f.phone.focus();
+             return false;
+         }
+ }
+ </script>
 </head>
 <body>
     <div class="container">

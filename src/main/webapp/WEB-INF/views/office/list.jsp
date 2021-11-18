@@ -57,22 +57,15 @@
 	</c:choose>
     <section class="title">
         <h2>Public Station</h2>
-        <div class="search">
-            <label>search</label>
-            <input type="text">
-            <button>submit</button>
+        <div class="btn">
+            <button class="street" id="street">거리뷰</button>
         </div>
     </section>
+    
     <div class="container">
-        <div class=item id="map">
-        	<div class="address" id="address"></div>
-        	<button class="submit" id="submit"></button>
-            
-        </div>
-        	<button class="street" id="street">거리뷰</button>
-        <div class=item id="pano">
+        <div class=item id="map"></div>
         	
-        </div>
+        <div class=item id="pano"></div>
         
 	
         <!--1paragraph-->

@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into tour(tid, title, writer, contents, score, filename, rdate )
 		values((select nvl(max(tID),0)+1 from tour),
 		#{title},#{writer}, #{contents}, #{score}, #{filename},
-		sysdate)
+		to_char(sysdate,'yyyy.mm.dd'))
 </insert>
 	
 

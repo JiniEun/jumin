@@ -36,17 +36,20 @@ public class TourController {
 	public String create(HttpSession session, Model model) {
 		
 		String writer=(String)session.getAttribute("ID");
-
 		model.addAttribute("writer", writer);
 		
+		if(session.getAttribute("ID")==null) {
+			return "/tour/nologin";
+		}else
 		return "/tour/create";
 	}
 	
 	@PostMapping("/tour/create")
 	public String create(TourDTO dto, HttpSession session, Model model) {
 		
-		String filename=(String)session.getAttribute("filename");
-		
+		String filename_=(String)session.getAttribute("filename");
+		String filename=Utility.checkNulltoDefault(filename_);
+	
 		dto.setFilename(filename);
 		
 		if(service.create(dto)>0) {
@@ -92,12 +95,20 @@ public class TourController {
 	
 	
 	@GetMapping("/tour/update")
-	public String update(int tid, Model model) {
+	public String update(int tid, Model model, HttpSession session) {
 		
-		model.addAttribute("dto",service.read(tid));
+		TourDTO dto = service.read(tid);
+		String writer= dto.getWriter();
+		String sID=Utility.checkNull((String)session.getAttribute("ID"));
 		
+		model.addAttribute("dto",dto);
+		
+		if(writer.compareTo(sID)!=0) {
+			return "/tour/discordID";
+		}else
 		return "/tour/update";
-	}
+		}
+		
 		
 	@PostMapping("/tour/update")
 	public String update(int tid,HttpSession session) {
@@ -123,9 +134,9 @@ public class TourController {
 		
 		if(writer.compareTo(sID)==0) {
 			//새로운 파일 업로드
-			String filename=(String)session.getAttribute("filename");
-			System.out.println("업데이트할 때 세션 값 : " + session.getAttribute("filename"));
-			
+			String filename_=(String)session.getAttribute("filename");
+			String filename=Utility.checkNulltoDefault(filename_);
+		
 			dto.setFilename(filename);
 			
 			cnt = service.update(dto);
@@ -140,14 +151,20 @@ public class TourController {
 	}
 	
 	@GetMapping("/tour/delete")
-	public String delete(int tid, Model model) {
+	public String delete(int tid, Model model, HttpSession session) {
 		
+		TourDTO dto = service.read(tid);
+		String writer= dto.getWriter();
+		String sID=Utility.checkNull((String)session.getAttribute("ID"));
 		
-		model.addAttribute("dto",service.read(tid));
+		model.addAttribute("dto",dto);
 		
+		if(writer.compareTo(sID)!=0) {
+			return "/tour/discordID";
+		}else
 		return "/tour/delete";
-	}
-	
+		}
+		
 	@PostMapping("/tour/delete")
 	public String delete(int tid, HttpServletRequest request, HttpSession session) {
 		
@@ -224,6 +241,12 @@ public class TourController {
 
 		return "/tour/list";
 
+	}
+	
+	@GetMapping("/tour/uploadfile")
+	public String uploadfile() {
+		
+		return "/tour/uploadfile";
 	}
 	
 	@ResponseBody

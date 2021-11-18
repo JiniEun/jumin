@@ -130,6 +130,16 @@ public class Utility {
 
 		return str;
 	}
+	
+	public static String checkNulltoDefault(String str) {
+		if (str == null) {
+			str = "default.jpg";
+		}
+
+		return str;
+	}
+	
+
 
 	/**
 	 * 

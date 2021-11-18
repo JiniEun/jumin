@@ -71,17 +71,21 @@
     	</c:when>
     <c:otherwise>
     
-    	<c:forEach var="dto" items="${list}" begin="0" step="2">
-    	
-    	
+    	<c:forEach var="dto" items="${list}" begin="0" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>
-	          <a href="javascript:read('${dto.tid}')"><span>title : ${dto.title}</span></a>
-	          <span id="score">score : ${dto.score}</span>
+	          <a href="javascript:read('${dto.tid}')"><span>▶ ${dto.title}</span></a>
+	          <span id="score">  	
+			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
+			        <c:if test="${dto.score=='3'}">★★★☆☆</c:if>
+			        <c:if test="${dto.score=='4'}">★★★★☆</c:if>
+			        <c:if test="${dto.score=='5'}">★★★★★</c:if>
+			</span>
 	        </section>
 	        <section class=info>
 	          <span>Writer : ${dto.writer}</span>
-	          <span>Date : ${dto.rdate}</span>
+	          <span>Date : ${dto.rdate.substring(0,10)}</span>
 	        </section>
         </c:forEach>
      
@@ -97,19 +101,23 @@
     	<c:when test="${empty list}">
     		<tr><td colspan="6">등록된 글이 없습니다.</td></tr>
     	</c:when>
-    <c:otherwise>
+    	<c:otherwise>
     
-    	<c:forEach var="dto" items="${list}" begin="1" step="2">
-	        <img src="/tour/storage/${dto.filename}" alt="iuhello.jpg"> 
-	        <section class=title>>
-	        ${dto.tid}
-	          <a href="javascript:read('${dto.tid}')">${dto.title}</a>
-
-	          <span id="score">score : ${dto.score}</span>
+    	<c:forEach var="dto" items="${list}" begin="1" step="3">
+	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
+	        <section class=title>
+	          <a href="javascript:read('${dto.tid}')"><span>▶ ${dto.title}</span></a>
+	          <span id="score">  	
+			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
+			        <c:if test="${dto.score=='3'}">★★★☆☆</c:if>
+			        <c:if test="${dto.score=='4'}">★★★★☆</c:if>
+			        <c:if test="${dto.score=='5'}">★★★★★</c:if>
+			</span>
 	        </section>
 	        <section class=info>
 	          <span>Writer : ${dto.writer}</span>
-	          <span>Date : ${dto.rdate}</span>
+	          <span>Date : ${dto.rdate.substring(0,10)}</span>
 	        </section>
         </c:forEach>
     </c:otherwise>
@@ -126,15 +134,21 @@
     	</c:when>
     <c:otherwise>
     
-    	<c:forEach var="dto" items="${list}" begin="2" step="2">
-	        <img src="/tour/storage/${dto.filename}" alt="iuhello.jpg"> 
+    	<c:forEach var="dto" items="${list}" begin="2" step="3">
+	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>	
-	          <a href="javascript:read('${dto.tid}')"><span>title : ${dto.title}</span></a>
-	          <span id="score">score : ${dto.score}</span>
+	          <a href="javascript:read('${dto.tid}')"><span>▶ ${dto.title}</span></a>
+	          <span id="score">  	
+			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
+			        <c:if test="${dto.score=='3'}">★★★☆☆</c:if>
+			        <c:if test="${dto.score=='4'}">★★★★☆</c:if>
+			        <c:if test="${dto.score=='5'}">★★★★★</c:if>
+			</span>
 	        </section>
 	        <section class=info>
 	          <span>Writer : ${dto.writer}</span>
-	          <span>Date : ${dto.rdate}</span>
+	          <span>Date : ${dto.rdate.substring(0,10)}</span>
 	        </section>
         </c:forEach>
      
