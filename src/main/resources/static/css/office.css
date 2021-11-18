@@ -1,80 +1,116 @@
-.header{
-    height:7vw;
-    background-color:red;
-    top: 0px;
+:root{
+    --basecolor : #5BA6A6;
+    --secondcolor : #027373;
+  }
+
+
+.pagetitle{
+    padding-left : 120px;
+    padding-top : 90px;
+    display : flex;
+    color : var(--basecolor);
 }
 
-.footer{
-    height:5vw;
-    background-color:red;
+.pagetitle button{
     margin-top : 20px;
-}
-
-body{
-    font-family : Roboto Mono;
-}
-
-button,
-button:focus{
-    border:none;
-    padding : 0px;
-    cursor:pointer;
-    outline : none;
-    background-color : white;
-}
-
-.title{
-    align-items: center;
-    justify-content: space-between;
-    margin:5px auto;
-    width:60%;
-    display: flex;
-    height:50px;
-}
-
-.title .search{
-    top:0px;
-    position:sticky;
-}
-
-.container{
-    margin : 0 auto;
-    width : 80%;
-    display: grid;
-    grid-template-rows:500px;
-    grid-template-columns:1.3fr 2fr;
-    column-gap:10px;
-    row-gap:10px;
-    grid-auto-flow : row-dense;
-}
-
-.item:nth-child(1){
-    background-color: white;
-    grid-column:2/3;
-    grid-row:1/4;
-    top:0px;
-    height:1200px;
-    position:sticky;
     margin-left : 10px;
+    width : 100px;
+    height : 30px;
+    background-color: var(--basecolor);
+    color : white;
+    outline : 0;
+    border : 1px solid var(--basecolor);
+    border-radius : 5%;
+    margin-bottom : 3px;
 }
 
-.item:nth-child(1) img{
-    height:900px;
-    margin-top:10px;
-    border : 3px solid 
+.api button{
+    width : 100px;
+    height : 30px;
+    background-color: var(--basecolor);
+    color : white;
+    outline : 0;
+    border : 1px solid var(--basecolor);
+    border-radius : 5%;
+    margin-bottom : 3px;
 }
 
-#map .item{
-	top:0px;
-	position:sticky;
+.loop button{
+    width : 100px;
+    height : 30px;
+    background-color: var(--basecolor);
+    color : white;
+    outline : 0;
+    border : 1px solid var(--basecolor);
+    border-radius : 5%;
+    margin-bottom : 3px;
 }
 
+  .container{
+      display : flex;
+      margin : 5px auto;
+      height : 100%;
+      width : 85%;
+      justify-content: space-between;
+  }
+  .api{
+      height : 100%;
+      width : 56%;
+      top : 0px;
+      position :sticky;
+  }
 
-.item{
-    grid-column:1/2;
+.api .map{
     
-    height:500px;
-    padding-bottom : 0px;
+    border : 3px solid var(--basecolor);
+    width : 100%;
+    height : 600px;
+    
+}
+
+.api .pano{
+    border : 3px solid var(--basecolor);
+    width : 100%;
+    height : 400px;
+}
+
+.looparea{
+    height : 100%;
+    width : 42%;
+    padding-top : 30px;
+}
+
+.loop{
+    display : flex;
+    flex-direction : column;
+    justify-content: space-between;
+}
+
+.loop .imgarea{
+    border : 3px solid var(--basecolor);
+    height : 300px;
+    width : 98%;
+}
+
+.loop .detail{
+    display : flex;
+    flex-direction : column;
+    justify-content: space-between;
+    border : 3px solid var(--basecolor);
+    border-radius : 3%;
+    height : 200px;
+    width : 98%;
+    margin-top : 10px;
+    margin-bottom : 20px;
+    padding : 5px;
+}
+
+.loop .detail:hover{
+    border : 6px solid var(--basecolor);
+}
+
+button:hover{
+    background-color: var(--secondcolor);
 }
 
 img {
@@ -84,43 +120,8 @@ img {
     border-radius:3%;
     border-color : #0077c2;
   }
-
-.description{
-    grid-column:1/2;
-    background-color: white;
-    color:black;
-    height: 225px;
-    border-style:solid;
-    border-width:3px;
-    border-color : #0077c2;
-    border-radius:1ch;
-    padding : 10px;
-}
-
-.description:hover{
-    border-color : #0077c2;;
-    border-width : 5px;
-}
-
-.description div{
-    margin-top :15px;
-}
-
-
-.description span{
-    color : #0077c2;
-    
-}
-
-.description .contents{
-    display : flex;
-}
-
-.description .contents .moreBtn{
-    margin-left: 10px;
-}
-
-.description .contents .detail{
+  
+.loop .detail .contents{
     width: 400px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -128,7 +129,7 @@ img {
     overflow: hidden;
   }
 
-.description .contents .detail_clamp{
+.loop .detail .contents_clamp{
     width: 400px;
     display: -webkit-box;
     overflow: visible;

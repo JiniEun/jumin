@@ -135,7 +135,16 @@ $(window).load(function () {
 	// end of panorama
 	
 	
-	
+	function(){
+    	console.log("hi");
+    var moreBtn=document.querySelector('.loop .detail .moreBtn');
+    var clamp=document.querySelector('.loop .detail .contents');
+
+    moreBtn.addEventListener('click',function(){
+    	console.log("hello");
+        moreBtn.classList.toggle('clicked');
+        clamp.classList.toggle('contents_clamp');
+    });}
 	
 
 		
