@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.dongne.office.Office;
 import com.dongne.tour.Tour;
+import com.dongne.user.User;
 
 @Configuration
 public class WebMvcConfiguration implements WebMvcConfigurer {
@@ -21,6 +22,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		registry.addResourceHandler("/tour/storage/**").addResourceLocations("file:///" + Tour.getUploadDir());
 		registry.addResourceHandler("/office/storage/**").addResourceLocations("file:///" + Office.getUploadDir());
 
+		registry.addResourceHandler("/user/storage/**").addResourceLocations("file:///" + User.getUploadDir());
 		/* '/js/**'로 호출하는 자원은 '/static/js/' 폴더 아래에서 찾는다. */
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/")
 				.setCachePeriod(60 * 60 * 24 * 365);

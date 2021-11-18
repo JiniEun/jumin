@@ -37,6 +37,11 @@
     <put-attribute name="body"
       value="/WEB-INF/views/user/updateForm.jsp" />
   </definition>
+  <definition name="/user/updateFile" extends="main">
+    <put-attribute name="title" value="회원정보 이미지 수정"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/user/updateFileForm.jsp" />
+  </definition>
   <definition name="/user/delete" extends="main">
     <put-attribute name="title" value="회원정보 탈퇴"></put-attribute>
     <put-attribute name="body"
