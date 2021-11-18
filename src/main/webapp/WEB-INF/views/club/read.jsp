@@ -8,57 +8,81 @@
 <html>
 <head>
 <title>조회</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/resources/static/css/club_read.css">
 
 <script type="text/javascript">
 	function updateM() {
-		var url = "update";
+		var url = "/club/update";
 		url += "?clID=${dto.clID}";
 		location.href = url;
 	}
 	function deleteM() {
-		var url = "delete";
+		var url = "/club/delete";
 		url += "?clID=${dto.clID}";
 		location.href = url;
 	}
 
 	function listM() {
-		var url = "list";
-		url += "?nowPage=${param.nowPage}";
-		url += "&col=${param.col}";
-		url += "&word=${param.word}";
+		var url = "/club/list";
 		location.href = url;
 	}
 </script>
 
 </head>
 <body>
-	<div class="container">
+<article>
+        <div class="container" role="main">
+            <div class="bg-white rounded shadow-sm">
+                <div class="title">
+                    <span class="title">${dto.title} </span>
+                </div>
 
-		<h5>조회</h5>
-		<div class="panel panel-default">
-			<div class="panel-heading">작성자</div>
-			<div class="panel-body">${dto.nickname}</div>
+                <div class="board_info_box"> 
+                    <span class="nickname">
+                        ${dto.nickname}
+                    </span><span class="date">
+                        ${dto.rdate}
+                    </span><span class="viewcnt">
+                        조회 ${dto.viewcnt}
+                    </span>
 
-			<div class="panel-heading">제목</div>
-			<div class="panel-body">${dto.title}</div>
+                </div>
 
-			<div class="panel-heading">내용</div>
-			<div class="panel-body">${dto.content}</div>
+                <div class="content" style="text-align:center;">${dto.content}
+                </div>
 
-			<div class="panel-heading">조회수</div>
-			<div class="panel-body">${dto.viewcnt}</div>
-
-			<div class="panel-heading">등록일</div>
-			<div class="panel-body">${dto.rdate}</div>
-
-		</div>
-		<div>
+            </div>
+            <!-- reply -->
+             
+	<form name="replyForm">
+	    <section class="reply">
+	    	<input type="hidden" name="clID" value="${dto.clID}"/>
+	    	<input type="hidden" name="nickname" value="${dto.nickname}"/>
+	        <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+	        <button class="rebtn" id="rebtn" name="rebtn">댓글 등록</button>
+	    </section>
+	
+	    <section class="reshow">
+	        <div class="replyList"></div>
+	    </section>
+	
+	    <section class="repaging">
+	        <span>{paging}</span>
+	    </section>
+	</form>
+            <div>
 					<button type="button" class="btn" onclick="location.href='${root}/club/create'">등록</button>
 					<button type="button" class="btn" onclick="updateM()">수정</button>
 					<button type="button" class="btn" onclick="deleteM()">삭제</button>
 					<button type="button" class="btn" onclick="listM()">목록</button>
 		</div>
-	</div>
+        </div>
+    </article>
+    <%@ include file="/WEB-INF/views/club/reply.jsp" %>
 </body>
 </html>

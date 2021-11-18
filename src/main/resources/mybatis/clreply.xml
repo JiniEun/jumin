@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dongne.club.ClreplyMapper">
+	
+<insert id="create"
+		parameterType="Map">
+		insert into clreply(clrID, clID, content, rdate)
+		values((select nvl(max(clrID),0)+1 from clreply),
+		#{clID},#{content}, sysdate)
+</insert>
+
+
+<delete id="delete" parameterType="int">
+		DELETE FROM clreply
+		WHERE clrID=#{clrID}
+</delete>  
+
+<delete id="update" parameterType="com.dongne.club.ClreplyDTO">
+		update clreply
+		set content=#{content}
+		WHERE clrID=#{clrID} and clID=#{clID}
+</delete>  
+
+<select id="list"  parameterType="int" resultType="com.dongne.club.ClreplyDTO">
+	select clrID, clID, content, rdate, r 
+		from(
+		 select clrID, clID, content, rdate, rownum r 
+		 from(
+			select clrID, clID, content, rdate from clreply
+			where clID=#{clID})
+	<![CDATA[       
+         )where r >= #{sno} and r<= #{eno}
+     	]]>
+	
+</select>
+ 
+<select id="total" resultType="int" parameterType="int">
+select count(*) from clreply
+where clID=#{clID}
+</select>
+
+<select id="count" resultType="int">
+	select count (*) from clreply
+</select>
+
+</mapper>

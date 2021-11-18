@@ -19,14 +19,23 @@
       action="./update"
       method="post"
       >
+      
 <input type="hidden" name="clID" value="${dto.clID}">
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="nickname">작성자</label>
+
+<div class="form-group" hidden>
+    <label class="control-label col-sm-2" for="id">작성자ID</label>
     <div class="col-sm-6">
-      <input type="text" name="nickname" id="nickname" 
-      class="form-control" value="${dto.nickname}">
+      <input type="text" readonly name="ID" id="ID" class="form-control" value="${ID}">
     </div>
   </div>
+  
+    <div class="form-group">
+                <label class="control-label col-sm-2" for="nickname">작성자</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly name="nickname" id="nickname" class="form-control" value="${dto.nickname}">
+                </div>
+            </div>
+            
   <div class="form-group">
     <label class="control-label col-sm-2" for="title">제목</label>
     <div class="col-sm-8">

@@ -227,7 +227,6 @@ public class UserController {
 
 		int cnt = 0;
 		if (pcnt == 1) {
-
 			cnt = service.delete(ID);
 		}
 
