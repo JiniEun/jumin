@@ -17,7 +17,10 @@
     <link rel="stylesheet" href="/resources/static/css/tour_read.css">
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style> .carousel-inner > .carousel-item > img{ width: 1080px; height: 720px;} </style>
+    <style> .carousel-inner > .carousel-item > img{ width: 1080px; height: 720px; object-fit: contain;} 
+    .carousel-inner > .carousel-item active > img{ width: 1080px; height: 720px; object-fit: contain;} 
+    
+    </style>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
@@ -25,6 +28,22 @@
 
 
     <script type="text/javascript">
+    function show(star){
+    	switch(star){
+    	case 1:
+    		stateMsg="★☆☆☆☆"
+    	case 2:
+    		stateMsg="★★☆☆☆"
+    	case 3:
+    		stateMsg="★★★☆☆"
+    	case 4:
+    		stateMsg="★★★★☆"
+    	case 5:
+    		stateMsg="★★★★★"
+    	
+    	}
+    }
+    
 	function updateM() {
 		var url = "/tour/update";
 		url += "?tid=${dto.tid}";
@@ -35,7 +54,8 @@
 		url += "?tid=${dto.tid}";
 		location.href = url;
 	}
-	//${fn:split(dto.filename,',')[0]}
+
+	
 </script>
     
     <title>동네스팟 조회</title>
@@ -55,7 +75,7 @@
 				</div>
 			</div>
 		<script>
-		console.log('${dto.filename}');
+		
 		</script>
 		
 		<c:forEach var="dto" items="${dto.filename}" varStatus="status">
@@ -91,9 +111,15 @@
     </section>
 
     <section class="info">
-        <span class="writer">writer : ${dto.writer}</span>
-        <span class="score">score : ${dto.score}</span>
-        <span class="date">date : ${dto.rdate}</span>
+        <span class="writer">작성자 : ${dto.writer}</span>
+        <span class="score">평점 : 
+	        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+	        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
+	        <c:if test="${dto.score=='3'}">★★★☆☆</c:if>
+	        <c:if test="${dto.score=='4'}">★★★★☆</c:if>
+	        <c:if test="${dto.score=='5'}">★★★★★</c:if>
+        </span>
+        <span class="date">날짜 : ${dto.rdate.substring(0,10)}</span>
     </section>
 
     <section class="contents">
@@ -112,13 +138,10 @@
 	        <div class="replyList"></div>
 	    </section>
 	
-	    <section class="repaging">
-	        <span>{paging}</span>
-	    </section>
 	</form>
 	
 	    <section class="btn">
-	        <button>목록</button>
+	        <button onclick="location.href='../tour/list'">목록</button>
 	        <button onclick="updateM()">수정</button>
 	        <button onclick="deleteM()">삭제</button>
 	    </section>

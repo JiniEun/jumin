@@ -12,7 +12,7 @@ public class TourDTO {
 	private String writer;                                                    
 	private String rdate;                
 	private String viewcnt;              
-	private int score;                                                                     
+	private String score;                                                                     
 	private String contents;             
 	private String password;             
 	private String id;                   

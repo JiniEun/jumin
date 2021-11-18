@@ -64,6 +64,10 @@ button:focus{
     border : 3px solid 
 }
 
+#map .item{
+	top:0px;
+	position:sticky;
+}
 
 
 .item{
