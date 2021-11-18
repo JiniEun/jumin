@@ -243,7 +243,7 @@ public class UserController {
 		}
 
 	}
-	
+
 	@GetMapping("/user/updateFile")
 	public String updateFile() {
 
@@ -254,7 +254,7 @@ public class UserController {
 	public String updateFile(MultipartFile fnameMF, String oldfile, HttpSession session, HttpServletRequest request) {
 //		String basePath = new ClassPathResource("/static/user/storage").getFile().getAbsolutePath();
 
-		String basePath =User.getUploadDir();
+		String basePath = User.getUploadDir();
 		if (oldfile != null && !oldfile.equals("user.jpg")) { // 원본파일 삭제
 			Utility.deleteFile(basePath, oldfile);
 		}
