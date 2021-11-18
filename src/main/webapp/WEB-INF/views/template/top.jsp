@@ -4,14 +4,14 @@
 <c:choose>
 	<c:when
 		test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
-		<c:set var="str">관리자입니다.</c:set>
+		<c:set var="str">관리자로 로그인 하셨습니다.</c:set>
 	</c:when>
 	<c:when
 		test="${not empty sessionScope.ID && sessionScope.grade != 'A'}">
 		<c:set var='str'>안녕하세요  ${sessionScope.ID } 님!</c:set>
 	</c:when>
 	<c:otherwise>
-		<c:set var="str">기본 페이지 입니다.</c:set>
+		<c:set var="str">안녕하세요 방문자님!</c:set>
 	</c:otherwise>
 </c:choose>
 <!DOCTYPE html>
@@ -46,8 +46,8 @@
 	<nav class="navbar-nav">
 		<div class="container-fluid" style="margin-top: 5px;">
 			<div class="float-left">
-				<a id="grade" style="color: black;"><span
-					class="glyphicon glyphicon-grain" style="color: black;"></span>
+				<a id="grade" style="color: #bebebc;"><span
+					class="glyphicon glyphicon-grain" style="color: #bebebc;"></span>
 					${str}</a>
 			</div>
 			<div class="float-right">
@@ -80,8 +80,7 @@
 	</nav>
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
-			<a class="navbar-brand" href="${root}/" style="color: #5BA6A6;">Logo
-				image</a>
+			<a class="navbar-brand" href="${root}/" style="color: #027373; font-size=200px;">Dongne</a>
 		</div>
 	</nav>
 
