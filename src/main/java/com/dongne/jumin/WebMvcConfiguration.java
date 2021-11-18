@@ -24,9 +24,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         // registry.addResourceHandler("/attachfile/storage/**").addResourceLocations("file:///" + Attachfile.getUploadDir());
         //registry.addResourceHandler("/member/storage/**").addResourceLocations("file:///" + Member.getUploadDir());
     }
-    
-    
-    
+        
       @Override
       public void addInterceptors(InterceptorRegistry registry) {
      
@@ -34,5 +32,4 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/admin/**/**");
         
       }
- 
 }

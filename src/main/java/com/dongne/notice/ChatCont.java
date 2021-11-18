@@ -25,9 +25,9 @@ import java.util.Date;
 public class ChatCont {
 
 	// 시크릿 키
-	private static String secretKey = "";
+	private static String secretKey = "Z1lUbXJvV3FKZ2tWWFJkTGRJdHZybVdCZURteFp0ako=";
 	// APIGW Invoe URL , 관련 Exception:
-	private static String apiUrl = "";
+	private static String apiUrl = "https://95469cf754c645f2a5c561f667dee2cf.apigw.ntruss.com/custom/v1/5823/d15ce14aa4e30b65f452e11a734453f77492068aaa326eb30675985a6001ab20";
 
 	@RequestMapping("/notice/chatbot") // http://localhost:9093/naver_chatting
 	public ModelAndView chat() {
@@ -35,6 +35,7 @@ public class ChatCont {
 		mav.setViewName("/notice/chatbot"); // /src/main/webapp/WEB-INF/views/chatbot.jsp
 
 		return mav;
+
 	}
 
 	@MessageMapping("/sendMessage")
