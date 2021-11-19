@@ -1,6 +1,7 @@
 package com.dongne.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -13,12 +14,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dongne.utility.NaverGeoApi;
 import com.dongne.utility.Utility;
 
 @Controller
@@ -29,7 +32,19 @@ public class UserController {
 	private UserService service;
 
 	@GetMapping("/")
-	public String home() {
+	public String home() throws Exception {
+
+		double latitude = 37.566535; // 37.207649;
+		double longitude = 126.977969; // 127.117139;
+
+//		GpsToAddress gps = new GpsToAddress();
+//		gps.setLatitude(latitude);
+//		gps.setLongitude(longitude);
+//		System.out.println(gps.getRegionAddress2(gps.getJSONData(gps.getApiAddress())));
+//
+//		Geocoder geocoder = new Geocoder();
+//		System.out.println(gps.getRegionAddress());
+		System.out.println(NaverGeoApi.getlocation());
 
 		return "/home";
 	}
@@ -190,7 +205,6 @@ public class UserController {
 		if (id == null) {
 			id = (String) session.getAttribute("ID");
 		}
-
 		UserDTO dto = service.read(id);
 
 		model.addAttribute("dto", dto);
@@ -198,23 +212,43 @@ public class UserController {
 		return "/user/update";
 	}
 
+	@GetMapping("/user/update/{ID}")
+	public String update(@PathVariable("ID") String ID, Model model) {
+
+		UserDTO dto = service.read(ID);
+
+		model.addAttribute("dto", dto);
+
+		return "/user/update";
+	}
+
 	@PostMapping("/user/update")
-	public String update(UserDTO dto, Model model) {
+	public String update(UserDTO dto, Model model, HttpSession session) {
 
 		System.out.println(dto.toString());
+
+		String grade = (String) session.getAttribute("grade");
+		System.out.println(grade);
 
 		int cnt = service.update(dto);
 
 		if (cnt == 1) {
 			model.addAttribute("ID", dto.getID());
-			return "redirect:./mypage";
+			if (grade.equals("A")) {
+				System.out.println("admin계정");
+				return "redirect:./read/" + dto.getID();
+			} else {
+				return "redirect:./mypage";
+			}
 		} else {
 			return "error";
 		}
 	}
 
-	@GetMapping("/user/delete")
-	public String delete() {
+	@GetMapping("/user/delete/{ID}")
+	public String delete(@PathVariable("ID") String ID, HttpServletRequest request) {
+
+		request.setAttribute("ID", ID);
 
 		return "/user/delete";
 
@@ -227,6 +261,7 @@ public class UserController {
 		map.put("ID", ID);
 		map.put("password", password);
 		int pcnt = service.password(map);
+		System.out.println(map);
 
 		int cnt = 0;
 		if (pcnt == 1) {
@@ -236,7 +271,9 @@ public class UserController {
 		if (pcnt != 1) {
 			return "passwdError";
 		} else if (cnt == 1) {
-			session.invalidate();
+			if (ID.equals(session.getAttribute("ID"))) {
+				session.invalidate();
+			}
 			return "redirect:/";
 		} else {
 			return "error";
@@ -272,6 +309,62 @@ public class UserController {
 		} else {
 			return "./error";
 		}
+	}
+
+	@RequestMapping("/user/list")
+	public String list(HttpServletRequest request) {
+		// 검색관련------------------------
+		String col = Utility.checkNull(request.getParameter("col"));
+		String word = Utility.checkNull(request.getParameter("word"));
+
+		if (col.equals("total")) {
+			word = "";
+		}
+
+		// 페이지관련-----------------------
+		int nowPage = 1;// 현재 보고있는 페이지
+		if (request.getParameter("nowPage") != null) {
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+		}
+		int recordPerPage = 3;// 한페이지당 보여줄 레코드갯수
+
+		// DB에서 가져올 순번-----------------
+		int sno = ((nowPage - 1) * recordPerPage) + 1;
+		int eno = nowPage * recordPerPage;
+
+		Map map = new HashMap();
+		map.put("col", col);
+		map.put("word", word);
+		map.put("sno", sno);
+		map.put("eno", eno);
+
+		int total = service.total(map);
+
+		List<UserDTO> list = service.list(map);
+
+		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+
+		// request에 Model사용 결과 담는다
+		request.setAttribute("list", list);
+		request.setAttribute("nowPage", nowPage);
+		request.setAttribute("col", col);
+		request.setAttribute("word", word);
+		request.setAttribute("paging", paging);
+
+		return "/user/list";
+	}
+
+	@GetMapping("/user/read/{ID}")
+	public String read(@PathVariable("ID") String ID, HttpSession session, Model model) {
+		if (ID == null) {
+			ID = (String) session.getAttribute("ID");
+		}
+
+		UserDTO dto = service.read(ID);
+
+		model.addAttribute("dto", dto);
+
+		return "/user/read";
 	}
 
 }

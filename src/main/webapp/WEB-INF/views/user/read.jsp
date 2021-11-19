@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 정보 페이지</title>
+<title>회원 정보</title>
 <style>
 .card {
 	max-width: 680px;
-	margin-top: 50px;
+	margin-top: 30px;
 	padding: 30px;
 	background: #fff;
 	-webkit-border-radius: 10px;
@@ -25,10 +25,18 @@
 	color: #5BA6A6;
 }
 </style>
+<script type="text/javascript">
+	function update(ID) {
+		var url = "${root}/user/update/";
+		url += ID;
+
+		location.href = url;
+	}
+</script>
 </head>
 <body>
-	<div class="container-lg" style="margin-top: 10px;">
-		<h2>나의 정보</h2>
+	<div class="container-lg" style="margin-top: 20px;">
+		<h2>${dto.ID}님 회원정보</h2>
 		<div class="card card-default" style="max-width: 900px;">
 			<div class="row g-0">
 				<div class="col-md-4">
@@ -79,7 +87,7 @@
 		<br>
 		<div>
 			<button type="button" class="btn btn-color"
-				onclick="location.href='update'">회원 정보 변경</button>
+				onclick="javascript:update('${dto.ID}')">회원 정보 변경</button>
 		</div>
 	</div>
 </body>

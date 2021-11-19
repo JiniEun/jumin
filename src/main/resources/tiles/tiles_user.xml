@@ -52,4 +52,14 @@
     <put-attribute name="body"
       value="/WEB-INF/views/passwdError.jsp" />
   </definition>
+  <definition name="/user/list" extends="main">
+    <put-attribute name="title" value="회원목록"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/user/list.jsp" />
+  </definition>
+  <definition name="/user/read" extends="main">
+    <put-attribute name="title" value="회원 정보 조회"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/user/read.jsp" />
+  </definition>
 </tiles-definitions>

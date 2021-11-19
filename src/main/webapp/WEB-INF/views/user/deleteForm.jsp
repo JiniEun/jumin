@@ -34,7 +34,7 @@
 			<div class="input-form col-md-12 mx-auto">
 				<h2 class="col-sm-offset-2 col-sm-10">회원탈퇴</h2>
 				<form class="form-horizontal" action="/user/delete" method="post">
-					<input type="hidden" name="ID" value="${param.ID}">
+					<input type="hidden" name="ID" value="${ID}">
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="password">비밀번호</label>
 						<div class="col-sm-6">
