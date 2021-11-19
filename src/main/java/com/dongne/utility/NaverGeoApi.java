@@ -5,6 +5,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 public class NaverGeoApi {
  
     public static String getlocation() {
@@ -34,11 +38,19 @@ public class NaverGeoApi {
                 response.append(inputLine);
             }
             br.close();
-            System.out.println(response.toString());
+//            System.out.println(response.toString());
             return response.toString();
         } catch (Exception e) {
-            System.out.println(e);
+//            System.out.println(e);
             return e.toString();
         }
     }
+    
+    public String getAddress(String jsonString) {
+		JSONObject jObj = (JSONObject) JSONValue.parse(jsonString);
+		JSONArray jArray = (JSONArray) jObj.get("results");
+		jObj = (JSONObject) jArray.get(0);
+		return (String) jObj.get("formatted_address");
+		//region area1,2,3 name이 주소명 도, 시, 동.
+	}
 }
