@@ -20,8 +20,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                     <when test="col=='id'">
                                         id like '%'||#{word}||'%'
                                     </when>
+                                    <when test="col=='nickname'">
+                                        nickname like '%'||#{word}||'%'
+                                    </when>
+                                    
                                    
                                    </choose>
+                                   
                                 </where>
                                 order by mId desc
                         )
@@ -33,11 +38,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		 select count(*) from market              
      </select>
      
+<!--      <update id="updateFile" parameterType="Map"> -->
+<!-- 		update market -->
+<!-- 		set filename = #{fname} -->
+<!-- 		where mId = #{mId} -->
+<!-- 	</update> -->
+	
      <insert id="create" parameterType="com.dongne.market.MarketDTO">
 		insert into market(mId, viewcnt, title, content, id, category, rdate, nickname, fileName)
 		values((select nvl(max(mId), 0) + 1 from market), 0 ,
 		#{title}, #{content}, #{id}, #{category}, sysdate, #{nickname}, #{filename})
   	</insert>
+  	
+  	<update id="upCnt" parameterType="int">
+    update market              
+    set viewcnt = viewcnt + 1 
+    where mid = #{mid}         
+    </update>
+    
+  <select id="read"  parameterType="int" resultType="com.dongne.market.MarketDTO">
+    SELECT mId, title, content, id, nickname, viewcnt, rdate, filename
+    FROM market
+    WHERE mid = #{mid}
+  </select>
      
+  <update id="update" parameterType="com.dongne.market.MarketDTO">
+		update market
+		set title = #{title}, 
+		content = #{content},
+		category = #{category},
+		filename = #{filename}
+		where mid = #{mid}
+	</update>
+  
   
 </mapper>

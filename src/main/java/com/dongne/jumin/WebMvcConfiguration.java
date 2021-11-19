@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.dongne.market.Market;
 import com.dongne.office.Office;
 import com.dongne.tour.Tour;
 
@@ -19,7 +20,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/contents/storage/**").addResourceLocations("file:///" + Tour.getUploadDir());
         registry.addResourceHandler("/tour/storage/**").addResourceLocations("file:///" + Tour.getUploadDir());
         registry.addResourceHandler("/office/storage/**").addResourceLocations("file:///" + Office.getUploadDir());
-        
+        registry.addResourceHandler("/market/storage/**").addResourceLocations("file:///" + Market.getUploadDir());
         // registry.addResourceHandler("/attachfile/storage/**").addResourceLocations("file:///" + Attachfile.getUploadDir());
         //registry.addResourceHandler("/member/storage/**").addResourceLocations("file:///" + Member.getUploadDir());
     }

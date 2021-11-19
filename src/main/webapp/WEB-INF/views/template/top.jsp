@@ -135,7 +135,7 @@
 							</ul></li>
 					</ul>
 				</div>
-				<li class="nav-item"><a class="nav-link" href="#">동네 커뮤니티</a></li>
+				<li class="nav-item"><a class="nav-link" href="${root}/community/list">동네 커뮤니티</a></li>
 				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown"><a
