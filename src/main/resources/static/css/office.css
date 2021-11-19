@@ -5,7 +5,7 @@
 
 
 .pagetitle{
-    padding-left : 120px;
+    padding-left : 13%;
     padding-top : 90px;
     display : flex;
     color : var(--basecolor);
@@ -103,12 +103,23 @@
     margin-top : 10px;
     margin-bottom : 20px;
     padding : 5px;
+    color : var(--basecolor);
+    padding-left : 27px;
 }
 
 .loop .detail:hover{
     border : 6px solid var(--basecolor);
 }
 
+.detail a{
+	text-decoration : none;
+	color : var(--basecolor);
+}
+
+.detail a:hover{
+	background-color : var(--secondcolor);
+	color : white;
+}
 
 button:hover{
     background-color: var(--secondcolor);
@@ -131,7 +142,7 @@ img {
   }
 
 .loop .detail .contents_clamp{
-    width: 400px;
+    width: 1000px;
     display: -webkit-box;
     overflow: visible;
 }

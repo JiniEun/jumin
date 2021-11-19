@@ -10,27 +10,29 @@ var name_array=[], address_array=[];
 var marker_array = [], infoWindow_array = [];
 
 $(window).load(function () {
-
+	
 	// 맵, 마커 생성
 	var map = new naver.maps.Map('map', {
-	    center: new naver.maps.LatLng(y[0],x[0])
+	    center: new naver.maps.LatLng(y[0],x[0]),
+	 	zoom : 13
 	});
 	
 	for(i=0; i<x.length; i++){
+		console.log(name_array[i],address_array[i]);
 		var marker = new naver.maps.Marker({
 		    position: new naver.maps.LatLng(y[i], x[i]),
 		    map: map,
 			});  //marker 생성
 		
 		var infoWindow = new naver.maps.InfoWindow({
-	        content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"'+ name_array[i] +'"</b>.</div>'
+	        content: '<div style="width:150px;text-align:center;padding:10px;">여기는 <b>"'+ name_array[i] +'"</b>.</div>'
+
 	    });  // 정보창 생성
-	    
-	    marker_array.push(marker);
-	    infoWindow_array.push(infoWindow);
-		
-		}//end of marker Loop
-	
+        
+        marker_array.push(marker);
+    	infoWindow_array.push(infoWindow);
+	}//end of marker Loop
+
 	// 정보창
 	naver.maps.Event.addListener(map, 'idle', function() {
     updatemarker_array(map, marker_array);
@@ -86,7 +88,6 @@ $(window).load(function () {
 
 	// 파노라마
 	var pano = null;
-	
 	pano = new naver.maps.Panorama("pano", {
 			position: new naver.maps.LatLng(y[0], x[0]),
 	        pov: {
@@ -133,24 +134,19 @@ $(window).load(function () {
 	    }
 	});
 	// end of panorama
-	
-	
-	function(){
-    	console.log("hi");
-    var moreBtn=document.querySelector('.loop .detail .moreBtn');
-    var clamp=document.querySelector('.loop .detail .contents');
-
-    moreBtn.addEventListener('click',function(){
-    	console.log("hello");
-        moreBtn.classList.toggle('clicked');
-        clamp.classList.toggle('contents_clamp');
-    });}
-	
-
 		
+	
+	
 }); // end of function
-	
-	
+
+
+//팝업
+function popup(oid){
+    var url = "./read"+"?oid="+oid;
+    var name = "popup test";
+    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    window.open(url, name, option);
+}
 
 // 좌표로 주소 찾기	
 function ATC(address) {
@@ -178,5 +174,13 @@ function ATC(address) {
 </c:forEach>
 
 
+
+
+$(function () {
+    $('#moreBtn').click(function (e) {
+        e.preventDefault();
+        $('#input_file').click();
+    });
+});
 
 </script>
