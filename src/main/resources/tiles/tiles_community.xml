@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+    <definition name="/community/list" extends="main"> 
+            <put-attribute name="title" value="커뮤니티 목록" ></put-attribute> 
+            <put-attribute name="body" value="/WEB-INF/views/community/list.jsp" /> 
+    </definition> 
+    <definition name="/community/create" extends="main">
+	    <put-attribute name="title" value="등록페이지"></put-attribute>
+	    <put-attribute name="body" value="/WEB-INF/views/community/createForm.jsp" />
+  </definition>
+  
+  <definition name="/community/read" extends="main">
+	    <put-attribute name="title" value="등록페이지"></put-attribute>
+	    <put-attribute name="body" value="/WEB-INF/views/community/read.jsp" />
+  </definition>
+  
+  <definition name="/community/update" extends="main">
+	    <put-attribute name="title" value="수정페이지"></put-attribute>
+	    <put-attribute name="body" value="/WEB-INF/views/community/updateForm.jsp" />
+  </definition>
+</tiles-definitions>

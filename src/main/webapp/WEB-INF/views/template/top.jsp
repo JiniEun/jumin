@@ -126,7 +126,7 @@
 						<a class="dropdown-item" href="#">동네친구</a>
 					</div></li>
 
-				<li class="nav-item"><a class="nav-link" href="#">동네 커뮤니티</a></li>
+				<li class="nav-item"><a class="nav-link" href="${root}/community/list">동네 커뮤니티</a></li>
 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"

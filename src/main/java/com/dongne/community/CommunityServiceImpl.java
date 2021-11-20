@@ -1,4 +1,4 @@
-package com.dongne.market;
+package com.dongne.community;
 
 import java.util.List;
 import java.util.Map;
@@ -6,12 +6,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("com.dongne.market.MarketServiceImpl")
-public class MarketServiceImpl implements MarketService {
+@Service("com.dongne.community.CommunityServiceImpl")
+public class CommunityServiceImpl implements CommunityService {
 
 	@Autowired
-	private MarketMapper mapper;
-
+	private CommunityMapper mapper;
+	
 	@Override
 	public int total(Map map) {
 		// TODO Auto-generated method stub
@@ -19,42 +19,35 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public List<MarketDTO> list(Map map) {
+	public List<CommunityDTO> list(Map map) {
 		// TODO Auto-generated method stub
 		return mapper.list(map);
 	}
 
 	@Override
-	public int create(MarketDTO dto) {
+	public int create(CommunityDTO dto) {
 		// TODO Auto-generated method stub
 		return mapper.create(dto);
 	}
 
 	@Override
-	public void upCnt(int mid) {
+	public void upCnt(int cid) {
 		// TODO Auto-generated method stub
-		mapper.upCnt(mid);
+		mapper.upCnt(cid);
 	}
 
 	@Override
-	public MarketDTO read(int mid) {
+	public CommunityDTO read(int cid) {
 		// TODO Auto-generated method stub
-		return mapper.read(mid);
+		return mapper.read(cid);
 	}
 
-	
-
 	@Override
-	public int update(MarketDTO dto) {
+	public int update(CommunityDTO dto) {
 		// TODO Auto-generated method stub
 		return mapper.update(dto);
 	}
 
-	@Override
-	public int updateFile(Map map) {
-		// TODO Auto-generated method stub
-		return mapper.updateFile(map);
-	}
-
 	
+
 }

@@ -6,16 +6,22 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dongne.community.CommunityDTO;
+import com.dongne.tour.Tour;
+import com.dongne.tour.TourDTO;
 import com.dongne.utility.Utility;
 
 @Controller
@@ -25,7 +31,9 @@ public class MarketController {
 	@Qualifier("com.dongne.market.MarketServiceImpl")
 	private MarketService service;
 	
-	@GetMapping("/market/list")
+	
+	
+	@RequestMapping("/market/list")
 	  public String list(HttpServletRequest request) {
 	 // 검색관련------------------------
 	    String col = Utility.checkNull(request.getParameter("col"));
@@ -73,6 +81,37 @@ public class MarketController {
 	 
 	  }
 	
+	
+
+	@GetMapping("/market/read")
+	public String read(int mid, Model model, HttpServletRequest request) {
+		service.upCnt(mid);
+		
+		
+		model.addAttribute("dto",service.read(mid));
+		
+        /* 댓글 관련 시작 */
+        int nPage = 1;
+        if (request.getParameter("nPage") != null) {
+                nPage = Integer.parseInt(request.getParameter("nPage"));
+        }
+        int recordPerPage = 3;
+
+        int sno = ((nPage - 1) * recordPerPage) + 1;
+        int eno = nPage * recordPerPage;
+
+        Map map = new HashMap();
+        map.put("sno", sno);
+        map.put("eno", eno);
+        map.put("nPage", nPage);
+
+        model.addAllAttributes(map);
+
+        /* 댓글 처리 끝 */
+       
+		return "/market/read";
+	}
+		
 	  @GetMapping("/market/create")
 	  public String create() {
 	 
@@ -80,24 +119,64 @@ public class MarketController {
 	  }
 	 
 	  @PostMapping("/market/create")
-		public String create(MarketDTO dto, HttpServletRequest request) throws IOException {
-			String upDir = new ClassPathResource("/static/images/market").getFile().getAbsolutePath();
+		public String create(MarketDTO dto, HttpServletRequest request) {
+		  	String upDir = Market.getUploadDir();
 
 			String fname = Utility.saveFileSpring(dto.getFilenameMF(), upDir);
+			
 			int size = (int) dto.getFilenameMF().getSize();
 
 			if (size > 0) {
 				dto.setFilename(fname);
 			} else {
-				dto.setFilename("chair.PNG");
+				dto.setFilename("default.jpg");
 			}
 
 			if (service.create(dto) > 0) {
-				return "redirect:./list";
+				return "redirect:/market/list";
 			} else {
 				return "error";
 			}
 		}
 	
 
+	  @GetMapping("/market/update")
+		public String update(int mid, Model model) {
+			
+			MarketDTO dto = service.read(mid);
+			
+			model.addAttribute("dto",dto);
+			
+			return "/market/update";
+		}
+		
+		@PostMapping("/market/update")
+		public String update( MarketDTO dto, MultipartFile filenameMF, String oldfile, int mid, HttpServletRequest request) {
+			
+			String basePath = Market.getUploadDir();
+			
+			int cnt = service.update(dto);
+
+			if (cnt == 1) {
+				if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
+				Utility.deleteFile(basePath, oldfile);}
+				
+				Map map = new HashMap();
+				map.put("mid", mid);
+				map.put("fname", Utility.saveFileSpring(filenameMF, basePath));
+				
+				service.updateFile(map);
+				
+				return "redirect:/market/list";
+		
+				
+			} else {
+				return "error";
+			}
+			
+
+		}
+		
+		
+	
 }
