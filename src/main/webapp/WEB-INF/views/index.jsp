@@ -8,6 +8,20 @@
 <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- <script src="./weather.js"></script> -->
 <script>
+
+function getLocation(latitude,longitude){
+	let formdata = {'latitude' : latitude, 'longitude' : longitude};
+	$.ajax({
+    	url : '/',
+    	type : 'post',
+    	async: false,
+    	data :  formdata,
+    	success : function(data){
+        	console.log(formdata);
+    	}
+	}); 
+}
+
 //지역 정보 받아오기
 function showLocation(event) {
   let latitude = event.coords.latitude 
@@ -36,7 +50,11 @@ function showLocation(event) {
     }).catch((error) => {
       console.log(error)
     })
+                
+    getLocation(latitude,longitude);
+   
 }
+
 function showError(event) {
   alert("위치 정보를 얻을 수 없습니다.")
 }
@@ -51,15 +69,10 @@ window.addEventListener('load', () => {
 	<div class="container">
 		<p>Main</p>
 		<!-- <span id="latitude"></span>|<span id="longitude"></span> -->
-	<img id="wicon" src="#">
-	<br>
-	<span id="rtemp"></span>
-	<br>
-	<span id="rLoc"></span>	
-	<img src="#" alt="">
-	<img src="#" alt="">
-	<img src="#" alt="">
-	
+		<img id="wicon" src="#"> <br> <span id="rtemp"></span> <br>
+		<span id="rLoc"></span> <img src="#" alt=""> <img src="#" alt="">
+		<img src="#" alt="">
+
 	</div>
 
 </body>
