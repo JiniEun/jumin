@@ -21,6 +21,8 @@ public class Crawler {
 			Document html = conn.get(); // conn.post();
 
 			System.out.println("[Attribute 탐색]");
+			
+			String result = "";
 			Elements fileblocks = html.getElementsByClass("rpsa_map");
 			for (Element fileblock : fileblocks) {
 
@@ -30,12 +32,13 @@ public class Crawler {
 //                String href = elm.attr("href");
 
 					System.out.println(text + " > ");
+					result += text + "\n";
 				}
 			}
 
 			// 4. HTML 출력
 //			System.out.println(html.toString());
-			return html.toString();
+			return result;//html.toString();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return e.toString();

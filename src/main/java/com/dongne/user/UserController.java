@@ -16,11 +16,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dongne.utility.LocationDTO;
 import com.dongne.utility.NaverGeoApi;
 import com.dongne.utility.Utility;
 
@@ -33,9 +35,11 @@ public class UserController {
 
 	@GetMapping("/")
 	public String home() throws Exception {
+		
+		System.out.println("HOME GETMAPPING");
 
 		double latitude = 37.566535; // 37.207649;
-		double longitude = 126.977969; // 127.117139;
+		double longitude = 126.977969; // 127.117139; latitude,longitude
 
 //		GpsToAddress gps = new GpsToAddress();
 //		gps.setLatitude(latitude);
@@ -44,11 +48,35 @@ public class UserController {
 //
 //		Geocoder geocoder = new Geocoder();
 //		System.out.println(gps.getRegionAddress());
-		System.out.println(NaverGeoApi.getlocation());
-		System.out.println(NaverGeoApi.getAddress(NaverGeoApi.getlocation()));
+		System.out.println(NaverGeoApi.getlocation(latitude,longitude));
+		System.out.println(NaverGeoApi.getAddress(NaverGeoApi.getlocation(latitude,longitude)));
 
 		return "/home";
 	}
+	
+	@PostMapping("/")
+	@ResponseBody
+	public String home(String latitude, String longitude) throws Exception {
+		
+		System.out.println("HOME POSTMAPPING");
+
+		LocationDTO loc = new LocationDTO(Double.parseDouble(latitude), Double.parseDouble(longitude));
+		
+		if (loc != null)
+			System.out.println("loc" + loc.toString());
+
+//		GpsToAddress gps = new GpsToAddress();
+//		gps.setLatitude(latitude);
+//		gps.setLongitude(longitude);
+//		System.out.println(gps.getRegionAddress2(gps.getJSONData(gps.getApiAddress())));
+//
+//		Geocoder geocoder = new Geocoder();
+//		System.out.println(gps.getRegionAddress());
+		System.out.println(NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(),loc.getLongitude())));
+
+		return "/home";
+	}
+	
 
 	@GetMapping("/user/login")
 	public String login(HttpServletRequest request) {
