@@ -10,11 +10,30 @@
 	<div class="container-fluid">
 		<h3 class="col-sm-offset-2 col-sm-10">마켓 수정</h3>
 		<br>
-		<form class="form-horizontal" action="/market/update" method="post">
-		 	   
-    		
-			<input type="hidden" name="mid" id="mid" class="form-control"
-						value="${dto.mid}">
+		
+		
+		<form class="form-horizontal" action="/market/update" method="post" enctype="multipart/form-data">
+		 	   <input type="hidden" name="mid" id="mid" class="form-control" value="${dto.mid}">
+	    		
+
+				 <div class="form-group">
+			      <label class="control-label col-sm-2" for="oldfile">원본파일</label>
+			      <div class="col-sm-6">
+			        <img src="/market/storage/${dto.filename }" 
+			        class="img-rounded" width="200px" height="200px">
+			      </div>
+			    </div>
+			    
+		    <div class="form-group">
+			      <label class="control-label col-sm-2" for="filenameMF">변경파일</label>
+			      <div class="col-sm-6">          
+			        <input type="file" class="form-control" id="filenameMF" 
+			        name="filenameMF" accept=".jpg,.png,.gif" >
+			      </div>
+		    </div>
+		
+			
+			
 			 <div class="form-group">
 	            <label class="control-label col-sm-2" for="category">카테고리</label>
 	            <div class="col-sm-6">
@@ -28,20 +47,7 @@
 	              </select>
 	            </div>
 	          </div>
-	          <div class="form-group">
-      <label class="control-label col-sm-2" for="oldfile">원본파일</label>
-      <div class="col-sm-6">
-        <img src="/market/storage/${oldfile }" 
-        class="img-rounded" width="200px" height="200px">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="filenameMF">변경파일</label>
-      <div class="col-sm-6">          
-        <input type="file" class="form-control" id="filenameMF" 
-        name="filenameMF" accept=".jpg,.png,.gif">
-      </div>
-    </div>
+	         
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="title">제목</label>
 				<div class="col-sm-8">
@@ -75,6 +81,7 @@
 				</div>
 			</div>
 		</form>
+		
 	</div>
 </body>
 </html>

@@ -100,7 +100,20 @@
         
     </div>
 
-    
+    <!-- reply -->
+	<form name="replyForm">
+	    <section class="reply">
+	    	<input type="hidden" name="mid" value="${dto.mid}"/>
+	        <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+	        <button class="rebtn" id="rebtn" name="rebtn">댓글 등록</button>
+	    </section>
+	
+	    <section class="reshow">
+	        <div class="replyList"></div>
+	    </section>
+	
+	   
+	</form>
 <br>
         <div>
             
@@ -115,6 +128,7 @@
 
 
 </div>
+<%@ include file="reply.jsp" %>
 
 </body>
 </html>

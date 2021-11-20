@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -83,13 +84,30 @@ public class MarketController {
 	
 
 	@GetMapping("/market/read")
-	public String read(int mid, Model model) {
+	public String read(int mid, Model model, HttpServletRequest request) {
 		service.upCnt(mid);
 		
 		
 		model.addAttribute("dto",service.read(mid));
 		
+        /* 댓글 관련 시작 */
+        int nPage = 1;
+        if (request.getParameter("nPage") != null) {
+                nPage = Integer.parseInt(request.getParameter("nPage"));
+        }
+        int recordPerPage = 3;
 
+        int sno = ((nPage - 1) * recordPerPage) + 1;
+        int eno = nPage * recordPerPage;
+
+        Map map = new HashMap();
+        map.put("sno", sno);
+        map.put("eno", eno);
+        map.put("nPage", nPage);
+
+        model.addAllAttributes(map);
+
+        /* 댓글 처리 끝 */
        
 		return "/market/read";
 	}
@@ -133,38 +151,32 @@ public class MarketController {
 		}
 		
 		@PostMapping("/market/update")
-		public String update( MultipartFile filenameMF, String oldfile, int mid, HttpServletRequest request, MarketDTO dto) {
-			int pcnt = service.update(dto);
+		public String update( MarketDTO dto, MultipartFile filenameMF, String oldfile, int mid, HttpServletRequest request) {
 			
 			String basePath = Market.getUploadDir();
 			
-			
-			if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
-				Utility.deleteFile(basePath, oldfile);
-			}
+			int cnt = service.update(dto);
 
-			// pstorage에 변경 파일 저장
-			Map map = new HashMap();
-			map.put("mid", mid);
-			map.put("fname", Utility.saveFileSpring(dto.getFilenameMF(), basePath));
-
-			// 디비에 파일명 변경
-			
-			
-			int cnt = service.updateFile(map);
-			
-			if (cnt == 1 && pcnt == 1) {
+			if (cnt == 1) {
+				if (oldfile != null && !oldfile.equals("default.jpg")) { // 원본파일 삭제
+				Utility.deleteFile(basePath, oldfile);}
+				
+				Map map = new HashMap();
+				map.put("mid", mid);
+				map.put("fname", Utility.saveFileSpring(filenameMF, basePath));
+				
+				service.updateFile(map);
+				
 				return "redirect:/market/list";
+		
+				
 			} else {
-				return "./error";
+				return "error";
 			}
 			
-			
-			
-			
-		     
 
-			
 		}
+		
+		
 	
 }

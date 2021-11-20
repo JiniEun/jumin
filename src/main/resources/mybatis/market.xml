@@ -66,8 +66,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update market
 		set title = #{title}, 
 		content = #{content},
-		category = #{category},
+		category = #{category}	,
 		filename = #{filename}
+		where mid = #{mid}
+	</update>
+	
+	<update id="updateFile" parameterType="Map">
+		update market
+		set filename = #{filename}
 		where mid = #{mid}
 	</update>
   
