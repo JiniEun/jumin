@@ -55,7 +55,7 @@ CREATE TABLE community(
                 title       VARCHAR2(300)    NOT NULL,
                 content     VARCHAR2(500)    NOT NULL,
                 id          VARCHAR2(20)     NOT NULL,
-                category    VARCHAR2(5)      NOT NULL,
+                category    VARCHAR2(50)      NOT NULL,
                 
                
         PRIMARY KEY (cId),
