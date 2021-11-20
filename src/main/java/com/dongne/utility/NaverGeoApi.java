@@ -46,7 +46,7 @@ public class NaverGeoApi {
         }
     }
     
-    public String getAddress(String jsonString) {
+    public static String getAddress(String jsonString) {
 		JSONObject jObj = (JSONObject) JSONValue.parse(jsonString);
 		JSONArray jArray = (JSONArray) jObj.get("results");
 		jObj = (JSONObject) jArray.get(0);
