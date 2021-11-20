@@ -75,41 +75,52 @@ public class TreplyController {
 	@ResponseBody
 	public int create(@RequestParam int tid,@RequestParam String content, Map map, HttpSession session){
 		
-		String id=(String) session.getAttribute("ID");
+		String sid=(String) session.getAttribute("ID");
 		
-		map.put("id", id);
+		
+		map.put("id", sid);
 		map.put("tid", tid);
 		map.put("content", content);
 		
-		
-		return service.create(map);
+		if(session.getAttribute("ID")!=null) {
+			return service.create(map);
+		}else {
+			return 0;
+		}
 		
 	}
 	
 	@RequestMapping("/delete/{trid}")
 	@ResponseBody
-	public void delete(@PathVariable int trid){
+	public int delete(@PathVariable int trid,@RequestParam("id") String id,HttpSession session){
+		String sid=(String) session.getAttribute("ID");
 		
-		service.delete(trid);
+		if(session.getAttribute("ID")!=null) {
+			return service.delete(trid);
+		}else {
+			return 0;
+		}
+		
 		
 	}
 	
 	@RequestMapping("/update/{trid}")
 	@ResponseBody
-	public void update(TreplyDTO dto,@PathVariable int trid,@RequestParam("tid") int tid, 
-						@RequestParam("content") String content){
+	public int update(TreplyDTO dto,@PathVariable int trid,@RequestParam("tid") int tid, 
+						@RequestParam("content") String content,HttpSession session){
+		String id=(String) session.getAttribute("ID");
+		
+		
 		dto.setContent(content);
 		
 		dto.setTid(tid);
 		
 		dto.setTrid(trid);
 		
-		
-		service.update(dto);
-		
+		if(session.getAttribute("ID")!=null) {
+			return service.update(dto);
+		}else {
+			return 0;
+		}
 	}
-	
-	 
-	
-	
 }

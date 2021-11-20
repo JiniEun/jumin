@@ -17,23 +17,11 @@
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92xk29w19e&submodules=geocoder"></script>
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=YOUR_CLIENT_ID&submodules=panorama"></script>
     
-    <script type="text/javascript">
-        window.onload=function(){
-        	console.log("hi");
-        const moreBtn=document.querySelector('.description .contents .moreBtn');
-        const sub_detail=document.querySelector('.description .contents .detail');
 
-        moreBtn.addEventListener('click',() =>{
-        	console.log("hello");
-            moreBtn.classList.toggle('clicked');
-            sub_detail.classList.toggle('detail_clamp');
-        });}
-    </script>
-
-	    <script type="text/javascript">
+<script type="text/javascript">
 
 	function updateM(oid) {
-		var url = "./admin/office/update";
+		var url = "/admin/office/update";
 		url += "?oid="+oid;
 		location.href = url;
 		}
@@ -43,65 +31,59 @@
 		location.href = url;
 		}
 
-	</script>
+</script>
 	
 </head>
 <body>
-	
+<div class="pagetitle">
+        <h2>동네 주요기관 게시판</h2>
+        <c:choose>
+            <c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
+                <button type="button" onclick="location.href='../admin/office/create'">글쓰기</button>
+            </c:when>
+	    </c:choose>
+    </div>
     
-    <h1 style="margin-left: 30px;">관공서</h1>
-    <c:choose>
-	    <c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
-			<button type="button" onclick="location.href='../admin/office/create'">글쓰기</button>
-		</c:when>
-	</c:choose>
-    <section class="title">
-        <h2>Public Station</h2>
-        <div class="btn">
-            <button class="street" id="street">거리뷰</button>
-        </div>
-    </section>
-    
+
     <div class="container">
-        <div class=item id="map"></div>
-        	
-        <div class=item id="pano"></div>
-        
-	
-        <!--1paragraph-->
-        <c:forEach var="dto" items="${list}">
-	        <div class=item>
-	            <img src="/office/storage/${dto.filename}" alt="iuhello.jpg">
-	        </div>
-	        
-	 
-		        <div class="description">
-		            <div>
-		            	<input type="hidden" name="oid" value="${dto.oid}"/>
-		                <label>기관명 : </label><span>${dto.oname}</span>
-		                <c:choose>
-		                	<c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
-			                	<button onclick="updateM('${dto.oid}')">수정</button>
-		        				<button onclick="deleteM('${dto.oid}')">삭제</button>
-	        				</c:when>
-	        			</c:choose>
-		            </div>
-		            <div>
-		                <label>주소 : </label><span>${dto.address}</span>
-		            </div>
-		            <div>
-		                <label>TEL : </label><span>${dto.phone}</span>
-		            </div>
-		            <div class="contents">
-		                <span class="detail"> 
-		                    ${dto.contents}
-		                </span>
-		                <button class="moreBtn"><i class="fas fa-chevron-circle-down"></i></button>
-		            </div>
-		        </div>
-       	</c:forEach>
-    </div>   
-    
+        <section class="api">
+            <button class="street" id="street">거리뷰</button>
+            <div class="map" id="map">maparea</div>
+            <div class="pano" id="pano">panoarea</div>
+        </section>
+
+        <section class="looparea">
+            
+        <c:forEach var="dto" items="${list}">    
+            <div class="loop">
+                <div class="imgarea">
+                    <img src="/office/storage/${dto.filename}">
+                </div>
+
+                <div class="detail">
+                    
+                    <div>▶ 기관명 : ${dto.oname} </div>
+                    <div>▶ 주소 : ${dto.address}</div>
+                    <div><a href="${dto.webaddress}">▶ 홈페이지 : ${dto.webaddress}</a></div>
+                    <div>▶ 전화번호 : ${dto.phone}</div>
+                   
+                    	<input type="hidden" id="oid" name="oid" value="${dto.oid}"/>
+                    	<button class="moreBtn" onclick="popup(${dto.oid})">로드맵</button>
+                 
+                </div>
+
+                <c:choose>
+		            <c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
+			            <button onclick="updateM('${dto.oid}')">수정</button>
+		        		<button onclick="deleteM('${dto.oid}')">삭제</button>
+	        		</c:when>
+	        	</c:choose>
+            </div>
+        </c:forEach>
+
+        </section>
+    </div>
+
     <%@ include file="map.jsp" %>
 </body>
 </html>

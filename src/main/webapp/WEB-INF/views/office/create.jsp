@@ -14,7 +14,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
         integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
         crossorigin="anonymous"></script>
-<script type="text/JavaScript">
+    <link rel="stylesheet" href="/resources/static/css/office_create.css">    
+    
+	<script type="text/JavaScript">
         
  	function checkIn(f){
          if (f.title.value == ""){
@@ -66,14 +68,14 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="address">주소</label>
                 <div class="col-sm-8">
-                    <input type="text" name="address" id="address" class="form-control">
+                    <input type="text" name="address" id="address" class="form-control" >
                 </div>
             </div>
             
             <div class="form-group">
                 <label class="control-label col-sm-2" for="webaddress">웹페이지</label>
                 <div class="col-sm-8">
-                    <input type="text" name="webaddress" id="webaddress" class="form-control">
+                    <input type="text" name="webaddress" id="webaddress" class="form-control" value="https://">
                 </div>
             </div>
             

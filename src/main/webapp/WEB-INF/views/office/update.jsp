@@ -18,6 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
         integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
         crossorigin="anonymous"></script>
+        
+    <link rel="stylesheet" href="/resources/static/css/office_create.css">    
 <script type="text/JavaScript">
         
  	function checkIn(f){
@@ -55,6 +57,7 @@
         	onsubmit="return checkIn(this)">
     
             <div class="form-group">
+            <input type="hidden" name="oid" id="oid" class="form-control" value="${dto.oid}">
                 <label class="control-label col-sm-2" for="id">작성자</label>
                 <div class="col-sm-6">
                     <input type="text" readonly name="id" id="id" class="form-control" value="${dto.id}">
