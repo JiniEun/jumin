@@ -17,15 +17,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <update id="update" parameterType="com.dongne.club.ClubDTO">
       update club
       <set>
-         nickname = #{nickname},
          title = #{title},
          content = #{content},
-         <if test="filesize > 0">
-            fileName = #{fileName},
-            filesize = #{filesize}
-         </if>
+         rdate = sysdate
       </set>
       where clID = #{clID}
+   </update>
+   
+   <!--대표 이미지 수정-->
+   
+   <update id="updateFile" parameterType="Map">
+		update club
+		set fileName = #{fileName}
+		where clID = #{clID}
    </update>
    
   <!-- 삭제 -->
@@ -51,9 +55,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
   <!-- 등록 -->
   <insert id="create" parameterType="com.dongne.club.ClubDTO">
-      insert into club(clID, nickname, title, content, password, rdate, fileName)
+      insert into club(clID, ID, nickname, title, content, password, rdate, fileName)
       values((select nvl(max(clID),0) + 1 as clID from club),
-      #{nickname}, #{title}, #{content}, #{password} ,sysdate,#{fileName})
+      #{ID}, #{nickname}, #{title}, #{content}, #{password} ,sysdate,#{fileName})
    </insert>
   
   <!-- 목록 -->
@@ -63,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <where>
               <choose>
                   <when test="col=='nickname'">
-                      wname like '%'||#{word}||'%'
+                      nickname like '%'||#{word}||'%'
                   </when>
                   <when test="col=='title'">
                       title like '%'||#{word}||'%'
@@ -87,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <where>
               <choose>
                       <when test="col=='nickname'">
-                      wname like '%'||#{word}||'%'
+                      nickname like '%'||#{word}||'%'
                   </when>
                   <when test="col=='title'">
                       title like '%'||#{word}||'%'

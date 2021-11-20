@@ -3,8 +3,9 @@ package com.dongne.tour;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -72,9 +73,11 @@ public class TreplyController {
 	
 	@RequestMapping("/create")
 	@ResponseBody
-	public int create(@RequestParam int tid,@RequestParam String content, Map map){
+	public int create(@RequestParam int tid,@RequestParam String content, Map map, HttpSession session){
 		
+		String id=(String) session.getAttribute("ID");
 		
+		map.put("id", id);
 		map.put("tid", tid);
 		map.put("content", content);
 		

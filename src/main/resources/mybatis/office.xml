@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <insert id="create" parameterType="com.dongne.office.OfficeDTO">
 		insert into office(oid, oname, address, webaddress, phone, filename, contents, id)
 		values((select nvl(max(oid),0)+1 from office),
-		#{oname}, #{address}, #{webaddress},#{phone}, #{filename},#{contents},#{oid})
+		#{oname}, #{address}, #{webaddress},#{phone}, #{filename},#{contents},#{id})
 </insert>
 	
 

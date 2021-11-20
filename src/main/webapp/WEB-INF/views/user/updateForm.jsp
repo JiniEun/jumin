@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 정보 수정</title>
 <style>
 .card {
 	max-width: 680px;
@@ -60,34 +61,36 @@
 		}
 	}
 
-	function deleteM() {
-		var url = "../user/delete";
-		url += "?ID=${dto.ID}";
+	function deleteM(ID) {
+		var url = "${root}/user/delete/";
+		url += ID;
 		location.href = url;
 	}
 </script>
 </head>
 <body>
 	<div class="container-lg" style="margin-top: 10px;">
-		<h2>나의 정보</h2>
+		<h2>회원 정보 수정</h2>
 		<div class="card card-default" style="max-width: 900px;">
-			<form class="updateform" novalidate action="update" method="post"
+			<form class="updateform" novalidate action="${root}/user/update" method="post"
 				name='frm' enctype="multipart/form-data"
 				onsubmit="return inCheck(this)">
 				<div class="row g-0">
 					<div class="col-md-4">
-						<div class="d-flex justify-content-center">
+						<div class="d-flex justify-content-center" style="margin-bottom:10px;">
 							<c:choose>
 								<c:when test="${empty dto.fileName}">
 									<img src="/images/profile.png" class="img-fluid rounded-start"
 										alt="img">
 								</c:when>
 								<c:otherwise>
+									<img src="/user/storage/${dto.fileName }" class="img-rounded"
+										width="200px" height="200px">
 								</c:otherwise>
 							</c:choose>
 						</div>
 						<div class="d-flex justify-content-center">
-							<button type="button" class="btn btn-color">프로필 사진 변경</button>
+							<button type="button" class="btn btn-color" onclick="location.href='updateFile'">프로필 사진 변경</button>
 						</div>
 					</div>
 					<div class="col-md-8">
@@ -163,7 +166,7 @@
 				</div>
 				<div style="margin-top: 20px;">
 					<button type="submit" class="btn btn-color">회원 정보 수정</button>
-					<button type="button" class="btn btn-color" onclick="deleteM()">회원
+					<button type="button" class="btn btn-color" onclick="javascript:deleteM('${dto.ID}')">회원
 						탈퇴</button>
 				</div>
 			</form>

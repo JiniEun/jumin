@@ -54,11 +54,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="list" parameterType="Map"
 		resultType="com.dongne.notice.NoticeDTO">
-		select nID, title, content, password, viewcnt, rdate, r
+		select nID, title, content, password, viewcnt, rdate, ID, r
 		from (
-			select nID, title, content, password, viewcnt, rdate, rownum r
+			select nID, title, content, password, viewcnt, rdate, ID, rownum r
 			from(
-				select nID, title, content, password, viewcnt, rdate
+				select nID, title, content, password, viewcnt, rdate, ID
 				from notice
 				<where>
 				<choose>
