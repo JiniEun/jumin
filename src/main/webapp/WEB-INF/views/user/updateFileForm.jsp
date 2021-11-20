@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>사진수정</title>
+<title>회원 이미지 수정</title>
 <meta charset="utf-8">
 <style>
 .card {
@@ -28,7 +28,7 @@
 
 	<div class="container">
 		<div class="card">
-			<h1 class="col-sm-offset-2 col-sm-10">사진수정</h1>
+			<h1 class="col-sm-offset-2 col-sm-10">회원 이미지 수정</h1>
 			<form class="form-horizontal" action="updateFile" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" name="oldfile" value="${param.oldfile}">

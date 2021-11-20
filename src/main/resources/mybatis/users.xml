@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				FROM users
 				<where>
 					<choose>
-						<when test="col=='mname'">
+						<when test="col=='uname'">
 							uname like '%'||#{word}||'%'
 						</when>
 						<when test="col=='id'">
