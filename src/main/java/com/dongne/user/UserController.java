@@ -45,6 +45,7 @@ public class UserController {
 //		Geocoder geocoder = new Geocoder();
 //		System.out.println(gps.getRegionAddress());
 		System.out.println(NaverGeoApi.getlocation());
+		System.out.println(NaverGeoApi.getAddress(NaverGeoApi.getlocation()));
 
 		return "/home";
 	}
