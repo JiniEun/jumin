@@ -49,12 +49,7 @@ public class OfficeController {
 			dto.setFilename("default.png");
 			};
 		
-		String web=dto.getWebaddress();
-		if(web.substring(0,7)!="https://"){
-			web="https://"+web;
-		}
-		
-		dto.setWebaddress(web);
+
 			
 		if(service.create(dto)>0) {
 			return "redirect:/office/list";
@@ -90,13 +85,6 @@ public class OfficeController {
 			dto.setFilename("default.png");
 			};
 			
-		String web=dto.getWebaddress();
-		if(web.substring(0,7)!="https://"){
-			web="https://"+web;
-			}
-			
-		System.out.println(oid);
-		dto.setWebaddress(web);
 
 			
 		int cnt=0;

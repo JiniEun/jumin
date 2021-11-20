@@ -3,36 +3,50 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script type="text/javascript">
-var ad='부산광역시 남구 용호4동 용호로232번길 25-14'
-var x=[];
-var y=[];
-var name_array=[], address_array=[];
-var marker_array = [], infoWindow_array = [];
+
 
 $(window).load(function () {
-	
+
 	// 맵, 마커 생성
 	var map = new naver.maps.Map('map', {
 	    center: new naver.maps.LatLng(y[0],x[0]),
-	 	zoom : 13
+	 	zoom : 11
 	});
 	
+	    // 배열값을 마커, 좌표에 넣기
 	for(i=0; i<x.length; i++){
-		console.log(name_array[i],address_array[i]);
+
+	    
 		var marker = new naver.maps.Marker({
 		    position: new naver.maps.LatLng(y[i], x[i]),
 		    map: map,
 			});  //marker 생성
 		
+			var contentString = [
+				'<div style="border : width:150px;text-align:center;padding:10px;">여기는 <b>"'+ atcname[i] +'"</b>.</div>'
+		    ].join('');	
+		
 		var infoWindow = new naver.maps.InfoWindow({
-	        content: '<div style="width:150px;text-align:center;padding:10px;">여기는 <b>"'+ name_array[i] +'"</b>.</div>'
-
-	    });  // 정보창 생성
+	        content: contentString,
+	        maxWidth : 200,
+	        contentColor : "#ffffff",
+	        backgroundColor : "#eee",
+	        borderWidth : 5,
+	        borderColor : "#5BA6A6",
+	        anchorSize: new naver.maps.Size(30, 30),
+	        anchorSkew: true,
+	        anchorColor: "#eee",
+	        pixelOffset: new naver.maps.Point(20, -20)
+	    	});  // 정보창 생성
         
+	    	
+	    	
+	    //마커와 infowindow  배열에 담음
         marker_array.push(marker);
     	infoWindow_array.push(infoWindow);
+	
 	}//end of marker Loop
-
+	
 	// 정보창
 	naver.maps.Event.addListener(map, 'idle', function() {
     updatemarker_array(map, marker_array);
@@ -134,10 +148,10 @@ $(window).load(function () {
 	    }
 	});
 	// end of panorama
-		
-	
-	
 }); // end of function
+
+
+//-------------------------------------- 윈도우 모두 로드되고나서 실행 -------------------------
 
 
 //팝업
@@ -149,7 +163,7 @@ function popup(oid){
 }
 
 // 좌표로 주소 찾기	
-function ATC(address) {
+function ATC(address,name) {
     naver.maps.Service.geocode({
         query: address
     }, function(status, response) {
@@ -157,8 +171,15 @@ function ATC(address) {
         var htmlAddresses = [],
             item = response.v2.addresses[0],
             point = new naver.maps.Point(item.x, item.y);
-			
-		
+	   
+       console.log("-----함수내부------");
+       console.log("주소 : " + address);
+       console.log("x좌표 : " + item.x);
+       console.log("y좌표 : " + item.y);
+       console.log("-----함수end------");
+       
+       atcname.push(name);
+	   atcadd.push(address);
        x.push(item.x);
        y.push(item.y);
 
@@ -166,11 +187,19 @@ function ATC(address) {
     
 }
 
+var ad='부산광역시 남구 용호4동 용호로232번길 25-14'
+	var x=[];
+	var y=[];
+	var name_array=[], address_array=[];
+	var marker_array = [], infoWindow_array = [];
+	var atcadd=[],atcname=[];
+
 <c:forEach var="dto" items="${list}">
-	name_array.push('${dto.oname}');
-	address_array.push('${dto.address}');
+
+	var localename=String('${dto.oname}');
 	var address=String('${dto.address}');
-	ATC(address);
+	ATC(address,localename);
+
 </c:forEach>
 
 
