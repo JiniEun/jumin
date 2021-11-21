@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dongne.fboard.FboardMapper">
+	<insert id="create" parameterType="com.dongne.fboard.FboardDTO">
+		insert into fboard(fbID, title, content, password, viewcnt, rdate, userID)
+		values((select
+		nvl(max(fbID),0)+1 from fboard), #{title}, #{content}, #{password},0,sysdate, #{userID})
+	</insert>
+	  <!-- 패스워드 검사 -->
+  	<select id="checkPassword" resultType="int" parameterType="HashMap">
+    	SELECT COUNT(*) AS cnt
+    	FROM fboard
+    	WHERE fbID=#{fbID} AND password=#{password}
+  	</select>   
+	<update id="update" parameterType="com.dongne.fboard.FboardDTO">
+		update fboard
+		set title=#{title}, content=#{content}, userID=#{userID}
+		where fbID =#{fbID}
+	</update>
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM fboard
+		WHERE fbID=#{fbID}
+	</delete>  
+	
+	<select id="read" parameterType="int"
+		resultType="com.dongne.fboard.FboardDTO">
+		select fbID, title, content, password, viewcnt, rdate, userID
+		from fboard
+		where fbID = #{fbID}
+	</select>
+	<!-- 조회수 증가 -->
+	<update id="upCnt" parameterType="int">
+		update fboard
+		set viewcnt = viewcnt + 1
+		where fbID = #{fbID}
+	</update>
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from fboard
+		<where>
+			<choose>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+	<select id="list" parameterType="Map"
+		resultType="com.dongne.fboard.FboardDTO">
+		select fbID, title, content, password, viewcnt, rdate, userID, r
+		from (
+			select fbID, title, content, password, viewcnt, rdate, userID, rownum r
+			from(
+				select fbID, title, content, password, viewcnt, rdate, userID
+				from fboard
+				<where>
+				<choose>
+					<when test="col=='title'">
+						title like '%'||#{word}||'%'
+					</when>
+					<when test="col=='content'">
+						content like '%'||#{word}||'%'
+					</when>
+				</choose>
+			  </where>
+		       order by fbID desc
+			)
+     	<![CDATA[       
+         )where r >= #{sno} and r <= #{eno}
+     	]]>
+	</select>
+</mapper>

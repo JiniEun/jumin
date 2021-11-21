@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.dongne.user.UserDTO;
+import com.dongne.user.UserService;
 
 
 @Controller
@@ -20,6 +25,9 @@ public class ClreplyController {
 	@Autowired
 	@Qualifier("com.dongne.club.ClreplyServiceImpl")
 	private ClreplyService service;
+	@Autowired
+	@Qualifier("com.dongne.user.UserServiceImpl")
+	private UserService uservice;
 	
 	@RequestMapping("/list")
 	@ResponseBody
@@ -71,10 +79,17 @@ public class ClreplyController {
 	
 	@RequestMapping("/create")
 	@ResponseBody
-	public int create(@RequestParam int clID,@RequestParam String content, Map map){
+	public int create(@RequestParam int clID,@RequestParam String content, Map map, HttpSession session){
+		
+		String ID=(String)session.getAttribute("ID");
+		
+		UserDTO user = uservice.read(ID);
+		String nickname = user.getNickname();
 		
 		
 		map.put("clID", clID);
+		map.put("ID", ID);
+		map.put("nickname", nickname);
 		map.put("content", content);
 		
 		
@@ -92,14 +107,20 @@ public class ClreplyController {
 	
 	@RequestMapping("/update/{clrID}")
 	@ResponseBody
-	public void update(ClreplyDTO dto,@PathVariable int clrID,@RequestParam("clID") int clID, 
-						@RequestParam("content") String content){
+	public int update(ClreplyDTO dto,@PathVariable int clrID,@RequestParam("clID") int clID, 
+						@RequestParam("content") String content,HttpSession session){
+		String id=(String) session.getAttribute("ID");
+		
 		dto.setContent(content);
 		
 		dto.setClID(clID);
 		
 		dto.setClrID(clrID);
 		
-		service.update(dto);
+		if(session.getAttribute("ID")!=null) {
+			return service.update(dto);
+		}else {
+			return 0;
+		}
 	}
 }

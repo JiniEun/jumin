@@ -8,9 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <insert id="create"
 		parameterType="Map">
-		insert into clreply(clrID, clID, content, rdate)
+		insert into clreply(clrID, clID, content, rdate, ID, nickname)
 		values((select nvl(max(clrID),0)+1 from clreply),
-		#{clID},#{content}, sysdate)
+		#{clID},#{content}, sysdate, #{ID}, #{nickname})
 </insert>
 
 
@@ -26,11 +26,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </delete>  
 
 <select id="list"  parameterType="int" resultType="com.dongne.club.ClreplyDTO">
-	select clrID, clID, content, rdate, r 
+	select clrID, clID, content, rdate, ID, nickname, r 
 		from(
-		 select clrID, clID, content, rdate, rownum r 
+		 select clrID, clID, content, rdate, ID, nickname, rownum r 
 		 from(
-			select clrID, clID, content, rdate from clreply
+			select clrID, clID, content, rdate, ID, nickname from clreply
 			where clID=#{clID})
 	<![CDATA[       
          )where r >= #{sno} and r<= #{eno}

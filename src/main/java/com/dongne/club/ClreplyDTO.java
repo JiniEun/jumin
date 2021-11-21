@@ -10,6 +10,7 @@ public class ClreplyDTO {
     private String rdate;
     private String ID;
     private int clID;
+    private String nickname;
     
     private int limit;
     private int page;

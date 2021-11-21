@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.dongne.tour.TourDTO;
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 import com.dongne.utility.Utility;
@@ -107,7 +106,8 @@ public class ClubContoller {
 	@PostMapping("/club/updateFile")
 	public String updateFile(MultipartFile fileNameMF, String oldfile, int clID, HttpServletRequest request)
 			throws IOException {
-		//String basePath = new ClassPathResource("/static/pstorage").getFile().getAbsolutePath();
+		//String basePath = new 
+		//ClassPathResource("/static/pstorage").getFile().getAbsolutePath();
 		String basePath = Club.getUploadDir();
 
 		if (oldfile != null) { // 원본파일 삭제
@@ -130,8 +130,7 @@ public class ClubContoller {
 	}
 
 	@GetMapping("/club/updateFile/{clID}/{oldfile}")
-	public String updateFileForm(@PathVariable("clID") int clID, @PathVariable("oldfile") String oldfile,
-			Model model) {
+	public String updateFileForm(@PathVariable("clID") int clID, @PathVariable("oldfile") String oldfile, Model model) {
 		model.addAttribute("clID", clID);
 		model.addAttribute("oldfile", oldfile);
 
@@ -150,7 +149,7 @@ public class ClubContoller {
 		}
 		
 		if(cnt==1) {
-			return "redirect:/tour                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          /list";
+			return "redirect:/club/list";
 		}else {
 			return "error";
 		}
@@ -221,7 +220,7 @@ public class ClubContoller {
 			}
 			
 			if(cnt==1) {
-				return "redirect:/tour/list";
+				return "redirect:/club/list";
 			}else {
 				return "error";
 			}
