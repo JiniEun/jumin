@@ -99,15 +99,6 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDarkDropdownMenuLink" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false"> 동네 이모저모 </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">지역 정보</a> 
-						<a class="dropdown-item" href="#">코로나 현황</a>
-					</div></li>
-
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#"
-					id="navbarDarkDropdownMenuLink" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> 동네 나들이 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="${root}/office/list">관공서</a> 
