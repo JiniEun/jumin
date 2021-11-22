@@ -33,9 +33,9 @@ function replyList(clID,page){
                 console.log("end : " + endpage);
 
                 a += '<div class="replyArea" style="border-bottom:1px solid darkgray; margin-bottom: 5px;">';
-                a += '<div class="replyInfo'+value.clrID+'">'+'댓글번호 : '+value.clrID+' / 작성자 : '+value.clrID;
-                a += '<button type="button" onclick="replyUpdate('+value.clrID+',\''+value.content+'\');"> 수정 </button>';
-                a += '<button onclick="replyDelete('+value.clrID+');"> 삭제 </button> </div>';
+                a += '<div class="replyInfo'+value.clrID+'">'+value.nickname+' '+value.rdate;
+                a += '<button type="button" onclick="replyUpdate('+value.clrID+',\''+value.content+'\');" style=" height : 30px; margin-left : 15px; margin-right : 7px; color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 수정 </button>';
+                a += '<button onclick="replyDelete('+value.clrID+');" style="color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 삭제 </button> </div>';
                 a += '<div class="replyContent'+value.clrID+'"> <p> 내용 : '+value.content +'</p>';
                 a += '</div></div>';
             });
@@ -77,8 +77,8 @@ function replyUpdate(clrID, content){
     var a ='';
     
     a += '<div class="input-group">';
-    a += '<input type="text" class="form-control" name="content_'+clrID+'" value="'+content+'"/>';
-    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="replyUpdateProc('+clrID+');">수정</button> </span>';
+    a += '<input type="text" style="width : 400px;" class="form-control" name="content_'+clrID+'" value="'+content+'"/>';
+    a += '<div class="input-group-btn"><button class="btn" style="width : 60px; height : 38px; background-color : white; border: 2px solid #5BA6A6; color : #5BA6A6; textalign : center; margin-left : 10px; padding-right : 10px; padding-bottom : 5px;" type="button" onclick="replyUpdateProc('+clrID+');">수정</button> </div>';
     a += '</div>';
     
     $('.replyContent'+clrID).html(a);
@@ -94,7 +94,12 @@ function replyUpdateProc(clrID){
         type : 'post',
         data : {'content' : updateContent, 'clID' : clID},
         success : function(data){
-            if(data == 1) replyList(clID); //댓글 수정후 목록 출력 
+        	console.log("업데이트성공");
+        	if(data==1){
+            replyList(clID); //댓글 수정후 목록 출력 
+        	}else{
+        		alert("로그인을 해주세요");
+        	}
         }
     });
 }

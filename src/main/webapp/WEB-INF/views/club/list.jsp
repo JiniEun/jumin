@@ -13,10 +13,13 @@
 }
 
 #top {
-	padding: 2em 0 4em 0;
+	padding: 2em 0 1em 0;
 }
-
-#two.active, #two:hover {
+.btn-color1 {
+	border-color: #5BA6A6; 
+	color: #5BA6A6;
+}
+.btn-color2 {
 	background-color: #5BA6A6;
 	color: white;
 }
@@ -30,38 +33,34 @@
 				<h2 class="col-12 text-center tm-section-title">우리 동네 동호회</h2>
 				<p class="col-12 text-center">
 					우리 동네 동호회를 소개하고 소식을 공유해보세요! <br> <br>
-					<button type="button" class="btn"
-						onclick="location.href='../club/create'"
-						style="border-color: #5BA6A6; color: #5BA6A6;">글 등록</button>
+					<c:if
+				test="${not empty sessionScope.ID}">
+				<button type="button" class="btn btn-color1"
+					onclick="location.href='../club/create'">글 등록하기</button>
+			</c:if>
 				</p>
 			</div>
 			
-  <form class="form-inline" action="./list">
-    <div class="form-group">
-      <select class="form-control" name="col">
-        <option value="nickname"
-        <c:if test= "${col=='nickname'}"> selected </c:if>
-        >작성자</option>
-        <option value="title"
-        <c:if test= "${col=='title'}"> selected </c:if>
-        >제목</option>
-        <option value="content"
-        <c:if test= "${col=='content'}"> selected </c:if>
-        >내용</option>
-        <option value="title_content"
-        <c:if test= "${col=='title_content'}"> selected</c:if>
-        >제목+내용</option>
-        <option value="total"
-        <c:if test= "${col=='total'}"> selected </c:if>
-        >전체출력</option>       
-     </select>
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Enter 검색어" 
-      name="word" value="${word}">
-    </div>
-				<button type="submit" class="btn btn-default" >검색</button>
-  </form>
+ <form class="form-inline" action="list">
+			<div class="form-group">
+				<select class="form-control" name="col" style="margin-right: 10px;">
+					<option value="total"
+						<c:if test= "${col=='total'}"> selected </c:if>>전체출력</option>
+					<option value="title"
+						<c:if test= "${col=='title'}"> selected </c:if>>제목</option>
+					<option value="content"
+						<c:if test= "${col=='content'}"> selected </c:if>>내용</option>
+					<option value="title_content"
+						<c:if test= "${col=='title_content'}"> selected</c:if>>제목+내용</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="검색어를 입력하세요"
+					name="word" style="margin-right: 10px;" value="${word}">
+			</div>
+			<button type="submit" class="btn btn-color2"
+				style="margin-right: 10px;">검색</button>
+				</form><br>
   
 <c:choose>   
 <c:when test="${empty list}">

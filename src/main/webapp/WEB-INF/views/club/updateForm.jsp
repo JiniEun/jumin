@@ -25,7 +25,7 @@
 <div class="form-group" hidden>
     <label class="control-label col-sm-2" for="id">작성자ID</label>
     <div class="col-sm-6">
-      <input type="text" readonly name="ID" id="ID" class="form-control" value="${ID}">
+      <input type="text" readonly name="ID" id="ID" class="form-control" value="${dto.ID}">
     </div>
   </div>
   

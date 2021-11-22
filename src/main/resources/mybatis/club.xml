@@ -5,7 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dongne.club.ClubMapper">
-
   <!-- 패스워드 검사 -->
   <select id="passwd" resultType="int" parameterType="HashMap">
     SELECT COUNT(*) AS cnt
@@ -48,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 조회 -->
   <select id="read" parameterType="int"
       resultType="com.dongne.club.ClubDTO">
-      SELECT clID, nickname, title, content, viewcnt, rdate, fileName
+      SELECT clID, nickname, title, content, viewcnt, rdate, fileName, ID
       FROM club
       WHERE clID = #{clID}
    </select>
@@ -62,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 목록 -->
    <select id="list" parameterType="Map" resultType="com.dongne.club.ClubDTO">
-    SELECT clID, title, content, nickname, password, viewcnt, rdate
+    SELECT clID, title, content, nickname, password, viewcnt, rdate, ID
 		FROM club
     <where>
               <choose>

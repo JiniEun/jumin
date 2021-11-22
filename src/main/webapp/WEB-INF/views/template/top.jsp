@@ -114,7 +114,7 @@
 					data-bs-toggle="dropdown" aria-expanded="false"> 동네 모임 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="${root}/club/list">동호회</a> 
-						<a class="dropdown-item" href="#">동네친구</a>
+						<a class="dropdown-item" href="${root}/fboard/list">동네친구</a>
 					</div></li>
 
 				<li class="nav-item"><a class="nav-link" href="${root}/community/list">동네 커뮤니티</a></li>
