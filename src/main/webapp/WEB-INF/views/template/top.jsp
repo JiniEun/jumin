@@ -101,8 +101,8 @@
 					id="navbarDarkDropdownMenuLink" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> 동네 나들이 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="${root}/office/list">관공서</a> 
-						<a class="dropdown-item" href="${root}/tour/list">여행지</a>
+						<a class="dropdown-item" href="${root}/office/list">관공서</a> <a
+							class="dropdown-item" href="${root}/tour/list">여행지</a>
 					</div></li>
 
 				<li class="nav-item"><a class="nav-link"
@@ -113,28 +113,31 @@
 					id="navbarDarkDropdownMenuLink" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> 동네 모임 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="${root}/club/list">동호회</a> 
-						<a class="dropdown-item" href="${root}/fboard/list">동네친구</a>
+						<a class="dropdown-item" href="${root}/club/list">동호회</a> <a
+							class="dropdown-item" href="${root}/fboard/list">동네친구</a>
 					</div></li>
 
-				<li class="nav-item"><a class="nav-link" href="${root}/community/list">동네 커뮤니티</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="${root}/community/list">동네 커뮤니티</a></li>
 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDarkDropdownMenuLink" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="${root}/notice/list">공지사항</a> 
-						<a class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A Chatbot</a>
+						<a class="dropdown-item" href="${root}/notice/list">공지사항</a> <a
+							class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A
+							Chatbot</a>
 					</div></li>
 
 			</ul>
+			<!--  
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search">
 				<button class="btn my-2 my-sm-0" type="submit"
 					style="background-color: #5BA6A6; color: white;">Search</button>
-			</form>
+			</form>-->
 		</div>
 	</nav>
 </body>
