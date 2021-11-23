@@ -37,7 +37,11 @@ public class NoticeController {
 
 		model.addAttribute("id", id);
 
-		return "/notice/create";
+		if (session.getAttribute("ID") == null) {
+			return "/user/login";
+		} else {
+			return "/notice/create";
+		}
 	}
 
 	@PostMapping("/create")
@@ -98,10 +102,10 @@ public class NoticeController {
 	public String update(int nID, Model model) {
 
 		model.addAttribute("dto", service.read(nID));
-		
+
 		return "/notice/update";
 	}
-	
+
 	@PostMapping("/notice/update")
 	public String update(NoticeDTO dto) {
 
@@ -138,16 +142,16 @@ public class NoticeController {
 		dto.setContent(content);
 
 		model.addAttribute("dto", dto);
-		
+
 		return "/notice/read";
 	}
-	
+
 	@GetMapping("/admin/notice/delete")
 	public String delete() {
 
 		return "/notice/delete";
 	}
-	
+
 	@PostMapping("/notice/delete")
 	public String delete(HttpServletRequest request, int nID, String password) {
 
