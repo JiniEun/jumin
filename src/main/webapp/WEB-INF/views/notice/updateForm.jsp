@@ -47,15 +47,6 @@
 						<textarea rows="12" cols="7" id="content" name="content"
 							class="form-control">${dto.content }</textarea>
 					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<label for="password">비밀번호</label>
-						</div>
-						<div class="col-md-4">
-							<input type="password" name="password" id="password"
-								class="form-control">
-						</div>
-					</div>
 					<div class="mb-3" style="margin-top:10px;">
 						<button type="submit" class="btn btn-color">등록</button>
 						<button type="button" class="btn btn-color"

@@ -107,21 +107,21 @@ public class NoticeController {
 	}
 
 	@PostMapping("/notice/update")
-	public String update(NoticeDTO dto) {
+	public String update(NoticeDTO dto, HttpSession session) {
 
-		Map map = new HashMap();
-		map.put("nID", dto.getNID());
-		map.put("password", dto.getPassword());
-		int pcnt = service.checkPassword(map);
-
+		int id_check = 0;
+		
+		if(session.getAttribute("ID").equals(dto.getID())) {
+			id_check = 1;
+		}
+		
 		int cnt = 0;
-		if (pcnt == 1) {
-
+		if (id_check == 1) {
 			cnt = service.update(dto);
 		}
 
-		if (pcnt != 1) {
-			return "passwdError";
+		if (id_check != 1) {
+			return "Error";
 		} else if (cnt == 1) {
 			return "redirect:/notice/list";
 		} else {
@@ -153,24 +153,26 @@ public class NoticeController {
 	}
 
 	@PostMapping("/notice/delete")
-	public String delete(HttpServletRequest request, int nID, String password) {
+	public String delete(HttpServletRequest request, int nID, HttpSession session) {
 
 		System.out.println("PostMapping delete");
-		Map map = new HashMap();
-		map.put("nID", nID);
-		map.put("password", password);
-		int pcnt = service.checkPassword(map);
-		System.out.println(map);
-		System.out.println(pcnt);
+		int id_check = 0;
+		
+		System.out.println(session.getAttribute("ID"));
+		System.out.println(service.read(nID).getID());
+
+		if(session.getAttribute("ID").equals(service.read(nID).getID())) {
+			id_check = 1;
+		}
+		System.out.println(id_check);
 
 		int cnt = 0;
-		if (pcnt == 1) {
-
+		if (id_check == 1) {
 			cnt = service.delete(nID);
 		}
 
-		if (pcnt != 1) {
-			return "passwdError";
+		if (id_check != 1) {
+			return "Error";
 		} else if (cnt == 1) {
 			return "redirect:/notice/list";
 		} else {

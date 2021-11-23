@@ -6,16 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.dongne.notice.NoticeMapper">
 	<insert id="create" parameterType="com.dongne.notice.NoticeDTO">
-		insert into notice(nID, title, content, password, viewcnt, rdate, ID)
+		insert into notice(nID, title, content, viewcnt, rdate, ID)
 		values((select
-		nvl(max(nID),0)+1 from notice), #{title}, #{content}, #{password},0,sysdate, #{ID})
-	</insert>
-	  <!-- 패스워드 검사 -->
-  	<select id="checkPassword" resultType="int" parameterType="HashMap">
-    	SELECT COUNT(*) AS cnt
-    	FROM notice
-    	WHERE nID=#{nID} AND password=#{password}
-  	</select>   
+		nvl(max(nID),0)+1 from notice), #{title}, #{content}, 0, sysdate, #{ID})
+	</insert>   
 	<update id="update" parameterType="com.dongne.notice.NoticeDTO">
 		update notice
 		set title=#{title}, content=#{content}, ID=#{ID}
@@ -29,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="read" parameterType="int"
 		resultType="com.dongne.notice.NoticeDTO">
-		select nID, title, content, password, viewcnt, rdate, ID
+		select nID, title, content, viewcnt, rdate, ID
 		from notice
 		where nID = #{nID}
 	</select>
@@ -54,11 +48,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="list" parameterType="Map"
 		resultType="com.dongne.notice.NoticeDTO">
-		select nID, title, content, password, viewcnt, rdate, ID, r
+		select nID, title, content, viewcnt, rdate, ID, r
 		from (
-			select nID, title, content, password, viewcnt, rdate, ID, rownum r
+			select nID, title, content, viewcnt, rdate, ID, rownum r
 			from(
-				select nID, title, content, password, viewcnt, rdate, ID
+				select nID, title, content, viewcnt, rdate, ID
 				from notice
 				<where>
 				<choose>

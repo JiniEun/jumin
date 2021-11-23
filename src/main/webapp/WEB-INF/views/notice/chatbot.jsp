@@ -13,6 +13,7 @@
 <script src="/js/sockjs.min.js"></script>
 <script src="/js/stomp.min.js"></script>
 <script type="text/JavaScript" src="/js/app.js"></script>
+<script src="/js/chatbot.js"></script>
 <style>
 .input-form {
 	max-width: 680px;
@@ -52,11 +53,11 @@
 							<div class="form-group">
 								<input type="text" id="msg" class="form-control"
 									placeholder="내용을 입력하세요...." value="예시 : 로그인이 안 돼요"
-									style="width: 400px; margin-right:10px;" required>
-									<button id="send" class="btn btn-color" disabled type="submit">◃</button>
+									style="width: 400px; margin-right: 10px;" required>
+								<button id="send" class="btn btn-color" disabled type="submit">◃</button>
 							</div>
 						</div>
-						
+
 					</div>
 				</form>
 				<div class="row">
@@ -74,12 +75,24 @@
 				</div>
 			</div>
 			<div class="input-form col-md-4 mx-auto">
-				<div class="card-title">질문 목록</div>
+				<div class="card-title">자주 하는 질문</div>
 				<div class="card-body">로그인이 안 돼요</div>
 				<div class="card-body">회원가입이 안됩니다</div>
 				<div class="card-body">친구매칭이 안 돼요</div>
 				<div class="card-body">고객센터 문의할게 있어요</div>
 				<div class="card-body">관리자로 어떻게 등록하나요</div>
+				<button class="card-body btn btn-link" id="button"
+					style="color: black;">로그인이 안 돼요</button>
+				<div class="card-body" id="divToggle" style="display: none;">다시버튼
+					누르면 안보임</div>
+				<button class="card-body btn btn-link" id="button"
+					style="color: black;">회원가입이 안됩니다</button>
+				<div class="card-body" id="divToggle2" style="display: none;">다시버튼
+					누르면 안보임dpddpdㅊ</div>
+					<span id="button" onclick="$('#content')".toggle();>Toggle</span>
+<div id="content">
+    ... Contents ...
+</div>
 			</div>
 		</div>
 	</div>
