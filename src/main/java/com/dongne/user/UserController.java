@@ -27,58 +27,14 @@ import com.dongne.utility.NaverGeoApi;
 import com.dongne.utility.Utility;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
 	@Qualifier("com.dongne.user.UserServiceImpl")
 	private UserService service;
 
-	@GetMapping("/")
-	public String home() throws Exception {
-		
-		System.out.println("HOME GETMAPPING");
-
-		double latitude = 37.566535; // 37.207649;
-		double longitude = 126.977969; // 127.117139; latitude,longitude
-
-//		GpsToAddress gps = new GpsToAddress();
-//		gps.setLatitude(latitude);
-//		gps.setLongitude(longitude);
-//		System.out.println(gps.getRegionAddress2(gps.getJSONData(gps.getApiAddress())));
-//
-//		Geocoder geocoder = new Geocoder();
-//		System.out.println(gps.getRegionAddress());
-		System.out.println(NaverGeoApi.getlocation(latitude,longitude));
-		System.out.println(NaverGeoApi.getAddress(NaverGeoApi.getlocation(latitude,longitude)));
-
-		return "/home";
-	}
-	
-	@PostMapping("/")
-	@ResponseBody
-	public String home(String latitude, String longitude) throws Exception {
-		
-		System.out.println("HOME POSTMAPPING");
-
-		LocationDTO loc = new LocationDTO(Double.parseDouble(latitude), Double.parseDouble(longitude));
-		
-		if (loc != null)
-			System.out.println("loc" + loc.toString());
-
-//		GpsToAddress gps = new GpsToAddress();
-//		gps.setLatitude(latitude);
-//		gps.setLongitude(longitude);
-//		System.out.println(gps.getRegionAddress2(gps.getJSONData(gps.getApiAddress())));
-//
-//		Geocoder geocoder = new Geocoder();
-//		System.out.println(gps.getRegionAddress());
-		System.out.println(NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(),loc.getLongitude())));
-
-		return "/home";
-	}
-	
-
-	@GetMapping("/user/login")
+	@GetMapping("/login")
 	public String login(HttpServletRequest request) {
 		/*----쿠키설정 내용시작----------------------------*/
 		String c_id = ""; // ID 저장 여부를 저장하는 변수, Y
@@ -105,7 +61,7 @@ public class UserController {
 		return "/user/login";
 	}
 
-	@PostMapping("/user/login")
+	@PostMapping("/login")
 	public String login(@RequestParam Map<String, String> map, HttpSession session, HttpServletResponse response,
 			Model model) {
 
@@ -150,7 +106,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/user/logout")
+	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 
@@ -158,7 +114,7 @@ public class UserController {
 
 	}
 
-	@GetMapping(value = "/user/emailcheck", produces = "application/json;charset=utf-8")
+	@GetMapping(value = "/emailcheck", produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public Map<String, String> emailcheck(String email) {
 
@@ -176,7 +132,7 @@ public class UserController {
 
 	}
 
-	@GetMapping(value = "/user/idcheck", produces = "application/json;charset=utf-8")
+	@GetMapping(value = "/idcheck", produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public Map<String, String> idcheck(String ID) {
 
@@ -194,12 +150,12 @@ public class UserController {
 
 	}
 
-	@GetMapping("/user/create")
+	@GetMapping("/create")
 	public String create(HttpServletRequest request) {
 		return "/user/create";
 	}
 
-	@PostMapping("/user/create")
+	@PostMapping("/create")
 	public String create(UserDTO dto, HttpServletRequest request) {
 
 		System.out.println(dto.toString());
@@ -211,7 +167,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/user/mypage")
+	@GetMapping("/mypage")
 	public String mypage(HttpSession session, Model model) {
 
 		String id = (String) session.getAttribute("ID");
@@ -228,7 +184,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/user/update")
+	@GetMapping("/update")
 	public String update(String id, HttpSession session, Model model) {
 
 		if (id == null) {
@@ -241,7 +197,7 @@ public class UserController {
 		return "/user/update";
 	}
 
-	@GetMapping("/user/update/{ID}")
+	@GetMapping("/update/{ID}")
 	public String update(@PathVariable("ID") String ID, Model model) {
 
 		UserDTO dto = service.read(ID);
@@ -251,7 +207,7 @@ public class UserController {
 		return "/user/update";
 	}
 
-	@PostMapping("/user/update")
+	@PostMapping("/update")
 	public String update(UserDTO dto, Model model, HttpSession session) {
 
 		System.out.println(dto.toString());
@@ -274,7 +230,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/user/delete/{ID}")
+	@GetMapping("/delete/{ID}")
 	public String delete(@PathVariable("ID") String ID, HttpServletRequest request) {
 
 		request.setAttribute("ID", ID);
@@ -283,7 +239,7 @@ public class UserController {
 
 	}
 
-	@PostMapping("/user/delete")
+	@PostMapping("/delete")
 	public String delete(HttpServletRequest request, String ID, String password, HttpSession session) {
 
 		Map map = new HashMap();
@@ -310,13 +266,13 @@ public class UserController {
 
 	}
 
-	@GetMapping("/user/updateFile")
+	@GetMapping("/updateFile")
 	public String updateFile() {
 
 		return "/user/updateFile";
 	}
 
-	@PostMapping("/user/updateFile")
+	@PostMapping("/updateFile")
 	public String updateFile(MultipartFile fnameMF, String oldfile, HttpSession session, HttpServletRequest request) {
 //		String basePath = new ClassPathResource("/static/user/storage").getFile().getAbsolutePath();
 
@@ -340,7 +296,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping("/user/list")
+	@RequestMapping("/list")
 	public String list(HttpServletRequest request) {
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
@@ -383,7 +339,7 @@ public class UserController {
 		return "/user/list";
 	}
 
-	@GetMapping("/user/read/{ID}")
+	@GetMapping("/read/{ID}")
 	public String read(@PathVariable("ID") String ID, HttpSession session, Model model) {
 		if (ID == null) {
 			ID = (String) session.getAttribute("ID");

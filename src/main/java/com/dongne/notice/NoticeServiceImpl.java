@@ -51,11 +51,4 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return mapper.delete(nID);
 	}
-
-	@Override
-	public int checkPassword(Map map) {
-		// TODO Auto-generated method stub
-		return mapper.checkPassword(map);
-	}
-
 }

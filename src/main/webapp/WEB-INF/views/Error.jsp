@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Password Error</title>
+<title>Error</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <!-- jquery ajax에 필요한 부분 start -->
@@ -29,7 +29,7 @@ $(document).ready(function(){
  function checkModal(){ //modal 생성함수 선언
      if(history.state) return; //코드2
      if('${pflag}'==false){
-         $(".modal-body").html('비밀번호 오류입니다.<br>다시 입력하세요');
+         $(".modal-body").html('오류입니다.<br> 삭제할 수 없습니다.');
          $("#myModal").modal("show");
      }
    }

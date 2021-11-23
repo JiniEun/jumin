@@ -74,7 +74,7 @@ window.addEventListener('load', () => {
 				</div>
 				<div class="col-8" style="margin: 10px;">
 					<h4>코로나 정보</h4>
-					<div></div>
+					<div>${html }</div>
 				</div>
 			</div>
 		</div>

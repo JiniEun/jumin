@@ -17,6 +17,4 @@ public interface NoticeMapper {
 	int update(NoticeDTO dto);
 
 	int delete(int nID);
-	
-	int checkPassword(Map map);
 }
