@@ -31,174 +31,169 @@ public class TourController {
 	@Autowired
 	@Qualifier("com.dongne.tour.TourServiceImpl")
 	private TourService service;
-	
+
 	@GetMapping("/tour/create")
 	public String create(HttpSession session, Model model) {
-		
-		String writer=(String)session.getAttribute("ID");
+
+		String writer = (String) session.getAttribute("ID");
 		model.addAttribute("writer", writer);
-		
-		if(session.getAttribute("ID")==null) {
+
+		if (session.getAttribute("ID") == null) {
 			return "/tour/nologin";
-		}else
-		return "/tour/create";
+		} else {
+			return "/tour/create";
+		}
 	}
-	
+
 	@PostMapping("/tour/create")
 	public String create(TourDTO dto, HttpSession session, Model model) {
-		
-		String filename_=(String)session.getAttribute("filename");
-		String filename=Utility.checkNulltoDefault(filename_);
-	
+
+		String filename_ = (String) session.getAttribute("filename");
+		String filename = Utility.checkNulltoDefault(filename_);
+
 		dto.setFilename(filename);
-		
-		if(service.create(dto)>0) {
+
+		if (service.create(dto) > 0) {
 			session.removeAttribute("filename");
 			return "redirect:/tour/list";
-		}else {
+		} else {
 			return "error";
 		}
-		
+
 	}
-	
+
 	@GetMapping("/tour/read")
 	public String read(int tid, Model model, HttpServletRequest request) {
 		service.upcnt(tid);
-		
-		TourDTO dto= service.read(tid);
-		
-		model.addAttribute("dto",dto);
-		
 
-        /* 댓글 관련 시작 */
-        int nPage = 1;
-        if (request.getParameter("nPage") != null) {
-                nPage = Integer.parseInt(request.getParameter("nPage"));
-        }
-        int recordPerPage = 3;
+		TourDTO dto = service.read(tid);
 
-        int sno = ((nPage - 1) * recordPerPage) + 1;
-        int eno = nPage * recordPerPage;
+		model.addAttribute("dto", dto);
 
-        Map map = new HashMap();
-        map.put("sno", sno);
-        map.put("eno", eno);
-        map.put("nPage", nPage);
+		/* 댓글 관련 시작 */
+		int nPage = 1;
+		if (request.getParameter("nPage") != null) {
+			nPage = Integer.parseInt(request.getParameter("nPage"));
+		}
+		int recordPerPage = 3;
 
-        model.addAllAttributes(map);
+		int sno = ((nPage - 1) * recordPerPage) + 1;
+		int eno = nPage * recordPerPage;
 
-        /* 댓글 처리 끝 */
-		
+		Map map = new HashMap();
+		map.put("sno", sno);
+		map.put("eno", eno);
+		map.put("nPage", nPage);
+
+		model.addAllAttributes(map);
+
+		/* 댓글 처리 끝 */
+
 		return "/tour/read";
 	}
-	
-	
-	
+
 	@GetMapping("/tour/update")
 	public String update(int tid, Model model, HttpSession session) {
-		
+
 		TourDTO dto = service.read(tid);
-		String writer= dto.getWriter();
-		String sID=Utility.checkNull((String)session.getAttribute("ID"));
-		
-		model.addAttribute("dto",dto);
-		
-		if(writer.compareTo(sID)!=0) {
+		String writer = dto.getWriter();
+		String sID = Utility.checkNull((String) session.getAttribute("ID"));
+
+		model.addAttribute("dto", dto);
+
+		if (writer.compareTo(sID) != 0) {
 			return "/tour/discordID";
-		}else
-		return "/tour/update";
-		}
-		
-		
+		} else
+			return "/tour/update";
+	}
+
 	@PostMapping("/tour/update")
-	public String update(int tid,HttpSession session) {
-		
+	public String update(int tid, HttpSession session) {
+
 		String upDir = Tour.getUploadDir();
-		
+
 		TourDTO dto = service.read(tid);
 		// 기존파일 지우고,
-		String oldfile=dto.getFilename();
+		String oldfile = dto.getFilename();
 		String[] filenameArr = oldfile.split(",");
-		
-		
-		for(int i=0; i<filenameArr.length; i++) {
+
+		for (int i = 0; i < filenameArr.length; i++) {
 			Utility.deleteFile(upDir, filenameArr[i]);
 		}
-		
-		
-		//아이디 체크하고
-		String writer= dto.getWriter();
-		String sID=(String)session.getAttribute("ID");
-		
-		int cnt=0;
-		
-		if(writer.compareTo(sID)==0) {
-			//새로운 파일 업로드
-			String filename_=(String)session.getAttribute("filename");
-			String filename=Utility.checkNulltoDefault(filename_);
-		
+
+		// 아이디 체크하고
+		String writer = dto.getWriter();
+		String sID = (String) session.getAttribute("ID");
+
+		int cnt = 0;
+
+		if (writer.compareTo(sID) == 0) {
+			// 새로운 파일 업로드
+			String filename_ = (String) session.getAttribute("filename");
+			String filename = Utility.checkNulltoDefault(filename_);
+
 			dto.setFilename(filename);
-			
+
 			cnt = service.update(dto);
 			session.removeAttribute("filename");
 		}
-		
-		if(cnt==1) {
+
+		if (cnt == 1) {
 			return "redirect:/tour/list";
-		}else {
+		} else {
 			return "error";
 		}
 	}
-	
+
 	@GetMapping("/tour/delete")
 	public String delete(int tid, Model model, HttpSession session) {
-		
+
 		TourDTO dto = service.read(tid);
-		String writer= dto.getWriter();
-		String sID=Utility.checkNull((String)session.getAttribute("ID"));
-		
-		model.addAttribute("dto",dto);
-		
-		if(writer.compareTo(sID)!=0) {
+		String writer = dto.getWriter();
+		String sID = Utility.checkNull((String) session.getAttribute("ID"));
+
+		model.addAttribute("dto", dto);
+
+		if (writer.compareTo(sID) != 0) {
 			return "/tour/discordID";
-		}else
-		return "/tour/delete";
-		}
-		
+		} else
+			return "/tour/delete";
+	}
+
 	@PostMapping("/tour/delete")
 	public String delete(int tid, HttpServletRequest request, HttpSession session) {
-		
-		TourDTO dto=service.read(tid);
-		
+
+		TourDTO dto = service.read(tid);
+
 		String upDir = Tour.getUploadDir();
-		
+
 		// 기존파일 지우고,
-		String oldfile=dto.getFilename();
+		String oldfile = dto.getFilename();
 		String[] filenameArr = oldfile.split(",");
-		for(int i=0; i<filenameArr.length; i++) {
+		for (int i = 0; i < filenameArr.length; i++) {
 			Utility.deleteFile(upDir, filenameArr[i]);
 		}
-		
-		String writer= dto.getWriter();
-		String sID=(String)session.getAttribute("ID");
-		
-		int cnt=0;
-		
-		if(writer.compareTo(sID)==0) {
+
+		String writer = dto.getWriter();
+		String sID = (String) session.getAttribute("ID");
+
+		int cnt = 0;
+
+		if (writer.compareTo(sID) == 0) {
 			cnt = service.delete(tid);
 
-		}else {
+		} else {
 			return "error";
 		}
-		
-		if(cnt==1) {
+
+		if (cnt == 1) {
 			return "redirect:/tour/list";
-		}else {
+		} else {
 			return "error";
 		}
-		
+
 	}
-	
+
 	@RequestMapping("/tour/list")
 	public String list(HttpServletRequest request) {
 		// 검색관련------------------------
@@ -242,45 +237,44 @@ public class TourController {
 		return "/tour/list";
 
 	}
-	
+
 	@GetMapping("/tour/uploadfile")
 	public String uploadfile() {
-		
+
 		return "/tour/uploadfile";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/tour/fileUpload", method = RequestMethod.POST)
-	public String fileUpload(HttpSession session,
-			@RequestParam("article_file") List<MultipartFile> multipartFile
-			, HttpServletRequest request) {
-		
+	public String fileUpload(HttpSession session, @RequestParam("article_file") List<MultipartFile> multipartFile,
+			HttpServletRequest request) {
+
 		String upDir = Tour.getUploadDir();
-		
+
 		List<String> fileArray = new ArrayList<String>();
-		
+
 		String strResult = "{ \"result\":\"FAIL\" }";
 		String fileRoot;
 		try {
 			// 파일이 있을때 탄다.
-			if(multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
-				
-				for(MultipartFile file:multipartFile) {
+			if (multipartFile.size() > 0 && !multipartFile.get(0).getOriginalFilename().equals("")) {
+
+				for (MultipartFile file : multipartFile) {
 					fileRoot = upDir;
 					System.out.println(fileRoot);
-					
-					String originalFileName = file.getOriginalFilename();	//오리지날 파일명
-					String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-					String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+
+					String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
+					String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
+					String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
 					fileArray.add(savedFileName);
-					File targetFile = new File(fileRoot + savedFileName);	
+					File targetFile = new File(fileRoot + savedFileName);
 					try {
 						InputStream fileStream = file.getInputStream();
-						FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
-						
+						FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+
 					} catch (Exception e) {
-						//파일삭제
-						FileUtils.deleteQuietly(targetFile);	//저장된 현재 파일 삭제
+						// 파일삭제
+						FileUtils.deleteQuietly(targetFile); // 저장된 현재 파일 삭제
 						e.printStackTrace();
 						break;
 					}
@@ -290,16 +284,16 @@ public class TourController {
 			// 파일 아무것도 첨부 안했을때 탄다.(게시판일때, 업로드 없이 글을 등록하는경우)
 			else
 				strResult = "{ \"result\":\"OK\" }";
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String filename="";
+		String filename = "";
 		for (String i : fileArray) {
-			filename+= i+",";
+			filename += i + ",";
 		}
-		
-		session.setAttribute("filename",filename);
-			
+
+		session.setAttribute("filename", filename);
+
 		return strResult;
-	}		
+	}
 }
