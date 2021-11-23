@@ -40,7 +40,6 @@ CREATE TABLE notice(
   nID			NUMBER			NOT NULL PRIMARY KEY,
   title         VARCHAR2(300)			NOT NULL,
   content       CLOB					NOT NULL,
-  password      VARCHAR2 (20)			NULL,
   viewcnt       NUMBER(10)  DEFAULT 0   NOT NULL ,
   rdate         DATE					NOT NULL,
   ID			VARCHAR2(20)				NOT NULL,
