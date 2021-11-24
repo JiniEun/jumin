@@ -39,3 +39,88 @@
 	.section input[id="slide02"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(2) > label {background:#5BA6A6;}
 	.section input[id="slide03"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(3) > label {background:#5BA6A6;}
 	
+	
+	
+.reply textarea:focus{
+    border : 5px solid #5BA6A6;;
+}
+
+.replyInfo{
+	margin-right : 10px;
+}
+
+.replyContent{
+	border-bottom: 3px solid var(--secondcolor);
+}
+
+
+.reply button:hover{
+    background-color : white;
+    color : #5BA6A6;
+    border : 2px solid #5BA6A6;
+}
+
+.repaging{
+    width : 60%;
+    align-items: center;
+    padding-left : 60px;
+    color : var(--secondcolor);
+}
+
+.reply{
+    display : flex;
+    align-items: center;
+    height : 15%;
+    width : 90%;
+    margin : 10px auto;
+}
+
+.reply textarea{
+    display : flex;
+    height : 90%;
+    width : 85%;
+    border : 3px solid var(--basecolor);
+}
+
+.reply .rebtn{
+    width : 120px;
+    height : 40px;
+    color : white;
+    background-color: #5BA6A6;
+    border : white;
+    border-radius : 5%;
+    margin-left : 15px;
+}
+
+.reshow{
+    
+    width : 90%;
+    margin : auto;
+}
+
+#rc{
+    margin : 7px;
+    background-color: white;
+    border-bottom : 2px solid lightgray;
+}	
+
+.btn {
+    background-color : white;
+    color : #5BA6A6;
+    border : 1px solid #5BA6A6;
+}
+
+.imgbutton {
+	background-color: #5BA6A6;
+    color : white;
+    border : 1px solid #5BA6A6;
+}
+
+
+
+.btn:hover{
+    background-color: #5BA6A6;
+    color : white;
+    border : 1px solid white;
+   
+}

@@ -17,9 +17,8 @@ public interface CommunityService {
 
 	CommunityDTO read(int cid);
 
-
 	int update(CommunityDTO dto);
 
-	
+	int delete(int cid);
 
 }

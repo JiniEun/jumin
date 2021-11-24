@@ -1,4 +1,4 @@
-package com.dongne.market;
+package com.dongne.community;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,12 +18,12 @@ import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 
 @Controller
-@RequestMapping("/market/reply")
-public class MreplyController {
+@RequestMapping("/community/reply")
+public class CreplyController {
 
 	@Autowired
-	@Qualifier("com.dongne.market.MreplyServiceImpl")
-	private MreplyService service;
+	@Qualifier("com.dongne.community.CreplyServiceImpl")
+	private CreplyService service;
 
 	@Autowired
 	@Qualifier("com.dongne.user.UserServiceImpl")
@@ -31,11 +31,11 @@ public class MreplyController {
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public Map list(@RequestParam int mid, @RequestParam(value = "page", defaultValue = "1", required = false) int page,
-			MreplyDTO dto) {
+	public Map list(@RequestParam int cid, @RequestParam(value = "page", defaultValue = "1", required = false) int page,
+			CreplyDTO dto) {
 
 		int limit = 3;
-		int listcount = service.total(mid);
+		int listcount = service.total(cid);
 		// 총 페이지수
 		int maxpage = (listcount + limit - 1) / limit; // (13 + 9) / 10
 
@@ -66,7 +66,7 @@ public class MreplyController {
 		int eno = nowPage * recordPerPage;
 
 		Map map = new HashMap();
-		map.put("mid", mid);
+		map.put("cid", cid);
 		map.put("sno", sno);
 		map.put("eno", eno);
 		map.put("list", service.list(map));
@@ -79,14 +79,14 @@ public class MreplyController {
 
 	@RequestMapping("/create")
 	@ResponseBody
-	public int create(@RequestParam int mid, @RequestParam String content, Map map, HttpSession session) {
+	public int create(@RequestParam int cid, @RequestParam String content, Map map, HttpSession session) {
 
 		String ID = (String) session.getAttribute("ID");
 
 		UserDTO user = uservice.read(ID);
 		String nickname = user.getNickname();
 
-		map.put("mid", mid);
+		map.put("cid", cid);
 		map.put("ID", ID);
 		map.put("nickname", nickname);
 		map.put("content", content);
@@ -95,25 +95,25 @@ public class MreplyController {
 
 	}
 
-	@RequestMapping("/delete/{mrid}")
+	@RequestMapping("/delete/{crid}")
 	@ResponseBody
-	public void delete(@PathVariable int mrid) {
+	public void delete(@PathVariable int crid) {
 
-		service.delete(mrid);
+		service.delete(crid);
 
 	}
 
-	@RequestMapping("/update/{mrid}")
+	@RequestMapping("/update/{crid}")
 	@ResponseBody
-	public int update(MreplyDTO dto, @PathVariable int mrid, @RequestParam("mid") int mid,
+	public int update(CreplyDTO dto, @PathVariable int crid, @RequestParam("cid") int cid,
 			@RequestParam("content") String content, HttpSession session) {
 		String id = (String) session.getAttribute("ID");
 
 		dto.setContent(content);
 
-		dto.setMid(mid);
+		dto.setCid(cid);
 
-		dto.setMrid(mrid);
+		dto.setCrid(crid);
 
 		if (session.getAttribute("ID") != null) {
 			return service.update(dto);

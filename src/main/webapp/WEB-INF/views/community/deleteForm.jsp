@@ -28,11 +28,11 @@
 
     <h2 class="col-sm-offset-2 col-sm-10">작성한 글을 삭제하겠습니까?</h2>
     <form class="form-horizontal" 
-    	action="/tour/delete" 
+    	action="/community/delete" 
     	method="post">
       
       
-      <input type="hidden" name="mid" value="${dto.mid}">
+      <input type="hidden" name="cid" value="${dto.cid}">
 	  <input type="hidden" name="id" value="${dto.id}">
 
       <p id="red" class="col-sm-offset-2 col-sm-6">삭제하면 복구할 수 없습니다</p>

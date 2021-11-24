@@ -76,4 +76,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set viewcnt = viewcnt + 1
 		where cid = #{cid}
 	</update>
+	
+	<delete id="delete" parameterType="int">
+			delete from community
+			where cid = #{cid}
+	</delete> 
 </mapper>

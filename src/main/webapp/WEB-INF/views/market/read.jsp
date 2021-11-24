@@ -15,6 +15,12 @@
 		url += "?mid=${dto.mid}";
 		location.href = url;
 	}
+    
+    function deleteM() {
+		var url = "/market/delete";
+		url += "?mid=${dto.mid}";
+		location.href = url;
+	}
 		
 
 </script>
@@ -38,21 +44,21 @@
             <li>
               <a>
                 <label for="slide03" class="left"></label>
-                <img src="/market/storage/${dto.filename }" width="500px" height="500px">
+                <img src="/market/storage/${fn:split(dto.filename,',')[1]}" width="500px" height="500px">
                 <label for="slide02" class="right"></label>
               </a>
             </li>
             <li>
               <a>
                 <label for="slide01" class="left"></label>
-                <img src="/market/storage/${dto.filename }" width="500px" height="500px">
+                <img src="/market/storage/${fn:split(dto.filename,',')[2]}" width="500px" height="500px">
                 <label for="slide03" class="right"></label>
               </a>
             </li>
             <li>
               <a>
                 <label for="slide02" class="left"></label>
-                <img src="/market/storage/${dto.filename }" width="500px" height="500px">
+                <img src="/market/storage/${fn:split(dto.filename,',')[3]}" width="500px" height="500px">
                 <label for="slide01" class="right"></label>
               </a>
             </li>
@@ -99,11 +105,12 @@
         
         
     </div>
-
+<br>
     <!-- reply -->
 	<form name="replyForm">
 	    <section class="reply">
 	    	<input type="hidden" name="mid" value="${dto.mid}"/>
+	    	<input type="hidden" name="nickname" value="${dto.nickname}"/>
 	        <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
 	        <button class="rebtn" id="rebtn" name="rebtn">댓글 등록</button>
 	    </section>
@@ -112,14 +119,18 @@
 	        <div class="replyList"></div>
 	    </section>
 	
-	   
+	    <section class="repaging">
+	        <span>${paging}</span>
+	    </section>
 	</form>
+	</div>
+    <%@ include file="reply.jsp" %>
 <br>
         <div>
             
-            <button type="button" class="btn btn-color" onclick="updateM()">수정</button>
-            <button type="button" class="btn btn-color">삭제</button>
-            <button type="button" class="btn btn-color" onclick="location.href='${root}/market/list'">목록</button>
+            <button type="button" class="btn btn-color"  onclick="updateM()">수정</button>
+            <button type="button" class="btn btn-color"  onclick="deleteM()">삭제</button>
+            <button type="button" class="btn btn-color"  onclick="location.href='${root}/market/list'">목록</button>
         </div>
 
 	
@@ -127,8 +138,8 @@
 </div>
 
 
-</div>
-<%@ include file="reply.jsp" %>
+
+
 
 </body>
 </html>

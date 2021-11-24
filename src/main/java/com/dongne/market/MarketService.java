@@ -15,14 +15,10 @@ public interface MarketService {
 
 	MarketDTO read(int mid);
 
-
-
 	int update(MarketDTO dto);
 
 	int updateFile(Map map);
 
-
-
-	
+	int delete(int mid);
 
 }

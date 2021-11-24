@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface CommunityMapper {
-	
+
 	int total(Map map);
 
 	List<CommunityDTO> list(Map map);
@@ -17,6 +17,6 @@ public interface CommunityMapper {
 
 	int update(CommunityDTO dto);
 
-	
+	int delete(int cid);
 
 }

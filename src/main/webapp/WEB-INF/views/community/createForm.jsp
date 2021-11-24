@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/static/css/market.css">
 <title>Insert title here</title>
 <script type="text/JavaScript">
  
@@ -41,16 +42,15 @@
 	          </div>
 	        <div class="form-group">
 	         <div class="form-group">
-                <label class="control-label col-sm-2" for="title">아이디</label>
                 <div class="col-sm-8">
-                    <input type="text" name="id" id="id" class="form-control" value="${dto.id}">
+                    <input type="hidden" name="id" id="id" class="form-control" value="${ID}">
                 </div>
 
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="title">닉네임</label>
                 <div class="col-sm-8">
-                     <input type="text" name="nickname" id="nickname" class="form-control" value="${dto.nickname}">
+                     <input type="text" name="nickname" id="nickname" class="form-control" value="${nickname}">
                 </div>
 
             </div>
@@ -73,14 +73,13 @@
                 </div>
             </div>
            
-            </div>
+           
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-5">
-                    <button class="btn" style="border-color: #87CEFA; color: #87CEFA;">등록</button>
-                    <button type="button" class="btn" onclick="history.back()"
-                        style="border-color: #87CEFA; color: #87CEFA;">취소</button>
-                </div>
+                    <button class="btn">등록</button>
+                    <button type="button" class="btn" onclick="history.back()">취소</button>
             </div>
+           </div>
         </form>
     </div>
 </body>

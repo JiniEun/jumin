@@ -11,7 +11,7 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Autowired
 	private CommunityMapper mapper;
-	
+
 	@Override
 	public int total(Map map) {
 		// TODO Auto-generated method stub
@@ -48,6 +48,10 @@ public class CommunityServiceImpl implements CommunityService {
 		return mapper.update(dto);
 	}
 
-	
+	@Override
+	public int delete(int cid) {
+		// TODO Auto-generated method stub
+		return mapper.delete(cid);
+	}
 
 }

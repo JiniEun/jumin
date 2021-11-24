@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/static/css/market.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -48,9 +49,8 @@
 			
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-5">
-					<button class="btn" style="border-color: #87CEFA; color: #87CEFA;">수정</button>
-					<button type="button" class="btn" onclick="history.back()"
-						style="border-color: #87CEFA; color: #87CEFA;">취소</button>
+					<button class="btn">수정</button>
+					<button type="button" class="btn" onclick="history.back()">취소</button>
 				</div>
 			</div>
 		</form>

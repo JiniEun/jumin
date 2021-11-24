@@ -22,4 +22,9 @@
 	    <put-attribute name="title" value="수정페이지"></put-attribute>
 	    <put-attribute name="body" value="/WEB-INF/views/community/updateForm.jsp" />
   </definition>
+  
+  <definition name="/community/delete" extends="main">
+	    <put-attribute name="title" value="삭제페이지"></put-attribute>
+	    <put-attribute name="body" value="/WEB-INF/views/community/deleteForm.jsp" />
+  </definition>
 </tiles-definitions>

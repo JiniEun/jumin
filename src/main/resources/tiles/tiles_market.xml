@@ -5,7 +5,6 @@
  
 <tiles-definitions>
   <!-- main -->
-  
   <definition name="/market/list" extends="main">
     <put-attribute name="title" value="목록페이지"></put-attribute>
     <put-attribute name="body"
@@ -22,9 +21,11 @@
       value="/WEB-INF/views/market/read.jsp" />
   </definition>
   <definition name="/market/update" extends="main"> 
-            <put-attribute name="title" value="상품수정" ></put-attribute> 
-            <put-attribute name="body" value="/WEB-INF/views/market/updateForm.jsp" /> 
-    </definition> 
-    
-  
+    <put-attribute name="title" value="상품수정" ></put-attribute> 
+    <put-attribute name="body" value="/WEB-INF/views/market/updateForm.jsp" /> 
+  </definition> 
+  <definition name="/market/delete" extends="main"> 
+    <put-attribute name="title" value="상품수정" ></put-attribute> 
+    <put-attribute name="body" value="/WEB-INF/views/market/deleteForm.jsp" /> 
+  </definition> 
 </tiles-definitions>

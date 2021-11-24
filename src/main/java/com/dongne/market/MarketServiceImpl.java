@@ -42,8 +42,6 @@ public class MarketServiceImpl implements MarketService {
 		return mapper.read(mid);
 	}
 
-	
-
 	@Override
 	public int update(MarketDTO dto) {
 		// TODO Auto-generated method stub
@@ -56,5 +54,10 @@ public class MarketServiceImpl implements MarketService {
 		return mapper.updateFile(map);
 	}
 
-	
+	@Override
+	public int delete(int mid) {
+		// TODO Auto-generated method stub
+		return mapper.delete(mid);
+	}
+
 }
