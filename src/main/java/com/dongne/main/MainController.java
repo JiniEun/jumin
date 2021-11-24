@@ -1,12 +1,15 @@
 package com.dongne.main;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dongne.main.Crawler;
 import com.dongne.utility.LocationDTO;
 import com.dongne.utility.NaverGeoApi;
 
@@ -14,17 +17,15 @@ import com.dongne.utility.NaverGeoApi;
 public class MainController {
 
 	@GetMapping("/")
-	public String home(Model model) throws Exception {
+	public String home(Model model, HttpSession session) throws Exception {
 
 		System.out.println("HOME GETMAPPING");
 
-		double latitude = 37.566535; // 37.207649;
-		double longitude = 126.977969; // 127.117139; latitude,longitude
+		List<String> html = Crawler.crawling("www.naver.com", (String) session.getAttribute("location"));
+		
+		System.out.println((String) session.getAttribute("location"));
+		model.addAttribute("location", (String) session.getAttribute("location"));
 
-		System.out.println(NaverGeoApi.getlocation(latitude, longitude));
-		System.out.println(NaverGeoApi.getAddress(NaverGeoApi.getlocation(latitude, longitude)));
-
-		String html = Crawler.crawling("www.naver.com");
 		model.addAttribute("html", html);
 
 		return "/home";
@@ -32,7 +33,7 @@ public class MainController {
 
 	@PostMapping("/")
 	@ResponseBody
-	public String home(String latitude, String longitude) throws Exception {
+	public String home(String latitude, String longitude, Model model, HttpSession session) throws Exception {
 
 		System.out.println("HOME POSTMAPPING");
 
@@ -41,8 +42,13 @@ public class MainController {
 		if (loc != null)
 			System.out.println("loc" + loc.toString());
 
-		System.out.println(NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude())));
+		String location = NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude()));
+		System.out.println(location);
+
+		session.setAttribute("location", location);
+		model.addAttribute("location", location);
 
 		return "/home";
 	}
+
 }

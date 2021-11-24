@@ -17,6 +17,8 @@ function getLocation(latitude,longitude){
     	data :  formdata,
     	success : function(data){
         	console.log(formdata);
+        	document.querySelector("#rLoc").textContent
+            = '${location}'
     	}
 	}); 
 }
@@ -43,8 +45,8 @@ function showLocation(event) {
       img.src = iconUrl 
       document.querySelector("#rtemp").textContent 
       = (Math.round(response.main.temp) + "ºC")  // 현재 온도
-      document.querySelector("#rLoc").textContent
-      = response.name  // 현재 위치
+      /* document.querySelector("#rLoc").textContent
+      = response.name  // 현재 위치  */
     }).catch((error) => {
       console.log(error)
     })
@@ -69,8 +71,7 @@ window.addEventListener('load', () => {
 				<div class="col-3" style="margin: 10px;">
 					<h4>날씨</h4>
 					<img id="wicon" src="#"> <br> <span id="rtemp"></span> <br>
-					<span id="rLoc"></span> <img src="#" alt=""> <img src="#"
-						alt=""> <img src="#" alt="">
+					<span id="rLoc">${location }</span> 
 				</div>
 				<div class="col-8" style="margin: 10px;">
 					<h4>코로나 정보</h4>
