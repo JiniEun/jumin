@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dongne.user.UserDTO;
+import com.dongne.user.UserService;
 import com.dongne.utility.Utility;
 
 @Controller
@@ -32,17 +34,24 @@ public class TourController {
 	@Qualifier("com.dongne.tour.TourServiceImpl")
 	private TourService service;
 
+	@Autowired
+	@Qualifier("com.dongne.user.UserServiceImpl")
+	private UserService uservice;
+
 	@GetMapping("/tour/create")
 	public String create(HttpSession session, Model model) {
-
-		String writer = (String) session.getAttribute("ID");
-		model.addAttribute("writer", writer);
-
 		if (session.getAttribute("ID") == null) {
 			return "/tour/nologin";
 		} else {
-			return "/tour/create";
+			String writer = (String) session.getAttribute("ID");
+
+			UserDTO user = uservice.read(writer);
+			String nickname = user.getNickname();
+
+			model.addAttribute("writer", writer);
+			model.addAttribute("nickname", nickname);
 		}
+		return "/tour/create";
 	}
 
 	@PostMapping("/tour/create")

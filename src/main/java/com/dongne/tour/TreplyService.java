@@ -5,13 +5,9 @@ import java.util.Map;
 
 public interface TreplyService {
 
-	
-
-
 	int delete(int trid);
 
 	int create(Map map);
-
 
 	int total(Map map);
 
@@ -20,7 +16,5 @@ public interface TreplyService {
 	List<TreplyDTO> list(Map map);
 
 	int total(int tid);
-
-	 
 
 }

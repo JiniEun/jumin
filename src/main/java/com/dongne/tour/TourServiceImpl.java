@@ -7,11 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("com.dongne.tour.TourServiceImpl")
-public class TourServiceImpl implements TourService{
+public class TourServiceImpl implements TourService {
 	@Autowired
 	private TourMapper mapper;
 
-	
 	@Override
 	public int create(TourDTO dto) {
 		// TODO Auto-generated method stub
@@ -53,6 +52,5 @@ public class TourServiceImpl implements TourService{
 		// TODO Auto-generated method stub
 		return mapper.list(map);
 	}
-	
-	
+
 }

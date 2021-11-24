@@ -68,10 +68,10 @@
 		<!-- 슬라이드쇼 -->
 			<div class="carousel-item active">
 				<!-- 가로 -->
-				<img class="d-block w-100" src="/tour/storage/${fn:split(dto.filename,',')[1]}" alt="First Slide">
+				<img class="d-block w-100" src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="First Slide" style="width: 100%; height: 500px; object-fit : contain;">
 				<div class="carousel-caption d-none d-md-block">
-					<h5>TEST</h5>
-					<p>testtest</p>
+					<h5></h5>
+					<p></p>
 				</div>
 			</div>
 		<script>
@@ -81,7 +81,7 @@
 		<c:forEach var="dto" items="${dto.filename}" varStatus="status">
 			<div class="carousel-item">
 				<c:forEach var="filename" items="${fn:split(dto,',')}">
-					<img src="/tour/storage/${filename}"  alt="iuhello.jpg">
+					<img src="/tour/storage/${filename}"  alt="iuhello.jpg" style="width: 100%; height: 500px; object-fit : contain;">
 				</c:forEach>
 			</div>
 		</c:forEach>	
@@ -91,9 +91,9 @@
 		
 	<!-- 버튼 -->	
 	<a class="carousel-control-prev" href="#demo" data-slide="prev"> 
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span></a> 
+		<span class="carousel-control-prev-icon" aria-hidden="true" style="height: 40px; width: 40px; outline: black; background-color: #5BA6A6; background-size: 100%, 100%; border-radius: 50%; border: 2px solid #5BA6A6;"></span></a> 
 		 <a class="carousel-control-next" href="#demo" data-slide="next"> 
-		<span class="carousel-control-next-icon" aria-hidden="true"></span></a> 
+		<span class="carousel-control-next-icon" aria-hidden="true" style="height: 40px; width: 40px; outline: black; background-color: #5BA6A6; background-size: 100%, 100%; border-radius: 50%; border: 2px solid #5BA6A6;"></span></a> 
 		  <ul class="carousel-indicators">
 			  
 			  <li data-target="#demo" data-slide-to="0" class="active"></li> 
@@ -107,11 +107,11 @@
     
     <!-- 내용 -->
 	<section class="title">
-        <div>${dto.title}</div>
+        <div><i class="fab fa-slack-hash"></i>&nbsp${dto.title}</div>
     </section>
 
     <section class="info">
-        <span class="writer">작성자 : ${dto.writer}</span>
+        <span class="writer">작성자 : ${dto.nickname}</span>
         <span class="score">평점 : 
 	        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 	        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
@@ -119,7 +119,7 @@
 	        <c:if test="${dto.score=='4'}">★★★★☆</c:if>
 	        <c:if test="${dto.score=='5'}">★★★★★</c:if>
         </span>
-        <span class="date">날짜 : ${dto.rdate.substring(0,10)}</span>
+        <span class="date">작성일자 : ${dto.rdate.substring(0,10)}</span>
     </section>
 
     <section class="contents">

@@ -99,8 +99,8 @@
 					id="navbarDarkDropdownMenuLink" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> 동네 나들이 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="${root}/office/list">관공서</a> <a
-							class="dropdown-item" href="${root}/tour/list">여행지</a>
+						<a class="dropdown-item" href="${root}/office/list">주요시설</a> <a
+							class="dropdown-item" href="${root}/tour/list">동네스팟</a>
 					</div></li>
 
 				<li class="nav-item"><a class="nav-link"
@@ -124,8 +124,7 @@
 					data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="${root}/notice/list">공지사항</a> <a
-							class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A
-							Chatbot</a>
+							class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A Chatbot</a>
 					</div></li>
 
 			</ul>

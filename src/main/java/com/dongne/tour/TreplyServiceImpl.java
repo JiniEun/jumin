@@ -8,11 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service("com.dongne.tour.TreplyServiceImpl")
 public class TreplyServiceImpl implements TreplyService {
-	
+
 	@Autowired
 	private TreplyMapper mapper;
-	
-	
 
 	@Override
 	public int create(Map map) {
@@ -49,7 +47,5 @@ public class TreplyServiceImpl implements TreplyService {
 		// TODO Auto-generated method stub
 		return mapper.total(tid);
 	}
-
-	
 
 }
