@@ -27,29 +27,42 @@
 		location.href = url;
 	}
 </script>
-
+  <style>
+  .btn-color {
+	background-color: #5BA6A6;
+	color: white;
+}
+  </style>
 </head>
 <body>
 <div class="container col-md-6">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title mb-3">${dto.title}</h4>
+            <h4 class="card-title mb-3">[${dto.category}] ${dto.title}</h4>
             <h6 class="card-subtitle text-muted mb-4">
             	<div hidden>
             	<i class="far fa-user"></i> ${dto.userID}
             	</div>
                 <i class="far fa-user"></i> ${dto.nickname}
-                ·
+                
                 <i class="far fa-clock"></i> ${dto.rdate}
-                ·
-                <i class="fas fa-align-justify"></i> ${dto.viewcnt}
+                
+                <i class="fas fa-align-justify"></i> 조회 ${dto.viewcnt}
             </h6>
             <p class="card-text">${dto.content}</p>
         </div>
         <div class="card-body">
-            <button type="button" class="btn btn-color2" onclick="updateM()">수정</button>
-            <button type="button" class="btn btn-color2" onclick="deleteM()">삭제</button>
-            <button type="button" class="btn btn-color2" onclick="listM()">목록</button>
+		 <c:choose>
+			<c:when test="${sessionScope.ID==dto.userID}">
+				<button type="button" class="btn btn-color" onclick="updateM()">수정</button>
+				<button type="button" class="btn btn-color" onclick="deleteM()">삭제</button>
+				<button type="button" class="btn btn-color" onclick="listM()">목록</button>
+			</c:when>
+			<c:otherwise>
+				<button type="button" class="btn btn-color" onclick="">신청</button>
+				<button type="button" class="btn btn-color" onclick="listM()">목록</button>
+			</c:otherwise>
+		 </c:choose>
         </div>
     </div>
 </div>

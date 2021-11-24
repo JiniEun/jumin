@@ -34,7 +34,8 @@
 			<div class="input-form col-md-12 mx-auto">
 				<h2 class="col-sm-offset-2 col-sm-10">친구게시판 삭제</h2>
 				<form class="form-horizontal" action="/fboard/delete" method="post">
-				<input type="hidden" name="ID" value="${dto.userID}">
+				<input type="hidden" name="fbID" value="${dto.fbID}">
+				<input type="hidden" name="userID" value="${dto.userID}">
 
 					<p id="red" class="col-sm-offset-2 col-sm-6">게시물을 삭제하면 복구할 수 없습니다</p>
 

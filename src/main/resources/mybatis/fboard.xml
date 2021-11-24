@@ -6,9 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.dongne.fboard.FboardMapper">
 	<insert id="create" parameterType="com.dongne.fboard.FboardDTO">
-		insert into fboard(fbID, title, content, password, viewcnt, rdate, userID)
-		values((select
-		nvl(max(fbID),0)+1 from fboard), #{title}, #{content}, #{password},0,sysdate, #{userID})
+		insert into fboard(fbID, category, title, content, password, viewcnt, rdate, userID, nickname)
+		values((select nvl(max(fbID),0)+1 from fboard), #{category}, #{title}, #{content}, #{password},0,sysdate, #{userID}, #{nickname})
 	</insert>
 	  <!-- 패스워드 검사 -->
   	<select id="checkPassword" resultType="int" parameterType="HashMap">
@@ -29,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="read" parameterType="int"
 		resultType="com.dongne.fboard.FboardDTO">
-		select fbID, title, content, password, viewcnt, rdate, userID
+		select fbID, title, content, password, viewcnt, rdate, userID, nickname, category
 		from fboard
 		where fbID = #{fbID}
 	</select>
@@ -54,11 +53,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="list" parameterType="Map"
 		resultType="com.dongne.fboard.FboardDTO">
-		select fbID, title, content, password, viewcnt, rdate, userID, r
+		select fbID, title, content, password, viewcnt, rdate, userID, nickname, category, r
 		from (
-			select fbID, title, content, password, viewcnt, rdate, userID, rownum r
+			select fbID, title, content, password, viewcnt, rdate, userID, nickname, category, rownum r
 			from(
-				select fbID, title, content, password, viewcnt, rdate, userID
+				select fbID, title, content, password, viewcnt, rdate, userID, nickname, category
 				from fboard
 				<where>
 				<choose>

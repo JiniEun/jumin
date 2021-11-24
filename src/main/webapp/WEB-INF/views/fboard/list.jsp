@@ -58,6 +58,7 @@
 			<thead>
 				<tr>
 					<th>번호</th>
+					<th>카테고리</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>등록날짜</th>
@@ -74,8 +75,9 @@
 						<c:forEach var="dto" items="${list}">
 							<tr>
 								<td>${dto.fbID}</td>
+								<td>${dto.category}</td>
 								<td><a href="javascript:read('${dto.fbID}')" class="text-dark">${dto.title}</a></td>
-								<td>${dto.userID}</td>
+								<td>${dto.nickname}</td>
 								<td>${dto.rdate }</td>
 								<td>${dto.viewcnt }</td>
 							</tr>

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 @Service("com.dongne.club.ClreplyServiceImpl")
 public class ClreplyServiceImpl implements ClreplyService {
-	
+
 	@Autowired
 	private ClreplyMapper mapper;
-	
+
 	@Override
 	public int create(Map map) {
 		// TODO Auto-generated method stub
@@ -47,6 +47,5 @@ public class ClreplyServiceImpl implements ClreplyService {
 		// TODO Auto-generated method stub
 		return mapper.total(clID);
 	}
-
 
 }
