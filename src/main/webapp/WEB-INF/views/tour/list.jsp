@@ -11,6 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/resources/static/css/tour_list.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
   <title>Image Gallery</title>
   <script type="text/javascript">
  	function read(tid){
@@ -28,7 +30,7 @@
 
 
   <section class=mtitle>
-    <h1>Gallery</h1>
+    <h1>동네스팟</h1>
   
   <!-- 검색 -->
   <form class="search-form" action="/tour/list">  
@@ -74,7 +76,7 @@
     	<c:forEach var="dto" items="${list}" begin="0" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>
-	          <a href="javascript:read('${dto.tid}')"><span>▶ ${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
@@ -84,7 +86,7 @@
 			</span>
 	        </section>
 	        <section class=info>
-	          <span>Writer : ${dto.writer}</span>
+	          <span style="width:100;overflow:hidden;">글쓴이 : ${dto.nickname}</span><br>
 	          <span>Date : ${dto.rdate.substring(0,10)}</span>
 	        </section>
         </c:forEach>
@@ -106,7 +108,7 @@
     	<c:forEach var="dto" items="${list}" begin="1" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>
-	          <a href="javascript:read('${dto.tid}')"><span>▶ ${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
@@ -116,7 +118,7 @@
 			</span>
 	        </section>
 	        <section class=info>
-	          <span>Writer : ${dto.writer}</span>
+	          <span style="width:100;overflow:hidden;">글쓴이 : ${dto.nickname}</span>
 	          <span>Date : ${dto.rdate.substring(0,10)}</span>
 	        </section>
         </c:forEach>
@@ -137,7 +139,7 @@
     	<c:forEach var="dto" items="${list}" begin="2" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>	
-	          <a href="javascript:read('${dto.tid}')"><span>▶ ${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
@@ -147,7 +149,7 @@
 			</span>
 	        </section>
 	        <section class=info>
-	          <span>Writer : ${dto.writer}</span>
+	          <span style="width:100;overflow:hidden;">글쓴이 : ${dto.nickname}</span>
 	          <span>Date : ${dto.rdate.substring(0,10)}</span>
 	        </section>
         </c:forEach>

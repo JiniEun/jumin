@@ -36,7 +36,7 @@
 </head>
 <body>
 <div class="pagetitle">
-        <h2>동네 주요기관 게시판</h2>
+        <h2>동네 주요시설 게시판</h2>
         <c:choose>
             <c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
                 <button type="button" onclick="location.href='../admin/office/create'">글쓰기</button>
@@ -56,11 +56,11 @@
             
         <c:forEach var="dto" items="${list}">    
             <div class="loop">
-                <div class="imgarea">
+                <div class="imgarea" id="imgarea${dto.oname}">
                     <img src="/office/storage/${dto.filename}">
                 </div>
 
-                <div class="detail">
+                <div class="detail" id="detail${dto.oid}">
                     
                     <div>▶ 기관명 : ${dto.oname} </div>
                     <div>▶ 주소 : ${dto.address}</div>

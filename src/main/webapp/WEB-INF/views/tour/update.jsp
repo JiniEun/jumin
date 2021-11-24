@@ -66,7 +66,8 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="writer">작성자</label>
                 <div class="col-sm-6">
-                    <input type="text" readonly name="writer" id="writer" class="form-control" value="${dto.writer}">
+                	<input type="text" readonly name="nickname" id="nickname" class="form-control" value="${dto.nickname}">
+                    <input type="hidden" readonly name="writer" id="writer" class="form-control" value="${dto.writer}">
                 </div>
             </div>
             <div class="form-group">

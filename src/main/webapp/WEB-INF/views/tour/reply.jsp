@@ -34,8 +34,9 @@ function replyList(tid,page){
                 console.log("start : " + startpage);
                 console.log("end : " + endpage);
 
-                a += '<div class="replyArea" style="border-bottom:1px solid darkgray; margin-bottom: 5px; padding : 0px;">';
-                a += 	'<div class="replyInfo'+value.trid+'">'+'댓글번호 : '+value.trid+' / 작성자 : '+'<span><input type="text" readonly style="border:none; width : 100px;" class="id-control" name="id_'+value.trid+'" value="'+value.id+'"/></span>';
+                a += 	'<div class="replyArea" style="border-bottom:1px solid darkgray; margin-bottom: 5px; padding : 0px;">';
+                a += 	'<input type="hidden" class="id-control" name="id_'+value.trid+'" value="'+value.id+'"/>'
+                a += 	'<div class="replyInfo'+value.trid+'">'+'<i class="fas fa-comments"></i> 댓글번호 : '+value.trid+' / 작성자 : '+'<span><input type="text" readonly style="border:none; width : 100px;" class="id-control" name="nickname_'+value.trid+'" value="'+value.nickname+'"/></span>';
                 a += 	'<button type="button" onclick="replyUpdate('+value.trid+',\''+value.content+'\');" style=" height : 30px; margin-left : 15px; margin-right : 7px; color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 수정 </button>';
                 a += 	'<button onclick="replyDelete('+value.trid+');" style="color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 삭제 </button> </div>';
                 a += 	'<div class="replyContent'+value.trid+'" > <p> 내용 : '+value.content +'</p>';
@@ -46,7 +47,7 @@ function replyList(tid,page){
                 if (num == page) {
                      a += '<a href="#" onclick="replyList(' + tid + ', ' + num + '); return false;" class="page-btn" style="color : #5BA6A6;">' + num + '</a>';
                 } else {
-                     a += '<a href="#" onclick="replyList(' + tid + ', ' + num + '); return false;" class="page-btn" style="color :#5BA6A6; ">' + num + '</a>';
+                     a += '<a href="#" onclick="replyList(' + tid + ', ' + num + '); return false;" class="page-btn" style="color :#5BA6A6;">' + num + '</a>';
                 }
              }            
             

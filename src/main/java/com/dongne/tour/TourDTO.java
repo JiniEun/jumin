@@ -14,9 +14,9 @@ public class TourDTO {
 	private String viewcnt;              
 	private String score;                                                                     
 	private String contents;             
-	private String password;             
-	private String id;                   
-	private String filename;             
+	private String password;                                
+	private String filename; 
+	private String nickname;
 	
 	private MultipartFile filenameMF;
 }

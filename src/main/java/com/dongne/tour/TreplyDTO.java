@@ -9,6 +9,7 @@ public class TreplyDTO {
     private String content;              
     private String rdate;
     private String id;
+    private String nickname;
     private int tid;
     
     private int limit;

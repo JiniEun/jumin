@@ -6,7 +6,9 @@
 
 
 $(window).load(function () {
-
+	console.log("장소명 목록 : " + atcname);
+	console.log("주소 목록 : " + atcadd);
+	
 	// 맵, 마커 생성
 	var map = new naver.maps.Map('map', {
 	    center: new naver.maps.LatLng(y[0],x[0]),
@@ -19,24 +21,20 @@ $(window).load(function () {
 	    
 		var marker = new naver.maps.Marker({
 		    position: new naver.maps.LatLng(y[i], x[i]),
-		    map: map,
+		    map: map
+
 			});  //marker 생성
-		
+			
 			var contentString = [
-				'<div style="border : width:150px;text-align:center;padding:10px;">여기는 <b>"'+ atcname[i] +'"</b>.</div>'
+				'<a href="#imgarea'+atcname[i]+'"><div style="border : width:150px;text-align:center;padding:10px;">여기는 <b>"'+ atcname[i] +'"</b>.</div>'
 		    ].join('');	
 		
 		var infoWindow = new naver.maps.InfoWindow({
 	        content: contentString,
 	        maxWidth : 200,
 	        contentColor : "#ffffff",
-	        backgroundColor : "#eee",
 	        borderWidth : 5,
 	        borderColor : "#5BA6A6",
-	        anchorSize: new naver.maps.Size(30, 30),
-	        anchorSkew: true,
-	        anchorColor: "#eee",
-	        pixelOffset: new naver.maps.Point(20, -20)
 	    	});  // 정보창 생성
         
 	    	
@@ -51,6 +49,17 @@ $(window).load(function () {
 	naver.maps.Event.addListener(map, 'idle', function() {
     updatemarker_array(map, marker_array);
 	});
+	
+	for(i=0; i<marker_array.length; i++){
+		const marker_ = marker_array[i];
+        const infoWindow_ = infoWindow_array[i];
+		
+		naver.maps.Event.addListener(marker_, "mouseover", function(e)  {
+        infoWindow_.open(map, marker_);
+ 		});
+	
+
+	}
 
 	function updatemarker_array(map, marker_array) {
 	
@@ -91,15 +100,13 @@ $(window).load(function () {
 	        if (infoWindow.getMap()) {
 	            infoWindow.close();
 	        } else {
-	            infoWindow.open(map, marker);
+	        	location.href = 'http://map.daum.net'
 	        }
 	    }
 	}
 	
-	for (var i=0, ii=marker_array.length; i<ii; i++) {
-	    naver.maps.Event.addListener(marker_array[i], 'click', getClickHandler(i));
-	}
-
+	
+	
 	// 파노라마
 	var pano = null;
 	pano = new naver.maps.Panorama("pano", {
@@ -177,7 +184,7 @@ function ATC(address,name) {
        console.log("x좌표 : " + item.x);
        console.log("y좌표 : " + item.y);
        console.log("-----함수end------");
-       
+
        atcname.push(name);
 	   atcadd.push(address);
        x.push(item.x);
@@ -187,7 +194,7 @@ function ATC(address,name) {
     
 }
 
-var ad='부산광역시 남구 용호4동 용호로232번길 25-14'
+	var ad='부산광역시 남구 용호4동 용호로232번길 25-14'
 	var x=[];
 	var y=[];
 	var name_array=[], address_array=[];
@@ -195,21 +202,11 @@ var ad='부산광역시 남구 용호4동 용호로232번길 25-14'
 	var atcadd=[],atcname=[];
 
 <c:forEach var="dto" items="${list}">
-
 	var localename=String('${dto.oname}');
 	var address=String('${dto.address}');
 	ATC(address,localename);
-
 </c:forEach>
 
 
-
-
-$(function () {
-    $('#moreBtn').click(function (e) {
-        e.preventDefault();
-        $('#input_file').click();
-    });
-});
 
 </script>

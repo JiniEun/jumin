@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dongne.user.UserDTO;
+import com.dongne.user.UserService;
+
 @Controller
 @RequestMapping("/reply")
 public class TreplyController {
@@ -22,6 +25,10 @@ public class TreplyController {
 	@Autowired
 	@Qualifier("com.dongne.tour.TreplyServiceImpl")
 	private TreplyService service;
+	
+	@Autowired
+	@Qualifier("com.dongne.user.UserServiceImpl")
+	private UserService uservice;
 	
 	@RequestMapping("/list")
 	@ResponseBody
@@ -64,6 +71,7 @@ public class TreplyController {
 		map.put("sno", sno);
 		map.put("eno", eno);
 	    map.put("list", service.list(map));
+	    
 	    map.put("page",  page);
 	    map.put("startpage",  startpage);
 	    map.put("endpage",  endpage);
@@ -77,12 +85,14 @@ public class TreplyController {
 		
 		String sid=(String) session.getAttribute("ID");
 		
-		
-		map.put("id", sid);
-		map.put("tid", tid);
-		map.put("content", content);
-		
 		if(session.getAttribute("ID")!=null) {
+			UserDTO user = uservice.read(sid);
+			String nickname = user.getNickname();
+			
+			map.put("id", sid);
+			map.put("nickname", nickname);
+			map.put("tid", tid);
+			map.put("content", content);
 			return service.create(map);
 		}else {
 			return 0;
