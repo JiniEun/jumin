@@ -20,7 +20,7 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/public', function (message) {
-            showMessage("받은 메시지: " + message.body); // 서버에 메시지 전달 후 리턴받는 메시지
+            showRecieveMessage(message.body); // 서버에 메시지 전달 후 리턴받는 메시지
         });
     });
 }
@@ -35,13 +35,21 @@ function disconnect() {
 
 function sendMessage() {
     let message = $("#msg").val()
-    showMessage("보낸 메시지: " + message);
+    showSendMessage("보낸 메시지: " + message);
 
     stompClient.send("/app/sendMessage", {}, JSON.stringify(message)); // 서버에 보낼 메시지
 }
 
-function showMessage(message) {
-    $("#communicate").append("<tr><td>" + message + "</td></tr>");
+function showSendMessage(message) {
+	let tag = '<li class="out"><div class="chat-body"><div class="chat-message">';
+	tag += '<h5>보낸 메시지</h5>';
+    $("#communicate").append(tag + "<p>" + message + "</p></div></div></li>");
+}
+
+function showRecieveMessage(message) {
+	let tag = '<li class="in"><div class="chat-body"><div class="chat-message">';
+	tag += '<h5>받은 메시지</h5>';
+    $("#communicate").append(tag + "<p>" + message + "</p></div></div></li>");
 }
 
 $(function () {
@@ -52,4 +60,3 @@ $(function () {
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendMessage(); });
 });
-
