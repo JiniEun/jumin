@@ -22,7 +22,6 @@
 		url += "?nID=${dto.NID}";
 		location.href = url;
 	}
-
 	function listM() {
 		var url = "list";
 		url += "?nowPage=${param.nowPage}";
