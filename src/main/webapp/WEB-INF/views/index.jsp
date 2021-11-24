@@ -8,7 +8,6 @@
 <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- <script src="./weather.js"></script> -->
 <script>
-
 function getLocation(latitude,longitude){
 	let formdata = {'latitude' : latitude, 'longitude' : longitude};
 	$.ajax({
@@ -21,7 +20,6 @@ function getLocation(latitude,longitude){
     	}
 	}); 
 }
-
 //지역 정보 받아오기
 function showLocation(event) {
   let latitude = event.coords.latitude 
@@ -54,7 +52,6 @@ function showLocation(event) {
     getLocation(latitude,longitude);
    
 }
-
 function showError(event) {
   alert("위치 정보를 얻을 수 없습니다.")
 }
@@ -66,14 +63,39 @@ window.addEventListener('load', () => {
 </script>
 </head>
 <body>
-	<div class="container">
-		<p>Main</p>
-		<!-- <span id="latitude"></span>|<span id="longitude"></span> -->
-		<img id="wicon" src="#"> <br> <span id="rtemp"></span> <br>
-		<span id="rLoc"></span> <img src="#" alt=""> <img src="#" alt="">
-		<img src="#" alt="">
+	<div class="container-fluid">
+		<div class="card" style="margin: 30px;">
+			<div class="row" style="height: 200px; margin: 5px;">
+				<div class="col-3" style="margin: 10px;">
+					<h4>날씨</h4>
+					<img id="wicon" src="#"> <br> <span id="rtemp"></span> <br>
+					<span id="rLoc"></span> <img src="#" alt=""> <img src="#"
+						alt=""> <img src="#" alt="">
+				</div>
+				<div class="col-8" style="margin: 10px;">
+					<h4>코로나 정보</h4>
+					<div></div>
+				</div>
+			</div>
+		</div>
 
+		<div class="card" style="margin: 30px;">
+			<div class="row" style="height: 400px; margin: 5px;">
+				<div class="col" style="background-color: #333333; margin: 10px;"></div>
+				<div class="col" style="background-color: #333333; margin: 10px;"></div>
+				<div class="col" style="background-color: #333333; margin: 10px;"></div>
+				<div class="col" style="background-color: #333333; margin: 10px;"></div>
+			</div>
+		</div>
+
+		<div class="card" style="margin: 30px;">
+			<div class="row" style="height: 200px; margin: 5px;">
+				<div class="col-3"
+					style="background-color: #333333; margin: 10px; color: white;">썸네일</div>
+				<div class="col-8" style="background-color: #333333; margin: 10px;"></div>
+
+			</div>
+		</div>
 	</div>
-
 </body>
 </html>
