@@ -56,5 +56,11 @@ public class MarketServiceImpl implements MarketService {
 		return mapper.updateFile(map);
 	}
 
+	@Override
+	public int delete(int mid) {
+		// TODO Auto-generated method stub
+		return mapper.delete(mid);
+	}
+
 	
 }

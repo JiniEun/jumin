@@ -28,7 +28,7 @@
 
     <h2 class="col-sm-offset-2 col-sm-10">작성한 글을 삭제하겠습니까?</h2>
     <form class="form-horizontal" 
-    	action="/tour/delete" 
+    	action="/market/delete" 
     	method="post">
       
       

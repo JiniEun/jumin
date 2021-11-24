@@ -48,6 +48,12 @@ public class CommunityServiceImpl implements CommunityService {
 		return mapper.update(dto);
 	}
 
+	@Override
+	public int delete(int cid) {
+		// TODO Auto-generated method stub
+		return mapper.delete(cid);
+	}
+
 	
 
 }

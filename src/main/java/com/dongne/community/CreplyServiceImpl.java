@@ -1,4 +1,4 @@
-package com.dongne.market;
+package com.dongne.community;
 
 import java.util.List;
 import java.util.Map;
@@ -8,36 +8,36 @@ import org.springframework.stereotype.Service;
 
 
 
-@Service("com.dongne.market.MreplyServiceImpl")
-public class MreplyServiceImpl implements MreplyService {
+@Service("com.dongne.community.CreplyServiceImpl")
+public class CreplyServiceImpl implements CreplyService {
 
 	@Autowired
-	private MreplyMapper mapper;
+	private CreplyMapper mapper;
 
 	
 
 	@Override
-	public List<MreplyDTO> list(Map map) {
+	public List<CreplyDTO> list(Map map) {
 		// TODO Auto-generated method stub
 		return mapper.list(map);
 	}
 
 	@Override
-	public MreplyDTO read(int mrid) {
+	public CreplyDTO read(int crid) {
 		// TODO Auto-generated method stub
-		return mapper.read(mrid);
+		return mapper.read(crid);
 	}
 
 	@Override
-	public int update(MreplyDTO dto) {
+	public int update(CreplyDTO dto) {
 		// TODO Auto-generated method stub
 		return mapper.update(dto);
 	}
 
 	@Override
-	public int delete(int mrid) {
+	public int delete(int crid) {
 		// TODO Auto-generated method stub
-		return mapper.delete(mrid);
+		return mapper.delete(crid);
 	}
 
 	@Override
@@ -53,8 +53,8 @@ public class MreplyServiceImpl implements MreplyService {
 	}
 
 	@Override
-	public int total(int mid) {
+	public int total(int cid) {
 		// TODO Auto-generated method stub
-		return mapper.total(mid);
+		return mapper.total(cid);
 	}
 }

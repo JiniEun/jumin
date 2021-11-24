@@ -17,6 +17,8 @@ public interface CommunityMapper {
 
 	int update(CommunityDTO dto);
 
+	int delete(int cid);
+
 	
 
 }

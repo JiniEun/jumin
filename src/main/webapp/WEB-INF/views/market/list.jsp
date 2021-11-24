@@ -129,9 +129,9 @@ $(document).ready(function(){
 							<div class="inner">
 								<header>
 									<h4>${dto.title}</h4>
-									<p>${dto.viewcnt}</p>
-									<p>${dto.mid}</p>
-									<p>${dto.nickname}</p>
+									<p>조회수 : ${dto.viewcnt}</p>
+									<p>글번호 : ${dto.mid}</p>
+									<p>작성자 : ${dto.nickname}</p>
 									
 								</header>
 								<p>서울시 강남구</p>

@@ -11,10 +11,14 @@ public interface MreplyService {
  
     MreplyDTO read(int mrid);
   
-    int update(MreplyDTO replyDTO); 
+    int update(MreplyDTO dto); 
    
     int delete(int mrid);
  
-    int total(int mid);
+
+
+	int total(Map map);
+
+	int total(int mid);
 
 }

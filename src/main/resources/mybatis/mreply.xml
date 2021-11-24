@@ -8,9 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <insert id="create"
 		parameterType="Map">
-		insert into mreply(mrid, mid, content, rdate )
+		insert into mreply(mrid, mid, content, rdate, ID, nickname )
 		values((select nvl(max(mrid),0)+1 from mreply),
-		#{mid},#{content}, sysdate)
+		#{mid},#{content}, sysdate, #{ID}, #{nickname})
 </insert>
 
 
@@ -26,11 +26,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </delete>  
 
 <select id="list"  parameterType="int" resultType="com.dongne.market.MreplyDTO">
-	select mrid, mid, content, rdate, r 
+	select mrid, mid, content, rdate, ID, nickname, r 
 		from(
-		 select mrid, mid, content, rdate, rownum r 
+		 select mrid, mid, content, rdate, ID, nickname, rownum r 
 		 from(
-			select mrid, mid, content, rdate from mreply
+			select mrid, mid, content, rdate, ID, nickname from mreply
 			where mid=#{mid})
 	<![CDATA[       
          )where r >= #{sno} and r<= #{eno}

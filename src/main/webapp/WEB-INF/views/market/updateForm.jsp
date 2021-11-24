@@ -1,10 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/static/css/market.css">
 <title>Insert title here</title>
+<script>
+
+
+	function popup(){
+	    var url = "./uploadfile";
+	    var name = "popup test";
+	    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+	    window.open(url, name, option);
+	}
+	
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -16,37 +29,23 @@
 		 	   <input type="hidden" name="mid" id="mid" class="form-control" value="${dto.mid}">
 	    		
 
-				 <div class="form-group">
-			      <label class="control-label col-sm-2" for="oldfile">원본파일</label>
-			      <div class="col-sm-6">
-			        <img src="/market/storage/${dto.filename }" 
-			        class="img-rounded" width="200px" height="200px">
-			      </div>
-			    </div>
+				 
 			    
-		    <div class="form-group">
-			      <label class="control-label col-sm-2" for="filenameMF">변경파일</label>
-			      <div class="col-sm-6">          
-			        <input type="file" class="form-control" id="filenameMF" 
-			        name="filenameMF" accept=".jpg,.png,.gif" >
-			      </div>
-		    </div>
-		
+<!-- 		    <div class="form-group"> -->
+<!-- 			      <label class="control-label col-sm-2" for="filenameMF">변경파일</label> -->
+<!-- 			      <div class="col-sm-6">           -->
+<!-- 			        <input type="file" class="form-control" id="filenameMF"  -->
+<!-- 			        name="filenameMF" accept=".jpg,.png,.gif" > -->
+<!-- 			      </div> -->
+<!-- 		    </div> -->
+		 <label class="control-label col-sm-2" for="filenameMF">상품이미지</label>
+    		<div class="col-sm-8" id="pop">
+				<div>
+					<input type="button" class="imgbutton" value="이미지 수정" onclick="popup()"><br>
+				</div>
+			</div>
 			
-			
-			 <div class="form-group">
-	            <label class="control-label col-sm-2" for="category">카테고리</label>
-	            <div class="col-sm-6">
-	              <select class="form-control" name="category" id="category">
-          
-	                <option value="1">가구</option>
-	                <option value="2">전자</option>
-	                <option value="3">의류</option>
-	                <option value="4">기타</option>
-              
-	              </select>
-	            </div>
-	          </div>
+			 
 	         
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="title">제목</label>
@@ -75,9 +74,8 @@
 			
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-5">
-					<button class="btn" style="border-color: #87CEFA; color: #87CEFA;">수정</button>
-					<button type="button" class="btn" onclick="history.back()"
-						style="border-color: #87CEFA; color: #87CEFA;">취소</button>
+					<button class="btn" >수정</button>
+					<button type="button" class="btn" onclick="history.back()">취소</button>
 				</div>
 			</div>
 		</form>

@@ -21,6 +21,8 @@ public interface MarketService {
 
 	int updateFile(Map map);
 
+	int delete(int mid);
+
 
 
 	

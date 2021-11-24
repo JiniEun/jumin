@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.dongne.tour.TourDTO;
+import com.dongne.user.UserDTO;
+import com.dongne.user.UserService;
 import com.dongne.utility.Utility;
 
 @Controller
@@ -26,6 +27,10 @@ public class CommunityController {
 	@Qualifier("com.dongne.community.CommunityServiceImpl")
 	private CommunityService service;
 
+	@Autowired
+	@Qualifier("com.dongne.user.UserServiceImpl")
+	private UserService uservice;
+	
 	@RequestMapping("/community/list")
 	public String list(HttpServletRequest request) {
 
@@ -72,8 +77,17 @@ public class CommunityController {
 	}
 	
 	@GetMapping("/community/create")
-	  public String create() {
+	  public String create(HttpSession session, Model model) {
 	 
+		String ID=(String)session.getAttribute("ID");
+		
+		UserDTO user = uservice.read(ID);
+		String nickname = user.getNickname();
+		
+		model.addAttribute("ID", ID);
+		model.addAttribute("nickname", nickname);
+		System.out.println(ID);
+		
 	    return "/community/create";
 	  }
 
@@ -125,8 +139,46 @@ public class CommunityController {
 			return "error";
 		}
 	     
+		
+	}
+	
+	@GetMapping("/community/delete")
+	public String delete(int cid, Model model, HttpSession session) {
+
+		CommunityDTO dto = service.read(cid);
+		
+
+		model.addAttribute("dto", dto);
+
+		return "/community/delete";
+	}
+
+	@PostMapping("/community/delete")
+	public String delete(int cid, HttpServletRequest request, HttpSession session) {
+
+		CommunityDTO dto = service.read(cid);
 
 		
+
+		
+		String ID = dto.getId();
+		String sID = (String) session.getAttribute("ID");
+
+		int cnt = 0;
+
+		if (ID.compareTo(sID) == 0) {
+			cnt = service.delete(cid);
+
+		} else {
+			return "error";
+		}
+
+		if (cnt == 1) {
+			return "redirect:/community/list";
+		} else {
+			return "error";
+		}
+
 	}
 	
 	

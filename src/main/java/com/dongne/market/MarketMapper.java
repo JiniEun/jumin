@@ -21,4 +21,6 @@ public interface MarketMapper {
 
 	int updateFile(Map map);
 
+	int delete(int mid);
+
 }
