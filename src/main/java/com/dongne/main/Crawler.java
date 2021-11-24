@@ -69,6 +69,7 @@ public class Crawler {
 		for (int i = 0; i < city.length; i++) {
 			if (loc.contains(city[i])) {
 				idx = list.indexOf(city[i]);
+				break;
 			} else {
 				idx = -1;
 			}
@@ -77,10 +78,10 @@ public class Crawler {
 		if (idx == -1) {
 			return list.subList(0, 1);
 		} else {
-			list = list.subList(idx, idx + 2);
+			list = list.subList(idx, idx + 3);
 			System.out.println(list.size());
 
-			System.out.println(list.subList(idx, idx + 2));
+			System.out.println(list);
 
 			return list;
 		}
