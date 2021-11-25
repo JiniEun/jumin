@@ -82,7 +82,10 @@ public class ChatCont {
 				JSONObject data = (JSONObject) bubbles.get("data");
 				String description = "";
 				description = (String) data.get("description");
-				chatMessage = description;
+				String url2 = (String) data.get("url");
+				// System.out.print(url2);
+				chatMessage = description += "<br><a href='" + url2 + "' target='_blank'>" + url2 + "</a>";
+//				chatMessage = description;
 			} catch (Exception e) {
 				System.out.println("error");
 				e.printStackTrace();

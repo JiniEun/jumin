@@ -64,6 +64,10 @@ public class Crawler {
 	public static List<String> getInfoOfAddress(List<String> list, String loc) {
 		String[] city = { "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북",
 				"경남", "제주" };
+		
+		if(loc == null) {
+			loc = "서울";
+		}
 
 		int idx = 0;
 		for (int i = 0; i < city.length; i++) {
