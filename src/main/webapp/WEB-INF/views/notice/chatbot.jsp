@@ -14,39 +14,6 @@
 <script src="/js/stomp.min.js"></script>
 <script src="/js/app.js?"></script>
 <link rel="stylesheet" href="/resources/static/css/chatbot.css">
-<style>
-.input-form {
-	max-width: 680px;
-	margin-top: 20px;
-	padding: 30px;
-	background: #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-}
-
-.btn-color {
-	border-color: #5BA6A6;
-	color: #5BA6A6;
-}
-
-.question a {
-	cursor: pointer;
-}
-
-.question .hide {
-	display: none;
-}
-
-ul {
-	list-style: none;
-	margin-top:5px;
-	padding-left: 0px;
-}
-</style>
 </head>
 <body>
 	<div class="container" id="main-content" style="margin-top: 20px;">

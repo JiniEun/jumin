@@ -13,7 +13,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class Crawler {
-	public static List<String> crawling(String url, String loc) throws IOException {
+	public static List<String> covidCrawling(String loc) throws IOException {
 
 		// 1. 수집 대상 URL
 		String URL = "http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=13&ncvContSeq=&contSeq=&board_id=&gubun=";
@@ -24,7 +24,7 @@ public class Crawler {
 		// 3. HTML 파싱.
 		Document html = conn.get(); // conn.post();
 
-		System.out.println("[Attribute 탐색]");
+//		System.out.println("[Attribute 탐색]");
 
 		String result = "";
 		Elements fileblocks = html.getElementsByClass("rpsa_map");
@@ -35,7 +35,7 @@ public class Crawler {
 				String text = elm.text();
 //                String href = elm.attr("href");
 
-				System.out.println(text + " > ");
+//				System.out.println(text + " > ");
 				result += text + "\n";
 			}
 		}
@@ -64,10 +64,6 @@ public class Crawler {
 	public static List<String> getInfoOfAddress(List<String> list, String loc) {
 		String[] city = { "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북",
 				"경남", "제주" };
-		
-		if(loc == null) {
-			loc = "서울";
-		}
 
 		int idx = 0;
 		for (int i = 0; i < city.length; i++) {
@@ -84,9 +80,7 @@ public class Crawler {
 		} else {
 			list = list.subList(idx, idx + 3);
 			System.out.println(list.size());
-
 			System.out.println(list);
-
 			return list;
 		}
 
