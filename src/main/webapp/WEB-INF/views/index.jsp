@@ -30,7 +30,7 @@ function getLocation(latitude,longitude){
     	success : function(data){
         	console.log(formdata);
         	document.querySelector("#rLoc").textContent
-            = '${location}'
+            = '${realLocation}'
     	}
 	}); 
 }
@@ -110,7 +110,8 @@ window.addEventListener('load', () => {
 						<img src="/images/loading.gif" />
 					</div> -->
 					<img id="wicon" src="/images/loading.gif"> <br> <span
-						id="rtemp"></span> <br> <span id="rLoc">${realLocation}</span>
+						id="rtemp"></span> <br>
+						<span id="rLoc">${realLocation}</span>
 				</div>
 				<div class="col-8" style="margin: 10px;">
 					<h4>코로나 정보</h4>
