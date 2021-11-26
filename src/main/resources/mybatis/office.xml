@@ -7,14 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.dongne.office.OfficeMapper">
 	
 <insert id="create" parameterType="com.dongne.office.OfficeDTO">
-		insert into office(oid, oname, address, webaddress, phone, filename, contents, id)
-		values((select nvl(max(oid),0)+1 from office),
+		insert into office(oid, districtcode, oname, address, webaddress, phone, filename, contents, id)
+		values((select nvl(max(oid),0)+1 from office),#{districtcode},
 		#{oname}, #{address}, #{webaddress},#{phone}, #{filename},#{contents},#{id})
 </insert>
 	
 
-<select id="list" resultType="com.dongne.office.OfficeDTO">
-        select * from office order by oid desc
+<select id="list"  parameterType="Map" resultType="com.dongne.office.OfficeDTO">
+ 	select * from office
+ 	where districtcode=#{districtcode}
+ 	order by oid desc
 </select>
 
 <select id="read" parameterType="int" resultType="com.dongne.office.OfficeDTO">

@@ -1,11 +1,10 @@
 package com.dongne.office;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.dongne.tour.TourDTO;
 
 @Service("com.dongne.office.OfficeServiceImpl")
 public class OfficeServiceImpl implements OfficeService{
@@ -31,9 +30,9 @@ public class OfficeServiceImpl implements OfficeService{
 	}
 
 	@Override
-	public List<OfficeDTO> list() {
+	public List<OfficeDTO> list(Map map) {
 		// TODO Auto-generated method stub
-		return mapper.list();
+		return mapper.list(map);
 	}
 
 	@Override
@@ -41,4 +40,7 @@ public class OfficeServiceImpl implements OfficeService{
 		// TODO Auto-generated method stub
 		return mapper.read(oid);
 	}
+
+
+	
 }

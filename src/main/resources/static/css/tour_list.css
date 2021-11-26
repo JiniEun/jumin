@@ -107,7 +107,7 @@ a{
   }
 
   .search{
-    width : 450px;
+    width : 550px;
     display : flex;
     align-items : center;
     justify-content: space-between;
@@ -115,22 +115,18 @@ a{
 
   .search button{
     width : 70px;
-    height : 50px;
+    height : 40px;
     background-color: var(--basecolor);
     color : white;
     border : 3px solid white;
     border-radius : 10%;
   }
-
+  
   .search select{
-    width : 150px;
-    height : 50px;
+    width : 100px;
+    height : 40px;
   }
 
-  .search input{
-    width : 150px;
-    height : 50px;
-  }
   
   @media (min-width: 640px) {
     .container {

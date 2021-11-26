@@ -13,7 +13,7 @@
 }
 
 .pagetitle button{
-    margin-top : 20px;
+    margin-top : 5px;
     margin-left : 10px;
     width : 100px;
     height : 30px;
@@ -23,6 +23,14 @@
     border : 1px solid var(--basecolor);
     border-radius : 5%;
     margin-bottom : 3px;
+}
+
+.search-form{
+	width : 300px;
+	display : flex;
+	margin : 5px auto;
+	justify-content : space-between;
+	align-items: center;
 }
 
 .api button{

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dongne.notice.NoticeDTO;
 import com.dongne.notice.NoticeService;
 import com.dongne.region.RegionService;
-import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 import com.dongne.utility.LocationDTO;
 import com.dongne.utility.NaverGeoApi;
@@ -40,16 +39,14 @@ public class MainController {
 	private RegionService regionService;
 
 	@GetMapping("/")
-	public String home(Model model, HttpSession session, HttpServletRequest request)
-			throws Exception {
+	public String home(Model model, HttpSession session, HttpServletRequest request) throws Exception {
 
 		System.out.println("--HOME GETMAPPING-- ");
 		String realLocation = (String) session.getAttribute("realLocation");
 		System.out.println((String) session.getAttribute("ID"));
 
 		if (realLocation == null) {
-			realLocation = NaverGeoApi
-					.getAddress(NaverGeoApi.getlocation(37.541, 126.986));
+			realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(37.541, 126.986));
 
 		}
 

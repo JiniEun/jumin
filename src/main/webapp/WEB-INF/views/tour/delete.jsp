@@ -32,8 +32,8 @@
     	method="post">
       
       
-      <input type="hidden" name="mid" value="${dto.mid}">
-	  <input type="hidden" name="id" value="${dto.id}">
+      <input type="hidden" name="tid" value="${dto.tid}">
+
 
       <p id="red" class="col-sm-offset-2 col-sm-6">삭제하면 복구할 수 없습니다</p>
 

@@ -69,6 +69,7 @@
 			<div class="carousel-item active">
 				<!-- 가로 -->
 				<img class="d-block w-100" src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="First Slide" style="width: 100%; height: 500px; object-fit : contain;">
+	
 				<div class="carousel-caption d-none d-md-block">
 					<h5></h5>
 					<p></p>
@@ -82,6 +83,7 @@
 			<div class="carousel-item">
 				<c:forEach var="filename" items="${fn:split(dto,',')}">
 					<img src="/tour/storage/${filename}"  alt="iuhello.jpg" style="width: 100%; height: 500px; object-fit : contain;">
+					
 				</c:forEach>
 			</div>
 		</c:forEach>	

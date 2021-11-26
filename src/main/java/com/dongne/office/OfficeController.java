@@ -2,7 +2,9 @@ package com.dongne.office;
 
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -67,7 +69,7 @@ public class OfficeController {
 		model.addAttribute("dto",service.read(oid));
 		
 		return "/office/update";
-	}
+		}
 	
 	@PostMapping("/office/update")
 	public String update(OfficeDTO dto,int oid) {
@@ -132,17 +134,28 @@ public class OfficeController {
 	}
 	
 	@RequestMapping("/office/list")
-	public String list(HttpServletRequest request) {
+	public String list(HttpServletRequest request, HttpSession session) {
+		int sv=(Integer)session.getAttribute("region");
+		String mydistrictcode=Integer.toString(sv);
+		System.out.println("sv : " + sv);
+		System.out.println("mydistrictcode : " + mydistrictcode);
 		
-
-		List<OfficeDTO> list = service.list();
+		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
+		
+		if(districtcode=="") {
+			districtcode=mydistrictcode;
+		}
+		
+		Map map = new HashMap();
+		map.put("districtcode",districtcode);
+		
+		List<OfficeDTO> list = service.list(map);
 
 		request.setAttribute("list", list);
+		request.setAttribute("districtcode", districtcode);
+		request.setAttribute("mydistrictcode", mydistrictcode);
 		
-		
-
 		return "/office/list";
-
 	}
 	
 	@GetMapping("/office/read")

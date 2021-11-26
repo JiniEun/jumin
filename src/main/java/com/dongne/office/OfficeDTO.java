@@ -14,5 +14,6 @@ public class OfficeDTO {
    private String filename               ;
    private String contents               ;
    private String id                	;
+   private String districtcode                	;
    private MultipartFile 		filenameMF;
 }
