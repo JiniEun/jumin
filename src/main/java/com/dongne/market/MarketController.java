@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,7 +45,9 @@ public class MarketController {
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-
+//		String category = Utility.checkNull(request.getParameter("category"));
+		
+		
 		if (col.equals("total")) {
 			word = "";
 		}
@@ -61,25 +64,27 @@ public class MarketController {
 		int eno = nowPage * recordPerPage;
 
 		Map map = new HashMap();
-		map.put("col", col);
-		map.put("word", word);
+//		map.put("col", col);
+//		map.put("word", word);
+//		map.put("category", category);
 		map.put("sno", sno);
 		map.put("eno", eno);
 		map.put("cnt", recordPerPage);
-
+		
 		int total = service.total(map);
 
 		List<MarketDTO> list = service.list(map);
 
-		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+		String paging = Utility.paging(total, nowPage, recordPerPage,col, word);
 
 		// request에 Model사용 결과 담는다
 		request.setAttribute("list", list);
 		request.setAttribute("nowPage", nowPage);
-		request.setAttribute("col", col);
-		request.setAttribute("word", word);
+//		request.setAttribute("category", category);
+//		request.setAttribute("col", col);
+//		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
-
+		System.out.println(nowPage);
 		return "/market/list";
 
 	}
@@ -148,13 +153,6 @@ public class MarketController {
 
 		MarketDTO dto = service.read(mid);
 
-//			String ID=(String)session.getAttribute("ID");
-//			model.addAttribute("ID", ID);
-//			
-//			UserDTO user = uservice.read(ID);
-//			
-//			String nickname = user.getNickname();
-//			model.addAttribute("nickname", nickname);
 
 		String writer = dto.getId();
 		String sID = Utility.checkNull((String) session.getAttribute("ID"));
@@ -170,10 +168,15 @@ public class MarketController {
 
 	@PostMapping("/market/update")
 	public String update(int mid, HttpSession session) {
-
+		
+		MarketDTO dto = service.read(mid);
+			    
+	    System.out.println(dto.toString());
+	    
+		int cnt = 0;
+		
 		String upDir = Market.getUploadDir();
 
-		MarketDTO dto = service.read(mid);
 		// 기존파일 지우고,
 		String oldfile = dto.getFilename();
 		String[] filenameArr = oldfile.split(",");
@@ -182,23 +185,20 @@ public class MarketController {
 			Utility.deleteFile(upDir, filenameArr[i]);
 		}
 
-		// 아이디 체크하고
-		String writer = dto.getId();
-		String sID = (String) session.getAttribute("ID");
-
-		int cnt = 0;
-
-		if (writer.compareTo(sID) == 0) {
-			// 새로운 파일 업로드
-			String filename_ = (String) session.getAttribute("filename");
-			String filename = Utility.checkNulltoDefault(filename_);
-
-			dto.setFilename(filename);
-
-			cnt = service.update(dto);
-			session.removeAttribute("filename");
-		}
-
+		String filename_ = (String) session.getAttribute("filename");
+		String filename = Utility.checkNulltoDefault(filename_); 
+		
+		dto.setFilename(filename);
+		
+		session.removeAttribute("filename");
+		
+		Map map = new HashMap();
+	    map.put("mid", dto.getMid());
+		
+		cnt = service.update(dto);
+		
+		System.out.println(dto.toString());
+			
 		if (cnt == 1) {
 			return "redirect:/market/list";
 		} else {
@@ -264,7 +264,7 @@ public class MarketController {
 
 	@ResponseBody
 	@RequestMapping(value = "/market/uploadfile", method = RequestMethod.POST)
-	public String fileUpload(HttpSession session, @RequestParam("article_file") List<MultipartFile> multipartFile,
+	public String uploadfile(HttpSession session, @RequestParam("article_file") List<MultipartFile> multipartFile,
 			HttpServletRequest request) {
 
 		String upDir = Market.getUploadDir();

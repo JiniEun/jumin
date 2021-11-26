@@ -107,7 +107,7 @@ public class CreplyController {
 	@ResponseBody
 	public int update(CreplyDTO dto, @PathVariable int crid, @RequestParam("cid") int cid,
 			@RequestParam("content") String content, HttpSession session) {
-		String id = (String) session.getAttribute("ID");
+		String ID = (String) session.getAttribute("ID");
 
 		dto.setContent(content);
 

@@ -10,7 +10,7 @@ public class CommunityDTO {
     private String rdate      ; 
     private String title      ; 
     private String content    ; 
-    private String id         ; 
+    private String id ; 
     private String nickname         ; 
     private String category   ; 
     

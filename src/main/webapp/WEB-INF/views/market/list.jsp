@@ -101,117 +101,127 @@ $(document).ready(function(){
 
 			<div class="tm-paging-links">
 				<nav >
-				
+					
 					<ul id="g1" class="col-12 text-center">
-						<li class="tm-paging-item" id="one"><a href="#"
-							class="tm-paging-link active">가구</a></li>
-						<li class="tm-paging-item" ><a href="#"
-							class="tm-paging-link" >전자</a></li>
-						<li class="tm-paging-item" ><a href="#"
-							class="tm-paging-link">의류</a></li>
-						<li class="tm-paging-item" ><a href="#"
-							class="tm-paging-link">기타</a></li>
+					
+						<li class="tm-paging-item" id="one" ><a href="#" class="tm-paging-link active" >
+						가구</a></li>
+						<li class="tm-paging-item" ><a href="#" class="tm-paging-link" >
+						전자</a></li>
+						<li class="tm-paging-item" ><a href="#" class="tm-paging-link">
+						의류</a></li>
+						<li class="tm-paging-item" ><a href="#"class="tm-paging-link">					
+						기타</a></li>
+					
 					</ul>
+					
 				
 				</nav>
 			</div>
+			
+			
+			
 			<c:set var="list" value="${list}" />
 			<div class="row">
-					<c:forEach var="dto" begin="0" end="3" items="${list}">
-					<div class="tm-gallery-page" id="tm-gallery-page-1">
-				
 					
+					<c:forEach var="dto" begin="0" end="7" items="${list}">
+					<div class="col-sm-3">
+					<div class="tm-gallery-page" id="tm-gallery-page-1">
+
 					<div class="col-10 col-10-medium">					
 						<!-- Box -->
 						<section class="box feature">
 							<a href="javascript:read('${dto.mid}')" class="image featured">
-							<img src="/market/storage/${dto.filename }" alt="" width="300" height="300" /></a>
+							<img src="/market/storage/${fn:split(dto.filename,',')[0]}" alt="" width="300" height="300" /></a>
 							<div class="inner">
 								<header>
 									<h4>${dto.title}</h4>
-									<p>조회수 : ${dto.viewcnt}</p>
-									<p>글번호 : ${dto.mid}</p>
-									<p>작성자 : ${dto.nickname}</p>
-									
+									<p>조회수 : ${dto.viewcnt}</p>									
+									<p>작성자 : ${dto.nickname}</p>	
+									<p>카테고리 : ${dto.category}</p>								
 								</header>
-								<p>서울시 강남구</p>
+								<p>지역 : </p>
 							</div>
 						</section>
 					</div>
-					
+					</div>
 					</div>
 				</c:forEach>
+			
 			</div>
-			<c:forEach var="dto" begin="4" end="7" items="${list}">	
-				<div class="tm-gallery-page hidden" id="tm-gallery-page-2">
 			
-				<div class="col-4 col-12-medium">
-
-					<!-- Box -->
-					<section class="box feature">
-						<a href="/market/read/${dto.mid}" class="image featured"><img
-							src="/market/storage/${dto.filename }" alt="" width="300"
-							height="300" /></a>
-						<div class="inner">
-							<header>
-								<h4>${dto.title}</h4>
-								<p>${dto.id}</p>
-								<p>${dto.mid}</p>
-							</header>
-							<p>서울시 강남구</p>
-						</div>
-					</section>
-				</div>
+	
+<%-- 			<c:forEach var="dto" begin="4" end="7" items="${list}">	 --%>
+<!-- 				<div class="tm-gallery-page hidden" id="tm-gallery-page-2"> -->
 			
-				</div>
-			</c:forEach>	
-			<c:forEach var="dto" begin="4" end="7" items="${list}">
-				<div class="tm-gallery-page hidden" id="tm-gallery-page-3">
-				
-				<div class="col-4 col-12-medium">
+<!-- 				<div class="col-4 col-12-medium"> -->
 
-					<!-- Box -->
-					<section class="box feature">
-						<a href="/market/read/" class="image featured"><img
-							src="/market/storage/${dto.filename }" alt="" width="300"
-							height="300" /></a>
-						<div class="inner">
-							<header>
-								<h4>${dto.title}</h4>
-								<p>${dto.id}</p>
-								<p>${dto.mid}</p>
-							</header>
-							<p>서울시 강남구</p>
-						</div>
-					</section>
-				</div>
+<!-- 					Box -->
+<!-- 					<section class="box feature"> -->
+<%-- 						<a href="/market/read/${dto.mid}" class="image featured"><img --%>
+<%-- 							src="/market/storage/${fn:split(dto.filename,',')[0]}" alt="" width="300" --%>
+<!-- 							height="300" /></a> -->
+<!-- 						<div class="inner"> -->
+<!-- 							<header> -->
+<%-- 								<h4>${dto.title}</h4> --%>
+<%-- 								<p>${dto.id}</p> --%>
+								
+<!-- 							</header> -->
+<!-- 							<p>서울시 강남구</p> -->
+<!-- 						</div> -->
+<!-- 					</section> -->
+<!-- 				</div> -->
+			
+<!-- 				</div> -->
+<%-- 			</c:forEach>	 --%>
+<%-- 			<c:forEach var="dto" begin="4" end="7" items="${list}"> --%>
+<!-- 				<div class="tm-gallery-page hidden" id="tm-gallery-page-3"> -->
 				
-				</div>
-			</c:forEach>
-			<c:forEach var="dto" begin="4" end="7" items="${list}">
-			<div class="tm-gallery-page hidden" id="tm-gallery-page-4">
+<!-- 				<div class="col-4 col-12-medium"> -->
+
+<!-- 					Box -->
+<!-- 					<section class="box feature"> -->
+<!-- 						<a href="/market/read/" class="image featured"><img -->
+<%-- 							src="/market/storage/${fn:split(dto.filename,',')[0]}" alt="" width="300" --%>
+<!-- 							height="300" /></a> -->
+<!-- 						<div class="inner"> -->
+<!-- 							<header> -->
+<%-- 								<h4>${dto.title}</h4> --%>
+<%-- 								<p>${dto.id}</p> --%>
+								
+<!-- 							</header> -->
+<!-- 							<p>서울시 강남구</p> -->
+<!-- 						</div> -->
+<!-- 					</section> -->
+<!-- 				</div> -->
+				
+<!-- 				</div> -->
+<%-- 			</c:forEach> --%>
+<%-- 			<c:forEach var="dto" begin="4" end="7" items="${list}"> --%>
+<!-- 			<div class="tm-gallery-page hidden" id="tm-gallery-page-4"> -->
 			
 				
-				<div class="col-4 col-12-medium">
+<!-- 				<div class="col-4 col-12-medium"> -->
 
-					<!-- Box -->
-					<section class="box feature">
-						<a href="/market/read/" class="image featured"><img
-							src="/market/storage/${dto.filename }" alt="" width="300"
-							height="300" /></a>
-						<div class="inner">
-							<header>
-								<h4>${dto.title}</h4>
-								<p>${dto.id}</p>
-								<p>${dto.mid}</p>
-							</header>
-							<p>서울시 강남구</p>
-						</div>
-					</section>
-				</div>
+<!-- 					Box -->
+<!-- 					<section class="box feature"> -->
+<!-- 						<a href="/market/read/" class="image featured"><img -->
+<%-- 							src="/market/storage/${fn:split(dto.filename,',')[0]}" alt="" width="300" --%>
+<!-- 							height="300" /></a> -->
+<!-- 						<div class="inner"> -->
+<!-- 							<header> -->
+<%-- 								<h4>${dto.title}</h4> --%>
+<%-- 								<p>${dto.id}</p> --%>
+								
+<!-- 							</header> -->
+<!-- 							<p>서울시 강남구</p> -->
+<!-- 						</div> -->
+<!-- 					</section> -->
+<!-- 				</div> -->
 				
-				</div>
-			</c:forEach>
+<!-- 				</div> -->
+<%-- 			</c:forEach> --%>
+		
 		</div>
 		${paging}
 	</div>

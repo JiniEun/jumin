@@ -44,21 +44,21 @@
             <li>
               <a>
                 <label for="slide03" class="left"></label>
-                <img src="/market/storage/${fn:split(dto.filename,',')[1]}" width="500px" height="500px">
+                <img src="/market/storage/${fn:split(dto.filename,',')[0]}" width="500px" height="500px">
                 <label for="slide02" class="right"></label>
               </a>
             </li>
             <li>
               <a>
                 <label for="slide01" class="left"></label>
-                <img src="/market/storage/${fn:split(dto.filename,',')[2]}" width="500px" height="500px">
+                <img src="/market/storage/${fn:split(dto.filename,',')[1]}" width="500px" height="500px">
                 <label for="slide03" class="right"></label>
               </a>
             </li>
             <li>
               <a>
                 <label for="slide02" class="left"></label>
-                <img src="/market/storage/${fn:split(dto.filename,',')[3]}" width="500px" height="500px">
+                <img src="/market/storage/${fn:split(dto.filename,',')[2]}" width="500px" height="500px">
                 <label for="slide01" class="right"></label>
               </a>
             </li>
