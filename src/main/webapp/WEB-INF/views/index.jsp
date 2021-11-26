@@ -47,6 +47,27 @@ function showLocation(event) {
                 + "&lon=" + longitude  // 경도값
                 + "&appid=" + apiKey //인증키 값  
                 + "&units=metric"; //화씨 > 섭씨 변환
+                /*  let weatherIcon={
+          	  '01' : 'fas fa-sun',
+          	  '02' : 'fas fa-cloud-sun',
+          	  '03' : 'fas fa-cloud',
+          	  '04' : 'fas fa-cloudmeatball',
+          	  '09' : 'fas fa-cloud-sun-rain',
+          	  '10' : 'fas fa-cloud-showers-heavy',
+          	  '11' : 'fas fa-poo-storm',
+          	  '13' : 'fas fa-snowflake',
+          	  '50' : 'fas fa-smog',
+            }; */
+            
+           
+         
+	  /*  //지역명으로 받아오기              
+   let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q="
+               	+ "Gwangjin-gu" //지역 값
+                + "&appid=" + apiKey //인증키 값  
+                + "&units=metric"; //화씨 > 섭씨 변환                  
+              //console.log(weatherUrl);           */                 
+                
 	let options = { method: 'GET' }
 	
   $.ajax(weatherUrl, options).then((response) => {  
@@ -83,17 +104,31 @@ window.addEventListener('load', () => {
 		<div class="card" style="margin: 30px;">
 			<div class="row" style="height: 200px; margin: 5px;">
 				<div class="col-3" style="margin: 10px;">
-					<h4>날씨</h4>
+					<!-- <h4>날씨</h4> -->
 <!-- 					<div id="Progress_Loading">
 						로딩바
 						<img src="/images/loading.gif" />
 					</div> -->
 					<img id="wicon" src="/images/loading.gif"> <br> <span
-						id="rtemp"></span> <br> <span id="rLoc">${location }</span>
+						id="rtemp"></span> <br> <span id="rLoc">${location}</span>
+					<h5 class = "h5-clock"></h5>
+					<script src = "./js/main.js"></script>	
 				</div>
 				<div class="col-8" style="margin: 10px;">
 					<h4>코로나 정보</h4>
 					<div>${html }</div>
+					<!-- Search Google -->
+					<form method=get action="http://www.google.com/search" target="_blank">
+						<table>
+							<tr>
+								<td><input type=text name=q size=25 maxlength=255 value="" />
+									<!-- 구글 검색 입력 창 --> <input type=submit name=btnG
+									value="Google 검색" /> <!-- 검색 버튼 --></td>
+							</tr>
+						</table>
+					</form>
+					<!-- Search Google -->
+					
 				</div>
 			</div>
 		</div>
