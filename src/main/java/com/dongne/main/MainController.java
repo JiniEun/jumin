@@ -43,26 +43,24 @@ public class MainController {
 	@GetMapping("/")
 	public String home(Model model, HttpSession session, HttpServletRequest request) throws Exception {
 
-		System.out.println("HOME GETMAPPING");
+		System.out.println("--HOME GETMAPPING-- ");
 		String realLocation = (String) session.getAttribute("realLocation");
-
+		System.out.println((String) session.getAttribute("ID"));
 		if (realLocation == null) {
-
 			if ((String) session.getAttribute("ID") == null) {
 				realLocation = "서울";
 				session.setAttribute("region", 1);
-			} else {
-				UserDTO dto = userService.read((String) session.getAttribute("ID"));
-				session.setAttribute("region",
-						regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
-				
 			}
+		} else {
+			UserDTO dto = userService.read((String) session.getAttribute("ID"));
+			session.setAttribute("region", regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
+			System.out.println("else : " + regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 		}
 
 		List<String> html = Crawler.covidCrawling(realLocation);
 
 //		System.out.println((String) session.getAttribute("realLocation"));
-		
+
 		model.addAttribute("realLocation", (String) session.getAttribute("realLocation"));
 		model.addAttribute("region", session.getAttribute("region"));
 		model.addAttribute("html", html);
@@ -76,6 +74,9 @@ public class MainController {
 		// request에 Model사용 결과 담는다
 		request.setAttribute("list", list);
 
+		System.out.println("realLocation : " + realLocation);
+		System.out.println("region : " + session.getAttribute("region"));
+
 		return "/home";
 	}
 
@@ -83,7 +84,7 @@ public class MainController {
 	@ResponseBody
 	public String home(String latitude, String longitude, Model model, HttpSession session) throws Exception {
 
-		System.out.println("HOME POSTMAPPING");
+		System.out.println("--HOME POSTMAPPING--");
 
 		LocationDTO loc = new LocationDTO(Double.parseDouble(latitude), Double.parseDouble(longitude));
 
@@ -91,12 +92,11 @@ public class MainController {
 			System.out.println("loc" + loc.toString());
 
 		String realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude()));
-		System.out.println(realLocation);
+		System.out.println("realLocation : " + realLocation);
+		System.out.println("region : " + session.getAttribute("region"));
 
 		session.setAttribute("realLocation", realLocation);
-	
 		model.addAttribute("realLocation", realLocation);
-		model.addAttribute("location", realLocation);
 
 		return "/home";
 	}

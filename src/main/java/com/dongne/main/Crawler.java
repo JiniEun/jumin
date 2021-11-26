@@ -79,8 +79,8 @@ public class Crawler {
 			return list.subList(0, 1);
 		} else {
 			list = list.subList(idx, idx + 3);
-			System.out.println(list.size());
-			System.out.println(list);
+//			System.out.println(list.size());
+//			System.out.println(list);
 			return list;
 		}
 
