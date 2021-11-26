@@ -2,7 +2,9 @@ package com.dongne.office;
 
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -132,17 +134,20 @@ public class OfficeController {
 	}
 	
 	@RequestMapping("/office/list")
-	public String list(HttpServletRequest request) {
+	public String list(HttpServletRequest request, HttpSession session) {
+		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
+		String mydistrictcode = Utility.checkNull((String)session.getAttribute("code"));
 		
-
-		List<OfficeDTO> list = service.list();
+		Map map = new HashMap();
+		map.put("districtcode",districtcode);
+		
+		List<OfficeDTO> list = service.list(map);
 
 		request.setAttribute("list", list);
+		request.setAttribute("districtcode", districtcode);
+		request.setAttribute("mydistrictcode", mydistrictcode);
 		
-		
-
 		return "/office/list";
-
 	}
 	
 	@GetMapping("/office/read")

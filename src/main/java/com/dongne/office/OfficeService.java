@@ -1,8 +1,7 @@
 package com.dongne.office;
 
 import java.util.List;
-
-import com.dongne.tour.TourDTO;
+import java.util.Map;
 
 public interface OfficeService {
 
@@ -12,8 +11,9 @@ public interface OfficeService {
 
 	int delete(int oid);
 
-	List<OfficeDTO> list();
 
 	OfficeDTO read(int oid);
+
+	List<OfficeDTO> list(Map map);
 
 }

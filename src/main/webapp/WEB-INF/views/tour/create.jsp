@@ -77,7 +77,7 @@
             
             <div class="form-group">
                 <label class="control-label col-sm-2" for="districtcode">지역</label>
-                <select class="districtcode" name="districtcode">
+                <select class="form-control" name="districtcode" style= "width : 300px; margin-left : 22px;">
 					
 				  <option value='' selected>-- 선택 --</option>
 				  <option value="1">서울</option>

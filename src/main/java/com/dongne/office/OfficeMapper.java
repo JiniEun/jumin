@@ -1,8 +1,7 @@
 package com.dongne.office;
 
 import java.util.List;
-
-import com.dongne.office.OfficeDTO;
+import java.util.Map;
 
 public interface OfficeMapper {
 
@@ -12,7 +11,7 @@ public interface OfficeMapper {
 
 	int delete(int oid);
 
-	List<OfficeDTO> list();
+	List<OfficeDTO> list(Map map);
 
 	OfficeDTO read(int oid);
 

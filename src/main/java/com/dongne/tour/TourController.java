@@ -234,7 +234,7 @@ public class TourController {
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
-		System.out.println(districtcode);
+		System.out.println("districtcode : " + districtcode);
 
 		int total = service.total(map);
 
@@ -252,7 +252,6 @@ public class TourController {
 		request.setAttribute("paging", paging);
 
 		return "/tour/list";
-
 	}
 
 	@GetMapping("/tour/uploadfile")
@@ -313,6 +312,4 @@ public class TourController {
 
 		return strResult;
 	}
-	
-	
 }
