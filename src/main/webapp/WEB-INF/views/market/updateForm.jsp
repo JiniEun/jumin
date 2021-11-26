@@ -27,7 +27,8 @@
 		
 		<form class="form-horizontal" action="/market/update" method="post" enctype="multipart/form-data">
 		 	   <input type="hidden" name="mid" id="mid" class="form-control" value="${dto.mid}">
-	    		
+	    	   <input type="hidden" name="id" id="id" class="form-control" value="${dto.id}">
+	    	   <input type="hidden" name="id" id="id" class="form-control" value="${dto.category}">
 
 				 
 			    

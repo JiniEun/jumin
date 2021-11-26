@@ -29,7 +29,7 @@
 <div class="container-fluid">
         <h3 class="col-sm-offset-2 col-sm-10">community 생성</h3>
         <br>
-        <form class="form-horizontal" action="/community/create" method="post" onsubmit="return checkIn(this)">
+        <form class="form-horizontal" action="/community/create" method="post" enctype="multipart/form-data" onsubmit="return checkIn(this)">
         
 	        <div class="form-group">
 	            <label class="control-label col-sm-2" for="category">카테고리</label>

@@ -15,7 +15,7 @@ $('[name=rebtn]').click(function(){ //댓글 등록 버튼 클릭시
 //댓글 목록 
 function replyList(cid,page){
     $.ajax({
-        url : '/reply/list',
+        url : '/community/reply/list',
         type : 'get',
         data : {'cid':cid, 'page' : page},
         success : function(data){
@@ -35,9 +35,9 @@ function replyList(cid,page){
                 console.log("end : " + endpage);
 
                 a += '<div class="replyArea" style="border-bottom:1px solid darkgray; margin-bottom: 5px;">';
-                a += '<div class="replyInfo'+value.crid+'">'+'댓글번호 : '+value.crid+' / 작성자 : '+value.crid;
-                a += '<button type="button" onclick="replyUpdate('+value.crid+',\''+value.content+'\');"> 수정 </button>';
-                a += '<button onclick="replyDelete('+value.crid+');"> 삭제 </button> </div>';
+                a += '<div class="replyInfo'+value.crid+'">'+value.nickname+' '+value.rdate;
+                a += '<button type="button" onclick="replyUpdate('+value.crid +',\''+value.content+'\');" style=" height : 30px; margin-left : 15px; margin-right : 7px; color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 수정 </button>';
+                a += '<button onclick="replyDelete('+value.crid+');" style="color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 삭제 </button> </div>';
                 a += '<div class="replyContent'+value.crid+'"> <p> 내용 : '+value.content +'</p>';
                 a += '</div></div>';
             });
@@ -59,7 +59,7 @@ function replyList(cid,page){
 //댓글 등록
 function replyCreate(insertData){
     $.ajax({
-        url : '/reply/create',
+        url : '/community/reply/create',
         type : 'post',
         data : insertData,
         success : function(data){
@@ -92,7 +92,7 @@ function replyUpdateProc(crid){
     var updateContent = $('[name=content_'+crid+']').val();
     
     $.ajax({
-        url : '/reply/update/'+crid,
+        url : '/community/reply/update/'+crid,
         type : 'post',
         data : {'content' : updateContent, 'cid' : cid},
         success : function(data){
@@ -104,7 +104,7 @@ function replyUpdateProc(crid){
 //댓글 삭제 
 function replyDelete(crid){
     $.ajax({
-        url : '/reply/delete/'+crid,
+        url : '/community/reply/delete/'+crid,
         type : 'post',
         success : function(data){
             if(data == 1) replyList(cid); //댓글 삭제후 목록 출력 

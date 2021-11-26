@@ -52,10 +52,10 @@
             <label class="control-label col-sm-2" for="cateno">상품분류</label>
             <div class="col-sm-6">
               <select class="form-control" name="category" id="category">
-                <option value="1">가구</option>
-                <option value="2">전자</option>
-                <option value="3">의류</option>
-                <option value="4">기타</option>
+                <option value="가구">가구</option>
+                <option value="전자">전자</option>
+                <option value="의류">의류</option>
+                <option value="기타">기타</option>
               </select>
             </div>
           </div>
@@ -77,12 +77,7 @@
       <input type="text" name="title" id="title" class="form-control">
     </div>
   </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="price">가격</label>
-    <div class="col-sm-8">
-      <input type="text" name="price" id="price" class="form-control">
-    </div>
-  </div>
+  
   
   <div class="form-group">
     <label class="control-label col-sm-2" for="content">상세정보</label>

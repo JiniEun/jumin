@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="root" value="${pageContext.request.contextPath }"/> 
-<%@ taglib prefix="util" uri="/ELFunctions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +10,13 @@
 <meta charset="utf-8">
  
 <script type="text/javascript">
-function deleteC() {
-	var url = "/community/delete";
-	url += "?cid=${dto.cid}";
-	location.href = url;
-}
-		   
+
+	function deleteC() {
+		var url = "/community/delete";
+		url += "?cid=${dto.cid}";
+		location.href = url;
+	}
+			   
 	
 	function updateC() {
 		var url = "/community/update";
@@ -64,8 +65,8 @@ function deleteC() {
 	    <section class="reply">
 	    	<input type="hidden" name="cid" value="${dto.cid}"/>
 	    	<input type="hidden" name="nickname" value="${dto.nickname}"/>
-	        <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
-	        <button class="rebtn" id="rebtn" name="rebtn">댓글 등록</button>
+	        	<input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+	        	<button class="rebtn" id="rebtn" name="rebtn">댓글 등록</button>
 	    </section>
 	
 	    <section class="reshow">
@@ -83,7 +84,7 @@ function deleteC() {
         <div>
             
             <button type="button" class="btn btn-color" onclick="updateC()">수정</button>
-            <button type="button" class="btn btn-color" onclick="#">삭제</button>
+            <button type="button" class="btn btn-color" onclick="deleteC()">삭제</button>
             <button type="button" class="btn btn-color" onclick="location.href='${root}/community/list'">목록</button>
         </div>
  </div>        
