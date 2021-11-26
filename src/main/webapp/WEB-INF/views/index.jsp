@@ -31,6 +31,8 @@ function getLocation(latitude,longitude){
         	console.log(formdata);
         	document.querySelector("#rLoc").textContent
             = '${realLocation}'
+            	document.querySelector("#covid").textContent
+                = '${covid}'
     	}
 	}); 
 }
@@ -115,7 +117,7 @@ window.addEventListener('load', () => {
 				</div>
 				<div class="col-8" style="margin: 10px;">
 					<h4>코로나 정보</h4>
-					<div>${html }</div>
+					<div id="covid">${covid}</div>
 					<!-- Search Google -->
 					<form method=get action="http://www.google.com/search"
 						target="_blank">
