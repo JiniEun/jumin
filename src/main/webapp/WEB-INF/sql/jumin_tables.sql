@@ -255,6 +255,10 @@ CREATE TABLE cReply(
 
 ALTER TABLE cReply ADD nickname VARCHAR2(20)	NOT NULL;
 
+CREATE TABLE regioncode(
+codeid	NUMBER  NOT NULL  PRIMARY KEY,
+region	VARCHAR2(20) NOT NULL
+);
 
 
 
