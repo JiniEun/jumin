@@ -46,24 +46,22 @@ public class MainController {
 		System.out.println("--HOME GETMAPPING-- ");
 		String realLocation = (String) session.getAttribute("realLocation");
 		System.out.println((String) session.getAttribute("ID"));
-		if (realLocation == null) {
-			if ((String) session.getAttribute("ID") == null) {
-				realLocation = "서울";
-				session.setAttribute("region", 1);
-			}
+		if (realLocation == null || (String) session.getAttribute("ID") == null) {
+			realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(37.541, 126.986));
+			session.setAttribute("region", regionService.read(Utility.getRegionCode(realLocation)).getRegionID());
 		} else {
 			UserDTO dto = userService.read((String) session.getAttribute("ID"));
 			session.setAttribute("region", regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 			System.out.println("else : " + regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 		}
 
-		List<String> html = Crawler.covidCrawling(realLocation);
+		List<String> covid = Crawler.covidCrawling(realLocation);
 
 //		System.out.println((String) session.getAttribute("realLocation"));
 
 		model.addAttribute("realLocation", (String) session.getAttribute("realLocation"));
 		model.addAttribute("region", session.getAttribute("region"));
-		model.addAttribute("html", html);
+		model.addAttribute("covid", covid);
 
 		Map map = new HashMap();
 		map.put("sno", 0);
@@ -94,6 +92,10 @@ public class MainController {
 		String realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude()));
 		System.out.println("realLocation : " + realLocation);
 		System.out.println("region : " + session.getAttribute("region"));
+
+		List<String> covid = Crawler.covidCrawling(realLocation);
+
+		model.addAttribute("covid", covid);
 
 		session.setAttribute("realLocation", realLocation);
 		model.addAttribute("realLocation", realLocation);
