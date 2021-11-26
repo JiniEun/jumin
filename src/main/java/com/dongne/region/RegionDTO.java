@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class RegionDTO {
-	private int codeID;
-	private String codenum;
+	private int regionID;
+	private String regionnum;
 	private String region;
 }

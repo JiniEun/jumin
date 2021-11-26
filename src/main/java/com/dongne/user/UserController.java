@@ -16,14 +16,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dongne.utility.LocationDTO;
-import com.dongne.utility.NaverGeoApi;
+import com.dongne.region.RegionService;
 import com.dongne.utility.Utility;
 
 @Controller
@@ -33,6 +31,10 @@ public class UserController {
 	@Autowired
 	@Qualifier("com.dongne.user.UserServiceImpl")
 	private UserService service;
+
+	@Autowired
+	@Qualifier("com.dongne.region.RegionServiceImpl")
+	private RegionService regionservice;
 
 	@GetMapping("/login")
 	public String login(HttpServletRequest request) {
@@ -73,10 +75,10 @@ public class UserController {
 		if (cnt > 0) {
 			System.out.println(cnt);
 			String grade = service.getGrade(map.get("ID"));
-//			UserDTO user = service.read(map.get("ID"));
+			UserDTO user = service.read(map.get("ID"));
 			session.setAttribute("ID", map.get("ID"));
 			session.setAttribute("grade", grade);
-//			session.setAttribute("regionID", user);
+			session.setAttribute("region", user.getRegionID());
 
 			// Cookie 저장, id 저장 여부 및 id
 			Cookie cookie = null;
@@ -161,6 +163,7 @@ public class UserController {
 	public String create(UserDTO dto, HttpServletRequest request) {
 
 		System.out.println(dto.toString());
+		dto.setRegionID(regionservice.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 
 		if (service.create(dto) > 0) {
 			return "redirect:/";
@@ -216,6 +219,8 @@ public class UserController {
 
 		String grade = (String) session.getAttribute("grade");
 		System.out.println(grade);
+
+		dto.setRegionID(regionservice.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 
 		int cnt = service.update(dto);
 
