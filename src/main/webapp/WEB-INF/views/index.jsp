@@ -7,6 +7,16 @@
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- <script src="./weather.js"></script> -->
+<style>
+img.banners {
+	position: absolute;
+	width: 15%;
+	height: auto;
+	right: 10px;
+	top: 10px;
+	bottom: 10px;
+}
+</style>
 <script>
 
 /* $(document).ready(function(){
@@ -131,6 +141,10 @@ window.addEventListener('load', () => {
 						</table>
 					</form>
 					<!-- Search Google -->
+					<div class=>
+							<p><a href="http://www.naver.com"><img
+								src="./images/dongne_r.gif" class="banners" alt="배너" /></a>
+						</div>
 
 				</div>
 			</div>
