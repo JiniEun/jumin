@@ -35,6 +35,30 @@
   <!-- 검색 -->
   <form class="search-form" action="/tour/list">  
     <section class="search">
+    	<label class="control-label col-sm-2" for="districtcode">지역</label>
+         
+             <select class="districtcode" name="districtcode">
+				  <option value="${mydistrictcode}">현재위치</option>
+				  <option value="1"<c:if test="${districtcode==1}"> selected</c:if>>서울</option>
+				  <option value="2"<c:if test="${districtcode==2}"> selected</c:if>>부산</option>
+				  <option value="3"<c:if test="${districtcode==3}"> selected</c:if>>대구</option>
+				  <option value="4"<c:if test="${districtcode==4}"> selected</c:if>>인천</option>
+				  <option value="5"<c:if test="${districtcode==5}"> selected</c:if>>광주</option>
+				  <option value="6"<c:if test="${districtcode==6}"> selected</c:if>>대전</option>
+				  <option value="7"<c:if test="${districtcode==7}"> selected</c:if>>울산</option>
+				  <option value="8"<c:if test="${districtcode==8}"> selected</c:if>>세종</option>
+				  <option value="9"<c:if test="${districtcode==9}"> selected</c:if>>경기</option>
+				  <option value="10"<c:if test="${districtcode==10}"> selected</c:if>>강원</option>
+				  <option value="11"<c:if test="${districtcode==11}"> selected</c:if>>충북</option>
+				  <option value="12"<c:if test="${districtcode==12}"> selected</c:if>>충남</option>
+				  <option value="13"<c:if test="${districtcode==13}"> selected</c:if>>전북</option>
+				  <option value="14"<c:if test="${districtcode==14}"> selected</c:if>>전남</option>
+				  <option value="15"<c:if test="${districtcode==15}"> selected</c:if>>경북</option>
+				  <option value="16"<c:if test="${districtcode==16}"> selected</c:if>>경남</option>
+				  <option value="17"<c:if test="${districtcode==17}"> selected</c:if>>제주</option>
+				  
+			</select>
+    
         <select class="form-control" name="col">
           <option value="title"
           <c:if test="${col=='title'}"> selected</c:if>
@@ -43,24 +67,21 @@
           <option value="writer"
           <c:if test="${col=='writer'}"> selected</c:if>
           >글쓴이</option>
-
+         
           <option value="total"
           <c:if test="${col=='total'}"> selected</c:if>
           >전체</option>
+          
+          
         </select>
 
-        <input type="text" class="form-control" placeholder="Search . . ." name="word" value="${word}">
+        <input type="text" class="form-control" placeholder="검색" name="word" value="${word}">
         <button type="submit">검색</button>
         <button type="button" onclick="location.href='../tour/create'">글쓰기</button>
     </section>
   </form>
   
   </section>
-  		<script>
-	  		filename=${dto.filename}
-	    	filename.split(",");
-	    	console.log(filename);
-  		</script>
   			
   
   
@@ -76,7 +97,7 @@
     	<c:forEach var="dto" items="${list}" begin="0" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>
-	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.districtcode} ${dto.title}</span></a>
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
@@ -108,7 +129,7 @@
     	<c:forEach var="dto" items="${list}" begin="1" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>
-	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.districtcode} ${dto.title}</span></a>
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
@@ -139,7 +160,7 @@
     	<c:forEach var="dto" items="${list}" begin="2" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>	
-	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.districtcode} ${dto.title}</span></a>
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>

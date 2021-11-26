@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
+import com.dongne.utility.Utility;
 
 @Controller
 @RequestMapping("/reply")
@@ -100,12 +101,18 @@ public class TreplyController {
 
 	@RequestMapping("/delete/{trid}")
 	@ResponseBody
-	public int delete(@PathVariable int trid, @RequestParam("id") String id, HttpSession session) {
-		String sid = (String) session.getAttribute("ID");
-
-		if (session.getAttribute("ID") != null) {
+	public int delete(@PathVariable int trid, @RequestParam("replyid") String replyid, HttpSession session) {
+		String sid = Utility.checkNull((String) session.getAttribute("ID"));
+		
+		System.out.println(sid);
+		System.out.println("여가까자ㅣ");
+		
+		
+		if (sid.compareTo(replyid) == 0) {
+			System.out.println("아이디 같음");
 			return service.delete(trid);
 		} else {
+			System.out.println("아이디 다름");
 			return 0;
 		}
 
@@ -113,9 +120,12 @@ public class TreplyController {
 
 	@RequestMapping("/update/{trid}")
 	@ResponseBody
-	public int update(TreplyDTO dto, @PathVariable int trid, @RequestParam("tid") int tid,
+	public int update(TreplyDTO dto, @PathVariable int trid, @RequestParam("tid") int tid, @RequestParam("replyid") String replyid,
 			@RequestParam("content") String content, HttpSession session) {
-		String id = (String) session.getAttribute("ID");
+		
+		
+		String sid = Utility.checkNull((String) session.getAttribute("ID"));
+		System.out.println(sid);
 
 		dto.setContent(content);
 
@@ -123,7 +133,7 @@ public class TreplyController {
 
 		dto.setTrid(trid);
 
-		if (session.getAttribute("ID") != null) {
+		if (sid.compareTo(replyid) == 0) {
 			return service.update(dto);
 		} else {
 			return 0;

@@ -19,4 +19,6 @@ public interface TourService {
 
 	List<TourDTO> list(Map map);
 
+	List<Map> getdistrict(String districtcode);
+
 }
