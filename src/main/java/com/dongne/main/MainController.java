@@ -55,6 +55,7 @@ public class MainController {
 				UserDTO dto = userService.read((String) session.getAttribute("ID"));
 				session.setAttribute("region",
 						regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
+				
 			}
 		}
 
