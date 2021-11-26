@@ -205,18 +205,22 @@ public class TourController {
 
 	@RequestMapping("/tour/list")
 	public String list(HttpServletRequest request, HttpSession session) {
+		
+		int sv=(Integer)session.getAttribute("region");
+		String mydistrictcode=Integer.toString(sv);
+		System.out.println("sv : " + sv);
+		System.out.println("mydistrictcode : " + mydistrictcode);
+		
+		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
+		
+		if(districtcode=="") {
+			districtcode=mydistrictcode;
+		}
+		
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
-		String mydistrictcode = Utility.checkNull((String)session.getAttribute("region"));
-		String reallocation = Utility.checkNull((String)session.getAttribute("realLocation"));
-		//System.out.println("mydistrictcode : " + mydistrictcode);
-		System.out.println("reallocation : " + reallocation);
 		
-		//if(districtcode=="") {
-		//	districtcode=mydistrictcode;
-		//}
 		
 		if (col.equals("total")) {
 			word = "";
@@ -253,7 +257,7 @@ public class TourController {
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("districtcode", districtcode);
-		//request.setAttribute("mydistrictcode", mydistrictcode);
+		request.setAttribute("mydistrictcode", mydistrictcode);
 		request.setAttribute("paging", paging);
 
 		return "/tour/list";

@@ -97,7 +97,7 @@
     	<c:forEach var="dto" items="${list}" begin="0" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>
-	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span> ${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
@@ -131,7 +131,7 @@
 	      
 	        <section class=title>
 
-	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span> ${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
 
 
 	          <span id="score">  	
@@ -164,7 +164,7 @@
     	<c:forEach var="dto" items="${list}" begin="2" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg">
 	        <section class=title>	
-	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.districtcode} ${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
