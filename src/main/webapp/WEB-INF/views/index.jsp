@@ -8,6 +8,18 @@
 <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- <script src="./weather.js"></script> -->
 <script>
+
+/* $(document).ready(function(){
+	
+	   $('#Progress_Loading').hide(); //첫 시작시 로딩바를 숨겨준다.
+})
+	.ajaxStart(function(){
+		$('#Progress_Loading').show(); //ajax실행시 로딩바를 보여준다.
+	})
+	.ajaxStop(function(){
+		$('#Progress_Loading').hide(); //ajax종료시 로딩바를 숨겨준다.
+	}); */
+	
 function getLocation(latitude,longitude){
 	let formdata = {'latitude' : latitude, 'longitude' : longitude};
 	$.ajax({
@@ -62,6 +74,8 @@ window.addEventListener('load', () => {
      window.navigator.geolocation.getCurrentPosition(showLocation,showError)
   }
 })
+
+
 </script>
 </head>
 <body>
@@ -70,8 +84,12 @@ window.addEventListener('load', () => {
 			<div class="row" style="height: 200px; margin: 5px;">
 				<div class="col-3" style="margin: 10px;">
 					<h4>날씨</h4>
-					<img id="wicon" src="#"> <br> <span id="rtemp"></span> <br>
-					<span id="rLoc">${location }</span> 
+<!-- 					<div id="Progress_Loading">
+						로딩바
+						<img src="/images/loading.gif" />
+					</div> -->
+					<img id="wicon" src="/images/loading.gif"> <br> <span
+						id="rtemp"></span> <br> <span id="rLoc">${location }</span>
 				</div>
 				<div class="col-8" style="margin: 10px;">
 					<h4>코로나 정보</h4>
@@ -79,22 +97,102 @@ window.addEventListener('load', () => {
 				</div>
 			</div>
 		</div>
-
 		<div class="card" style="margin: 30px;">
-			<div class="row" style="height: 400px; margin: 5px;">
-				<div class="col" style="background-color: #333333; margin: 10px;"></div>
-				<div class="col" style="background-color: #333333; margin: 10px;"></div>
-				<div class="col" style="background-color: #333333; margin: 10px;"></div>
-				<div class="col" style="background-color: #333333; margin: 10px;"></div>
+			<div class="row" style="margin: 5px;">
+				<div class="col card" style="margin: 10px; padding-top: 15px;">
+					<img class="card-img-top" src="/images/city.jpg"
+						alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">동네 나들이</h5>
+						<p class="card-text">주요 시설 / 동네 스팟</p>
+					</div>
+					<div class="card-body" style="padding-bottom: 0px;">
+						<h5 class="card-title">최근 게시물</h5>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Cras justo odio</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+				<div class="col card" style="margin: 10px; padding-top: 15px;">
+					<img class="card-img-top" src="/images/city.jpg"
+						alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">동네 장터</h5>
+						<p class="card-text">동네에서 다양한 물품들을 서로 거래해 보세요.</p>
+					</div>
+					<div class="card-body" style="padding-bottom: 0px;">
+						<h5 class="card-title">최근 게시물</h5>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Cras justo odio</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+				<div class="col card" style="margin: 10px; padding-top: 15px;">
+					<img class="card-img-top" src="/images/city.jpg"
+						alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">동네 모임</h5>
+						<p class="card-text">동호회 / 동네 친구</p>
+					</div>
+					<div class="card-body" style="padding-bottom: 0px;">
+						<h5 class="card-title">최근 게시물</h5>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Cras justo odio</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+				<div class="col card" style="margin: 10px; padding-top: 15px;">
+					<img class="card-img-top" src="/images/city.jpg"
+						alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">동네 커뮤니티</h5>
+						<p class="card-text">자유 게시판</p>
+					</div>
+					<div class="card-body" style="padding-bottom: 0px;">
+						<h5 class="card-title">최근 게시물</h5>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Cras justo odio</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 
 		<div class="card" style="margin: 30px;">
-			<div class="row" style="height: 200px; margin: 5px;">
-				<div class="col-3"
-					style="background-color: #333333; margin: 10px; color: white;">썸네일</div>
-				<div class="col-8" style="background-color: #333333; margin: 10px;"></div>
-
+			<div class="row" style="margin: 5px;">
+				<div class="col-3 card" style="margin: 10px; text-align: center;">
+					<div class="card-body">
+						<h5 class="card-title">공지사항</h5>
+						<p class="card-text">사이트 공지사항</p>
+					</div>
+				</div>
+				<div class="col-8 card" style="margin: 10px;">
+					<div class="card-body" style="padding-bottom: 0px;">
+						<h5 class="card-title">최근 게시물</h5>
+					</div>
+					<ul class="list-group list-group-flush">
+						<c:choose>
+							<c:when test="${empty list}">
+								<li class="list-group-item">등록된 글이 없습니다.</li>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="dto" items="${list}">
+									<li class="list-group-item"><a
+										href="/notice/read?nID=${dto.NID}&col=&word=&nowPage=1"
+										class="text-dark">${dto.title}</a></li>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
