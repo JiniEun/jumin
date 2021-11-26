@@ -7,68 +7,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <title>Document</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="/resources/static/css/office.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
-    <script type="text/javascript">
-        window.onload=function(){
-        	console.log("hi");
-        const moreBtn=document.querySelector('.description .contents .moreBtn');
-        const sub_detail=document.querySelector('.description .contents .detail');
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92xk29w19e&submodules=geocoder"></script>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=YOUR_CLIENT_ID&submodules=panorama"></script>
+    
 
-        moreBtn.addEventListener('click',() =>{
-        	console.log("hello");
-            moreBtn.classList.toggle('clicked');
-            sub_detail.classList.toggle('detail_clamp');
-        });}
-    </script>
+<script type="text/javascript">
 
+	function updateM(oid) {
+		var url = "/admin/office/update";
+		url += "?oid="+oid;
+		location.href = url;
+		}
+		function deleteM(oid) {
+		var url = "/admin/office/delete";
+		url += "?oid="+oid;
+		location.href = url;
+		}
+
+</script>
+	
 </head>
 <body>
+<div class="pagetitle">
+        <h2>동네 주요시설 게시판</h2>
+        <c:choose>
+            <c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
+                <button type="button" onclick="location.href='../admin/office/create'">글쓰기</button>
+            </c:when>
+	    </c:choose>
+    </div>
     
-    <h1 style="margin-left: 30px;">관공서</h1>
-    
-    <section class="title">
-        <h2>Public Station</h2>
-        <div class="search">
-            <label>search</label>
-            <input type="text">
-            <button>submit</button>
-        </div>
-    </section>
-    <div class="container">
-        <div class=item>
-            <img src="/office/storage/default.png" alt="none">
-        </div>
 
-        <!--1paragraph-->
-        <c:forEach var="dto" items="${list}">
-	        <div class=item>
-	            <img src="/office/storage/${dto.filename}" alt="iuhello.jpg">
-	        </div>
-	        
-	 
-		        <div class="description">
-		            <div>
-		                <label>기관명 : </label><span>${dto.oname}</span>
-		            </div>
-		            <div>
-		                <label>주소 : </label><span>${dto.address}</span>
-		            </div>
-		            <div>
-		                <label>TEL : </label><span>${dto.phone}</span>
-		            </div>
-		            <div class="contents">
-		                <span class="detail"> 
-		                    ${dto.contents}
-		                </span>
-		                <button class="moreBtn"><i class="fas fa-chevron-circle-down"></i></button>
-		            </div>
-		        </div>
-       	</c:forEach>
-    </div>   
+    <div class="container">
+        <section class="api">
+            <button class="street" id="street">거리뷰</button>
+            <div class="map" id="map">maparea</div>
+            <div class="pano" id="pano">panoarea</div>
+        </section>
+
+        <section class="looparea">
+            
+        <c:forEach var="dto" items="${list}">    
+            <div class="loop">
+                <div class="imgarea" id="imgarea${dto.oname}">
+                    <img src="/office/storage/${dto.filename}">
+                </div>
+
+                <div class="detail" id="detail${dto.oid}">
+                    
+                    <div>▶ 기관명 : ${dto.oname} </div>
+                    <div>▶ 주소 : ${dto.address}</div>
+                    <div><a href="${dto.webaddress}">▶ 홈페이지 : ${dto.webaddress}</a></div>
+                    <div>▶ 전화번호 : ${dto.phone}</div>
+                   
+                    	<input type="hidden" id="oid" name="oid" value="${dto.oid}"/>
+                    	<button class="moreBtn" onclick="popup(${dto.oid})">로드맵</button>
+                 
+                </div>
+
+                <c:choose>
+		            <c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
+			            <button onclick="updateM('${dto.oid}')">수정</button>
+		        		<button onclick="deleteM('${dto.oid}')">삭제</button>
+	        		</c:when>
+	        	</c:choose>
+            </div>
+        </c:forEach>
+
+        </section>
+    </div>
+
+    <%@ include file="map.jsp" %>
 </body>
 </html>

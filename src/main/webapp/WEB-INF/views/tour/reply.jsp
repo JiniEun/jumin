@@ -34,19 +34,20 @@ function replyList(tid,page){
                 console.log("start : " + startpage);
                 console.log("end : " + endpage);
 
-                a += '<div class="replyArea" style="border-bottom:1px solid darkgray; margin-bottom: 5px;">';
-                a += '<div class="replyInfo'+value.trid+'">'+'댓글번호 : '+value.trid+' / 작성자 : '+value.trid;
-                a += '<button type="button" onclick="replyUpdate('+value.trid+',\''+value.content+'\');"> 수정 </button>';
-                a += '<button onclick="replyDelete('+value.trid+');"> 삭제 </button> </div>';
-                a += '<div class="replyContent'+value.trid+'"> <p> 내용 : '+value.content +'</p>';
+                a += 	'<div class="replyArea" style="border-bottom:1px solid darkgray; margin-bottom: 5px; padding : 0px;">';
+                a += 	'<input type="hidden" class="id-control" name="id_'+value.trid+'" value="'+value.id+'"/>'
+                a += 	'<div class="replyInfo'+value.trid+'">'+'<i class="fas fa-comments"></i> 댓글번호 : '+value.trid+' / 작성자 : '+'<span><input type="text" readonly style="border:none; width : 100px;" class="id-control" name="nickname_'+value.trid+'" value="'+value.nickname+'"/></span>';
+                a += 	'<button type="button" onclick="replyUpdate('+value.trid+',\''+value.content+'\');" style=" height : 30px; margin-left : 15px; margin-right : 7px; color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 수정 </button>';
+                a += 	'<button onclick="replyDelete('+value.trid+');" style="color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 삭제 </button> </div>';
+                a += 	'<div class="replyContent'+value.trid+'" > <p> 내용 : '+value.content +'</p>';
                 a += '</div></div>';
             });
             
             for (var num=startpage; num<=endpage; num++) {
                 if (num == page) {
-                     a += '<a href="#" onclick="replyList(' + tid + ', ' + num + '); return false;" class="page-btn">' + num + '</a>';
+                     a += '<a href="#" onclick="replyList(' + tid + ', ' + num + '); return false;" class="page-btn" style="color : #5BA6A6;">' + num + '</a>';
                 } else {
-                     a += '<a href="#" onclick="replyList(' + tid + ', ' + num + '); return false;" class="page-btn">' + num + '</a>';
+                     a += '<a href="#" onclick="replyList(' + tid + ', ' + num + '); return false;" class="page-btn" style="color :#5BA6A6;">' + num + '</a>';
                 }
              }            
             
@@ -68,6 +69,7 @@ function replyCreate(insertData){
             	replyList(); //댓글 작성 후 댓글 목록 reload
                 $('[name=content]').val('');
             }else{
+            	alert("로그인을 해주세요");
             	console.log("failed")
             }
         }
@@ -79,8 +81,8 @@ function replyUpdate(trid, content){
     var a ='';
     
     a += '<div class="input-group">';
-    a += '<input type="text" class="form-control" name="content_'+trid+'" value="'+content+'"/>';
-    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="replyUpdateProc('+trid+');">수정</button> </span>';
+    a += '<input type="text" style="width : 400px;" class="form-control" name="content_'+trid+'" value="'+content+'"/>';
+    a += '<div class="input-group-btn"><button class="btn" style="width : 60px; height : 38px; background-color : white; border: 2px solid #5BA6A6; color : #5BA6A6; textalign : center; margin-left : 10px; padding-right : 10px; padding-bottom : 5px;" type="button" onclick="replyUpdateProc('+trid+');">수정</button> </div>';
     a += '</div>';
     
     $('.replyContent'+trid).html(a);
@@ -96,25 +98,36 @@ function replyUpdateProc(trid){
         type : 'post',
         data : {'content' : updateContent, 'tid' : tid},
         success : function(data){
-            if(data == 1) replyList(tid); //댓글 수정후 목록 출력 
+        	console.log("업데이트성공");
+        	if(data==1){
+            replyList(tid); //댓글 수정후 목록 출력 
+        	}else{
+        		alert("로그인을 해주세요");
+        	}
         }
     });
 }
  
 //댓글 삭제 
 function replyDelete(trid){
+	console.log("hezzllp");
+	var id = $('[name=id_'+trid+']').val();
+	console.log(id);
     $.ajax({
         url : '/reply/delete/'+trid,
         type : 'post',
+        data : {'id' : id},
         success : function(data){
-            if(data == 1) replyList(tid); //댓글 삭제후 목록 출력 
-        }
-    });
-}
+        	console.log("삭제성공");
+            if(data == 1){
+            	replyList(tid); //댓글 삭제후 목록 출력 
+        	}else{
+        		alert("로그인을 해주세요");
+        	}
+    }}
+);}
  
- 
- 
- 
+
 $(document).ready(function(){
     replyList(tid,1); //페이지 로딩시 댓글 목록 출력 
 });

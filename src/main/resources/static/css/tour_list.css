@@ -34,9 +34,14 @@ h1{
 .title{
   display : flex;
   justify-content: space-between;
-  padding-bottom : 10px;
   border-bottom:solid;
   border-color : var(--basecolor);
+  color: var(--basecolor);
+  overflow : hidden;
+}
+
+.title a{
+	color: var(--basecolor);
 }
 
 #score{
@@ -45,6 +50,7 @@ h1{
   background-color: var(--basecolor);
   border-radius : 5%;
   border : 2px solid var(--basecolor);
+  padding : 3px;
 }
 
 body {
@@ -75,12 +81,11 @@ img:hover{
 }
 
 .container a:hover{
-  color : orange;
+  color : var(--secondcolor);
   font-size : 20px;
 }
 
-a,
-a:hover{
+a{
     text-decoration:none;
     border:none;
     padding : 0px;

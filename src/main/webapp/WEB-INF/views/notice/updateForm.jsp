@@ -4,53 +4,57 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항 수정</title>
+<style>
+.input-form {
+	max-width: 680px;
+	margin-top: 50px;
+	padding: 30px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+
+.btn-color {
+	border-color: #5BA6A6;
+	color: #5BA6A6;
+}
+</style>
 </head>
 <body>
 	<div class="container-fluid">
-		<h3 class="col-sm-offset-2 col-sm-10">공지사항 수정</h3>
-		<br>
-		<form class="form-horizontal" action="/notice/create" method="post"
-			onsubmit="return checkIn(this)">
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="title">제목</label>
-				<div class="col-sm-8">
-					<input type="text" name="title" id="title" class="form-control"
-						value="제목 수정 전">
-				</div>
-
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+				<h4 class="mb-3">공지사항 수정</h4>
+				<form class="validation-form" novalidate action="/notice/update"
+					method="post" name='frm' enctype="multipart/form-data">
+					<input type="hidden" id="nID" name="nID" value="${dto.NID }">
+					<div class="mb-3">
+						<label for="title">제목</label> <input type="text" name="title"
+							id="title" class="form-control" value="${dto.title }">
+					</div>
+					<div class="mb-3">
+						<label for="ID">작성자</label>
+						<p>${dto.ID}</p>
+						<input type="hidden" name="ID" id="ID" value="${dto.ID}">
+					</div>
+					<div class="mb-3">
+						<label for="content">내용</label>
+						<textarea rows="12" cols="7" id="content" name="content"
+							class="form-control">${dto.content }</textarea>
+					</div>
+					<div class="mb-3" style="margin-top:10px;">
+						<button type="submit" class="btn btn-color">등록</button>
+						<button type="button" class="btn btn-color"
+							onclick="history.back()">취소</button>
+					</div>
+				</form>
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="wname">작성자</label>
-				<div class="col-sm-2">
-					<input type="text" name="wname" id="wname" class="form-control"
-						value="작성자1">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="content">내용</label>
-				<div class="col-sm-8">
-					<textarea rows="12" cols="7" id="content" name="content"
-						class="form-control">내용 수정하기</textarea>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="passwd">비밀번호</label>
-				<div class="col-sm-2">
-					<input type="password" name="passwd" id="passwd"
-						class="form-control">
-
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-5">
-					<button class="btn" style="border-color: #87CEFA; color: #87CEFA;">수정</button>
-					<button type="button" class="btn" onclick="history.back()"
-						style="border-color: #87CEFA; color: #87CEFA;">취소</button>
-				</div>
-			</div>
-		</form>
+		</div>
 	</div>
 </body>
 </html>

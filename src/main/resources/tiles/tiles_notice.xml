@@ -20,8 +20,12 @@
             <put-attribute name="title" value="공지사항 수정" ></put-attribute> 
             <put-attribute name="body" value="/WEB-INF/views/notice/updateForm.jsp" /> 
     </definition> 
+    <definition name="/notice/delete" extends="main"> 
+            <put-attribute name="title" value="공지사항 삭제" ></put-attribute> 
+            <put-attribute name="body" value="/WEB-INF/views/notice/deleteForm.jsp" /> 
+    </definition> 
 	<definition name="/notice/chatbot" extends="main"> 
             <put-attribute name="title" value="공지사항 챗봇" ></put-attribute> 
-            <put-attribute name="body" value="/WEB-INF/views/notice/QnA.jsp" /> 
+            <put-attribute name="body" value="/WEB-INF/views/notice/chatbot.jsp" /> 
     </definition> 
 </tiles-definitions>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dongne.market.MreplyMapper">
+
+	<insert id="create" parameterType="Map">
+		insert into mreply(mrid, mid,
+		content, rdate, ID, nickname )
+		values((select nvl(max(mrid),0)+1 from
+		mreply),
+		#{mid},#{content}, sysdate, #{ID}, #{nickname})
+	</insert>
+
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM mreply
+		WHERE
+		mrid=#{mrid}
+	</delete>
+
+	<delete id="update" parameterType="com.dongne.market.MreplyDTO">
+		update mreply
+		set
+		content=#{content}
+		WHERE mrid=#{mrid} and mid=#{mid}
+	</delete>
+
+	<select id="list" parameterType="int"
+		resultType="com.dongne.market.MreplyDTO">
+		select mrid, mid, content, rdate, ID, nickname, r
+		from(
+		select mrid, mid, content, rdate, ID, nickname, rownum r
+		from(
+		select mrid, mid, content, rdate, ID, nickname from mreply
+		where mid=#{mid})
+	<![CDATA[       
+         )where r >= #{sno} and r<= #{eno}
+     	]]>
+
+	</select>
+
+	<select id="total" resultType="int" parameterType="int">
+		select count(*) from mreply
+		where mid=#{mid}
+	</select>
+
+	<select id="count" resultType="int">
+		select count (*) from mreply
+	</select>
+
+</mapper>

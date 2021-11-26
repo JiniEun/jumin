@@ -1,0 +1,59 @@
+:root{
+  --basecolor : #5BA6A6;
+  --secondcolor : #027373;
+}
+
+h2{
+	margin-top : 15px;
+	color : var(--basecolor);
+}
+
+label{
+	color : var(--basecolor);
+	font-weight : bold;
+	padding-right : 5px;
+	
+}
+
+
+
+.score{
+	width : 120px;
+	border : 3px solid var(--basecolor);
+	border-radius : 10%;
+	color : var(--basecolor);
+	font-weight : bold;
+}
+
+
+input{
+    background-color: white ;
+    color : var(--basecolor);
+    border : 3px solid var(--basecolor);
+    border-radius: 10%;
+    margin-left : 10px;
+    padding : 5px;
+}
+
+.score-group{
+	
+	margin-top : 10px;
+}
+.form-group button{
+	background-color: white ;
+    color : var(--basecolor);
+    border : 3px solid var(--basecolor);
+    border-radius: 10%;
+}
+
+.form-group .btn{
+	padding : 7px;
+}
+
+input:hover{
+	border : 5px solid var(--secondcolor);
+}
+button:hover{
+	border : 5px solid var(--secondcolor);
+	color : white;
+}

@@ -1,0 +1,126 @@
+.tm-paging-link.active,
+.tm-paging-link:hover {
+  background-color: #2F956D;
+  color: white;
+}
+
+
+
+.section [id*="slide"] {
+	display:none;
+
+  } 
+          
+      /* 슬라이드 영역 - max-width 크기를 조절해주면 됩니다*/
+      .section .slidewrap {max-width:600px;margin:0 auto;overflow:hidden;position:relative;}
+      .section .slidelist {white-space:nowrap;font-size:0;}
+      .section .slidelist > li {display:inline-block;vertical-align:middle;width:100%;transition:all .5s;}
+      .section .slidelist > li > a {display:block;position:relative;}
+/*       .section .slidelist label {position:absolute;z-index:10;top:50%;transform:translateY(-50%);padding:50px;cursor:pointer;} */
+
+      /* 좌우로 넘기는 LABEL버튼에 대한 스타일 */
+       .slide-control > div {display:none;}
+      
+      /* INPUT이 체크되면 변화값이 li까지 전달되는 스타일 */
+      .section  input[id="slide01"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0%);}
+      .section  input[id="slide02"]:checked ~ .slidewrap .slidelist  > li {transform:translateX(-100%);}
+      .section  input[id="slide03"]:checked ~ .slidewrap .slidelist  > li {transform:translateX(-200%);}
+      
+      /*  INPUT이 체크되면 변화값이 좌우 슬라이드 버튼을 담고 있는 div 까지 전달되는 스타일 */
+      .section  input[id="slide01"]:checked ~ .slidewrap .control01 {display:block;}
+      .section  input[id="slide02"]:checked ~ .slidewrap .control02 {display:block;}
+      .section  input[id="slide03"]:checked ~ .slidewrap .control03 {display:block;}
+      
+      
+    .slide-pagelist {text-align:center;padding:20px;}
+	.slide-pagelist > li {display:inline-block;vertical-align:middle;}
+	.slide-pagelist > li > label {display:block;padding:8px 30px;border-radius:30px;background:#ccc;margin:20px 10px;cursor:pointer;}
+	.section input[id="slide01"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(1) > label {background:#5BA6A6;}
+	.section input[id="slide02"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(2) > label {background:#5BA6A6;}
+	.section input[id="slide03"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(3) > label {background:#5BA6A6;}
+	
+	
+	
+.reply textarea:focus{
+    border : 5px solid #5BA6A6;;
+}
+
+.replyInfo{
+	margin-right : 10px;
+}
+
+.replyContent{
+	border-bottom: 3px solid var(--secondcolor);
+}
+
+
+.reply button:hover{
+    background-color : white;
+    color : #5BA6A6;
+    border : 2px solid #5BA6A6;
+}
+
+.repaging{
+    width : 60%;
+    align-items: center;
+    padding-left : 60px;
+    color : var(--secondcolor);
+}
+
+.reply{
+    display : flex;
+    align-items: center;
+    height : 15%;
+    width : 90%;
+    margin : 10px auto;
+}
+
+.reply textarea{
+    display : flex;
+    height : 90%;
+    width : 85%;
+    border : 3px solid var(--basecolor);
+}
+
+.reply .rebtn{
+    width : 120px;
+    height : 40px;
+    color : white;
+    background-color: #5BA6A6;
+    border : white;
+    border-radius : 5%;
+    margin-left : 15px;
+}
+
+.reshow{
+    
+    width : 90%;
+    margin : auto;
+}
+
+#rc{
+    margin : 7px;
+    background-color: white;
+    border-bottom : 2px solid lightgray;
+}	
+
+.btn {
+    background-color : white;
+    color : #5BA6A6;
+    border : 1px solid #5BA6A6;
+}
+
+.imgbutton {
+	background-color: #5BA6A6;
+    color : white;
+    border : 1px solid #5BA6A6;
+}
+
+
+
+.btn:hover{
+    background-color: #5BA6A6;
+    color : white;
+    border : 1px solid white;
+   
+}

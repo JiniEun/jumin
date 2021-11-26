@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
 
 <script>
 $(document).ready(function()
@@ -48,7 +63,7 @@ function fileCheck(e) {
         content_files.push(f);
         $('#articlefileChange').append(
        		'<div id="file' + fileNum + '" onclick="fileDelete(\'file' + fileNum + '\')">'
-       		+ '<font style="font-size:12px">' + f.name + '</font>'  
+       		+ '<font style="font-size:12px border-bottom: 3px solid black;">' + f.name + '</font>'  
        		+ '<img src="/img/icon_minus.png" style="width:20px; height:auto; vertical-align: middle; cursor: pointer;"/>' 
        		+ '<div/>'
 		);
@@ -89,21 +104,44 @@ function fileDelete(fileNum){
 	$.ajax({
    	      type: "POST",
    	   	  enctype: "multipart/form-data",
-   	      url: "/file-upload",
+   	      url: "/tour/fileUpload",
        	  data : formData,
        	  processData: false,
    	      contentType: false,
    	      success: function (data) {
    	    	if(JSON.parse(data)['result'] == "OK"){
+   	    		window.close();
    	    		alert("파일업로드 성공");
 			} else
-				alert("서버내 오류로 처리가 지연되고있습니다. 잠시 후 다시 시도해주세요");
+				alert("파일업로드 실패");
    	      },
-   	      error: function (xhr, status, error) {
-   	    	alert("서버오류로 지연되고있습니다. 잠시 후 다시 시도해주시기 바랍니다.");
-   	     return false;
+   	   error: function (xhr, status, error) {
+  	    	alert("코드가 잘못되었음");
+  	     	return false;
    	      }
    	    });
    	    return false;
 	}
-</script>
+</script></head>
+<body>
+<div class="uploadcontainer" style = "margin : 70px;">
+  <h2>파일업로드</h2>
+  <form name="dataForm" id="dataForm" onsubmit="return registerAction()">
+  	
+  	<button id="btn-upload" type="button" style="border: 3px solid #5BA6A6; color : white; background-color: #5BA6A6; outline: none;">파일 추가</button>
+  	<input id="input_file" multiple="multiple" type="file" style="display:none;">
+  	
+  	<span style="font-size:10px; color: gray;">※첨부파일은 최대 10개까지 등록이 가능합니다.</span>
+  	<div class="data_file_txt" id="data_file_txt" style="margin:40px;">
+		<span>첨부 파일</span>
+		<br />
+		<div id="articlefileChange">
+		</div>
+	</div>
+  	<button type="submit" style="border: 3px solid #5BA6A6; color : white; background-color: #5BA6A6; outline: none;">전송</button>
+  </form>
+</div>
+
+</body>
+</html>
+

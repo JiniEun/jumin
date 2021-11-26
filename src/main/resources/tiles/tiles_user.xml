@@ -37,14 +37,29 @@
     <put-attribute name="body"
       value="/WEB-INF/views/user/updateForm.jsp" />
   </definition>
+  <definition name="/user/updateFile" extends="main">
+    <put-attribute name="title" value="회원정보 이미지 수정"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/user/updateFileForm.jsp" />
+  </definition>
   <definition name="/user/delete" extends="main">
     <put-attribute name="title" value="회원정보 탈퇴"></put-attribute>
     <put-attribute name="body"
       value="/WEB-INF/views/user/deleteForm.jsp" />
   </definition>
-  <definition name="/user/passwdError" extends="main">
+  <definition name="/passwdError" extends="main">
     <put-attribute name="title" value="비밀번호 오류"></put-attribute>
     <put-attribute name="body"
-      value="/WEB-INF/views/user/passwdError.jsp" />
+      value="/WEB-INF/views/passwdError.jsp" />
+  </definition>
+  <definition name="/user/list" extends="main">
+    <put-attribute name="title" value="회원목록"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/user/list.jsp" />
+  </definition>
+  <definition name="/user/read" extends="main">
+    <put-attribute name="title" value="회원 정보 조회"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/user/read.jsp" />
   </definition>
 </tiles-definitions>

@@ -11,4 +11,14 @@ public interface MarketService {
 
 	int create(MarketDTO dto);
 
+	void upCnt(int mid);
+
+	MarketDTO read(int mid);
+
+	int update(MarketDTO dto);
+
+	int updateFile(Map map);
+
+	int delete(int mid);
+
 }

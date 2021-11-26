@@ -15,7 +15,6 @@ address2				VARCHAR2(50)	NULL ,
 gender					VARCHAR(10) 	NULL ,
 birth					DATE NOT NULL,
 rdate					DATE NOT NULL,
-<<<<<<< HEAD
 fileName				VARCHAR2(50) NOT NULL,
 grade					VARCHAR2(1)  DEFAULT 'H'  NOT NULL
 ); --13
@@ -41,12 +40,16 @@ CREATE TABLE notice(
   nID			NUMBER			NOT NULL PRIMARY KEY,
   title         VARCHAR2(300)			NOT NULL,
   content       CLOB					NOT NULL,
-  password      VARCHAR2 (20)			NULL,
   viewcnt       NUMBER(10)  DEFAULT 0   NOT NULL ,
   rdate         DATE					NOT NULL,
   ID			VARCHAR2(20)				NOT NULL,
   FOREIGN KEY (ID) REFERENCES users    
 );
+--ALTER TABLE notice ADD uname VARCHAR2(10)	NOT NULL;
+--ALTER TABLE notice DROP COLUMN uname;
+--ALTER TABLE notice ADD CONSTRAINT FK_uname FOREIGN KEY(uname) REFERENCES users(uname);
+
+
 
 COMMENT ON TABLE notice is '공지사항';
 COMMENT ON COLUMN notice.nID is '글 번호';

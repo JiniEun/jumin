@@ -3,10 +3,18 @@
 <!DOCTYPE html> 
 <html> 
 <head>
+  <link rel="stylesheet" href="/resources/static/css/market.css">
   <title>dongneMarket</title>
   <meta charset="utf-8">
   <script type="text/JavaScript">
- 
+
+  
+  function popup(){
+      var url = "./uploadfile";
+      var name = "popup test";
+      var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+      window.open(url, name, option);
+  }
 
  function checkIn(f){
      if (f.title.value == ""){
@@ -44,22 +52,23 @@
             <label class="control-label col-sm-2" for="cateno">상품분류</label>
             <div class="col-sm-6">
               <select class="form-control" name="category" id="category">
-                <option value="1">전자제품</option>
-                <option value="2">의류</option>
-                <option value="3">기타</option>
+                <option value="1">가구</option>
+                <option value="2">전자</option>
+                <option value="3">의류</option>
+                <option value="4">기타</option>
               </select>
             </div>
           </div>
     <div class="form-group">
-    <label class="control-label col-sm-2" for="id">작성자</label>
+    
     <div class="col-sm-6">
-      <input type="text" name="id" id="id" class="form-control">
+      <input type="hidden" name="id" id="id" class="form-control" value="${ID}">
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="nickname">작성자</label>
+    <label class="control-label col-sm-2" for="nickname">닉네임</label>
     <div class="col-sm-6">
-      <input type="text" name="nickname" id="nickname" class="form-control" value="nickname">
+      <input type="text" name="nickname" id="nickname" class="form-control" value="${nickname}">
     </div>
   </div>
   	<div class="form-group">
@@ -82,16 +91,18 @@
     </div>
   </div>
   
-  <div class="form-group">
+  
     <label class="control-label col-sm-2" for="filenameMF">상품이미지</label>
-    <div class="col-sm-6">
-      <input type="file" name="filenameMF" id="filenameMF" class="form-control">
-    </div>
-  </div>
+    <div class="col-sm-8" id="pop">
+				<div>
+					<input type="button" class="imgbutton" value="이미지 추가"  onclick="popup()"><br>
+				</div>
+	</div>
+ <br>
    <div class="form-group">
    <div class="col-sm-offset-2 col-sm-5">
-    <button class="btn">등록</button>
-    <button type="reset" class="btn">취소</button>
+    <button class="btn" >등록</button>
+    <button type="reset" class="btn"  onclick="history.back()">취소</button>
    </div>
  </div>
 </form>

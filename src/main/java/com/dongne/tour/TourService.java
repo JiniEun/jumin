@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface TourService {
-	
+
 	int create(TourDTO dto);
 
 	void upcnt(int tid);
@@ -19,8 +19,4 @@ public interface TourService {
 
 	List<TourDTO> list(Map map);
 
-	
-
-	
-	
 }

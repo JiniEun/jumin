@@ -8,9 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <insert id="create"
 		parameterType="Map">
-		insert into treply(trid, tid, content, rdate )
-		values((select nvl(max(trid),0)+1 from treply),
-		#{tid},#{content}, sysdate)
+		insert into treply(trid, tid, content, id, nickname, rdate )
+		values((select nvl(max(trid),0)+1 from treply where tid=#{tid}),
+		#{tid},#{content}, #{id}, #{nickname}, sysdate)
 </insert>
 
 
@@ -26,12 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </delete>  
 
 <select id="list"  parameterType="int" resultType="com.dongne.tour.TreplyDTO">
-	select trid, tid, content, rdate, r 
+	select trid, tid, content, rdate, id, nickname, r 
 		from(
-		 select trid, tid, content, rdate, rownum r 
+		 select trid, tid, content, rdate, id, nickname, rownum r 
 		 from(
-			select trid, tid, content, rdate from treply
+			select trid, tid, content, id, nickname, rdate from treply
 			where tid=#{tid})
+			order by trid desc
 	<![CDATA[       
          )where r >= #{sno} and r<= #{eno}
      	]]>

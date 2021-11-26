@@ -5,8 +5,6 @@ import java.util.Map;
 
 public interface TreplyMapper {
 
-
-
 	int total(int tid);
 
 	int create(Map map);
@@ -18,7 +16,5 @@ public interface TreplyMapper {
 	int total(Map map);
 
 	int update(TreplyDTO dto);
-
-	
 
 }
