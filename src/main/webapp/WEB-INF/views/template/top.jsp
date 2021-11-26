@@ -173,7 +173,7 @@ function closeNav() {
 					<c:otherwise>
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
 							style="color: #5BA6A6; margin-right: 10px;">My Page</a>
-						<a id="recMs" onclick="openNav()" name="recMs" style= "cursor:pointer;margin-right:10px;color:green;"><img src="../resources/images/msgicon.png" style="width:15px;"></a>
+						<a id="recMs" onclick="openNav()" name="recMs" style= "cursor:pointer;margin-right:10px;color:green;"><img src="/images/msgicon.png" style="width:15px;"></a>
 						<a href="${root}/user/logout" class="btn btn-sm btn-color"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:otherwise>
@@ -184,7 +184,7 @@ function closeNav() {
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
 			<a class="navbar-brand" href="${root}/" style="color: #027373;">
-			<img src="./images/dongne.gif" class="logo" width= 101% height=auto  alt="logo" /></a>
+			<img src="/images/dongne.gif" class="logo" width="101%" height="auto" alt="logo" /></a>
 		</div>
 	</nav>
 

@@ -70,14 +70,15 @@
 </head>
 <body>
 	<div class="container-lg" style="margin-top: 10px;">
-		<h2>회원 정보 수정</h2>
+		<h2>회원 정보 변경</h2>
 		<div class="card card-default" style="max-width: 900px;">
-			<form class="updateform" novalidate action="${root}/user/update" method="post"
-				name='frm' enctype="multipart/form-data"
+			<form class="updateform" novalidate action="${root}/user/update"
+				method="post" name='frm' enctype="multipart/form-data"
 				onsubmit="return inCheck(this)">
 				<div class="row g-0">
 					<div class="col-md-4">
-						<div class="d-flex justify-content-center" style="margin-bottom:10px;">
+						<div class="d-flex justify-content-center"
+							style="margin-bottom: 10px;">
 							<c:choose>
 								<c:when test="${empty dto.fileName}">
 									<img src="/images/profile.png" class="img-fluid rounded-start"
@@ -90,12 +91,12 @@
 							</c:choose>
 						</div>
 						<div class="d-flex justify-content-center">
-							<button type="button" class="btn btn-color" onclick="location.href='updateFile'">프로필 사진 변경</button>
+							<button type="button" class="btn btn-color"
+								onclick="location.href='updateFile'">프로필 사진 변경</button>
 						</div>
 					</div>
 					<div class="col-md-8">
 						<div class="card-body">
-
 							<div class="cards">
 								<h5 class="card-title">아이디</h5>
 								<p class="card-text">${dto.ID}</p>
@@ -109,7 +110,7 @@
 
 							<div class="cards">
 								<h5 class="card-title">별명</h5>
-								<div class="col-md-6 mb-3">
+								<div class="col-md-6 pl-0 ml-0 mb-3">
 									<input type="text" class="form-control" id="nickname"
 										placeholder="${dto.nickname}" name="nickname"
 										value="${dto.nickname}" required>
@@ -128,7 +129,7 @@
 
 							<div class="cards">
 								<h5 class="card-title">이메일 주소</h5>
-								<div class="col-md-6 mb-3">
+								<div class="col-md-6 pl-0 ml-0 mb-3">
 									<input type="text" class="form-control col" id="email"
 										placeholder="${dto.email}" name="email" value="${dto.email}"
 										required>
@@ -137,7 +138,7 @@
 
 							<div class="cards">
 								<h5 class="card-title">전화번호</h5>
-								<div class="col-md-6 mb-3">
+								<div class="col-md-6 pl-0 ml-0 mb-3">
 									<input type="tel" class="form-control" id="phone" name="phone"
 										placeholder="${dto.phone }"
 										pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" value="${dto.phone }"
@@ -166,8 +167,8 @@
 				</div>
 				<div style="margin-top: 20px;">
 					<button type="submit" class="btn btn-color">회원 정보 수정</button>
-					<button type="button" class="btn btn-color" onclick="javascript:deleteM('${dto.ID}')">회원
-						탈퇴</button>
+					<button type="button" class="btn btn-color"
+						onclick="javascript:deleteM('${dto.ID}')">회원 탈퇴</button>
 				</div>
 			</form>
 		</div>

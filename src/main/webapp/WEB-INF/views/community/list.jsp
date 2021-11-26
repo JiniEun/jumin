@@ -65,7 +65,7 @@
                     <td>${dto.cid}</td>
                     <td>${dto.category}</td>
                     <td>
-                        <a href="/community/read/${dto.cid}">${dto.title}</a>
+                        <a href="/community/read/${dto.cid}" class="text-dark">${dto.title}</a>
                     </td>
                     <td>${dto.nickname}</td>
                     <td>${dto.rdate}</td>
