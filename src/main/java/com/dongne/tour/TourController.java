@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -204,11 +205,14 @@ public class TourController {
 	}
 
 	@RequestMapping("/tour/list")
-	public String list(HttpServletRequest request) {
+	public String list(HttpServletRequest request, HttpSession session) {
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-
+		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
+		String mydistrictcode = Utility.checkNull((String)session.getAttribute("code"));
+		
+		
 		if (col.equals("total")) {
 			word = "";
 		}
@@ -225,10 +229,12 @@ public class TourController {
 		int eno = nowPage * recordPerPage;
 
 		Map map = new HashMap();
+		map.put("districtcode", districtcode);
 		map.put("col", col);
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
+		System.out.println(districtcode);
 
 		int total = service.total(map);
 
@@ -241,6 +247,8 @@ public class TourController {
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
+		request.setAttribute("districtcode", districtcode);
+		request.setAttribute("mydistrictcode", mydistrictcode);
 		request.setAttribute("paging", paging);
 
 		return "/tour/list";
@@ -305,4 +313,6 @@ public class TourController {
 
 		return strResult;
 	}
+	
+	
 }

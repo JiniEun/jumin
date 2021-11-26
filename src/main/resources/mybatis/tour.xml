@@ -7,15 +7,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.dongne.tour.TourMapper">
 	
 <insert id="create" parameterType="com.dongne.tour.TourDTO">
-		insert into tour(tid, title, writer,nickname, contents, score, filename, rdate )
+		insert into tour(tid, title, districtcode, writer,nickname, contents, score, filename, rdate )
 		values((select nvl(max(tID),0)+1 from tour),
-		#{title},#{writer}, #{nickname}, #{contents}, #{score}, #{filename},
+		#{title}, #{districtcode}, #{writer}, #{nickname}, #{contents}, #{score}, #{filename},
 		to_char(sysdate,'yyyy.mm.dd'))
 </insert>
 	
 
 <select id="read" parameterType="int" resultType="com.dongne.tour.TourDTO">
-        select tid, title, writer, nickname, score, rdate, contents, filename
+        select tid, title, districtcode, writer, nickname, score, rdate, contents, filename
         from tour
         where tid = #{tid}
 </select>
@@ -24,7 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <update id="update"
 		parameterType="com.dongne.tour.TourDTO">
 		update tour
-		set title =#{title},
+		set title = #{title},
+		districtcode= #{districtcode},
 		contents = #{contents},
 		score = #{score},
 		filename=#{filename},
@@ -63,21 +64,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="list" parameterType="Map"
 		resultType="com.dongne.tour.TourDTO">
-		select tid, title, score, writer, nickname, rdate, filename, r
+		select tid, title, districtcode, score, writer, nickname, rdate, filename, r
 		from (
-			select tid, title,score, writer, nickname, rdate, filename, rownum r
+			select tid, title, districtcode, score, writer, nickname, rdate, filename, rownum r
 			from(
-				select tid, title,score, writer, nickname, rdate, filename
+				select tid, title, districtcode, score, writer, nickname, rdate, filename
 				from tour
 				<where>
 				<choose>
 					<when test="col=='title'">
 						title like '%'||#{word}||'%'
 					</when>
+					
 					<when test="col=='writer'">
 						writer like '%'||#{word}||'%'
 					</when>
 				</choose>
+				and districtcode = #{districtcode}
 			  </where>
 		       order by tID desc
 			)
@@ -91,6 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set viewcnt = viewcnt + 1
 		where tid = #{tid}
 </update>
+
 
 
 </mapper>

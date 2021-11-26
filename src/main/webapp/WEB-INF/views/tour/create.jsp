@@ -74,6 +74,33 @@
                     <input type="text" readonly name="nickname" id="nickname" class="form-control" value="${nickname}">
                 </div>
             </div>
+            
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="districtcode">지역</label>
+                <select class="districtcode" name="districtcode">
+					
+				  <option value='' selected>-- 선택 --</option>
+				  <option value="1">서울</option>
+				  <option value="2">부산</option>
+				  <option value="3">대구</option>
+				  <option value="4">인천</option>
+				  <option value="5">광주</option>
+				  <option value="6">대전</option>
+				  <option value="7">울산</option>
+				  <option value="8">세종</option>
+				  <option value="9">경기</option>
+				  <option value="10">강원</option>
+				  <option value="11">충북</option>
+				  <option value="12">충남</option>
+				  <option value="13">전북</option>
+				  <option value="14">전남</option>
+				  <option value="15">경북</option>
+				  <option value="16">경남</option>
+				  <option value="17">제주</option>
+				  
+			</select>
+            </div>
+            
             <div class="form-group">
                 <label class="control-label col-sm-2" for="title">제목</label>
                 <div class="col-sm-8">

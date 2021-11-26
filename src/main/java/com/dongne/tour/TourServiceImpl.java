@@ -53,4 +53,10 @@ public class TourServiceImpl implements TourService {
 		return mapper.list(map);
 	}
 
+	@Override
+	public List<Map> getdistrict(String districtcode) {
+		// TODO Auto-generated method stub
+		return mapper.getdistrict(districtcode);
+	}
+
 }
