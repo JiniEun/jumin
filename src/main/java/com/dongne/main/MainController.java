@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongne.notice.NoticeDTO;
 import com.dongne.notice.NoticeService;
+import com.dongne.region.RegionService;
+import com.dongne.user.UserDTO;
+import com.dongne.user.UserService;
 import com.dongne.utility.LocationDTO;
 import com.dongne.utility.NaverGeoApi;
 import com.dongne.utility.Utility;
@@ -29,6 +32,14 @@ public class MainController {
 	@Qualifier("com.dongne.notice.NoticeServiceImpl")
 	private NoticeService noticeService;
 
+	@Autowired
+	@Qualifier("com.dongne.user.UserServiceImpl")
+	private UserService userService;
+
+	@Autowired
+	@Qualifier("com.dongne.region.RegionServiceImpl")
+	private RegionService regionService;
+
 	@GetMapping("/")
 	public String home(Model model, HttpSession session, HttpServletRequest request) throws Exception {
 
@@ -36,20 +47,23 @@ public class MainController {
 		String realLocation = (String) session.getAttribute("realLocation");
 
 		if (realLocation == null) {
-			
-			// 수정 필요 . 
-			if((String) session.getAttribute("ID")==null) {
+
+			if ((String) session.getAttribute("ID") == null) {
 				realLocation = "서울";
-			}else {
-				realLocation = "서울";
+				session.setAttribute("region", 1);
+			} else {
+				UserDTO dto = userService.read((String) session.getAttribute("ID"));
+				session.setAttribute("region",
+						regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 			}
 		}
 
 		List<String> html = Crawler.covidCrawling(realLocation);
 
-		System.out.println((String) session.getAttribute("realLocation"));
+//		System.out.println((String) session.getAttribute("realLocation"));
+		
 		model.addAttribute("realLocation", (String) session.getAttribute("realLocation"));
-
+		model.addAttribute("region", session.getAttribute("region"));
 		model.addAttribute("html", html);
 
 		Map map = new HashMap();
@@ -75,11 +89,13 @@ public class MainController {
 		if (loc != null)
 			System.out.println("loc" + loc.toString());
 
-		String location = NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude()));
-		System.out.println(location);
+		String realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude()));
+		System.out.println(realLocation);
 
-		session.setAttribute("realLocation", location);
-		model.addAttribute("location", location);
+		session.setAttribute("realLocation", realLocation);
+	
+		model.addAttribute("realLocation", realLocation);
+		model.addAttribute("location", realLocation);
 
 		return "/home";
 	}
