@@ -118,13 +118,12 @@ public class TourController {
 	}
 
 	@PostMapping("/tour/update")
-	public String update(int tid, HttpSession session) {
+	public String update(TourDTO dto, int tid, HttpSession session) {
 
 		String upDir = Tour.getUploadDir();
 
-		TourDTO dto = service.read(tid);
 		// 기존파일 지우고,
-		String oldfile = dto.getFilename();
+		String oldfile = Utility.checkNull(dto.getFilename());
 		String[] filenameArr = oldfile.split(",");
 
 		for (int i = 0; i < filenameArr.length; i++) {
@@ -210,8 +209,12 @@ public class TourController {
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
 		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
-		String mydistrictcode = Utility.checkNull((String)session.getAttribute("realLocation"));
-		System.out.println("mydistrictcode : " + mydistrictcode);
+		//String mydistrictcode = Utility.checkNull((String)session.getAttribute("realLocation"));
+		//System.out.println("mydistrictcode : " + mydistrictcode);
+		
+		//if(districtcode=="") {
+		//	districtcode=mydistrictcode;
+		//}
 		
 		if (col.equals("total")) {
 			word = "";
@@ -248,7 +251,7 @@ public class TourController {
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("districtcode", districtcode);
-		request.setAttribute("mydistrictcode", mydistrictcode);
+		//request.setAttribute("mydistrictcode", mydistrictcode);
 		request.setAttribute("paging", paging);
 
 		return "/tour/list";

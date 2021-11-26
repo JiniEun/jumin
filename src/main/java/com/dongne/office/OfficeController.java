@@ -69,7 +69,7 @@ public class OfficeController {
 		model.addAttribute("dto",service.read(oid));
 		
 		return "/office/update";
-	}
+		}
 	
 	@PostMapping("/office/update")
 	public String update(OfficeDTO dto,int oid) {
@@ -137,6 +137,10 @@ public class OfficeController {
 	public String list(HttpServletRequest request, HttpSession session) {
 		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
 		String mydistrictcode = Utility.checkNull((String)session.getAttribute("code"));
+		
+		if(districtcode=="") {
+			districtcode=mydistrictcode;
+		}
 		
 		Map map = new HashMap();
 		map.put("districtcode",districtcode);

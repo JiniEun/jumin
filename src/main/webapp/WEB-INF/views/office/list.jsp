@@ -66,7 +66,7 @@
 				  <option value="17"<c:if test="${districtcode==17}"> selected</c:if>>제주</option>
 			  </select>
 			<button type="submit">검색</button>
-    </form>
+    	</form>
   </div>  
     <c:choose>
     	<c:when test="${empty list}">
@@ -87,8 +87,9 @@
             <div class="loop">
                 <div class="imgarea" id="imgarea${dto.oname}">
                     <img src="/office/storage/${dto.filename}">
+                    <!--  <img src="/resources/static/images/office/${dto.filename}"> -->
                 </div>
-
+				
                 <div class="detail" id="detail${dto.oid}">
                     
                     <div>▶ 기관명 : ${dto.oname} </div>
