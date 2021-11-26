@@ -32,7 +32,104 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
 	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
 	crossorigin="anonymous"></script>
+<script src="/js/sockjs.min.js"></script>
+<script type="text/javascript">
+var socket = null;
+var sock = new SockJS("/echo");
+socket =sock;
+$(document).ready(function(){
+	if($("#session_id").val()!='')
+            connectWS();
+});
+    $(".chat_start_main").click(function(){
+        $(this).css("display","none");
+        $(".chat_main").css("display","inline");
+    })
+    $(".chat_main .modal-header").click(function(){
+        $(".chat_start_main").css("display","inline");
+        $(".chat_main").css("display","none");
+    });
+ 
+    function connectWS(){
+        sock.onopen = function() {
+               console.log('info: connection opened.');
+        };
+        sock.onmessage = function(e){
+            var splitdata =e.data.split(":");
+            if(splitdata[0].indexOf("recMs") > -1)
+                $("#recMs").append("["+splitdata[1]+"통의 쪽지가 왔습니다.]");
+            else
+                $("#chat").append(e.data + "<br/>");
+        }
+        sock.onclose = function(){
+            $("#chat").append("연결 종료");
+//              setTimeout(function(){conntectWs();} , 10000); 
+        }
+        sock.onerror = function (err) {console.log('Errors : ' , err);};
+ 
+    }
+    /*
+    $("#board1").click(function(){
+        location.href="/board/main_board.do";
+    });
+ 
 
+$("#chatForm").submit(function(event){
+
+
+        event.preventDefault();
+
+
+            sock.send($("#message").val());
+
+
+            $("#message").val('').focus();    
+
+
+    });   */ 
+
+
+</script>
+<script type="text/javascript">
+function openNav() {
+    document.getElementById('mysidenav').style.width = '350px';
+    $.ajax({
+        type:"post",
+        dataType:"json",
+        url:"/message/list",
+        data :{
+        	ID: $("#session_id").val(),
+        },
+        success:function(data){
+            var dataset = data.result;
+            console.log(dataset);
+            dataset.forEach(function(row){
+            console.log(row);
+                /*if($("#"+row.id) != ''){
+                	console.log('if');
+                }else{*/
+                    $("#mysidenav").append("<div id='"+row.id+"'class='letter'><div class='header'><p style='color:white;font-size:20px;margin-left: 20px;'>"+row.title+"</p></div><table><tbody><tr><th>발송일자:  "+row.rdate+"</th><th>발송자: "+row.sendNick+"</th></tr>"+   
+                               "<tr><th>"+row.content+"</th></tr></tbody></table><div class='footer'></div></div>");
+            	/*
+                    if(row.readChk ==0){
+                           $("#"+i+" .footer").append("<input type='button' style='float:right;' id='letter_read' class='btn btn-danger' value='read'/>");
+                     alert('readChk=0');
+                    } 
+                }*/
+            });
+        }
+    })
+    if($("#mysidenav").css("width") =="350px")
+        document.getElementById('mysidenav').style.width = '0';
+        
+}
+function closeNav() {
+    document.getElementById('mysidenav').style.width = '0';
+}
+
+</script>
+
+<link rel="stylesheet" href="/resources/static/css/message_list.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -55,6 +152,7 @@
 					${str}</a>
 			</div>
 			<div class="float-right">
+			<input type="hidden" value="<c:out value='${sessionScope.ID}'/>" id="session_id"/>
 				<c:choose>
 					<c:when test="${empty sessionScope.ID }">
 						<a href="${root}/user/create" tabindex="-1" aria-disabled="true"
@@ -75,6 +173,7 @@
 					<c:otherwise>
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
 							style="color: #5BA6A6; margin-right: 10px;">My Page</a>
+						<a id="recMs" onclick="openNav()" name="recMs" style= "cursor:pointer;margin-right:10px;color:green;"><img src="../resources/images/msgicon.png" style="width:15px;"></a>
 						<a href="${root}/user/logout" class="btn btn-sm btn-color"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:otherwise>
@@ -117,7 +216,8 @@
 
 				<li class="nav-item"><a class="nav-link"
 					href="${root}/community/list">동네 커뮤니티</a></li>
-
+				<li class="nav-item"><a class="nav-link"
+					href="${root}/message/list">메세지</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDarkDropdownMenuLink" role="button"
@@ -128,6 +228,11 @@
 					</div></li>
 
 			</ul>
+			<div id="mysidenav" class="sidenav">
+        <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+        <div id="mssage_send_btn" name="mssage_send_btn" class="btn btn-warning"><p>쪽지 보내기</p></div>
+        
+    </div>
 			<!--  
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"

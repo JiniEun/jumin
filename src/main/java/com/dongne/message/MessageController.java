@@ -1,83 +1,47 @@
 package com.dongne.message;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MessageController {
-	
+
 	@Autowired
-	private MessageDAO messageDao;
-	
-	//메세지 목록
-	@RequestMapping(value = "/message_list.do")
-	public String message_list(HttpServletRequest request, HttpSession session) {
-		String ID = (String)session.getAttribute("ID");
-		
-		MessageDTO dto = new MessageDTO();
-		dto.setID(ID);
-		
-		//메세지 리스트
-		ArrayList<MessageDTO> list = messageDao.messageList(dto);
-		
-		request.setAttribute("list", list);
-		
-		return "message/message_list";
-	}
-	
-	//메세지 목록
-	@RequestMapping(value = "message_ajax_list.do")
-	public String message_ajax_list(HttpServletRequest request, HttpSession session) {
-		String ID = (String)session.getAttribute("ID");
-		
-		MessageDTO dto = new MessageDTO();
-		dto.setID(ID);
-		
-		//메세지 리스트
-		ArrayList<MessageDTO> list = messageDao.messageList(dto);
-		
-		request.setAttribute("list", list);
-		
-		return "message/message_ajax_list";
-	}
-	
-	@RequestMapping(value = "message_content_list.do") 
-	public String message_content_list(HttpServletRequest request, HttpSession session) {
-		int room = Integer.parseInt(request.getParameter("room"));
-		
-		MessageDTO dto = new MessageDTO();
-		dto.setRoom(room);
-		dto.setID((String) session.getAttribute("ID"));
-		
-		//메세지 내용을 가져온다.
-		ArrayList<MessageDTO> clist = messageDao.roomContentList(dto);
-		
-		request.setAttribute("clist", clist);
-		
-		return "message/message_content_list";
-	}
-	
-	//메세지 리스트에서 메세지 보내기
+	@Qualifier("com.dongne.message.MessageServiceImpl")
+	private MessageService service;
+
+	@RequestMapping(value = "/message/list", method = { RequestMethod.POST })
 	@ResponseBody
-	@RequestMapping(value = "/message_send_inlist.do")
-	public int message_send_inlist(@RequestParam int room, @RequestParam String otherID, 
-			@RequestParam String content, HttpSession session) {
-		MessageDTO dto = new MessageDTO();
-		dto.setRoom(room);
-		dto.setSendID((String)session.getAttribute("ID"));
-		dto.setRecvID(otherID);
-		dto.setContent(content);
-		
-		int flag = messageDao.messageSendInList(dto);
-		
-		return flag;
+	public Map<String, Object> findMessageList(@ModelAttribute("dto") MessageDTO dto, HttpServletRequest req,
+			HttpServletResponse resp, ModelMap model) {
+		System.out.println(dto);
+		List<MessageDTO> msg_result = service.findList(dto.getID());
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", msg_result);
+		return result;
+	}
+
+	@RequestMapping(value = "/message/message_proc")
+	public void addMessageSend(@RequestParam String flag, @ModelAttribute("dto") MessageDTO dto,
+			HttpServletRequest req) {
+		switch (flag) {
+		case "insert":
+			service.insertMessage(dto);
+			break;
+		}
 	}
 }

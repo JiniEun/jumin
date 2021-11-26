@@ -41,6 +41,7 @@ dependencies {
  	// https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
  	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
  	implementation 'org.jsoup:jsoup:1.14.3'
+ 	compileOnly 'javax.websocket:javax.websocket-api:1.1'
 }
 
 test {

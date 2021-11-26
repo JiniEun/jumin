@@ -15,11 +15,14 @@ public class TilesConfiguration {
 		configurer.setDefinitions(new String[] { "classpath:/tiles/tiles_user.xml", "classpath:/tiles/tiles_notice.xml",
 				"classpath:/tiles/tiles_club.xml", "classpath:/tiles/tiles_market.xml",
 				"classpath:/tiles/tiles_office.xml", "classpath:/tiles/tiles_tour.xml",
-				"classpath:/tiles/tiles_community.xml", "classpath:/tiles/tiles_fboard.xml"});
+				"classpath:/tiles/tiles_community.xml", "classpath:/tiles/tiles_fboard.xml",
+				"classpath:/tiles/tiles_message.xml" });
 
 		configurer.setCheckRefresh(true);
 		return configurer;
+
 	}
+
 	@Bean
 	public TilesViewResolver tilesViewResolver() {
 		final TilesViewResolver tilesViewResolver = new TilesViewResolver();
