@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Map.Entry;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -41,11 +41,10 @@ public class Utility {
 
 		int result_code = 0;
 
-		for (Map.Entry<Integer, String> entry : region_code.entrySet()) {
-
-			System.out.println("key : " + entry.getKey() + " , value : " + entry.getValue());
-			if (address.contains(entry.getValue())) {
-				result_code = entry.getKey();
+		for (Entry<Integer, String> elem : region_code.entrySet()) {
+//			System.out.println("key : " + elem.getKey() + " , value : " + elem.getValue());
+			if (address.contains(elem.getValue())) {
+				result_code = elem.getKey();
 				break;
 			}
 		}
