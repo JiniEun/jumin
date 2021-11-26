@@ -110,7 +110,7 @@ window.addEventListener('load', () => {
 						<img src="/images/loading.gif" />
 					</div> -->
 					<img id="wicon" src="/images/loading.gif"> <br> <span
-						id="rtemp"></span> <br> <span id="rLoc">${location}</span>
+						id="rtemp"></span> <br> <span id="rLoc">${realLocation}</span>
 				</div>
 				<div class="col-8" style="margin: 10px;">
 					<h4>코로나 정보</h4>
@@ -210,7 +210,7 @@ window.addEventListener('load', () => {
 				</div>
 				<div class="col-8 card" style="margin: 10px;">
 					<div class="card-body" style="padding-bottom: 0px;">
-						<h5 class="card-title">최근 게시물</h5>
+						<h5 class="card-title">최근 공지사항</h5>
 					</div>
 					<ul class="list-group list-group-flush">
 						<c:choose>

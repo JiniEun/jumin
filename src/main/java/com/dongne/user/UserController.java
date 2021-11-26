@@ -73,8 +73,10 @@ public class UserController {
 		if (cnt > 0) {
 			System.out.println(cnt);
 			String grade = service.getGrade(map.get("ID"));
+//			UserDTO user = service.read(map.get("ID"));
 			session.setAttribute("ID", map.get("ID"));
 			session.setAttribute("grade", grade);
+//			session.setAttribute("regionID", user);
 
 			// Cookie 저장, id 저장 여부 및 id
 			Cookie cookie = null;
