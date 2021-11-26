@@ -104,21 +104,20 @@ window.addEventListener('load', () => {
 		<div class="card" style="margin: 30px;">
 			<div class="row" style="height: 200px; margin: 5px;">
 				<div class="col-3" style="margin: 10px;">
-					<!-- <h4>날씨</h4> -->
-<!-- 					<div id="Progress_Loading">
+					<h4>날씨</h4>
+					<!-- 					<div id="Progress_Loading">
 						로딩바
 						<img src="/images/loading.gif" />
 					</div> -->
 					<img id="wicon" src="/images/loading.gif"> <br> <span
 						id="rtemp"></span> <br> <span id="rLoc">${location}</span>
-					<h5 class = "h5-clock"></h5>
-					<script src = "./js/main.js"></script>	
 				</div>
 				<div class="col-8" style="margin: 10px;">
 					<h4>코로나 정보</h4>
 					<div>${html }</div>
 					<!-- Search Google -->
-					<form method=get action="http://www.google.com/search" target="_blank">
+					<form method=get action="http://www.google.com/search"
+						target="_blank">
 						<table>
 							<tr>
 								<td><input type=text name=q size=25 maxlength=255 value="" />
@@ -128,7 +127,7 @@ window.addEventListener('load', () => {
 						</table>
 					</form>
 					<!-- Search Google -->
-					
+
 				</div>
 			</div>
 		</div>
