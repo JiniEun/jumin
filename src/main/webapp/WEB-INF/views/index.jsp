@@ -30,9 +30,11 @@ function getLocation(latitude,longitude){
     	success : function(data){
         	console.log(formdata);
         	document.querySelector("#rLoc").textContent
-            = '${realLocation}'
-            	document.querySelector("#covid").textContent
-                = '${covid}'
+            = '${realLocation}';
+            document.querySelector("#covid").textContent
+                = '${covid}';
+                console.log('realLocation : ' + '${realLocation}');
+                console.log('covid : ' + '${covid}');
     	}
 	}); 
 }
@@ -112,8 +114,7 @@ window.addEventListener('load', () => {
 						<img src="/images/loading.gif" />
 					</div> -->
 					<img id="wicon" src="/images/loading.gif"> <br> <span
-						id="rtemp"></span> <br>
-						<span id="rLoc">${realLocation}</span>
+						id="rtemp"></span> <br> <span id="rLoc">${realLocation}</span>
 				</div>
 				<div class="col-8" style="margin: 10px;">
 					<h4>코로나 정보</h4>
@@ -217,11 +218,11 @@ window.addEventListener('load', () => {
 					</div>
 					<ul class="list-group list-group-flush">
 						<c:choose>
-							<c:when test="${empty list}">
+							<c:when test="${empty noticelist}">
 								<li class="list-group-item">등록된 글이 없습니다.</li>
 							</c:when>
 							<c:otherwise>
-								<c:forEach var="dto" items="${list}">
+								<c:forEach var="dto" items="${noticelist}">
 									<li class="list-group-item"><a
 										href="/notice/read?nID=${dto.NID}&col=&word=&nowPage=1"
 										class="text-dark">${dto.title}</a></li>
