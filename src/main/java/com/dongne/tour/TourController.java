@@ -210,8 +210,8 @@ public class TourController {
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
 		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
-		String mydistrictcode = Utility.checkNull((String)session.getAttribute("code"));
-		
+		String mydistrictcode = Utility.checkNull((String)session.getAttribute("realLocation"));
+		System.out.println("mydistrictcode : " + mydistrictcode);
 		
 		if (col.equals("total")) {
 			word = "";
@@ -234,7 +234,7 @@ public class TourController {
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
-		System.out.println("districtcode : " + districtcode);
+
 
 		int total = service.total(map);
 
@@ -312,4 +312,6 @@ public class TourController {
 
 		return strResult;
 	}
+	
+	
 }

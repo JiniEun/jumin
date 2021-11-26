@@ -20,6 +20,7 @@ grade					VARCHAR2(1)  DEFAULT 'H'  NOT NULL
 ); --13
 
 ALTER TABLE users MODIFY fileName VARCHAR2(50) NULL;
+ALTER TABLE users ADD regionID NUMBER NULL;
 
 COMMENT ON TABLE users is '회원';
 COMMENT ON COLUMN users.ID is '아이디';
@@ -137,6 +138,7 @@ FOREIGN KEY(userID) REFERENCES users(ID) ON DELETE CASCADE
 );
 
 ALTER TABLE fboard ADD nickname VARCHAR2(20)	NOT NULL;
+ALTER TABLE fboard ADD regionID NUMBER NULL;
 
 COMMENT ON TABLE fboard is '매칭게시판';
 COMMENT ON COLUMN fboard.fbID is '글 번호';
@@ -255,9 +257,29 @@ CREATE TABLE cReply(
 
 ALTER TABLE cReply ADD nickname VARCHAR2(20)	NOT NULL;
 
+CREATE TABLE regioncode(
+codeID	NUMBER  NOT NULL  PRIMARY KEY,
+codenum VARCHAR2(3)  NOT NULL,
+region	VARCHAR2(10) NOT NULL
+);
 
-
-
+insert into regioncode values(1, '02','서울');
+insert into regioncode values(2, '051','부산');
+insert into regioncode values(3, '053','대구');
+insert into regioncode values(4, '032','인천');
+insert into regioncode values(5, '062','광주');
+insert into regioncode values(6, '042','대전');
+insert into regioncode values(7, '052','울산');
+insert into regioncode values(8, '044','세종');
+insert into regioncode values(9, '031','경기');
+insert into regioncode values(10, '033','강원');
+insert into regioncode values(11, '043','충북');
+insert into regioncode values(12, '041','충남');
+insert into regioncode values(13, '063','전북');
+insert into regioncode values(14, '061','전남');
+insert into regioncode values(15, '054','경북');
+insert into regioncode values(16, '055','경남');
+insert into regioncode values(17, '064','제주');
 
 
 

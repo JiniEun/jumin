@@ -35,8 +35,15 @@
   <!-- 검색 -->
   <form class="search-form" action="/tour/list">  
     <section class="search">
+<<<<<<< HEAD
              <select class="form-control" name="districtcode">
 				  <option value="${mydistrictcode}">현위치</option>
+=======
+    	<label class="control-label col-sm-2" for="districtcode">지역</label>
+         
+             <select class="districtcode" name="districtcode">
+				  <option value="${mydistrictcode}">현재위치</option>
+>>>>>>> 5a1a877c63b46c701617c13d6274d320e17e8d67
 				  <option value="1"<c:if test="${districtcode==1}"> selected</c:if>>서울</option>
 				  <option value="2"<c:if test="${districtcode==2}"> selected</c:if>>부산</option>
 				  <option value="3"<c:if test="${districtcode==3}"> selected</c:if>>대구</option>
@@ -73,7 +80,11 @@
           
         </select>
 
+<<<<<<< HEAD
         <input style="width : 200px; height : 40px;" type="text" class="form-control" placeholder="검색" name="word" value="${word}">
+=======
+        <input type="text" class="form-control" placeholder="검색" name="word" value="${word}">
+>>>>>>> 5a1a877c63b46c701617c13d6274d320e17e8d67
         <button type="submit">검색</button>
         <button type="button" onclick="location.href='../tour/create'">글쓰기</button>
     </section>
@@ -95,7 +106,11 @@
     	<c:forEach var="dto" items="${list}" begin="0" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>
+<<<<<<< HEAD
 	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span> ${dto.title}</span></a>
+=======
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.districtcode} ${dto.title}</span></a>
+>>>>>>> 5a1a877c63b46c701617c13d6274d320e17e8d67
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
@@ -127,7 +142,11 @@
     	<c:forEach var="dto" items="${list}" begin="1" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>
+<<<<<<< HEAD
 	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span> ${dto.title}</span></a>
+=======
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.districtcode} ${dto.title}</span></a>
+>>>>>>> 5a1a877c63b46c701617c13d6274d320e17e8d67
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
@@ -158,7 +177,7 @@
     	<c:forEach var="dto" items="${list}" begin="2" step="3">
 	        <img src="/tour/storage/${fn:split(dto.filename,',')[0]}" alt="iuhello.jpg"> 
 	        <section class=title>	
-	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a>
+	          <a href="javascript:read('${dto.tid}')"><i class="fab fa-slack-hash"></i>&nbsp<span>${dto.districtcode} ${dto.title}</span></a>
 	          <span id="score">  	
 			        <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 			        <c:if test="${dto.score=='2'}">★★☆☆☆</c:if>

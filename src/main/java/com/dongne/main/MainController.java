@@ -33,16 +33,22 @@ public class MainController {
 	public String home(Model model, HttpSession session, HttpServletRequest request) throws Exception {
 
 		System.out.println("HOME GETMAPPING");
-		String location = (String) session.getAttribute("location");
+		String realLocation = (String) session.getAttribute("realLocation");
 
-		if (location == null) {
-			location = "서울";
+		if (realLocation == null) {
+			
+			// 수정 필요 . 
+			if((String) session.getAttribute("ID")==null) {
+				realLocation = "서울";
+			}else {
+				realLocation = "서울";
+			}
 		}
 
-		List<String> html = Crawler.covidCrawling(location);
+		List<String> html = Crawler.covidCrawling(realLocation);
 
-		System.out.println((String) session.getAttribute("location"));
-		model.addAttribute("location", (String) session.getAttribute("location"));
+		System.out.println((String) session.getAttribute("realLocation"));
+		model.addAttribute("realLocation", (String) session.getAttribute("realLocation"));
 
 		model.addAttribute("html", html);
 
@@ -72,7 +78,7 @@ public class MainController {
 		String location = NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude()));
 		System.out.println(location);
 
-		session.setAttribute("location", location);
+		session.setAttribute("realLocation", location);
 		model.addAttribute("location", location);
 
 		return "/home";
