@@ -65,7 +65,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		nickname = #{nickname},
 		phone = #{phone},
 		address1 = #{address1},
-		address2 = #{address2}
+		address2 = #{address2},
+		regionID = #{regionID}
 		where ID = #{ID}
 	</update>
 
@@ -101,9 +102,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create" parameterType="com.dongne.user.UserDTO">
 		INSERT INTO users(ID, password, uname, nickname, email, phone,
-		address1, address2, gender, birth, rdate,grade)
+		address1, address2, gender, birth, rdate,grade, regionID)
 		VALUES(#{ID}, #{password},#{uname}, #{nickname}, #{email}, #{phone},
-		#{address1}, #{address2}, #{gender}, #{birth}, sysdate,'H')
+		#{address1}, #{address2}, #{gender}, #{birth}, sysdate,'H', #{regionID})
 	</insert>
 	
 	  <!-- 패스워드 검사 -->

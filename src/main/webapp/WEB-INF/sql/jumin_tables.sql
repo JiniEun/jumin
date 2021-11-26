@@ -258,9 +258,9 @@ CREATE TABLE cReply(
 ALTER TABLE cReply ADD nickname VARCHAR2(20)	NOT NULL;
 
 CREATE TABLE regioncode(
-codeID	NUMBER  NOT NULL  PRIMARY KEY,
-codenum VARCHAR2(3)  NOT NULL,
-region	VARCHAR2(10) NOT NULL
+regionID	NUMBER  NOT NULL  PRIMARY KEY,
+regionnum VARCHAR2(3)  NOT NULL,
+region	VARCHAR2(16) NOT NULL
 );
 
 insert into regioncode values(1, '02','서울');
@@ -273,13 +273,15 @@ insert into regioncode values(7, '052','울산');
 insert into regioncode values(8, '044','세종');
 insert into regioncode values(9, '031','경기');
 insert into regioncode values(10, '033','강원');
-insert into regioncode values(11, '043','충북');
-insert into regioncode values(12, '041','충남');
-insert into regioncode values(13, '063','전북');
-insert into regioncode values(14, '061','전남');
-insert into regioncode values(15, '054','경북');
-insert into regioncode values(16, '055','경남');
+insert into regioncode values(11, '043','충청북도');
+insert into regioncode values(12, '041','충청남도');
+insert into regioncode values(13, '063','전라북도');
+insert into regioncode values(14, '061','전라남도');
+insert into regioncode values(15, '054','경상북도');
+insert into regioncode values(16, '055','경상남도');
 insert into regioncode values(17, '064','제주');
 
-
-
+ALTER TABLE fboard ADD regionID NUMBER NULL;
+ALTER TABLE market ADD regionID NUMBER NULL;
+ALTER TABLE club ADD regionID NUMBER NULL;
+ALTER TABLE community ADD regionID NUMBER NULL;

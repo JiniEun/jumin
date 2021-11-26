@@ -17,4 +17,5 @@ public class UserDTO {
 	private String rdate;
 	private String fileName;
 	private String grade; // default 'H'
+	private int regionID; // 지역코드 
 }
