@@ -44,7 +44,7 @@ public class MarketController {
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-//		String category = Utility.checkNull(request.getParameter("category"));
+		String category = Utility.checkNull(request.getParameter("category"));
 
 		if (col.equals("total")) {
 			word = "";
@@ -62,9 +62,9 @@ public class MarketController {
 		int eno = nowPage * recordPerPage;
 
 		Map map = new HashMap();
-//		map.put("col", col);
-//		map.put("word", word);
-//		map.put("category", category);
+		map.put("col", col);
+		map.put("word", word);
+		map.put("category", category);
 		map.put("sno", sno);
 		map.put("eno", eno);
 		map.put("cnt", recordPerPage);
@@ -78,11 +78,12 @@ public class MarketController {
 		// request에 Model사용 결과 담는다
 		request.setAttribute("list", list);
 		request.setAttribute("nowPage", nowPage);
-//		request.setAttribute("category", category);
-//		request.setAttribute("col", col);
-//		request.setAttribute("word", word);
+		request.setAttribute("category", category);
+		request.setAttribute("col", col);
+		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
-		System.out.println(nowPage);
+		System.out.println(category);
+		
 		return "/market/list";
 
 	}
