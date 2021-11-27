@@ -34,7 +34,7 @@ public class MessageController {
 	}
 	
 	//메세지 목록
-	@RequestMapping(value = "message_ajax_list.do")
+	@RequestMapping(value = "/message/message_ajax_list.do")
 	public String message_ajax_list(HttpServletRequest request, HttpSession session) {
 		String ID = (String)session.getAttribute("ID");
 		
@@ -49,7 +49,7 @@ public class MessageController {
 		return "message/message_ajax_list";
 	}
 	
-	@RequestMapping(value = "message_content_list.do") 
+	@RequestMapping(value = "/message/message_content_list.do") 
 	public String message_content_list(HttpServletRequest request, HttpSession session) {
 		int roomID = Integer.parseInt(request.getParameter("roomID"));
 		
@@ -67,7 +67,7 @@ public class MessageController {
 	
 	//메세지 리스트에서 메세지 보내기
 	@ResponseBody
-	@RequestMapping(value = "/message_send_inlist.do")
+	@RequestMapping(value = "/message/message_send_inlist.do")
 	public int message_send_inlist(@RequestParam int roomID, @RequestParam String otherID, 
 			@RequestParam String content, HttpSession session) {
 		MessageDTO dto = new MessageDTO();

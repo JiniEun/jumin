@@ -14,7 +14,7 @@
 					</a>
 				</div> -->
 				<div class="chat_ib">
-					<h5>${tmp.otherID }<span class="chat_date">${tmp.sentTime }</span></h5>
+					<h5>${tmp.otherID }<span class="chat_date">${tmp.sendTime }</span></h5>
 					<div class="row">
 						<div class="col-10">
 							<p>${tmp.content }</p>
@@ -22,7 +22,7 @@
 						<!-- 만약 현재 사용자가 안읽은 메세지 개수가 0보다 클 때만 badge 표시 -->
 						<c:if test="${tmp.unread>0 }">
 							<div class="col-2 unread${tmp.roomID }">
-								<span class="badge bg-danger">${tmp.unread }</span>
+								<span class="badge bg-warning">${tmp.unread }</span>
 							</div>
 						</c:if>
 					</div>

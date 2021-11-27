@@ -32,12 +32,12 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
 	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
 	crossorigin="anonymous"></script>
-<!-- <link rel="stylesheet" href="/resources/static/css/message_list.css"> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap"
 	rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <style type="text/css">
 .btn-color-header {
 	border-color: #193c40;
@@ -98,7 +98,7 @@
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
 							class="link-header-right">My Page</a>
 						<a href="${root}/message/list" tabindex="-1" aria-disabled="true"
-							class="link-header-right">메세지</a>
+							class="link-header-right"><i class="bi bi-messenger" style="font-size: 1.5rem;"></i></a>
 						<a href="${root}/user/logout" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:otherwise>
@@ -144,8 +144,6 @@
 
 				<li class="nav-item"><a class="nav-link"
 					href="${root}/community/list">동네 커뮤니티</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="${root}/message/list">메세지</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDarkDropdownMenuLink" role="button"
