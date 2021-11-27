@@ -39,20 +39,40 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap"
 	rel="stylesheet">
 <style type="text/css">
-.btn-color {
-	border-color: #5BA6A6;
-	color: #5BA6A6;
+.btn-color-header {
+	border-color: #193c40;
+	background-color: #193c40;
+	color: white;
+}
+
+.btn-color-header:hover {
+	border-color: #193c40;
+	background-color: white;
+	color: #193c40;
+}
+
+.link-header-right {
+	color: #193c40;
+	margin-right: 10px;
+}
+
+.header-top {
+	margin: 15px 0;
+}
+
+.greet-ment {
+	color: #93BBBF;
 }
 </style>
 </head>
 <body>
 	<!--상단메뉴-->
-	<nav class="navbar-nav">
-		<div class="container-fluid" style="margin-top: 5px;">
+	<nav class="navbar-nav header-top">
+		<div class="container-fluid">
 			<div class="float-left">
 				<a id="grade" style="color: #bebebc;"><span
-					class="glyphicon glyphicon-grain" style="color: #bebebc;"></span>
-					${str}</a>
+					class="glyphicon glyphicon-grain greet-ment">${str}</span>
+				</a>
 			</div>
 			<div class="float-right">
 				<input type="hidden" value="<c:out value='${sessionScope.ID}'/>"
@@ -60,26 +80,26 @@
 				<c:choose>
 					<c:when test="${empty sessionScope.ID }">
 						<a href="${root}/user/create" tabindex="-1" aria-disabled="true"
-							style="color: #5BA6A6; margin-right: 10px;">sign up</a>
-						<a href="${root}/user/login" class="btn btn-sm btn-color"
+							class="link-header-right">sign up</a>
+						<a href="${root}/user/login" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true">login</a>
 					</c:when>
 					<c:when
 						test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
-							style="color: #5BA6A6; margin-right: 10px;">My Page</a>
-						<a href="${root}/user/mypage" class="btn btn-sm btn-color"
+							class="link-header-right">My Page</a>
+						<a href="${root}/user/mypage" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true"
 							style="margin-right: 10px;">setting</a>
-						<a href="${root}/user/logout" class="btn btn-sm btn-color"
+						<a href="${root}/user/logout" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:when>
 					<c:otherwise>
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
-							style="color: #5BA6A6; margin-right: 10px;">My Page</a>
+							class="link-header-right">My Page</a>
 						<a href="${root}/message/list" tabindex="-1" aria-disabled="true"
-							style="color: #5BA6A6; margin-right: 10px;">메세지</a>
-						<a href="${root}/user/logout" class="btn btn-sm btn-color"
+							class="link-header-right">메세지</a>
+						<a href="${root}/user/logout" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:otherwise>
 				</c:choose>

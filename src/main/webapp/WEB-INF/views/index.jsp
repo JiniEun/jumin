@@ -10,7 +10,7 @@
 <style>
 img.banners {
 	position: absolute;
-	width: 60%;
+	width: 50%;
 	height: auto;
 	left: 10px;
 	top: 10px;
@@ -20,6 +20,11 @@ img.banners {
 .btn-color {
 	background-color: #5BA6A6;
 	color: white;
+}
+
+#wicon {
+	width: 60px;
+	height: 60px;
 }
 </style>
 <script>
@@ -47,10 +52,8 @@ function getLocation(latitude,longitude){
             = '${realLocation}';
             document.querySelector("#covid_region").textContent
                 = '${covid[0]}지역';
-                document.querySelector("#covid_total").textContent
-                = '${covid[1]}';
-                document.querySelector("#covid_today").textContent
-                = '${covid[2]}';
+                document.querySelector("#covid_num").textContent
+                = '${covid[1]} ${covid[2]}';
                 console.log('realLocation : ' + '${realLocation}');
                 console.log('covid : ' + '${covid}');
     	}
@@ -137,10 +140,8 @@ window.addEventListener('load', () => {
 						<div>
 							<h4>코로나 정보</h4>
 							<div id="covid_region" class="h5"></div>
-							<strong> 누적 확진자 </strong>
-							<p class='font-weight-normal' id="covid_total"></p>
-							<strong> 신규 확진자 </strong>
-							<p class='font-weight-normal' id="covid_today"></p>
+							<strong> 누적 확진자 신규 확진자 </strong>
+							<p class='font-weight-normal' id="covid_num"></p>
 						</div>
 					</div>
 					<div class="row">
