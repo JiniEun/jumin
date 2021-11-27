@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dongne.notice.NoticeDTO;
 import com.dongne.notice.NoticeService;
 import com.dongne.region.RegionService;
+import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 import com.dongne.utility.LocationDTO;
 import com.dongne.utility.NaverGeoApi;
@@ -54,35 +55,33 @@ public class MainController {
 			System.out.println("Util : " + Utility.getRegionCode(realLocation));
 			System.out.println("RS : " + regionService.read(Utility.getRegionCode(realLocation)).getRegionID());
 			session.setAttribute("region", regionService.read(Utility.getRegionCode(realLocation)).getRegionID());
+		} else {
+			UserDTO dto = userService.read((String) session.getAttribute("ID"));
+//			session.setAttribute("region", regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
+			System.out.println("dto regionID : " + regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 		}
 
-//			else {
-//			UserDTO dto = userService.read((String) session.getAttribute("ID"));
-//			session.setAttribute("region", regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
-//			System.out.println("else : " + regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
-//		}
-
 		// 코로나 정보 불러오기
-		List<String> covid = Crawler.covidCrawling(realLocation);
-
+		List<String> covidResult = Crawler.covidCrawling(realLocation);
+		
 //		System.out.println((String) session.getAttribute("realLocation"));
 
+		model.addAttribute("covid", covidResult);
 		model.addAttribute("realLocation", realLocation);
 		model.addAttribute("region", session.getAttribute("region"));
-		model.addAttribute("covid", covid);
+
+//		System.out.println("realLocation : " + realLocation);
+//		System.out.println("region : " + session.getAttribute("region"));
 
 		// 최근 공지사항 목록 3개
 		Map map = new HashMap();
 		map.put("sno", 0);
 		map.put("eno", 3);
 
-		List<NoticeDTO> list = noticeService.list(map);
+		List<NoticeDTO> noticelist = noticeService.list(map);
 
 		// request에 Model사용 결과 담는다
-		request.setAttribute("list", list);
-
-		System.out.println("realLocation : " + realLocation);
-		System.out.println("region : " + session.getAttribute("region"));
+		request.setAttribute("noticelist", noticelist);
 
 		return "/home";
 	}
@@ -99,9 +98,10 @@ public class MainController {
 		System.out.println("realLocation : " + realLocation);
 		System.out.println("region : " + session.getAttribute("region"));
 
-		List<String> covid = Crawler.covidCrawling(realLocation);
+		// 코로나 정보 불러오기
+		List<String> covidResult = Crawler.covidCrawling(realLocation);
 
-		model.addAttribute("covid", covid);
+		model.addAttribute("covid", covidResult);
 
 		session.setAttribute("realLocation", realLocation);
 		model.addAttribute("realLocation", realLocation);

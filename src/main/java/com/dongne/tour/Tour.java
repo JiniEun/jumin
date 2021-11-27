@@ -14,8 +14,10 @@ public class Tour {
             System.out.println("Windows 10: " + path);
             
         } else {
-            // System.out.println("Linux");
-            path = "/home/ubuntu/deploy/shopping/contents/storage/";
+//            // System.out.println("Linux");
+//            path = "/home/ubuntu/deploy/shopping/contents/storage/";
+			// 은진 - mac 경로
+			path = "/Users/AIstudy/deploy/jumin/tour/storage/";
         }
         
         return path;

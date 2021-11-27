@@ -10,15 +10,19 @@
 <style>
 img.banners {
 	position: absolute;
-	width: 15%;
+	width: 60%;
 	height: auto;
-	right: 10px;
+	left: 10px;
 	top: 10px;
 	bottom: 10px;
 }
+
+.btn-color {
+	background-color: #5BA6A6;
+	color: white;
+}
 </style>
 <script>
-
 /* $(document).ready(function(){
 	
 	   $('#Progress_Loading').hide(); //첫 시작시 로딩바를 숨겨준다.
@@ -41,8 +45,12 @@ function getLocation(latitude,longitude){
         	console.log(formdata);
         	document.querySelector("#rLoc").textContent
             = '${realLocation}';
-            document.querySelector("#covid").textContent
-                = '${covid}';
+            document.querySelector("#covid_region").textContent
+                = '${covid[0]}지역';
+                document.querySelector("#covid_total").textContent
+                = '${covid[1]}';
+                document.querySelector("#covid_today").textContent
+                = '${covid[2]}';
                 console.log('realLocation : ' + '${realLocation}');
                 console.log('covid : ' + '${covid}');
     	}
@@ -109,43 +117,47 @@ window.addEventListener('load', () => {
      window.navigator.geolocation.getCurrentPosition(showLocation,showError)
   }
 })
-
-
 </script>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="card" style="margin: 30px;">
-			<div class="row" style="height: 200px; margin: 5px;">
+			<div class="row" style="margin: 5px;">
+				<div class="col-3">
+					<a href="http://www.naver.com"><img src="/images/dongne_r.gif"
+						class="banners" alt="배너" /></a>
+				</div>
 				<div class="col-3" style="margin: 10px;">
 					<h4>날씨</h4>
-					<!-- 					<div id="Progress_Loading">
-						로딩바
-						<img src="/images/loading.gif" />
-					</div> -->
 					<img id="wicon" src="/images/loading.gif"> <br> <span
 						id="rtemp"></span> <br> <span id="rLoc">${realLocation}</span>
 				</div>
-				<div class="col-8" style="margin: 10px;">
-					<h4>코로나 정보</h4>
-					<div id="covid">${covid}</div>
-					<!-- Search Google -->
-					<form method=get action="http://www.google.com/search"
-						target="_blank">
-						<table>
-							<tr>
-								<td><input type=text name=q size=25 maxlength=255 value="" />
-									<!-- 구글 검색 입력 창 --> <input type=submit name=btnG
-									value="Google 검색" /> <!-- 검색 버튼 --></td>
-							</tr>
-						</table>
-					</form>
-					<!-- Search Google -->
-					<div class=>
-							<p><a href="http://www.naver.com"><img
-								src="./images/dongne_r.gif" class="banners" alt="배너" /></a>
+				<div class="col-5" style="margin: 10px;">
+					<div class="row">
+						<div>
+							<h4>코로나 정보</h4>
+							<div id="covid_region" class="h5"></div>
+							<strong> 누적 확진자 </strong>
+							<p class='font-weight-normal' id="covid_total"></p>
+							<strong> 신규 확진자 </strong>
+							<p class='font-weight-normal' id="covid_today"></p>
 						</div>
-
+					</div>
+					<div class="row">
+						<!-- Search Google -->
+						<form method="get" action="http://www.google.com/search"
+							target="_blank" class="form-inline">
+							<div class="form-group">
+								<input type="text" class="form-control" name="q" size="25"
+									maxlength="255" value="" />
+							</div>
+							<!-- 구글 검색 입력 창 -->
+							<input type="submit" class="btn btn-color" name="btnG"
+								value="Google 검색" />
+							<!-- 검색 버튼 -->
+						</form>
+					</div>
+					<!-- Search Google -->
 				</div>
 			</div>
 		</div>

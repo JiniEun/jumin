@@ -89,7 +89,7 @@
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
 			<a class="navbar-brand" href="${root}/" style="color: #027373;">
-			<img src="./images/dongne.gif" class="logo" width= 101% height=auto  alt="logo" /></a>
+			<img src="/images/dongne.gif" class="logo" width="101%" height="auto" alt="logo" /></a>
 		</div>
 	</nav>
 

@@ -16,7 +16,9 @@ public class Market {
 
 		} else {
 			// System.out.println("Linux");
-			path = "E:/Aistudy/deploy/dongne/market/storage/";
+//			path = "E:/Aistudy/deploy/dongne/market/storage/";
+			// 은진 - mac 경로
+			path = "/Users/AIstudy/deploy/jumin/market/storage/";
 		}
 
 		return path;
