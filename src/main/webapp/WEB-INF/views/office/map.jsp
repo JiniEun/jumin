@@ -18,10 +18,10 @@ $(window).load(function () {
 	    // 배열값을 마커, 좌표에 넣기
 	for(i=0; i<x.length; i++){
 
-	    
+		var HOME_PATH = window.HOME_PATH || '.';
 		var marker = new naver.maps.Marker({
 		    position: new naver.maps.LatLng(y[i], x[i]),
-		    map: map
+		    map: map,
 
 			});  //marker 생성
 			

@@ -92,7 +92,7 @@
 				
                 <div class="detail" id="detail${dto.oid}">
                     
-                    <div>▶ 기관명 : ${dto.oname} </div>
+                    <div>▶ 기관명 : ${dto.oname}</div>
                     <div>▶ 주소 : ${dto.address}</div>
                     <div><a href="${dto.webaddress}" target="_blank">▶ 홈페이지 : ${dto.webaddress}</a></div>
                     <div>▶ 전화번호 : ${dto.phone}</div>
