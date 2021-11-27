@@ -205,8 +205,10 @@ public class TourController {
 	@RequestMapping("/tour/list")
 	public String list(HttpServletRequest request, HttpSession session) {
 
-		int sv = (Integer) session.getAttribute("region");
-		String mydistrictcode = Integer.toString(sv);
+		
+		int sv=(Integer)session.getAttribute("region");
+		String mydistrictcode=Utility.checkNull(Integer.toString(sv));
+
 		System.out.println("sv : " + sv);
 		System.out.println("mydistrictcode : " + mydistrictcode);
 
@@ -246,7 +248,7 @@ public class TourController {
 
 		List<TourDTO> list = service.list(map);
 
-		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+		String paging3 = Utility.paging3(total, nowPage, recordPerPage, col, word, districtcode);
 
 		// request에 Model사용 결과 담는다
 		request.setAttribute("list", list);
@@ -255,7 +257,7 @@ public class TourController {
 		request.setAttribute("word", word);
 		request.setAttribute("districtcode", districtcode);
 		request.setAttribute("mydistrictcode", mydistrictcode);
-		request.setAttribute("paging", paging);
+		request.setAttribute("paging3", paging3);
 
 		return "/tour/list";
 	}

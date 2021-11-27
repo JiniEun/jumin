@@ -18,15 +18,15 @@ $(window).load(function () {
 	    // 배열값을 마커, 좌표에 넣기
 	for(i=0; i<x.length; i++){
 
-	    
+		var HOME_PATH = window.HOME_PATH || '.';
 		var marker = new naver.maps.Marker({
 		    position: new naver.maps.LatLng(y[i], x[i]),
-		    map: map
+		    map: map,
 
 			});  //marker 생성
 			
 			var contentString = [
-				'<a href="#imgarea'+atcname[i]+'"><div style="border : width:150px;text-align:center;padding:10px;">'+ atcname[i] +'</b>.</div>'
+				'<a href="#imgarea'+atcname[i]+'"><div id="map'+atcname[i]+'" style="border : width:150px;text-align:center;padding:10px;">'+ atcname[i] +'</b>.</div>'
 		    ].join('');	
 		
 		var infoWindow = new naver.maps.InfoWindow({

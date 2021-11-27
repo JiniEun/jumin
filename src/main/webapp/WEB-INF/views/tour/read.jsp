@@ -27,7 +27,7 @@
 	<script> $('.carousel').carousel({interval: 2000}) </script>
 
 
-    <script type="text/javascript">
+<script type="text/javascript">
     function show(star){
     	switch(star){
     	case 1:
@@ -55,7 +55,42 @@
 		location.href = url;
 	}
 
-	
+	function snsShare(snsName, title) {
+
+		if (title === null) return false;
+		
+		//var link=window.location.host+window.location.pathname+window.location.search
+		var link="www.naver.com"
+		var snsPopUp;
+		var _width = '500';
+		var _height = '450';
+		var _left = Math.ceil(( window.screen.width - _width )/2);
+		var _top = Math.ceil(( window.screen.height - _height )/2);
+
+		switch(snsName){
+			case 'facebook':
+				snsPopUp = window.open("http://www.facebook.com/sharer/sharer.php?u=" + link, '', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top);
+				break;
+
+			case 'twitter' :
+				snsPopUp = window.open("http://twitter.com/intent/tweet?url=" + link + "&text=" + title, '', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top);
+				break;
+
+			case 'kakao' :
+				snsPopUp = window.open("https://story.kakao.com/share?url=" + link, '', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top);
+				break;
+
+			case 'addurl' :
+				var dummy = document.createElement("textarea");
+				document.body.appendChild(dummy);
+				dummy.value = link;
+				dummy.select();
+				document.execCommand("copy");
+				document.body.removeChild(dummy);
+				oneBtnModal("URL이 클립보드에 복사되었습니다.");
+				break;
+		}
+	}
 </script>
     
     <title>동네스팟 조회</title>
@@ -110,6 +145,11 @@
     <!-- 내용 -->
 	<section class="title">
         <div><i class="fab fa-slack-hash"></i>&nbsp${dto.title}</div>
+        <div class = "sharebtn">
+	    	<button onclick="snsShare('kakao')"><img src="/resources/static/images/logo/kakao_logo.png"></button>
+	        <button onclick="snsShare('twitter')"><img src="/resources/static/images/logo/twitter_logo.png"></button>
+	        <button onclick="snsShare('facebook')"><img src="/resources/static/images/logo/facebook_logo.png"></button>
+	    </div>
     </section>
 
     <section class="info">
@@ -143,9 +183,13 @@
 	</form>
 	
 	    <section class="btn">
-	        <button onclick="location.href='../tour/list'">목록</button>
-	        <button onclick="updateM()">수정</button>
-	        <button onclick="deleteM()">삭제</button>
+	    	
+	    	<div class="movebtn">
+		        <button onclick="location.href='../tour/list'">목록</button>
+		        <button onclick="updateM()">수정</button>
+		        <button onclick="deleteM()">삭제</button>
+	        </div>
+	        
 	    </section>
 	
 </div>

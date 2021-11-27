@@ -126,7 +126,7 @@
 				<c:choose>
 					<c:when test="${empty list}">
 						<tr>
-							<td colspan="6">등록된 글이 없습니다.</td>
+							<td colspan="6"></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
@@ -163,7 +163,7 @@
 				<c:choose>
 					<c:when test="${empty list}">
 						<tr>
-							<td colspan="6">등록된 글이 없습니다.</td>
+							<td colspan="6"></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
@@ -194,9 +194,7 @@
 			</div>
 		</div>
 
-		<div class="paging">${paging}</div>
-
+		<div class="paging">${paging3}</div>
 	</div>
-
 </body>
 </html>

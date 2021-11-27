@@ -77,60 +77,59 @@
 				<option value="17" <c:if test="${districtcode==17}"> selected</c:if>>제주</option>
 			</select>
 			<button type="submit">검색</button>
-		</form>
-	</div>
-	<c:choose>
-		<c:when test="${empty list}">
-			<div class="container">등록된 글이 없습니다.</div>
-		</c:when>
-		<c:otherwise>
 
-			<div class="container">
-				<section class="api">
-					<button class="street" id="street">거리뷰</button>
-					<div class="map" id="map">maparea</div>
-					<div class="pano" id="pano">panoarea</div>
-				</section>
+    	</form>
+  </div>  
+   
+    <c:choose>
+    	<c:when test="${empty list}">
+    		<tr><td colspan="6">등록된 글이 없습니다.</td></tr>
+    	</c:when>
+    <c:otherwise>
 
-				<section class="looparea">
+    <div class="container">
+        <section class="api">
+            <button class="street" id="street">거리뷰</button>
+            <div class="map" id="map">maparea</div>
+            <div class="pano" id="pano">panoarea</div>
+        </section>
 
-					<c:forEach var="dto" items="${list}">
-						<div class="loop">
-							<div class="imgarea" id="imgarea${dto.oname}">
-								<img src="/office/storage/${dto.filename}">
-								<!--  <img src="/resources/static/images/office/${dto.filename}"> -->
-							</div>
+        <section class="looparea">
+            
+        <c:forEach var="dto" items="${list}">    
+            <div class="loop">
+                <div class="imgarea" id="imgarea${dto.oname}">
+                    <img src="/office/storage/${dto.filename}">
+                    <!--  <img src="/resources/static/images/office/${dto.filename}"> -->
+                </div>
+				
+                <div class="detail" id="detail${dto.oid}">
+                    
+                    <div>▶ 기관명 : ${dto.oname}</div>
+                    <div>▶ 주소 : ${dto.address}</div>
+                    <div><a href="${dto.webaddress}" target="_blank">▶ 홈페이지 : ${dto.webaddress}</a></div>
+                    <div>▶ 전화번호 : ${dto.phone}</div>
+                   
+                    <input type="hidden" id="oid" name="oid" value="${dto.oid}"/>
+                    <button class="moreBtn" onclick="popup(${dto.oid})">로드맵</button>
+                </div>
 
-							<div class="detail" id="detail${dto.oid}">
+                <c:choose>
+		            <c:when test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
+			            <button onclick="updateM('${dto.oid}')">수정</button>
+		        		<button onclick="deleteM('${dto.oid}')">삭제</button>
+	        		</c:when>
+	        	</c:choose>
+	        	
+            </div>
+        </c:forEach>
 
-								<div>▶ 기관명 : ${dto.oname}</div>
-								<div>▶ 주소 : ${dto.address}</div>
-								<div>
-									<a href="${dto.webaddress}" target="_blank">▶ 홈페이지 :
-										${dto.webaddress}</a>
-								</div>
-								<div>▶ 전화번호 : ${dto.phone}</div>
-
-								<input type="hidden" id="oid" name="oid" value="${dto.oid}" />
-								<button class="moreBtn" onclick="popup(${dto.oid})">로드맵</button>
-
-							</div>
-
-							<c:choose>
-								<c:when
-									test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
-									<button onclick="updateM('${dto.oid}')">수정</button>
-									<button onclick="deleteM('${dto.oid}')">삭제</button>
-								</c:when>
-							</c:choose>
-						</div>
-					</c:forEach>
-
-				</section>
-			</div>
-		</c:otherwise>
+       </section>
+    </div>
+	</c:otherwise>
 	</c:choose>
+	
 	<%@ include file="map.jsp"%>
-	</div>
+	
 </body>
 </html>
