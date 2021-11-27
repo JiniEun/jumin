@@ -16,7 +16,8 @@ public class User {
 		} else {
 			// System.out.println("Linux");
 			// 은진 - mac 경로
-			path = "/Users/jules/Study/AIstudy/deploy/dongne/user/storage/";
+			path = "/Users/AIstudy/deploy/jumin/user/storage/";
+
 		}
 
 		return path;

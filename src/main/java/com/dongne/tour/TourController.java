@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -205,23 +204,24 @@ public class TourController {
 
 	@RequestMapping("/tour/list")
 	public String list(HttpServletRequest request, HttpSession session) {
+
 		
 		int sv=(Integer)session.getAttribute("region");
 		String mydistrictcode=Utility.checkNull(Integer.toString(sv));
+
 		System.out.println("sv : " + sv);
 		System.out.println("mydistrictcode : " + mydistrictcode);
-		
+
 		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
-		
-		if(districtcode=="") {
-			districtcode=mydistrictcode;
+
+		if (districtcode == "") {
+			districtcode = mydistrictcode;
 		}
-		
+
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-		
-		
+
 		if (col.equals("total")) {
 			word = "";
 		}
@@ -243,7 +243,6 @@ public class TourController {
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
-
 
 		int total = service.total(map);
 
@@ -321,6 +320,5 @@ public class TourController {
 
 		return strResult;
 	}
-	
-	
+
 }

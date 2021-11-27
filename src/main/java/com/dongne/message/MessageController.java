@@ -18,7 +18,7 @@ public class MessageController {
 	private MessageDAO messageDao;
 	
 	//메세지 목록
-	@RequestMapping(value = "/message_list.do")
+	@RequestMapping(value = "/message/list")
 	public String message_list(HttpServletRequest request, HttpSession session) {
 		String ID = (String)session.getAttribute("ID");
 		
@@ -30,7 +30,7 @@ public class MessageController {
 		
 		request.setAttribute("list", list);
 		
-		return "message/message_list";
+		return "/message/list";
 	}
 	
 	//메세지 목록
@@ -51,10 +51,10 @@ public class MessageController {
 	
 	@RequestMapping(value = "message_content_list.do") 
 	public String message_content_list(HttpServletRequest request, HttpSession session) {
-		int room = Integer.parseInt(request.getParameter("room"));
+		int roomID = Integer.parseInt(request.getParameter("roomID"));
 		
 		MessageDTO dto = new MessageDTO();
-		dto.setRoom(room);
+		dto.setRoomID(roomID);
 		dto.setID((String) session.getAttribute("ID"));
 		
 		//메세지 내용을 가져온다.
@@ -68,15 +68,15 @@ public class MessageController {
 	//메세지 리스트에서 메세지 보내기
 	@ResponseBody
 	@RequestMapping(value = "/message_send_inlist.do")
-	public int message_send_inlist(@RequestParam int room, @RequestParam String otherID, 
+	public int message_send_inlist(@RequestParam int roomID, @RequestParam String otherID, 
 			@RequestParam String content, HttpSession session) {
 		MessageDTO dto = new MessageDTO();
-		dto.setRoom(room);
-		dto.setSendID((String)session.getAttribute("ID"));
-		dto.setRecvID(otherID);
+		dto.setRoomID(roomID);
+		dto.setSender((String)session.getAttribute("ID"));
+		dto.setReceiver(otherID);
 		dto.setContent(content);
 		
-		int flag = messageDao.messageSendInList(dto);
+		int flag = messageDao.messageSendInlist(dto);
 		
 		return flag;
 	}

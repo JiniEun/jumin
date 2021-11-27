@@ -1,7 +1,5 @@
 package com.dongne.office;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,22 +24,22 @@ public class OfficeController {
 	@Autowired
 	@Qualifier("com.dongne.office.OfficeServiceImpl")
 	private OfficeService service;
-	
+
 	@GetMapping("/admin/office/create")
 	public String create(HttpSession session, Model model) {
-		
-		String writer=(String)session.getAttribute("ID");
+
+		String writer = (String) session.getAttribute("ID");
 
 		model.addAttribute("writer", writer);
-		
+
 		return "/office/create";
 	}
-	
+
 	@PostMapping("/office/create")
 	public String create(OfficeDTO dto) {
-		
+
 		String upDir = Office.getUploadDir();
-		
+
 		String fname = Utility.saveFileSpring(dto.getFilenameMF(), upDir);
 		int size = (int) dto.getFilenameMF().getSize();
 
@@ -49,133 +47,131 @@ public class OfficeController {
 			dto.setFilename(fname);
 		} else {
 			dto.setFilename("default.png");
-			};
-		
+		}
+		;
 
-			
-		if(service.create(dto)>0) {
+		if (service.create(dto) > 0) {
 			return "redirect:/office/list";
-		}else {
+		} else {
 			return "error";
 		}
-		
+
 	}
-		
-	
-	
+
 	@GetMapping("/admin/office/update")
 	public String update(int oid, Model model) {
 		System.out.println("oid:" + oid);
-		model.addAttribute("dto",service.read(oid));
-		
+		model.addAttribute("dto", service.read(oid));
+
 		return "/office/update";
-		}
-	
+	}
+
 	@PostMapping("/office/update")
-	public String update(OfficeDTO dto,int oid) {
-		
+	public String update(OfficeDTO dto, int oid) {
+
 		String upDir = Office.getUploadDir();
 		// 기존파일 지우고,
-		String oldfile=dto.getFilename();
+		String oldfile = dto.getFilename();
 		Utility.deleteFile(upDir, oldfile);
-		
+
 		String fname = Utility.saveFileSpring(dto.getFilenameMF(), upDir);
 		int size = (int) dto.getFilenameMF().getSize();
 		if (size > 0) {
 			dto.setFilename(fname);
 		} else {
 			dto.setFilename("default.png");
-			};
-			
+		}
+		;
 
-			
-		int cnt=0;
-		
+		int cnt = 0;
+
 		cnt = service.update(dto);
-		
-		if(cnt==1) {
+
+		if (cnt == 1) {
 			return "redirect:/office/list";
-		}else {
+		} else {
 			System.out.println("실패");
 			return "error";
 		}
 	}
-	
+
 	@GetMapping("/admin/office/delete")
 	public String delete(int oid, Model model) {
-		
-		model.addAttribute("dto",service.read(oid));
-		
+
+		model.addAttribute("dto", service.read(oid));
+
 		return "/office/delete";
 	}
-	
+
 	@PostMapping("/office/delete")
 	public String delete(int oid, HttpServletRequest request, HttpSession session) {
-		
-		OfficeDTO dto=service.read(oid);
-		
+
+		OfficeDTO dto = service.read(oid);
+
 		String upDir = Office.getUploadDir();
 		System.out.println("경로 : " + upDir);
 		// 기존파일 지우고,
-		String oldfile=dto.getFilename();
+		String oldfile = dto.getFilename();
 		System.out.println("파일명 : " + oldfile);
 		Utility.deleteFile(upDir, oldfile);
-		
-		int cnt=0;
-		
+
+		int cnt = 0;
+
 		cnt = service.delete(oid);
-		
-		if(cnt==1) {
+
+		if (cnt == 1) {
 			return "redirect:/office/list";
-		}else {
+		} else {
 			return "error";
 		}
-		
+
 	}
-	
+
 	@RequestMapping("/office/list")
 	public String list(HttpServletRequest request, HttpSession session) {
+
 		int sv=(Integer)session.getAttribute("region");
 		String mydistrictcode=Utility.checkNull(Integer.toString(sv));
+
 		System.out.println("sv : " + sv);
 		System.out.println("mydistrictcode : " + mydistrictcode);
-		
+
 		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
-		
-		if(districtcode=="") {
-			districtcode=mydistrictcode;
+
+		if (districtcode == "") {
+			districtcode = mydistrictcode;
 		}
-		
+
 		Map map = new HashMap();
-		map.put("districtcode",districtcode);
-		
+		map.put("districtcode", districtcode);
+
 		List<OfficeDTO> list = service.list(map);
 
 		request.setAttribute("list", list);
 		request.setAttribute("districtcode", districtcode);
 		request.setAttribute("mydistrictcode", mydistrictcode);
-		
+
 		return "/office/list";
 	}
-	
+
 	@GetMapping("/office/read")
-	public String read(int oid,Model model) {
+	public String read(int oid, Model model) {
 		System.out.println(oid);
-		
-		OfficeDTO dto= service.read(oid);
-		
-		model.addAttribute("dto",dto);
-		
+
+		OfficeDTO dto = service.read(oid);
+
+		model.addAttribute("dto", dto);
+
 		return "/office/read";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/office/read", method = RequestMethod.POST)
 	public String read(HttpServletRequest request) {
-		String oid=request.getParameter("oid");
+		String oid = request.getParameter("oid");
 		System.out.println(oid);
 
 		return "/office/read";
 	}
-	
+
 }

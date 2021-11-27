@@ -103,11 +103,10 @@ public class TreplyController {
 	@ResponseBody
 	public int delete(@PathVariable int trid, @RequestParam("replyid") String replyid, HttpSession session) {
 		String sid = Utility.checkNull((String) session.getAttribute("ID"));
-		
+
 		System.out.println(sid);
 		System.out.println("여가까자ㅣ");
-		
-		
+
 		if (sid.compareTo(replyid) == 0) {
 			System.out.println("아이디 같음");
 			return service.delete(trid);
@@ -120,10 +119,9 @@ public class TreplyController {
 
 	@RequestMapping("/update/{trid}")
 	@ResponseBody
-	public int update(TreplyDTO dto, @PathVariable int trid, @RequestParam("tid") int tid, @RequestParam("replyid") String replyid,
-			@RequestParam("content") String content, HttpSession session) {
-		
-		
+	public int update(TreplyDTO dto, @PathVariable int trid, @RequestParam("tid") int tid,
+			@RequestParam("replyid") String replyid, @RequestParam("content") String content, HttpSession session) {
+
 		String sid = Utility.checkNull((String) session.getAttribute("ID"));
 		System.out.println(sid);
 

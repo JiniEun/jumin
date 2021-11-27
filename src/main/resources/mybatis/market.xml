@@ -12,23 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     from(
                         select mId, viewcnt, title, content, id, category, rdate, fileName, nickname
                         from market
-                                <where>
-                                   <choose>
-                                     <when test="col=='title'">
-                                        title like '%'||#{word}||'%'
-                                    </when>
-                                    <when test="col=='id'">
-                                        id like '%'||#{word}||'%'
-                                    </when>
-                                    <when test="col=='nickname'">
-                                        nickname like '%'||#{word}||'%'
-                                    </when>
-                                    
-                                   
-                                   </choose>
-                                   
-                                </where>
-                                order by mId desc
+<!-- 						where category = #{category}                          -->
+						order by mId desc
                         )
         <![CDATA[       
                 )where r >= #{sno} and r <= #{eno}
@@ -62,17 +47,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE mid = #{mid}
   </select>
      
-  <update id="update" parameterType="com.dongne.market.MarketDTO">
+  <update id="update" parameterType="com.dongne.market.MarketDTO" >
 		update market
 		set title = #{title}, 
 		content = #{content},
+		nickname = #{nickname},
 		filename = #{filename}
 		where mid = #{mid}
 	</update>
 	
 	<update id="updateFile" parameterType="Map">
 		update market
-		set filename = #{filename}
+		set filename = #{filename},
+		title = #{title},
+		content = #{content}
 		where mid = #{mid}
 	</update>
 

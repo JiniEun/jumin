@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongne.notice.NoticeDTO;
@@ -46,34 +45,43 @@ public class MainController {
 		System.out.println("--HOME GETMAPPING-- ");
 		String realLocation = (String) session.getAttribute("realLocation");
 		System.out.println((String) session.getAttribute("ID"));
-		if (realLocation == null || (String) session.getAttribute("ID") == null) {
+
+		if (realLocation == null) {
 			realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(37.541, 126.986));
+
+		}
+
+		if ((String) session.getAttribute("ID") == null) {
+			System.out.println("Util : " + Utility.getRegionCode(realLocation));
+			System.out.println("RS : " + regionService.read(Utility.getRegionCode(realLocation)).getRegionID());
 			session.setAttribute("region", regionService.read(Utility.getRegionCode(realLocation)).getRegionID());
 		} else {
 			UserDTO dto = userService.read((String) session.getAttribute("ID"));
-			session.setAttribute("region", regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
-			System.out.println("else : " + regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
+//			session.setAttribute("region", regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
+			System.out.println("dto regionID : " + regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 		}
 
-		List<String> covid = Crawler.covidCrawling(realLocation);
-
+		// 코로나 정보 불러오기
+		List<String> covidResult = Crawler.covidCrawling(realLocation);
+		
 //		System.out.println((String) session.getAttribute("realLocation"));
 
-		model.addAttribute("realLocation", (String) session.getAttribute("realLocation"));
+		model.addAttribute("covid", covidResult);
+		model.addAttribute("realLocation", realLocation);
 		model.addAttribute("region", session.getAttribute("region"));
-		model.addAttribute("covid", covid);
 
+//		System.out.println("realLocation : " + realLocation);
+//		System.out.println("region : " + session.getAttribute("region"));
+
+		// 최근 공지사항 목록 3개
 		Map map = new HashMap();
 		map.put("sno", 0);
 		map.put("eno", 3);
 
-		List<NoticeDTO> list = noticeService.list(map);
+		List<NoticeDTO> noticelist = noticeService.list(map);
 
 		// request에 Model사용 결과 담는다
-		request.setAttribute("list", list);
-
-		System.out.println("realLocation : " + realLocation);
-		System.out.println("region : " + session.getAttribute("region"));
+		request.setAttribute("noticelist", noticelist);
 
 		return "/home";
 	}
@@ -86,45 +94,18 @@ public class MainController {
 
 		LocationDTO loc = new LocationDTO(Double.parseDouble(latitude), Double.parseDouble(longitude));
 
-		if (loc != null)
-			System.out.println("loc" + loc.toString());
-
 		String realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude()));
 		System.out.println("realLocation : " + realLocation);
 		System.out.println("region : " + session.getAttribute("region"));
 
-		List<String> covid = Crawler.covidCrawling(realLocation);
+		// 코로나 정보 불러오기
+		List<String> covidResult = Crawler.covidCrawling(realLocation);
 
-		model.addAttribute("covid", covid);
+		model.addAttribute("covid", covidResult);
 
 		session.setAttribute("realLocation", realLocation);
 		model.addAttribute("realLocation", realLocation);
 
 		return "/home";
 	}
-
-//	@RequestMapping("/")
-//	public String home(String latitude, String longitude, Model model, HttpSession session) throws Exception {
-//
-//		System.out.println("HOME REQUESTMAPPING");
-//
-//		if (latitude == null && longitude == null) {
-//			latitude = "37.566535";
-//			longitude = "126.977969";
-//		}
-//		
-//		LocationDTO loc = new LocationDTO(Double.parseDouble(latitude), Double.parseDouble(longitude));
-//		System.out.println(loc.toString());
-//		
-//		String location = NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude()));
-//		session.setAttribute("location", location);
-//
-//		List<String> html = Crawler.covidCrawling("www.naver.com", location);
-//
-//		model.addAttribute("html", html);
-//		model.addAttribute("location", location);
-//
-//		return "/home";
-//	}
-
 }

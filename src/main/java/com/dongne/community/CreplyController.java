@@ -1,7 +1,6 @@
 package com.dongne.community;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -107,7 +106,7 @@ public class CreplyController {
 	@ResponseBody
 	public int update(CreplyDTO dto, @PathVariable int crid, @RequestParam("cid") int cid,
 			@RequestParam("content") String content, HttpSession session) {
-		String id = (String) session.getAttribute("ID");
+		String ID = (String) session.getAttribute("ID");
 
 		dto.setContent(content);
 

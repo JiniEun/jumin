@@ -78,7 +78,7 @@ function fileCheck(e) {
 
 // 파일 부분 삭제 함수
 function fileDelete(fileNum){
-    var no = fileNum.replace(/[^0-9]/g, "");
+    var no = fileNum.replace(/[^0-2]/g, "");
     content_files[no].is_delete = true;
 	$('#' + fileNum).remove();
 	fileCount --;
@@ -144,4 +144,3 @@ function fileDelete(fileNum){
 
 </body>
 </html>
-

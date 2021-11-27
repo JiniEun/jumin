@@ -32,50 +32,74 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
 	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
 	crossorigin="anonymous"></script>
-
+<!-- <link rel="stylesheet" href="/resources/static/css/message_list.css"> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap"
 	rel="stylesheet">
 <style type="text/css">
-.btn-color {
-	border-color: #5BA6A6;
-	color: #5BA6A6;
+.btn-color-header {
+	border-color: #193c40;
+	background-color: #193c40;
+	color: white;
+}
+
+.btn-color-header:hover {
+	border-color: #193c40;
+	background-color: white;
+	color: #193c40;
+}
+
+.link-header-right {
+	color: #193c40;
+	margin-right: 10px;
+}
+
+.header-top {
+	margin: 15px 0;
+}
+
+.greet-ment {
+	color: #93BBBF;
 }
 </style>
 </head>
 <body>
 	<!--상단메뉴-->
-	<nav class="navbar-nav">
-		<div class="container-fluid" style="margin-top: 5px;">
+	<nav class="navbar-nav header-top">
+		<div class="container-fluid">
 			<div class="float-left">
 				<a id="grade" style="color: #bebebc;"><span
-					class="glyphicon glyphicon-grain" style="color: #bebebc;"></span>
-					${str}</a>
+					class="glyphicon glyphicon-grain greet-ment">${str}</span>
+				</a>
 			</div>
 			<div class="float-right">
+				<input type="hidden" value="<c:out value='${sessionScope.ID}'/>"
+					id="session_id" />
 				<c:choose>
 					<c:when test="${empty sessionScope.ID }">
 						<a href="${root}/user/create" tabindex="-1" aria-disabled="true"
-							style="color: #5BA6A6; margin-right: 10px;">sign up</a>
-						<a href="${root}/user/login" class="btn btn-sm btn-color"
+							class="link-header-right">sign up</a>
+						<a href="${root}/user/login" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true">login</a>
 					</c:when>
 					<c:when
 						test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
-							style="color: #5BA6A6; margin-right: 10px;">My Page</a>
-						<a href="${root}/user/mypage" class="btn btn-sm btn-color"
+							class="link-header-right">My Page</a>
+						<a href="${root}/user/mypage" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true"
 							style="margin-right: 10px;">setting</a>
-						<a href="${root}/user/logout" class="btn btn-sm btn-color"
+						<a href="${root}/user/logout" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:when>
 					<c:otherwise>
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
-							style="color: #5BA6A6; margin-right: 10px;">My Page</a>
-						<a href="${root}/user/logout" class="btn btn-sm btn-color"
+							class="link-header-right">My Page</a>
+						<a href="${root}/message/list" tabindex="-1" aria-disabled="true"
+							class="link-header-right">메세지</a>
+						<a href="${root}/user/logout" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:otherwise>
 				</c:choose>
@@ -84,12 +108,15 @@
 	</nav>
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
-			<a class="navbar-brand" href="${root}/" style="color: #027373;">Dongne</a>
+			<a class="navbar-brand" href="${root}/" style="color: #027373;">
+				<img src="/images/dongne.gif" width="auto" height="auto" alt="logo" />
+			</a>
 		</div>
 	</nav>
 
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<div class="navbar-collapse collapse justify-content-center" id="navbarSupportedContent">
+		<div class="navbar-collapse collapse justify-content-center"
+			id="navbarSupportedContent">
 			<ul class="nav navbar-nav navbar-center justify-content-center">
 				<li class="nav-item active"><a class="nav-link" href="${root}/">Home
 						<span class="sr-only">(current)</span>
@@ -117,16 +144,17 @@
 
 				<li class="nav-item"><a class="nav-link"
 					href="${root}/community/list">동네 커뮤니티</a></li>
-
+				<li class="nav-item"><a class="nav-link"
+					href="${root}/message/list">메세지</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDarkDropdownMenuLink" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="${root}/notice/list">공지사항</a> <a
-							class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A Chatbot</a>
+							class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A
+							Chatbot</a>
 					</div></li>
-
 			</ul>
 			<!--  
 			<form class="form-inline my-2 my-lg-0">
