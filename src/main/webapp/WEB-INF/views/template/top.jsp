@@ -32,8 +32,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
 	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
 	crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="/resources/static/css/message_list.css">
+<!-- <link rel="stylesheet" href="/resources/static/css/message_list.css"> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -56,7 +55,8 @@
 					${str}</a>
 			</div>
 			<div class="float-right">
-			<input type="hidden" value="<c:out value='${sessionScope.ID}'/>" id="session_id"/>
+				<input type="hidden" value="<c:out value='${sessionScope.ID}'/>"
+					id="session_id" />
 				<c:choose>
 					<c:when test="${empty sessionScope.ID }">
 						<a href="${root}/user/create" tabindex="-1" aria-disabled="true"
@@ -89,12 +89,14 @@
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
 			<a class="navbar-brand" href="${root}/" style="color: #027373;">
-			<img src="/images/dongne.gif" class="logo" width="101%" height="auto" alt="logo" /></a>
+				<img src="/images/dongne.gif" width="auto" height="auto" alt="logo" />
+			</a>
 		</div>
 	</nav>
 
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<div class="navbar-collapse collapse justify-content-center" id="navbarSupportedContent">
+		<div class="navbar-collapse collapse justify-content-center"
+			id="navbarSupportedContent">
 			<ul class="nav navbar-nav navbar-center justify-content-center">
 				<li class="nav-item active"><a class="nav-link" href="${root}/">Home
 						<span class="sr-only">(current)</span>
@@ -122,17 +124,18 @@
 
 				<li class="nav-item"><a class="nav-link"
 					href="${root}/community/list">동네 커뮤니티</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="${root}/message/list">메세지</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#"
 					id="navbarDarkDropdownMenuLink" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="${root}/notice/list">공지사항</a> <a
-							class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A Chatbot</a>
+							class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A
+							Chatbot</a>
 					</div></li>
-
 			</ul>
-		
 			<!--  
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
