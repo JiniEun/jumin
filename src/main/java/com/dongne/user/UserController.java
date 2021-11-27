@@ -162,7 +162,6 @@ public class UserController {
 	@PostMapping("/create")
 	public String create(UserDTO dto, HttpServletRequest request) {
 
-		System.out.println(dto.toString());
 		dto.setRegionID(regionservice.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 
 		if (service.create(dto) > 0) {
@@ -214,8 +213,6 @@ public class UserController {
 
 	@PostMapping("/update")
 	public String update(UserDTO dto, Model model, HttpSession session) {
-
-		System.out.println(dto.toString());
 
 		String grade = (String) session.getAttribute("grade");
 		System.out.println(grade);
@@ -358,5 +355,40 @@ public class UserController {
 
 		return "/user/read";
 	}
+	
+	@GetMapping("/userfind")
+	public String userfind(HttpSession session) {
+		if ((String) session.getAttribute("ID") != null) {
+			return "redirect:/";
+		}
+		return "/user/userfind";
+	}
+	
+//	@PostMapping("/userfind")
+//	public String userfind(HttpServletRequest request, String email, String phone, HttpSession session) {
+//
+//		Map map = new HashMap();
+//		map.put("email", email);
+//		map.put("phone", phone);
+//		int pcnt = service.password(map);
+//		System.out.println(map);
+//
+//		int cnt = 0;
+//		if (pcnt == 1) {
+//			cnt = service.delete(ID);
+//		}
+//
+//		if (pcnt != 1) {
+//			return "passwdError";
+//		} else if (cnt == 1) {
+//			if (ID.equals(session.getAttribute("ID"))) {
+//				session.invalidate();
+//			}
+//			return "redirect:/";
+//		} else {
+//			return "error";
+//		}
+//
+//	}
 
 }

@@ -44,7 +44,6 @@ public class MainController {
 
 		System.out.println("--HOME GETMAPPING-- ");
 		String realLocation = (String) session.getAttribute("realLocation");
-		System.out.println((String) session.getAttribute("ID"));
 
 		if (realLocation == null) {
 			realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(37.541, 126.986));
@@ -52,18 +51,20 @@ public class MainController {
 		}
 
 		if ((String) session.getAttribute("ID") == null) {
-			System.out.println("Util : " + Utility.getRegionCode(realLocation));
-			System.out.println("RS : " + regionService.read(Utility.getRegionCode(realLocation)).getRegionID());
+			System.out.println("session ID == null");
 			session.setAttribute("region", regionService.read(Utility.getRegionCode(realLocation)).getRegionID());
 		} else {
 			UserDTO dto = userService.read((String) session.getAttribute("ID"));
+			System.out.println("session ID : " + dto.getID());
+//			System.out.println("BUG " + Utility.getRegionCode(dto.getAddress1()) + dto.getAddress1());
 //			session.setAttribute("region", regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
-			System.out.println("dto regionID : " + regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
+			System.out.println(
+					"dto regionID : " + regionService.read(Utility.getRegionCode(dto.getAddress1())).getRegionID());
 		}
 
 		// 코로나 정보 불러오기
 		List<String> covidResult = Crawler.covidCrawling(realLocation);
-		
+
 //		System.out.println((String) session.getAttribute("realLocation"));
 
 		model.addAttribute("covid", covidResult);

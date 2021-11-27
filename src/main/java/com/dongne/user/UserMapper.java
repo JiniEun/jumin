@@ -28,5 +28,9 @@ public interface UserMapper {
 	int delete(String ID);
 	
 	int password(Map map);
+	
+	String findID(Map map);
+	
+	String findPw(Map map);
 
 }

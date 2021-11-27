@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+img.banners {
+	text-align: center;
+	display: block;
+	width: auto;
+	height: 140px;
+}
+
+.btn-color {
+	background-color: #5BA6A6;
+	color: white;
+}
+
+#wicon {
+	width: 60px;
+	height: 60px;
+	display: block;
+	text-align: center;
+}
+
+.l-flex{
+	display: flex;
+	justify-content: center;
+}
+
+.txt-temp {
+	display: flex;
+    align-items: center;
+    font-size:20px;
+}
+
+.txt-covid {
+	display: flex;
+    flex-direction: column;
+}
+
+.d-flex {
+	display: flex;
+}
+
+#covid_region{
+	display: flex;
+    align-items: center;
+}
+
+.ml-20 {
+	margin-left: 20px;
+}
+
+.d-flex-end {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.txt-location {
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#rLoc{
+	font-size:30px;
+	display: flex;
+	justify-content: center;
+}
+
+.img-quote {
+	width:90px;
+	height:90px;
+}
+
+.img-quote-r {
+	width:90px;
+	height:90px;
+	transform: rotate( -180deg );
+}

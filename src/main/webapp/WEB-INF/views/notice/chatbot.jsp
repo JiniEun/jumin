@@ -21,10 +21,10 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-8 mx-auto">
 				<form class="form-inline">
-					<div class="form-group" style="margin-bottom: 20px;">
-						<button id="connect" class="btn btn-color" type="submit">대화
+					<div class="form-group mb-0" style="margin-bottom: 20px;">
+						<button id="connect" class="btn btn-color btn-l" type="submit">대화
 							시작</button>
-						<button id="disconnect" class="btn btn-color" type="submit"
+						<button id="disconnect" class="btn btn-color btn-r" type="submit"
 							disabled="disabled">대화 종료</button>
 					</div>
 				</form>
@@ -44,7 +44,7 @@
 								<input type="text" id="msg" class="form-control"
 									placeholder="예시 : 로그인이 안 돼요" value=""
 									style="width: 400px; margin-right: 10px;" required>
-								<button id="send" class="btn btn-color" disabled type="submit">◃</button>
+								<button id="send" class="btn btn-send" disabled type="submit">◃</button>
 							</div>
 						</div>
 
@@ -54,27 +54,27 @@
 			<div class="input-form col-md-4 mx-auto">
 				<div class="card-title">자주 하는 질문 목록</div>
 				<ul class="list-group list-group-flush">
-					<li class="question list-group-item"><a class="text-primary">Q. 로그인이 안 돼요</a>
+					<li class="question list-group-item"><a class="txt-question">Q. 로그인이 안 돼요</a>
 						<ul class="hide">
 							<li class="list">A. 고객센터로 문의 메일 부탁드립니다.</li>
 						</ul></li>
 
-					<li class="question list-group-item"><a class="text-primary">Q. 회원가입이 안됩니다</a>
+					<li class="question list-group-item"><a class="txt-question">Q. 회원가입이 안됩니다</a>
 						<ul class="hide">
 							<li>A. 회원가입이 되지 않을 경우 문의 주세요</li>
 						</ul></li>
 
-					<li class="question list-group-item"><a class="text-primary">Q. 친구매칭이 안 돼요</a>
+					<li class="question list-group-item"><a class="txt-question">Q. 친구매칭이 안 돼요</a>
 						<ul class="hide">
 							<li>A. 회원가입이 되지 않을 경우 문의 주세요</li>
 						</ul></li>
 
-					<li class="question list-group-item"><a class="text-primary">Q. 고객센터 문의할게 있어요</a>
+					<li class="question list-group-item"><a class="txt-question">Q. 고객센터 문의할게 있어요</a>
 						<ul class="hide">
 							<li>A. 회원가입이 되지 않을 경우 문의 주세요</li>
 						</ul></li>
 
-					<li class="question list-group-item"><a class="text-primary">Q. 관리자로 어떻게 등록하나요</a>
+					<li class="question list-group-item"><a class="txt-question">Q. 관리자로 어떻게 등록하나요</a>
 						<ul class="hide">
 							<li>A. 회원가입이 되지 않을 경우 문의 주세요</li>
 						</ul></li>

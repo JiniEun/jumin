@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserMapper mapper;
-	
+
 	@Override
 	public int duplicatedId(String id) {
 		// TODO Auto-generated method stub
@@ -82,6 +82,18 @@ public class UserServiceImpl implements UserService {
 	public int password(Map map) {
 		// TODO Auto-generated method stub
 		return mapper.password(map);
+	}
+
+	@Override
+	public String findID(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.findID(map);
+	}
+
+	@Override
+	public String findPw(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.findPw(map);
 	}
 
 }
