@@ -26,7 +26,7 @@ $(window).load(function () {
 			});  //marker 생성
 			
 			var contentString = [
-				'<a href="#imgarea'+atcname[i]+'"><div style="border : width:150px;text-align:center;padding:10px;">'+ atcname[i] +'</b>.</div>'
+				'<a href="#imgarea'+atcname[i]+'"><div id="map'+atcname[i]+'" style="border : width:150px;text-align:center;padding:10px;">'+ atcname[i] +'</b>.</div>'
 		    ].join('');	
 		
 		var infoWindow = new naver.maps.InfoWindow({
