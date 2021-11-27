@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,6 +49,20 @@ public class Utility {
 		}
 
 		return result_code;
+
+	}
+	
+	public static String getCategorycode(String code) {
+		String category = null;
+		Map<String, String> codes = new HashMap<String, String>();
+
+		codes.put("1", "가전");
+		codes.put("2", "전자");
+		codes.put("3", "의류");
+		codes.put("4", "기타");
+	
+		category = codes.get(code);
+		return category;
 
 	}
 

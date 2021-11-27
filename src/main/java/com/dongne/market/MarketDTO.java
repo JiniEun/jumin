@@ -16,6 +16,7 @@ public class MarketDTO {
 	private String nickname;
 	private String category;
 	private String filename;
+	private String districtcode;
 	private MultipartFile filenameMF;
 
 }

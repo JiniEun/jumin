@@ -7,43 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>마켓 메인 페이지</title>
-<style>
-#form {
-	padding: 2em 0 2em 0;
-}
-
-#top {
-	padding: 2em 0 4em 0;
-}
-
-#g1 {
-	margin-bottom: 40px;
-}
-
-.tm-paging-item {
-	list-style: none;
-	display: inline-block;
-	border: 1px solid #5BA6A6;
-	margin: 7px;
-}
-
-.tm-paging-link {
-	padding: 10px 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-decoration: none;
-	color: #5BA6A6;
-	background-color: transparent;
-}
-
-.tm-paging-link.active, .tm-paging-link:hover {
-	background-color: #5BA6A6;
-	color: white;
-	text-decoration: none;
-}
-</style>
-
+<link rel="stylesheet" href="/resources/static/css/market_list.css">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script>
 	function read(mid) {
 		var url = "read";
@@ -91,46 +56,96 @@
 
 				</p>
 			</div>
+			 <br>
+        <form class="form-inline" action="./list">
+            <div class="form-group">
+                <select class="form-control" name="col" style="margin-right:10px;">
+                    <option value="total"
+			        <c:if test= "${col=='total'}"> selected </c:if>
+			        >전체출력</option> 
+			        <option value="nickname"
+			        <c:if test= "${col=='nickname'}"> selected </c:if>
+			        >닉네임</option>
+			        <option value="title"
+			        <c:if test= "${col=='title'}"> selected </c:if>
+			        >제목</option>
+			        			        			        
+			          
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="검색어를 입력하세요" name="word" value="${word}" style="margin-right:10px;">
+            </div>
+            <button type="submit" class="btn" style="background-color: 	#5BA6A6; color: white; margin-right:10px;">검색</button>           
+        </form>
+<!-- 			<div class="tm-paging-links"> -->
+<!-- 				<nav>					 -->
+<!-- 					<ul id="g1" class="col-12 text-center"> -->
+<!-- 						<li class="tm-paging-item" id="one" ><a href="#" class="tm-paging-link active" >가구</a></li> -->
+<!-- 						<li class="tm-paging-item" ><a href="#" class="tm-paging-link" >전자</a></li> -->
+<!-- 						<li class="tm-paging-item" ><a href="#" class="tm-paging-link" >의류</a></li> -->
+<!-- 						<li class="tm-paging-item" ><a href="#" class="tm-paging-link" >기타</a></li> -->
 
-			<div class="tm-paging-links">
-				<nav>
+<!-- 					</ul> -->
 
-					<ul id="g1" class="col-12 text-center">
-
-						<li class="tm-paging-item" id="one"><a href="#"
-							class="tm-paging-link active"> 가구</a></li>
-						<li class="tm-paging-item"><a href="#" class="tm-paging-link">
-								전자</a></li>
-						<li class="tm-paging-item"><a href="#" class="tm-paging-link">
-								의류</a></li>
-						<li class="tm-paging-item"><a href="#" class="tm-paging-link">
-								기타</a></li>
-
-					</ul>
-
-				</nav>
-			</div>
+<!-- 				</nav> -->
+<!-- 			</div> -->
 
 			<c:set var="list" value="${list}" />
 			<div class="row">
 
-				<c:forEach var="dto" begin="0" end="7" items="${list}">
+				<c:forEach var="dto" begin="0" end="3" items="${list}">
 					<div class="col-sm-3">
 						<div class="tm-gallery-page" id="tm-gallery-page-1">
 
 							<div class="col-10 col-10-medium">
 								<!-- Box -->
 								<section class="box feature">
-									<a href="javascript:read('${dto.mid}')" class="image featured">
+								<div class="mainimg">
+									<a href="javascript:read('${dto.mid}')" class="images">
 										<img src="/market/storage/${fn:split(dto.filename,',')[0]}"
-										alt="" width="300" height="300" />
+										alt="" width="236" height="250" />
 									</a>
-									<div class="card border-0">
-										<h4 class="card-title">${dto.title}</h4>
-										<p class="card-text">조회수 : ${dto.viewcnt}</p>
-										<p class="card-text">작성자 : ${dto.nickname}</p>
-										<p class="card-text">카테고리 : ${dto.category}</p>
-									</div>
+								</div>
+								<div class="info">
+										<h6 class="card-title">${dto.title}</h6>
+										<div style="color:#808088">
+										<i class="fas fa-user"></i>&nbsp<span class="card-text">${dto.nickname}</span>
+										</div>
+										<br>
+										<span class="card-text">카테고리 : ${dto.category}</span><br>
+										<span class="card-text">조회수 : ${dto.viewcnt}</span>
+								</div>
+								</section>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			
+			<div class="row">
+
+				<c:forEach var="dto" begin="4" end="7" items="${list}">
+					<div class="col-sm-3">
+						<div class="tm-gallery-page" id="tm-gallery-page-1">
+
+							<div class="col-10 col-10-medium">
+								<!-- Box -->
+								<section class="box feature">
+									<a href="javascript:read('${dto.mid}')" class="images">
+										<img src="/market/storage/${fn:split(dto.filename,',')[0]}"
+										alt="" width="236" height="306" />
+									</a>
+									<div class="info">
+									
+										<h6 class="card-title">${dto.title}</h6>
+										<div style="color:#808088">
+										<i class="fas fa-user"></i>&nbsp<span class="card-text">${dto.nickname}</span>
+										</div>
+										<br>
+										<span class="card-text">카테고리 : ${dto.category}</span><br>
+										<span class="card-text">조회수 : ${dto.viewcnt}</span>
+								</div>
 								</section>
 							</div>
 						</div>
@@ -138,76 +153,7 @@
 				</c:forEach>
 			</div>
 
-			<%-- 			<c:forEach var="dto" begin="4" end="7" items="${list}">	 --%>
-			<!-- 				<div class="tm-gallery-page hidden" id="tm-gallery-page-2"> -->
-
-			<!-- 				<div class="col-4 col-12-medium"> -->
-
-			<!-- 					Box -->
-			<!-- 					<section class="box feature"> -->
-			<%-- 						<a href="/market/read/${dto.mid}" class="image featured"><img --%>
-			<%-- 							src="/market/storage/${fn:split(dto.filename,',')[0]}" alt="" width="300" --%>
-			<!-- 							height="300" /></a> -->
-			<!-- 						<div class="inner"> -->
-			<!-- 							<header> -->
-			<%-- 								<h4>${dto.title}</h4> --%>
-			<%-- 								<p>${dto.id}</p> --%>
-
-			<!-- 							</header> -->
-			<!-- 							<p>서울시 강남구</p> -->
-			<!-- 						</div> -->
-			<!-- 					</section> -->
-			<!-- 				</div> -->
-
-			<!-- 				</div> -->
-			<%-- 			</c:forEach>	 --%>
-			<%-- 			<c:forEach var="dto" begin="4" end="7" items="${list}"> --%>
-			<!-- 				<div class="tm-gallery-page hidden" id="tm-gallery-page-3"> -->
-
-			<!-- 				<div class="col-4 col-12-medium"> -->
-
-			<!-- 					Box -->
-			<!-- 					<section class="box feature"> -->
-			<!-- 						<a href="/market/read/" class="image featured"><img -->
-			<%-- 							src="/market/storage/${fn:split(dto.filename,',')[0]}" alt="" width="300" --%>
-			<!-- 							height="300" /></a> -->
-			<!-- 						<div class="inner"> -->
-			<!-- 							<header> -->
-			<%-- 								<h4>${dto.title}</h4> --%>
-			<%-- 								<p>${dto.id}</p> --%>
-
-			<!-- 							</header> -->
-			<!-- 							<p>서울시 강남구</p> -->
-			<!-- 						</div> -->
-			<!-- 					</section> -->
-			<!-- 				</div> -->
-
-			<!-- 				</div> -->
-			<%-- 			</c:forEach> --%>
-			<%-- 			<c:forEach var="dto" begin="4" end="7" items="${list}"> --%>
-			<!-- 			<div class="tm-gallery-page hidden" id="tm-gallery-page-4"> -->
-
-
-			<!-- 				<div class="col-4 col-12-medium"> -->
-
-			<!-- 					Box -->
-			<!-- 					<section class="box feature"> -->
-			<!-- 						<a href="/market/read/" class="image featured"><img -->
-			<%-- 							src="/market/storage/${fn:split(dto.filename,',')[0]}" alt="" width="300" --%>
-			<!-- 							height="300" /></a> -->
-			<!-- 						<div class="inner"> -->
-			<!-- 							<header> -->
-			<%-- 								<h4>${dto.title}</h4> --%>
-			<%-- 								<p>${dto.id}</p> --%>
-
-			<!-- 							</header> -->
-			<!-- 							<p>서울시 강남구</p> -->
-			<!-- 						</div> -->
-			<!-- 					</section> -->
-			<!-- 				</div> -->
-
-			<!-- 				</div> -->
-			<%-- 			</c:forEach> --%>
+			
 			<div style="margin-top:30px; margin-left:10px;">${paging}</div>
 		</div>
 	</div>
