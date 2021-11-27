@@ -122,7 +122,7 @@
       <div class="imageFlex2">
 		<c:choose>
     	<c:when test="${empty list}">
-    		<tr><td colspan="6">등록된 글이 없습니다.</td></tr>
+    		<tr><td colspan="6"></td></tr>
     	</c:when>
     	<c:otherwise>
     
@@ -157,7 +157,7 @@
       <div class="imageFlex3">
 		<c:choose>
     	<c:when test="${empty list}">
-    		<tr><td colspan="6">등록된 글이 없습니다.</td></tr>
+    		<tr><td colspan="6"></td></tr>
     	</c:when>
     <c:otherwise>
     

@@ -24,7 +24,13 @@ body{
     
 }
 
-a:hover{
+.carousel-control-next a:hover{
+    color : var(--secondcolor);
+    transition : 0.5s; 
+    transform: scale(1.2); 
+}
+
+.carousel-control-prev a:hover{
     color : var(--secondcolor);
     transition : 0.5s; 
     transform: scale(1.2); 
@@ -165,7 +171,7 @@ img:hover{
 }
 
 
-button:hover{
+.btn button:hover{
     background-color : var(--secondcolor);
 }
 
