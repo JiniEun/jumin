@@ -59,7 +59,7 @@
 
   .container{
       display : flex;
-      margin : 5px auto;
+      margin : 1px auto;
       height : 100%;
       width : 100%;
       justify-content: space-between;
