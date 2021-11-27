@@ -46,7 +46,7 @@
  </update>
  
  <!--메세지리스트에서 메세지 보내기-->
- <insert id="messageSendInList" parameterType="com.dongne.message.MessageDTO">
+ <insert id="messageSendInlist" parameterType="com.dongne.message.MessageDTO">
  	<choose>
  		<when test="roomID != 0">
  			insert into message values(0, #{sender}, #{receiver}, #{content}, sysdate, #{roomID}, sysdate, 0);

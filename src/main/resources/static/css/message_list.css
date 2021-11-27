@@ -1,14 +1,13 @@
 @charset "UTF-8";
-
+/*
 img{
-	/*글쓴이의 프로필 사진을 둥글게*/
+	글쓴이의 프로필 사진을 둥글게
 	width: 40px;
 	height: 40px;
 	border: 0px;
-	/*border: 1px solid #cecece;*/
+	border: 1px solid #cecece;
 	border-radius: 50%;
-}
-
+}*/
 p {
 	font-size: 20px;
 }
@@ -18,12 +17,22 @@ p {
 }
 
 .msg-container{
-	max-width:1170px; 
-	margin:auto;
+	max-width: 1000px;
+	margin: auto;
+	padding: 30px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 }
+/*
 img{
 	max-width:100%;
 }
+*/
 .inbox_people {
 	background: #f8f8f8 none repeat scroll 0 0;
 	float: left;
@@ -53,8 +62,8 @@ img{
 	overflow: hidden;
 	border-bottom: 1px solid #f7f7f7;
 }
-.recent_heading h4 {
-	color: #5fcf80;
+.recent_heading h5 {
+	color: #93BBBF;
 	font-size: 30px;
 	margin: auto;
 	/*font-family: 'Nanum Pen Script', cursive; */
@@ -66,7 +75,7 @@ img{
 	padding: 2px 0 4px 6px;
 	background:none;
 	/*font-family: 'Nanum Pen Script', cursive; */
-	font-size: 25px;
+	font-size: 20px;
 }
 .srch_bar .input-group-addon button {
 	background: rgba(0,0,0,0) none repeat scroll 0 0;
@@ -112,7 +121,7 @@ img{
 	padding: 18px 16px 10px;
 }
 .chat_list_box :hover{
-	background-color: #d6ead0;
+	background-color: #93BBBF;
 }
 .inbox_chat{
 	height: 550px;
@@ -130,4 +139,79 @@ img{
 	padding: 0 0 0 10px;
 	vertical-align: top;
 	width: 92%;
+}
+.received_withd_msg p {
+	background: #027373 none repeat scroll 0 0;
+	border-radius: 7px;
+	color: #fff;
+	font-size: 14px;
+	margin: 0;
+	padding: 10px 10px 10px 12px;
+	width: 100%;
+}
+.time_date {
+	color: #747474;
+	display: block;
+	font-size: 12px;
+	margin: 5px 0 8px;
+}
+.received_withd_msg {
+	width:57%;
+}
+.mesgs {
+	float: left;
+	padding: 30px 15px 0 25px;
+}
+.sent_msg p {
+	background: #D9BBB4 none repeat scroll 0 0;
+	border-radius: 7px;
+	color: #fff;
+	font-size: 14px;
+	margin: 0;
+	padding: 10px 10px 10px 12px;
+	width: 100%;
+}
+.outgound_msg {
+	overflow: hidden;
+	margin: 26px 0 26px;
+}
+.sent_msg {
+	float: right;
+	width: 46%;
+}
+.input_msg_write input {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+	border: medium none;
+	color: #4c4c4c;
+	font-size: 14px;
+	min-height: 48px;
+	width: 100%;
+}
+.type_msg {
+	border-top:1px solid #dfdfdf;
+	position: relative;
+}
+.msg_send_btn {
+	background: #93BBBF none repeat scroll 0 0;
+	border: medium none;
+	border-radius: 50%;
+	color: #fff;
+	cursor: pointer;
+	font-size: 17px;
+	height: 33px;
+	position: absolute;
+	right: 0;
+	top: 11px;
+	width: 33px;
+}
+.msg_send_btn:hover{
+	background: #93BBBF none repeat scroll 0 0;
+}
+.messaing {
+	padding: 0 0 50px 0;
+}
+.msg_history {
+	height: 500px;
+	width: 480px;
+	overflow-y: auto;
 }
