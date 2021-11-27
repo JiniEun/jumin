@@ -4,7 +4,7 @@ FOREIGN KEY(rID) REFERENCES user(ID) ON DELETE CASCADE,
 FOREIGN KEY(fbID) REFERENCES fboard(fbID) ON DELETE CASCADE,
 uID                  VARCHAR2(20)  NOT NULL,
 status               VARCHAR2(10)  NULL,
-rdate                DATE          NOT NULL
+rdate                DATE          NOT NULL,
 );
 
 COMMENT ON TABLE friend is '친구매칭';

@@ -4,12 +4,16 @@ import lombok.Data;
 
 @Data
 public class MessageDTO {
-	private String title;
-	private String recvNick;
-	private int cate;
-	private String rdate;
+	private int meID;
+	private int roomID;
+	private String sender;
+	private String receiver;
 	private String content;
-	private String sendNick;
-	private String ID;
+	private String sendTime;
+	private String readTime;
 	private int readChk;
+	
+	private String otherID;
+	private String ID;
+	private int unread;
 }

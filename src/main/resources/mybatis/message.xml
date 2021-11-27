@@ -3,17 +3,75 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="com.dongne.message.MessageMapper">
-    <select id="countMessageView" resultType="String" parameterType="String">
-        select count(*) from message where ID= #{ID} and cate = 0
-    </select>
-    <select id="findList" resultType="com.dongne.message.MessageDTO" parameterType="String">
-            select * from message where ID= #{ID} and cate = 0
-    </select>    
+<mapper namespace="com.dongne.message.MessageDAO">
+<!--메세지 리스트 가져오기-->
+<select id="message_list" parameterType="com.dongne.message.MessageDTO" resultType="com.dongne.message.MessageDTO">
+	select meID, roomID, sender, receiver, sendTime, readTime, content, readChk
+	from message
+	where meID in (select max(meID) from message group by roomID) and (sender = #{ID} or receiver = #{ID})
+	order by meID desc
+</select>
  
-    <insert id="insertMessage" parameterType="com.dongne.message.MessageDTO">
-        INSERT INTO message(title,recvNick,cate,rdate,content,sendNick,ID,readChk) 
-        VALUES(#{title},#{recvNick},#{cate},SYSDATE,#{content},#{sendNick},#{ID},#{readChk});
-    </insert>
-        
-</mapper>
+<!--안읽은 메세지 갯수 가져오기-->
+<select id="count_unread" parameterType="com.dongne.message.MessageDTO" resultType="int">
+	select count(meID) from message 
+	where sender=#{ID} and readChk=0 and roomID=#{roomID}
+</select>
+
+<!--메세지 내용 가져오기-->
+<select id="room_content_list" parameterType="com.dongne.message.MessageDTO" resultType="com.dongne.message.MessageDTO">
+ select meID, roomID, sender, receiver, sendTime, readTime, content, readChk
+ from message 
+ 	<choose>
+ 		<when test="roomID != 0">
+ 			where roomID=#{roomID}
+ 		</when>
+ 		<otherwise>
+ 			where (receiver = #{receiver} and sender = #{ID}) or (sender = #{receiver} and receiver = #{ID})
+ 		</otherwise>
+ 	</choose>
+ </select>
+ 
+ <!--메세지 읽음 처리-->
+ <update id="message_read_chk" parameterType="com.dongne.message.MessageDTO">
+ 	update message set readChk=1
+ 	<choose>
+ 		<when test="roomID != 0">
+ 			where roomID=#{roomID} and readChk=0 and receiver=#{ID}
+ 		</when>
+ 		<otherwise>
+ 			where sender=#{receiver} and readChk=0 and receiver=#{ID}
+ 		</otherwise>
+ 	</choose>
+ </update>
+ 
+ <!--메세지리스트에서 메세지 보내기-->
+ <insert id="messageSendInList" parameterType="com.dongne.message.MessageDTO">
+ 	<choose>
+ 		<when test="roomID != 0">
+ 			insert into message values(0, #{sender}, #{receiver}, #{content}, sysdate, #{roomID}, sysdate, 0);
+ 		</when>
+ 		<otherwise>
+ 			insert into message values(0, #{sender}, #{receiver}, #{content}, sysdate, #{roomID}, sysdate, 0);
+ 		</otherwise>
+ 	</choose>
+ </insert>
+ 
+ <!--room 번호 최댓값 구하기-->
+ <select id="max_room" parameterType="com.dongne.message.MessageDTO" resultType="int">
+ 	select max(roomID) from message
+ </select>
+ 
+ <!--메세지 이력이 있는지 검색-->
+ <select id="exist_chat" parameterType="com.dongne.message.MessageDTO" resultType="int">
+ 	select count(meID) from message
+ 	where (receiver = #{receiver} and sender=#{sender}) or (sender = #{receiver} and receiver=#{sender})
+ </select>
+ 
+ <!--기존 메세지 내역의 room 번호의 가져옴-->
+ <select id="select_room" parameterType="com.dongne.message.MessageDTO" resultType="String">
+ 	select roomID from message
+ 	where (receiver = #{receiver} and sender = #{sender}) or (sender = #{receiver} and receiver = #{sender})
+ 	limit 0,1 <!--oracle 버전으로 변경해야함 -->
+ </select>
+ </mapper>
