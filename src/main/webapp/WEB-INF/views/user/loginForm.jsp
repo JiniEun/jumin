@@ -13,12 +13,6 @@
 			<div class="input-form col-md-12 mx-auto">
 				<h2 class="col mb-4 txt-center">로그인</h2>
 				<form class="form-horizontal" action="login" method="post">
-					<input type="hidden" name="rurl" value="${param.rurl}"> <input
-						type="hidden" name="bbsno" value="${param.bbsno}"> <input
-						type="hidden" name="nowPage" value="${param.nowPage}"> <input
-						type="hidden" name="nPage" value="${param.nPage}"> <input
-						type="hidden" name="col" value="${param.col}"> <input
-						type="hidden" name="word" value="${param.word}">
 					<div class="l-flex p-80 mb-3">
 						<div class="col pl-0 pr-0">
 							<div class="form-group col-sm l-flex itm-center pl-0">
