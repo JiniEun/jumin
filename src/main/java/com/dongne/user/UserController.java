@@ -355,7 +355,7 @@ public class UserController {
 
 		return "/user/read";
 	}
-	
+
 	@GetMapping("/userfind")
 	public String userfind(HttpSession session) {
 		if ((String) session.getAttribute("ID") != null) {
@@ -363,32 +363,52 @@ public class UserController {
 		}
 		return "/user/userfind";
 	}
+
+	@PostMapping("/idfind")
+	public String idfind(HttpServletRequest request, String email, String phone, HttpSession session) {
+
+		Map map = new HashMap();
+		map.put("email", email);
+		map.put("phone", phone);
+
+		String ID = service.findID(map);
+		String result = "일치하는 회원 정보가 없습니다. 다시 입력해주세요.";
+		System.out.println(ID);
+
+		if (ID != null) {
+			request.setAttribute("result", ID);
+		} else {
+			request.setAttribute("result", result);
+		}
+		return "/user/findresult";
+
+	}
+
+	@PostMapping("/pwfind")
+	public String pwfind(HttpServletRequest request, String ID, String email, String phone, HttpSession session) {
+
+		Map map = new HashMap();
+		map.put("ID", ID);
+		map.put("email", email);
+		map.put("phone", phone);
+
+		String pw = service.findPw(map);
+		String result = "일치하는 회원 정보가 없습니다. 다시 입력해주세요.";
+		System.out.println(ID);
+
+		if (ID != null) {
+			request.setAttribute("result", pw);
+		} else {
+			request.setAttribute("result", result);
+		}
+		return "/user/findresult";
+
+	}
 	
-//	@PostMapping("/userfind")
-//	public String userfind(HttpServletRequest request, String email, String phone, HttpSession session) {
-//
-//		Map map = new HashMap();
-//		map.put("email", email);
-//		map.put("phone", phone);
-//		int pcnt = service.password(map);
-//		System.out.println(map);
-//
-//		int cnt = 0;
-//		if (pcnt == 1) {
-//			cnt = service.delete(ID);
-//		}
-//
-//		if (pcnt != 1) {
-//			return "passwdError";
-//		} else if (cnt == 1) {
-//			if (ID.equals(session.getAttribute("ID"))) {
-//				session.invalidate();
-//			}
-//			return "redirect:/";
-//		} else {
-//			return "error";
-//		}
-//
-//	}
+	@GetMapping("/findresult")
+	public String findresult() {
+		
+		return "/user/findresult";
+	}
 
 }
