@@ -27,7 +27,7 @@
 							</div>
 							<div class="form-group col-sm l-flex itm-center w-100 pr-0 pl-0 mb-0">
 								<button type="submit" class="btn btn-color find-btn"
-									onclick="location.href='idfind'">아이디 찾기</button>
+									onclick="location.href='findresult'">아이디 찾기</button>
 							</div>
 						</div>
 					</div>
@@ -57,7 +57,7 @@
 							</div>
 							<div class="form-group col-sm l-flex itm-center pl-0 pr-0 mb-0">
 								<button type="submit" class="btn btn-color find-btn"
-									onclick="location.href='idfind'">아이디 찾기</button>
+									onclick="location.href='findresult'">비밀번호 찾기</button>
 							</div>
 						</div>
 					</div>
