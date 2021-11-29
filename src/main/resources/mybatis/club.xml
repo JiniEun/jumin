@@ -47,22 +47,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 조회 -->
   <select id="read" parameterType="int"
       resultType="com.dongne.club.ClubDTO">
-      SELECT clID, nickname, title, content, viewcnt, rdate, fileName, ID
+      SELECT clID, nickname, title, content, viewcnt, rdate, fileName, ID, regionID
       FROM club
       WHERE clID = #{clID}
    </select>
    
   <!-- 등록 -->
   <insert id="create" parameterType="com.dongne.club.ClubDTO">
-      insert into club(clID, ID, nickname, title, content, password, rdate, fileName)
+      insert into club(clID, ID, nickname, title, content, password, rdate, fileName, regionID)
       values((select nvl(max(clID),0) + 1 as clID from club),
-      #{ID}, #{nickname}, #{title}, #{content}, #{password} ,sysdate,#{fileName})
+      #{ID}, #{nickname}, #{title}, #{content}, #{password} ,sysdate,#{fileName}, #{regionID})
    </insert>
   
   <!-- 목록 -->
    <select id="list" parameterType="Map" resultType="com.dongne.club.ClubDTO">
-    SELECT clID, title, content, nickname, password, viewcnt, rdate, ID
-		FROM club
+    SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, regionID, r
+    from ( SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, regionID, rownum r
+    	from ( SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, regionID
+				FROM club
     <where>
               <choose>
                   <when test="col=='nickname'">
@@ -80,8 +82,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                      content like '%'||#{word}||'%'
                   </when>
               </choose>
+              and regionID = #{regionID}
            </where>
     ORDER BY clID DESC
+    )
+    <![CDATA[       
+         )where r >= #{sno} and r <= #{eno}
+     	]]>
   </select>
   
   <!--total-->

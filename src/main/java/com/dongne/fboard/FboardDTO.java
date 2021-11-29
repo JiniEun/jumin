@@ -13,4 +13,5 @@ public class FboardDTO {
 	private String rdate;
 	private String userID; // for user id
 	private String nickname;
+	private int regionID;
 }

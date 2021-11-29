@@ -70,8 +70,12 @@
  
  <!--기존 메세지 내역의 room 번호의 가져옴-->
  <select id="select_room" parameterType="com.dongne.message.MessageDTO" resultType="String">
- 	select roomID from message
+ 	select roomID 
+ 	from ( 
+ 	select roomID
+ 	from message
  	where (receiver = #{receiver} and sender = #{sender}) or (sender = #{receiver} and receiver = #{sender})
- 	limit 0,1 <!--oracle 버전으로 변경해야함 -->
+ 	)
+ 	<![CDATA[where rownum >=0 and rownum <=1]]>
  </select>
  </mapper>

@@ -88,7 +88,7 @@ public class ClreplyController {
 		map.put("ID", ID);
 		map.put("nickname", nickname);
 		map.put("content", content);
-
+	
 		return service.create(map);
 
 	}

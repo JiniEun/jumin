@@ -55,6 +55,11 @@
 						<p>${ID}</p>
 						<input type="hidden" name="userID" id="userID" value="${ID}">
 					</div>
+					<div class="mb-3" hidden>
+						<label for="regionID">지역</label>
+						<p>${regionID}</p>
+						<input type="hidden" name="regionID" id="regionID" value="${regionID}">
+					</div>
 					<div class="mb-3">
 						<label for="nickname">작성자</label>
 						<input type="text" readonly name="nickname" id="nickname" class="form-control" value="${nickname}">
