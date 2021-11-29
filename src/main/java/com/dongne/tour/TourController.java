@@ -206,7 +206,7 @@ public class TourController {
 	public String list(HttpServletRequest request, HttpSession session) {
 
 		
-		int sv=(Integer)session.getAttribute("region");
+		int sv=Utility.checkNulltoint((Integer)session.getAttribute("region"));
 		String mydistrictcode=Utility.checkNull(Integer.toString(sv));
 
 		System.out.println("sv : " + sv);
