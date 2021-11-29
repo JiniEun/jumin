@@ -7,6 +7,8 @@ public interface MarketService {
 
 	int total(Map map);
 
+	int totalRegion(Map map);
+
 	List<MarketDTO> list(Map map);
 
 	int create(MarketDTO dto);

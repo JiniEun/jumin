@@ -60,4 +60,10 @@ public class MarketServiceImpl implements MarketService {
 		return mapper.delete(mid);
 	}
 
+	@Override
+	public int totalRegion(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.totalRegion(map);
+	}
+
 }

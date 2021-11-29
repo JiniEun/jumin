@@ -35,36 +35,35 @@ public class CommunityController {
 	@Autowired
 	@Qualifier("com.dongne.region.RegionServiceImpl")
 	private RegionService rservice;
-	
+
 	@RequestMapping("/community/list")
 	public String list(HttpSession session, HttpServletRequest request) {
 		String realLocation = (String) session.getAttribute("realLocation");
 		String regionID = "";
-		
+
 		if ((String) session.getAttribute("ID") == null) {
 			session.setAttribute("region", rservice.read(Utility.getRegionCode(realLocation)).getRegionID());
 			int sv = (Integer) session.getAttribute("region");
-			
-			String myRegionID=Utility.checkNull(Integer.toString(sv));
-			
-			 regionID = Utility.checkNull(request.getParameter("regionID"));
 
-				if (regionID == "") {
-					regionID = myRegionID;
-				}
+			String myRegionID = Utility.checkNull(Integer.toString(sv));
+
+			regionID = Utility.checkNull(request.getParameter("regionID"));
+
+			if (regionID == "") {
+				regionID = myRegionID;
+			}
 		} else {
-		int sv=(Integer)session.getAttribute("region");
-		String myRegionID=Utility.checkNull(Integer.toString(sv));
+			int sv = (Integer) session.getAttribute("region");
+			String myRegionID = Utility.checkNull(Integer.toString(sv));
 
-		    regionID = Utility.checkNull(request.getParameter("regionID"));
+			regionID = Utility.checkNull(request.getParameter("regionID"));
 
-		if (regionID == "") {
-			regionID = myRegionID;
+			if (regionID == "") {
+				regionID = myRegionID;
+			}
+
 		}
 
-		}
-
-		
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
@@ -92,7 +91,7 @@ public class CommunityController {
 		map.put("regionID", regionID);
 		map.put("cnt", recordPerPage);
 
-		int total = service.total(map);
+		int total = service.totalRegion(map);
 
 		List<CommunityDTO> list = service.list(map);
 
@@ -107,7 +106,7 @@ public class CommunityController {
 		request.setAttribute("paging", paging);
 
 		System.out.println(regionID);
-		
+
 		return "/community/list";
 	}
 
@@ -120,8 +119,8 @@ public class CommunityController {
 		UserDTO user = uservice.read(ID);
 		String nickname = user.getNickname();
 		model.addAttribute("nickname", nickname);
-		
-		int regionID = user.getRegionID();		
+
+		int regionID = user.getRegionID();
 		model.addAttribute("regionID", regionID);
 
 		return "/community/create";

@@ -9,6 +9,8 @@ public interface CommunityService {
 
 	int total(Map map);
 
+	int totalRegion(Map map);
+
 	List<CommunityDTO> list(Map map);
 
 	int create(CommunityDTO dto);
