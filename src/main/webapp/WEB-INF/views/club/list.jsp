@@ -6,6 +6,8 @@
 <html> 
 <head>
   <title>동호회 페이지</title>
+  <link rel="stylesheet" href="/resources/static/css/market_list.css">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
   <meta charset="utf-8">
   <style>
 #form {
@@ -70,26 +72,67 @@
 </c:when>
 
 <c:otherwise>
-<c:set var="list" value="${list}"/>
-	<div class="row">
-    	<c:forEach var="dto" begin="0" end="3" items="${list}">
-    		<div class="col-sm-3">
-    		  <a href="/club/read/${dto.clID}">
-      			 <p><img src="/club/${dto.fileName}" class="img-thumbnail"  width="236" height="306"></p></a>
-        		 <p><b>${dto.title}</b><br>${dto.nickname}</p>
-    		</div>
-    	</c:forEach>
-	</div>
- 	<div class="row">
-    	<c:forEach var="dto" begin="4" end="7" items="${list}">
-    		<div class="col-sm-3">
-      		  <a href="/club/read/${dto.clID}">
-       			<p><img src="/club/${dto.fileName}" class="img-thumbnail"  width="236" height="306"></p></a>
-        		<p><b>${dto.title}</b><br>${dto.nickname}</p>
-    		</div>
-    	</c:forEach>
-    </div>
-      ${paging}
+			<c:set var="list" value="${list}" />
+			<div class="row">
+
+				<c:forEach var="dto" begin="0" end="3" items="${list}">
+					<div class="col-sm-3">
+						<div class="tm-gallery-page" id="tm-gallery-page-1">
+
+							<div class="col-10 col-10-medium">
+								<!-- Box -->
+								<section class="box feature">
+								<div class="mainimg">
+									<a href="/club/read/${dto.clID}" class="img-rounded">
+										<img src="/club/${fn:split(dto.fileName,',')[0]}"
+										alt="" width="236" height="250" />
+									</a>
+								</div>
+								<div class="info">
+										<h6 class="card-title">${dto.title}</h6>
+										<div style="color:#808088">
+										<i class="fas fa-user"></i>&nbsp<span class="card-text">${dto.nickname} </span>
+										</div>
+										<span class="card-text2">조회 ${dto.viewcnt} &nbsp Date: ${dto.rdate.substring(0,10)} </span>
+										<br>
+										<br>
+										<br>
+								</div>
+								</section>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			
+			<div class="row">
+
+				<c:forEach var="dto" begin="4" end="7" items="${list}">
+					<div class="col-sm-3">
+						<div class="tm-gallery-page" id="tm-gallery-page-1">
+
+							<div class="col-10 col-10-medium">
+								<!-- Box -->
+								<section class="box feature">
+									<a href="/club/read/${dto.clID}" class="img-rounded">
+										<img src="/club/${fn:split(dto.fileName,',')[0]}"
+										alt="" width="236" height="250" />
+									</a>
+									<div class="info">
+									
+										<h6 class="card-title">${dto.title}</h6>
+										<div style="color:#808088">
+										<i class="fas fa-user"></i>&nbsp<span class="card-text">${dto.nickname}</span>
+										</div>
+										<span class="card-text2">조회 ${dto.viewcnt} &nbsp Date: ${dto.rdate.substring(0,10)} </span>
+								</div>
+								</section>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+			<div style="margin-top:30px; margin-left:10px;">${paging4}</div>
 </c:otherwise>
 </c:choose>
 </div>

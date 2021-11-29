@@ -13,5 +13,5 @@ public class CommunityDTO {
 	private String id;
 	private String nickname;
 	private String category;
-	private String districtcode;
+	private String regionID;
 }

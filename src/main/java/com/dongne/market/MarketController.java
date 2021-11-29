@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dongne.region.RegionService;
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 import com.dongne.utility.Utility;
@@ -39,12 +40,44 @@ public class MarketController {
 	@Qualifier("com.dongne.user.UserServiceImpl")
 	private UserService uservice;
 
+	@Autowired
+	@Qualifier("com.dongne.region.RegionServiceImpl")
+	private RegionService rservice;
+	
 	@RequestMapping("/market/list")
-	public String list(HttpServletRequest request) {
+	public String list(HttpSession session, HttpServletRequest request) {
+		String realLocation = (String) session.getAttribute("realLocation");
+		String regionID = "";
+		
+		if ((String) session.getAttribute("ID") == null) {
+			session.setAttribute("region", rservice.read(Utility.getRegionCode(realLocation)).getRegionID());
+			int sv = (Integer) session.getAttribute("region");
+			
+			String myRegionID=Utility.checkNull(Integer.toString(sv));
+			
+			 regionID = Utility.checkNull(request.getParameter("regionID"));
+
+				if (regionID == "") {
+					regionID = myRegionID;
+				}
+		} else {
+		int sv=(Integer)session.getAttribute("region");
+		String myRegionID=Utility.checkNull(Integer.toString(sv));
+
+		    regionID = Utility.checkNull(request.getParameter("regionID"));
+
+		if (regionID == "") {
+			regionID = myRegionID;
+		}
+
+		}
+
+		
+		
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-		String category = Utility.checkNull(request.getParameter("category"));
+		
 
 		if (col.equals("total")) {
 			word = "";
@@ -64,10 +97,10 @@ public class MarketController {
 		Map map = new HashMap();
 		map.put("col", col);
 		map.put("word", word);
-		map.put("category", category);
 		map.put("sno", sno);
 		map.put("eno", eno);
 		map.put("cnt", recordPerPage);
+		map.put("regionID", regionID);
 
 		int total = service.total(map);
 
@@ -77,12 +110,11 @@ public class MarketController {
 
 		// request에 Model사용 결과 담는다
 		request.setAttribute("list", list);
-		request.setAttribute("nowPage", nowPage);
-		request.setAttribute("category", category);
+		request.setAttribute("nowPage", nowPage);		
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
-		System.out.println(category);
+		request.setAttribute("regionID", regionID);
 		
 		return "/market/list";
 
@@ -124,9 +156,12 @@ public class MarketController {
 
 		UserDTO user = uservice.read(ID);
 		String nickname = user.getNickname();
-
 		model.addAttribute("nickname", nickname);
-		System.out.println(ID);
+		
+		int regionID = user.getRegionID();		
+		model.addAttribute("regionID", regionID);
+
+		
 
 		return "/market/create";
 	}

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dongne.region.RegionService;
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 import com.dongne.utility.Utility;
@@ -30,8 +31,13 @@ public class FboardController {
 	@Qualifier("com.dongne.fboard.FboardServiceImpl")
 	private FboardService service;
 	
+	@Autowired
+	@Qualifier("com.dongne.region.RegionServiceImpl")
+	private RegionService rservice;
+
+	
 	@GetMapping("/fboard/read")
-	public String read(int fbID, Model model) {
+	public String read(int fbID, Model model, HttpSession session) {
 
 		service.upCnt(fbID);
 
@@ -43,6 +49,10 @@ public class FboardController {
 
 		model.addAttribute("dto", dto);
 		
+		if(session.getAttribute("ID") == null) {
+			return "/user/login";
+		}
+		
 		return "/fboard/read";
 	}
 	
@@ -53,9 +63,11 @@ public class FboardController {
 		
 		UserDTO user = uservice.read(userID);
 		String nickname = user.getNickname();
+		int regionID = user.getRegionID();
 
 		model.addAttribute("userID", userID);
 		model.addAttribute("nickname", nickname);
+		model.addAttribute("regionID", regionID);
 
 		return "/fboard/create";
 	}
@@ -70,7 +82,32 @@ public class FboardController {
 	}
 	
 	@GetMapping("/fboard/list")
-	public String list(HttpServletRequest request) {
+	public String list(HttpServletRequest request, HttpSession session) {
+		String realLocation = (String) session.getAttribute("realLocation");
+		String regionID = "";
+		
+		if ((String) session.getAttribute("ID") == null) {
+			session.setAttribute("region", rservice.read(Utility.getRegionCode(realLocation)).getRegionID());
+			int sv = (Integer) session.getAttribute("region");
+			
+			String myRegionID=Utility.checkNull(Integer.toString(sv));
+			
+			 regionID = Utility.checkNull(request.getParameter("regionID"));
+
+				if (regionID == "") {
+					regionID = myRegionID;
+				}
+		} else {
+		int sv=(Integer)session.getAttribute("region");
+		String myRegionID=Utility.checkNull(Integer.toString(sv));
+
+		    regionID = Utility.checkNull(request.getParameter("regionID"));
+
+		if (regionID == "") {
+			regionID = myRegionID;
+		}
+
+		}
 
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
@@ -96,6 +133,7 @@ public class FboardController {
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
+		map.put("regionID", regionID);
 
 		int total = service.total(map);
 
@@ -109,6 +147,7 @@ public class FboardController {
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
+		request.setAttribute("regionID", regionID);
 
 		return "/fboard/list";
 	}
