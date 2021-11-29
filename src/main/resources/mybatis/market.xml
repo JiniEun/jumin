@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								category like '%'||#{word}||'%'
 							</when>
 						</choose>
+						and regionID = #{regionID}
 					  	</where>
 						order by mId desc
                         )

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dongne.region.RegionService;
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 import com.dongne.utility.Utility;
@@ -31,17 +32,38 @@ public class CommunityController {
 	@Qualifier("com.dongne.user.UserServiceImpl")
 	private UserService uservice;
 
+	@Autowired
+	@Qualifier("com.dongne.region.RegionServiceImpl")
+	private RegionService rservice;
+	
 	@RequestMapping("/community/list")
 	public String list(HttpSession session, HttpServletRequest request) {
+		String realLocation = (String) session.getAttribute("realLocation");
+		String regionID = "";
+		
+		if ((String) session.getAttribute("ID") == null) {
+			session.setAttribute("region", rservice.read(Utility.getRegionCode(realLocation)).getRegionID());
+			int sv = (Integer) session.getAttribute("region");
+			
+			String myRegionID=Utility.checkNull(Integer.toString(sv));
+			
+			 regionID = Utility.checkNull(request.getParameter("regionID"));
 
-//		int sv = (Integer) session.getAttribute("region");
-//		String mydistrictcode = Integer.toString(sv);
-//
-//		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
-//
-//		if (districtcode == "") {
-//			districtcode = mydistrictcode;
-//		}
+				if (regionID == "") {
+					regionID = myRegionID;
+				}
+		} else {
+		int sv=(Integer)session.getAttribute("region");
+		String myRegionID=Utility.checkNull(Integer.toString(sv));
+
+		    regionID = Utility.checkNull(request.getParameter("regionID"));
+
+		if (regionID == "") {
+			regionID = myRegionID;
+		}
+
+		}
+
 		
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
@@ -67,7 +89,7 @@ public class CommunityController {
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
-//		map.put("districtcode", districtcode);
+		map.put("regionID", regionID);
 		map.put("cnt", recordPerPage);
 
 		int total = service.total(map);
@@ -81,10 +103,11 @@ public class CommunityController {
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
-//		request.setAttribute("districtcode", districtcode);
-//		request.setAttribute("mydistrictcode", mydistrictcode);
+		request.setAttribute("regionID", regionID);
 		request.setAttribute("paging", paging);
 
+		System.out.println(regionID);
+		
 		return "/community/list";
 	}
 
@@ -97,6 +120,9 @@ public class CommunityController {
 		UserDTO user = uservice.read(ID);
 		String nickname = user.getNickname();
 		model.addAttribute("nickname", nickname);
+		
+		int regionID = user.getRegionID();		
+		model.addAttribute("regionID", regionID);
 
 		return "/community/create";
 	}

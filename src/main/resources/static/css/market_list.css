@@ -44,9 +44,9 @@ img {
  
  .card-title{
  	 width: 236px;
- 	 font-style:bold; 	 
+ 	 color: #5BA6A6; 	 
  	 padding: 0 0 0.5em 0;
- 	 border-bottom: 2px solid;
+ 	 border-bottom: 3px solid;
  	 border-color : #5BA6A6;
  }
  
