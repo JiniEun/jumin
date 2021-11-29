@@ -7,26 +7,7 @@
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- <script src="./weather.js"></script> -->
-<style>
-img.banners {
-	position: absolute;
-	width: 50%;
-	height: auto;
-	left: 10px;
-	top: 10px;
-	bottom: 10px;
-}
-
-.btn-color {
-	background-color: #5BA6A6;
-	color: white;
-}
-
-#wicon {
-	width: 60px;
-	height: 60px;
-}
-</style>
+<link rel="stylesheet" href="/resources/static/css/index.css">
 <script>
 /* $(document).ready(function(){
 	
@@ -51,9 +32,11 @@ function getLocation(latitude,longitude){
         	document.querySelector("#rLoc").textContent
             = '${realLocation}';
             document.querySelector("#covid_region").textContent
-                = '${covid[0]}지역';
-                document.querySelector("#covid_num").textContent
-                = '${covid[1]} ${covid[2]}';
+                = '${covid[0]}';
+                document.querySelector("#covid_total").textContent
+                = '누적  ${covid[1]}';
+                document.querySelector("#covid_today").textContent
+                = '신규  ${covid[2]}';
                 console.log('realLocation : ' + '${realLocation}');
                 console.log('covid : ' + '${covid}');
     	}
@@ -124,41 +107,39 @@ window.addEventListener('load', () => {
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="card" style="margin: 30px;">
-			<div class="row" style="margin: 5px;">
-				<div class="col-3">
-					<a href="http://www.naver.com"><img src="/images/dongne_r.gif"
-						class="banners" alt="배너" /></a>
+		<div class="row" style="height: 150px; margin: 0 30px;">
+			<div class="col-3 justify-content-center">
+				<div>
+					<img src="/images/logo_circle.gif" class="banners" alt="배너" />
 				</div>
-				<div class="col-3" style="margin: 10px;">
-					<h4>날씨</h4>
-					<img id="wicon" src="/images/loading.gif"> <br> <span
-						id="rtemp"></span> <br> <span id="rLoc">${realLocation}</span>
+			</div>
+			<div class="col txt-location" style="margin: 10px;">
+				<img class="img-quote" src="/images/double_quote_left.png">
+				<div class="ml-1 mr-1">
+
+					<div class="l-flex">
+						<img id="wicon" src="/images/loading.gif"> <span
+							class="txt-temp" id="rtemp"></span>
+					</div>
+					<p id="rLoc" class="h4">${realLocation}</p>
+
 				</div>
-				<div class="col-5" style="margin: 10px;">
-					<div class="row">
-						<div>
-							<h4>코로나 정보</h4>
-							<div id="covid_region" class="h5"></div>
-							<strong> 누적 확진자 신규 확진자 </strong>
-							<p class='font-weight-normal' id="covid_num"></p>
+				<img class="img-quote-r" src="/images/double_quote_left.png">
+			</div>
+			<div class="col-3 align-items-center d-flex-end"
+				style="margin: 10px;">
+				<div class="row mb-3 justify-content-center"></div>
+				<div class="row justify-content-center txt-covid">
+					<div class="col">
+						<h5>COVID-19</h5>
+					</div>
+					<div class="col d-flex">
+						<div id="covid_region" class="h5 mb-0"></div>
+						<div class="ml-20">
+							<p class='font-weight-normal mb-0' id="covid_total"></p>
+							<p class='font-weight-normal mb-0' id="covid_today"></p>
 						</div>
 					</div>
-					<div class="row">
-						<!-- Search Google -->
-						<form method="get" action="http://www.google.com/search"
-							target="_blank" class="form-inline">
-							<div class="form-group">
-								<input type="text" class="form-control" name="q" size="25"
-									maxlength="255" value="" />
-							</div>
-							<!-- 구글 검색 입력 창 -->
-							<input type="submit" class="btn btn-color" name="btnG"
-								value="Google 검색" />
-							<!-- 검색 버튼 -->
-						</form>
-					</div>
-					<!-- Search Google -->
 				</div>
 			</div>
 		</div>

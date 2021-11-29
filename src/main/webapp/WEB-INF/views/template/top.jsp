@@ -34,36 +34,12 @@
 	crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-<style type="text/css">
-.btn-color-header {
-	border-color: #193c40;
-	background-color: #193c40;
-	color: white;
-}
-
-.btn-color-header:hover {
-	border-color: #193c40;
-	background-color: white;
-	color: #193c40;
-}
-
-.link-header-right {
-	color: #193c40;
-	margin-right: 10px;
-}
-
-.header-top {
-	margin: 15px 0;
-}
-
-.greet-ment {
-	color: #93BBBF;
-}
-</style>
+<link rel="stylesheet" href="/resources/static/css/top.css">
 </head>
 <body>
 	<!--상단메뉴-->
@@ -71,8 +47,7 @@
 		<div class="container-fluid">
 			<div class="float-left">
 				<a id="grade" style="color: #bebebc;"><span
-					class="glyphicon glyphicon-grain greet-ment">${str}</span>
-				</a>
+					class="glyphicon glyphicon-grain greet-ment">${str}</span> </a>
 			</div>
 			<div class="float-right">
 				<input type="hidden" value="<c:out value='${sessionScope.ID}'/>"
@@ -98,7 +73,8 @@
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
 							class="link-header-right">My Page</a>
 						<a href="${root}/message/list" tabindex="-1" aria-disabled="true"
-							class="link-header-right"><i class="bi bi-messenger" style="font-size: 1.5rem;"></i></a>
+							class="link-header-right"><i class="bi bi-messenger"
+							style="font-size: 1.5rem;"></i></a>
 						<a href="${root}/user/logout" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true">logout</a>
 					</c:otherwise>
@@ -109,7 +85,7 @@
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
 			<a class="navbar-brand" href="${root}/" style="color: #027373;">
-				<img src="/images/dongne.gif" width="auto" height="auto" alt="logo" />
+				<img src="/images/dongne.gif" width="100%" height="auto" alt="logo" />
 			</a>
 		</div>
 	</nav>
@@ -154,13 +130,6 @@
 							Chatbot</a>
 					</div></li>
 			</ul>
-			<!--  
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn my-2 my-sm-0" type="submit"
-					style="background-color: #5BA6A6; color: white;">Search</button>
-			</form>-->
 		</div>
 	</nav>
 </body>

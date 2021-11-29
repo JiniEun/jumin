@@ -118,5 +118,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM users
 		WHERE ID=#{ID}
 	</delete>  
+	
+	<select id="findID" resultType="String" parameterType="HashMap">
+		SELECT ID
+    	FROM users
+    	WHERE email=#{email} AND phone=#{phone}
+	</select>
+	
+	<select id="findPw" resultType="String" parameterType="HashMap">
+		SELECT password
+    	FROM users
+    	WHERE ID = #{ID} AND email=#{email} AND phone=#{phone}
+	</select>
 
 </mapper>

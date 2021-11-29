@@ -62,4 +62,9 @@
     <put-attribute name="body"
       value="/WEB-INF/views/user/read.jsp" />
   </definition>
+  <definition name="/user/userfind" extends="main">
+    <put-attribute name="title" value="회원 찾기"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/user/finduser.jsp" />
+  </definition>
 </tiles-definitions>

@@ -32,8 +32,17 @@ public class CommunityController {
 	private UserService uservice;
 
 	@RequestMapping("/community/list")
-	public String list(HttpServletRequest request) {
+	public String list(HttpSession session, HttpServletRequest request) {
 
+//		int sv = (Integer) session.getAttribute("region");
+//		String mydistrictcode = Integer.toString(sv);
+//
+//		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
+//
+//		if (districtcode == "") {
+//			districtcode = mydistrictcode;
+//		}
+		
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
@@ -58,6 +67,7 @@ public class CommunityController {
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
+//		map.put("districtcode", districtcode);
 		map.put("cnt", recordPerPage);
 
 		int total = service.total(map);
@@ -71,6 +81,8 @@ public class CommunityController {
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
+//		request.setAttribute("districtcode", districtcode);
+//		request.setAttribute("mydistrictcode", mydistrictcode);
 		request.setAttribute("paging", paging);
 
 		return "/community/list";

@@ -1,0 +1,60 @@
+#form {
+	padding: 2em 0 2em 0;
+}
+
+#top {
+	padding: 2em 0 2em 0;
+}
+
+#g1 {
+	margin-bottom: 40px;
+}
+
+.tm-paging-item {
+	list-style: none;
+	display: inline-block;
+	border: 1px solid #5BA6A6;
+	margin: 7px;
+}
+
+.tm-paging-link {
+	padding: 10px 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: #5BA6A6;
+	background-color: transparent;
+}
+
+.tm-paging-link.active, .tm-paging-link:hover {
+	background-color: #5BA6A6;
+	color: white;
+	text-decoration: none;
+}
+
+img {
+    
+    border-radius : 1ch;
+    
+  }
+ .form-inline {
+ 	padding: 0 0 2em 0
+ }
+ 
+ .card-title{
+ 	 width: 236px;
+ 	 font-style:bold; 	 
+ 	 padding: 0 0 0.5em 0;
+ 	 border-bottom: 2px solid;
+ 	 border-color : #5BA6A6;
+ }
+ 
+ .info{
+ 	padding: 1em 0 1em 0;
+ 	
+ }
+ .card-text{
+  font-size : 15px;
+  color : #808080;
+ }

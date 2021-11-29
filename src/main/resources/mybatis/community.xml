@@ -29,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						category like '%'||#{word}||'%'
 					</when>
 				</choose>
+<!-- 				and districtcode = #{districtcode} -->
 			  </where>
 		       order by cId desc
 			)
