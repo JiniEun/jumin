@@ -156,6 +156,14 @@ public class Utility {
 
 		return str;
 	}
+	
+	public static Integer checkNulltoint(Integer num) {
+		if (num == null) {
+			num = 1;
+		}
+
+		return num;
+	}
 
 	public static String checkNulltoDefault(String str) {
 		if (str == null) {

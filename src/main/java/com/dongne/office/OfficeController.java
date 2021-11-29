@@ -129,8 +129,8 @@ public class OfficeController {
 
 	@RequestMapping("/office/list")
 	public String list(HttpServletRequest request, HttpSession session) {
-
-		int sv=(Integer)session.getAttribute("region");
+		
+		int sv=Utility.checkNulltoint((Integer)session.getAttribute("region"));
 		String mydistrictcode=Utility.checkNull(Integer.toString(sv));
 
 		System.out.println("sv : " + sv);
