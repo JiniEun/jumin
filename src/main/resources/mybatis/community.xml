@@ -6,33 +6,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.dongne.community.CommunityMapper">
 
-<select id="list" parameterType="Map"
+	<select id="list" parameterType="Map"
 		resultType="com.dongne.community.CommunityDTO">
 		select cId, title, content, viewcnt, rdate, id, category, nickname, r
 		from (
-			select cId, title,  content, viewcnt, rdate, id, category, nickname, rownum r
-			from(
-				select cId, title, content, viewcnt, rdate, id, category, nickname
-				from community
-				<where>
-				<choose>
-					<when test="col=='title'">
-						title like '%'||#{word}||'%'
-					</when>
-					<when test="col=='nickname'">
-						nickname like '%'||#{word}||'%'
-					</when>
-					<when test="col=='content'">
-						content like '%'||#{word}||'%'
-					</when>
-					<when test="col=='category'">
-						category like '%'||#{word}||'%'
-					</when>
-				</choose>
-				and regionID = #{regionID}
-			  </where>
-		       order by cId desc
-			)
+		select cId, title, content, viewcnt, rdate, id, category,
+		nickname, rownum r
+		from(
+		select cId, title, content, viewcnt, rdate, id,
+		category, nickname
+		from community
+		<where>
+			<choose>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='nickname'">
+					nickname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+				<when test="col=='category'">
+					category like '%'||#{word}||'%'
+				</when>
+			</choose>
+			and regionID = #{regionID}
+		</where>
+		order by cId desc
+		)
      	<![CDATA[       
          )where r >= #{sno} and r <= #{eno}
      	]]>
@@ -50,36 +52,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</choose>
 		</where>
 	</select>
-	
-	<update id="update" parameterType="com.dongne.community.CommunityDTO">
+
+	<select id="totalRegion" resultType="int" parameterType="Map">
+		select count(*) from community
+		<where>
+			<choose>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+			</choose>
+			and regionID = #{regionID}
+		</where>
+	</select>
+
+	<update id="update"
+		parameterType="com.dongne.community.CommunityDTO">
 		update community
-		set title = #{title}, 
-		content = #{content},
+		set title = #{title},
+		content =
+		#{content},
 		category = #{category}
 		where cid = #{cid}
 	</update>
-	
-	<insert id="create" parameterType="com.dongne.community.CommunityDTO">
-		insert into community(cId, title, content, viewcnt, rdate, id, category, nickname)
+
+	<insert id="create"
+		parameterType="com.dongne.community.CommunityDTO">
+		insert into community(cId, title, content, viewcnt,
+		rdate, id, category, nickname, regionID)
 		values((select
-		nvl(max(cId),0)+1 from community), #{title}, #{content}, 0, sysdate, #{id}, #{category}, #{nickname})
+		nvl(max(cId),0)+1 from
+		community), #{title}, #{content}, 0, sysdate,
+		#{id}, #{category},
+		#{nickname}, #{regionID})
 	</insert>
-	
+
 	<select id="read" parameterType="int"
 		resultType="com.dongne.community.CommunityDTO">
-		select cId, title, content, nickname, viewcnt, rdate, category, ID
+		select cId, title, content, nickname, viewcnt, rdate,
+		category, ID, regionID
 		from community
 		where cid = #{cid}
 	</select>
 	<!-- 조회수 증가 -->
 	<update id="upCnt" parameterType="int">
 		update community
-		set viewcnt = viewcnt + 1
+		set viewcnt =
+		viewcnt + 1
 		where cid = #{cid}
 	</update>
-	
+
 	<delete id="delete" parameterType="int">
-			delete from community
-			where cid = #{cid}
-	</delete> 
+		delete from community
+		where cid
+		= #{cid}
+	</delete>
 </mapper>

@@ -54,4 +54,10 @@ public class CommunityServiceImpl implements CommunityService {
 		return mapper.delete(cid);
 	}
 
+	@Override
+	public int totalRegion(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.totalRegion(map);
+	}
+
 }
