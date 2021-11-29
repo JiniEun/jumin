@@ -39,6 +39,17 @@
               f.title.focus();
               return false;
          }
+         if (f.districtcode.value == ""){
+             alert("지역을 선택해주세요");
+             f.title.focus();
+             return false;
+        }
+         if (f.addname.value == ""){
+             alert("주소나 상호명을 입력해주세요");
+             f.title.focus();
+             return false;
+        }
+         
          if (f.contents.value == '') {
              window.alert('내용을 입력해 주세요.');
              f.contents.focus();
@@ -46,6 +57,11 @@
          }
          if (f.score.value == ""){
              alert("평점을 입력해주세요");
+             f.score.focus();
+             return false;
+         }
+         if (f.input_file.value == ""){
+             alert("파일을 업로드 해주세요");
              f.score.focus();
              return false;
          }
@@ -101,6 +117,13 @@
                 <label class="control-label col-sm-2" for="title">제목</label>
                 <div class="col-sm-8">
                     <input type="text" name="title" id="title" class="form-control" value="${dto.title}">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="title">주소(간단한 위치나 상호명을 써주세요)</label>
+                <div class="col-sm-8">
+                    <input type="text" name="addname" id="addname" class="form-control" value="${dto.addname}">
                 </div>
             </div>
     

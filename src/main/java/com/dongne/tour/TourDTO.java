@@ -17,6 +17,7 @@ public class TourDTO {
 	private String filename;
 	private String nickname;
 	private String districtcode;
+	private String addname;
 
 	private MultipartFile filenameMF;
 }
