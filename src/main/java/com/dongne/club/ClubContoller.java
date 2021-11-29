@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dongne.region.RegionService;
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 import com.dongne.utility.Utility;
@@ -32,6 +33,9 @@ public class ClubContoller {
 	@Autowired
 	@Qualifier("com.dongne.user.UserServiceImpl")
 	private UserService uservice;
+	@Autowired
+	@Qualifier("com.dongne.region.RegionServiceImpl")
+	private RegionService rservice;
 
 	@GetMapping("/club/read/{clID}")
 	public String read(@PathVariable("clID") int clID, Model model, HttpServletRequest request) {
@@ -62,11 +66,37 @@ public class ClubContoller {
 	}
 
 	@RequestMapping("/club/list")
-	public String list(HttpServletRequest request) {
+	public String list(HttpServletRequest request, HttpSession session) {
+		String realLocation = (String) session.getAttribute("realLocation");
+		String regionID = "";
+		
+		if ((String) session.getAttribute("ID") == null) {
+			session.setAttribute("region", rservice.read(Utility.getRegionCode(realLocation)).getRegionID());
+			int sv = (Integer) session.getAttribute("region");
+			
+			String myRegionID=Utility.checkNull(Integer.toString(sv));
+			
+			 regionID = Utility.checkNull(request.getParameter("regionID"));
+
+				if (regionID == "") {
+					regionID = myRegionID;
+				}
+		} else {
+		int sv=(Integer)session.getAttribute("region");
+		String myRegionID=Utility.checkNull(Integer.toString(sv));
+
+		    regionID = Utility.checkNull(request.getParameter("regionID"));
+
+		if (regionID == "") {
+			regionID = myRegionID;
+		}
+
+		}
+		
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-
+		System.out.println("col:" +col);
 		if (col.equals("total")) {
 			word = "";
 		}
@@ -87,20 +117,23 @@ public class ClubContoller {
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
-
+		map.put("regionID", regionID);
+		
 		int total = service.total(map);
 
 		List<ClubDTO> list = service.list(map);
-
-		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+		
+		String paging4 = Utility.paging4(total, nowPage, recordPerPage, col, word, regionID);
 
 		// request에 Model사용 결과 담는다
 		request.setAttribute("list", list);
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
-		request.setAttribute("paging", paging);
-
+		request.setAttribute("paging4", paging4);
+		request.setAttribute("regionID", regionID);
+		
+	
 		return "/club/list";
 	}
 
@@ -168,12 +201,15 @@ public class ClubContoller {
 	public String create(HttpSession session, Model model) {
 
 		String ID = (String) session.getAttribute("ID");
-
+		
 		UserDTO user = uservice.read(ID);
 		String nickname = user.getNickname();
+		int regionID = user.getRegionID();
 
 		model.addAttribute("ID", ID);
 		model.addAttribute("nickname", nickname);
+		model.addAttribute("regionID", regionID);
+		
 		System.out.println(ID);
 
 		return "/club/create";

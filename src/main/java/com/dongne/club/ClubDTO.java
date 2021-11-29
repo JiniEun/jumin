@@ -15,4 +15,5 @@ public class ClubDTO {
 	private MultipartFile fileNameMF;
 	private String ID;
 	private String nickname;
+	private int regionID;
 }

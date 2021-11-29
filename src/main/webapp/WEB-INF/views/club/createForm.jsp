@@ -29,6 +29,13 @@
   </div>
   
   <div class="form-group">
+    <label class="control-label col-sm-2" for="regionID">지역</label>
+    <div class="col-sm-6">
+      <input type="text" readonly name="regionID" id="regionID" class="form-control" value="${regionID}">
+    </div>
+  </div>
+  
+  <div class="form-group">
                 <label class="control-label col-sm-2" for="writer">작성자</label>
                 <div class="col-sm-6">
                     <input type="text" readonly name="nickname" id="nickname" class="form-control" value="${nickname}">
