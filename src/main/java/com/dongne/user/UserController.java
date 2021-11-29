@@ -375,8 +375,10 @@ public class UserController {
 		String result = "일치하는 회원 정보가 없습니다. 다시 입력해주세요.";
 		System.out.println(ID);
 
+		String IDresult = "찾으시는 아이디는 " + ID + "입니다.";
+
 		if (ID != null) {
-			request.setAttribute("result", ID);
+			request.setAttribute("result", IDresult);
 		} else {
 			request.setAttribute("result", result);
 		}
@@ -396,18 +398,24 @@ public class UserController {
 		String result = "일치하는 회원 정보가 없습니다. 다시 입력해주세요.";
 		System.out.println(ID);
 
+		int index = (pw.length() / 2) - 1;
+
+		String pw_encrypt = pw.substring(0, index) + pw.substring(index).replaceAll("\\S", "*");
+
+		String pwresult = "찾으시는 비밀번호는 " + pw_encrypt + "입니다.";
+
 		if (ID != null) {
-			request.setAttribute("result", pw);
+			request.setAttribute("result", pwresult);
 		} else {
 			request.setAttribute("result", result);
 		}
 		return "/user/findresult";
 
 	}
-	
+
 	@GetMapping("/findresult")
 	public String findresult() {
-		
+
 		return "/user/findresult";
 	}
 
