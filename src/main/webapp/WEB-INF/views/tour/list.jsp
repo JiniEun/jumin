@@ -101,15 +101,15 @@
 							<section class=title>
 								<a href="javascript:read('${dto.tid}')"><i
 									class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a> <span
-									id="score"> <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+									id="score" style="color : #fffde7;"> <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 									<c:if test="${dto.score=='2'}">★★☆☆☆</c:if> <c:if
 										test="${dto.score=='3'}">★★★☆☆</c:if> <c:if
 										test="${dto.score=='4'}">★★★★☆</c:if> <c:if
 										test="${dto.score=='5'}">★★★★★</c:if>
 								</span>
 							</section>
-							<section class=info>
-								<span style="width: 100; overflow: hidden;">글쓴이 :
+							<section class=info style="color:#808088">
+								<span style="width: 100; overflow: hidden;"><i class="fas fa-user" ></i>
 									${dto.nickname}</span><br> <span>Date :
 									${dto.rdate.substring(0,10)}</span>
 							</section>
@@ -139,15 +139,15 @@
 
 								<a href="javascript:read('${dto.tid}')"><i
 									class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a> <span
-									id="score"> <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+									id="score" style="color : #fffde7;"> <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 									<c:if test="${dto.score=='2'}">★★☆☆☆</c:if> <c:if
 										test="${dto.score=='3'}">★★★☆☆</c:if> <c:if
 										test="${dto.score=='4'}">★★★★☆</c:if> <c:if
 										test="${dto.score=='5'}">★★★★★</c:if>
 								</span>
 							</section>
-							<section class=info>
-								<span style="width: 100; overflow: hidden;">글쓴이 :
+							<section class=info style="color:#808088">
+								<span style="width: 100; overflow: hidden;"><i class="fas fa-user"></i>
 									${dto.nickname}</span> <span>Date :
 									${dto.rdate.substring(0,10)}</span>
 							</section>
@@ -174,15 +174,15 @@
 							<section class=title>
 								<a href="javascript:read('${dto.tid}')"><i
 									class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a> <span
-									id="score"> <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+									id="score" style="color : #fffde7;"> <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
 									<c:if test="${dto.score=='2'}">★★☆☆☆</c:if> <c:if
 										test="${dto.score=='3'}">★★★☆☆</c:if> <c:if
 										test="${dto.score=='4'}">★★★★☆</c:if> <c:if
 										test="${dto.score=='5'}">★★★★★</c:if>
 								</span>
 							</section>
-							<section class=info>
-								<span style="width: 100; overflow: hidden;">글쓴이 :
+							<section class=info style="color:#808088">
+								<span style="width: 100; overflow: hidden;"><i class="fas fa-user"></i>
 									${dto.nickname}</span> <span>Date :
 									${dto.rdate.substring(0,10)}</span>
 							</section>
