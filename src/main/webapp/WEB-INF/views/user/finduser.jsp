@@ -38,7 +38,7 @@
 			<div class="input-form col-md-12 mx-auto">
 				<h2 class="col mb-3 txt-center">비밀번호 찾기</h2>
 				<p class="col-md txt-info mb-4">회원 정보에 입력된 아이디와 이메일, 전화번호를 입력하세요.</p>
-				<form class="form-horizontal" action="idfind" method="post">
+				<form class="form-horizontal" action="pwfind" method="post">
 					<div class="l-flex p-70 mb-3">
 						<div class="col pl-0 pr-0">
 
