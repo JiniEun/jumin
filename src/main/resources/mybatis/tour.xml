@@ -7,15 +7,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.dongne.tour.TourMapper">
 	
 <insert id="create" parameterType="com.dongne.tour.TourDTO">
-		insert into tour(tid, title, districtcode, writer,nickname, contents, score, filename, rdate )
+		insert into tour(tid, title, districtcode, writer,nickname, contents, score, addname, filename, rdate )
 		values((select nvl(max(tID),0)+1 from tour),
-		#{title}, #{districtcode}, #{writer}, #{nickname}, #{contents}, #{score}, #{filename},
+		#{title}, #{districtcode}, #{writer}, #{nickname}, #{contents}, #{score}, #{addname}, #{filename},
 		to_char(sysdate,'yyyy.mm.dd'))
 </insert>
 	
 
 <select id="read" parameterType="int" resultType="com.dongne.tour.TourDTO">
-        select tid, title, districtcode, writer, nickname, score, rdate, contents, filename
+        select tid, title, districtcode, writer, nickname, score, rdate, contents, addname, filename
         from tour
         where tid = #{tid}
 </select>
@@ -26,6 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update tour
 		set title = #{title},
 		districtcode= #{districtcode},
+		addname= #{addname},
 		contents = #{contents},
 		score = #{score},
 		filename=#{filename},

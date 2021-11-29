@@ -97,7 +97,7 @@
 
 						<c:forEach var="dto" items="${list}" begin="0" step="3">
 							<img src="/tour/storage/${fn:split(dto.filename,',')[0]}"
-								alt="iuhello.jpg">
+								alt="${dto.title}">
 							<section class=title>
 								<a href="javascript:read('${dto.tid}')"><i
 									class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a> <span
@@ -133,7 +133,7 @@
 
 						<c:forEach var="dto" items="${list}" begin="1" step="3">
 							<img src="/tour/storage/${fn:split(dto.filename,',')[0]}"
-								alt="iuhello.jpg">
+								alt="${dto.title }">
 
 							<section class=title>
 
@@ -170,7 +170,7 @@
 
 						<c:forEach var="dto" items="${list}" begin="2" step="3">
 							<img src="/tour/storage/${fn:split(dto.filename,',')[0]}"
-								alt="iuhello.jpg">
+								alt="${dto.title }">
 							<section class=title>
 								<a href="javascript:read('${dto.tid}')"><i
 									class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a> <span

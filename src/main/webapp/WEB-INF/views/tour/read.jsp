@@ -146,6 +146,7 @@
 	<section class="title">
         <div><i class="fab fa-slack-hash"></i>&nbsp${dto.title}</div>
         <div class = "sharebtn">
+	    	<a href="https://map.naver.com/v5/search/${dto.addname}" target="_blank"><i class="fas fa-map-marked"></i></a>
 	    	<button onclick="snsShare('kakao')"><img src="/resources/static/images/logo/kakao_logo.png"></button>
 	        <button onclick="snsShare('twitter')"><img src="/resources/static/images/logo/twitter_logo.png"></button>
 	        <button onclick="snsShare('facebook')"><img src="/resources/static/images/logo/facebook_logo.png"></button>
