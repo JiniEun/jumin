@@ -32,9 +32,10 @@
 
 </head>
 <body>
-
+	<h2 style="margin: 5px; text-align : center;">동네스팟</h2>
+	<p class="col-12 text-center"> 우리 지역의 여행지와 맛집을 찾아보세요 </p> <br>
 	<section class=mtitle>
-		<h1 style="margin: 20px 0;">동네스팟</h1>
+		
 
 		<!-- 검색 -->
 		<form class="search-form" action="/tour/list">

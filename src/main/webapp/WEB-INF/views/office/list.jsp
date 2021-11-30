@@ -44,7 +44,8 @@
 </head>
 <body>
 	<div class="pagetitle">
-		<h2 style="margin: 20px 0;">동네 주요시설</h2>
+		<h2 style="margin: 20px 0; text-align : center;">동네 주요시설</h2>
+		<p class="col-12 text-center"> 우리 지역의 공공기관, 인프라를 한눈에! </p> <br>
 		<c:choose>
 			<c:when
 				test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
