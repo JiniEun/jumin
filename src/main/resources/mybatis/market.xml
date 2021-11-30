@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		viewcnt, title, content, id, category, rdate, nickname, fileName, regionID)
 		values((select nvl(max(mId), 0) + 1 from market), 0 ,
 		#{title},
-		#{content}, #{id}, #{category}, sysdate, #{nickname}, #{filename}, #{regionID)
+		#{content}, #{id}, #{category}, sysdate, #{nickname}, #{filename}, #{regionID})
 	</insert>
 
 	<update id="upCnt" parameterType="int">

@@ -9,6 +9,7 @@
 <head>
 <title>조회</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <meta charset="utf-8">
 <script type="text/javascript">
 	function updateM() {
@@ -37,17 +38,19 @@
 <body>
 <div class="container col-md-6">
     <div class="card">
+    	<div class="card-header">
+    	            <h5>[${dto.category}] ${dto.title}</h5>
+    	</div>
         <div class="card-body">
-            <h4 class="card-title mb-3">[${dto.category}] ${dto.title}</h4>
             <h6 class="card-subtitle text-muted mb-4">
             	<div hidden>
-            	<i class="far fa-user"></i> ${dto.userID}
+            	${dto.userID}
             	</div>
-                <i class="far fa-user"></i> ${dto.nickname}
+                <i class="far fa-user"></i> ${dto.nickname} &nbsp;&nbsp;
                 
-                <i class="far fa-clock"></i> ${dto.rdate}
+                <i class="far fa-clock"></i> ${dto.rdate} &nbsp;&nbsp;
                 
-                <i class="fas fa-align-justify"></i> 조회 ${dto.viewcnt}
+                <span>조회 ${dto.viewcnt} </span>
             </h6>
             <p class="card-text">${dto.content}</p>
         </div>
@@ -64,6 +67,7 @@
 			</c:otherwise>
 		 </c:choose>
         </div>
+       
     </div>
 </div>
 <!-- reply 추가할 지 고민 -->

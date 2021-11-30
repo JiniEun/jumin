@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div class="container" style="margin-top: 15px;">
-		<h3>동네친구 게시판</h3>
+		<h2 style="color:#5BA6A6;">동네친구</h2>
 		<br>
 		<form class="form-inline" action="list">
 			<div class="form-group">
@@ -57,7 +57,6 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>번호</th>
 					<th>카테고리</th>
 					<th>제목</th>
 					<th>작성자</th>
@@ -74,7 +73,6 @@
 					<c:otherwise>
 						<c:forEach var="dto" items="${list}">
 							<tr>
-								<td>${dto.fbID}</td>
 								<td>${dto.category}</td>
 								<td><a href="javascript:read('${dto.fbID}')" class="text-dark">${dto.title}</a></td>
 								<td>${dto.nickname}</td>

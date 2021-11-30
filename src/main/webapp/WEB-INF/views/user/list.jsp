@@ -35,10 +35,10 @@
 </script>
 </head>
 <body>
-	<div class="container" style="margin-top:10px;">
-		<h3 style="margin-bottom:10px;">회원목록</h3>
+	<div class="container" style="margin-top: 10px;">
+		<h3 style="margin-bottom: 10px;">회원목록</h3>
 		<form class="form-inline" method="post" action="list">
-			<div class="form-group" style="margin-right:10px;">
+			<div class="form-group" style="margin-right: 10px;">
 				<select name="col" class="form-control">
 					<option value="uname" <c:if test="${col=='uname' }">selected</c:if>>성명</option>
 					<option value="id" <c:if test="${col=='id' }">selected</c:if>>아이디</option>
@@ -47,12 +47,12 @@
 				</select>
 			</div>
 
-			<div class="form-group" style="margin-right:10px;">
+			<div class="form-group" style="margin-right: 10px;">
 				<input type="text" class="form-control" name="word" value="${word}">
 			</div>
-			<button class="btn btn-color" style="margin-right:10px;">검색</button>
-			<button class="btn btn-color" type="button" style="margin-right:10px;"
-				onclick="location.href='/user/create'">등록</button>
+			<button class="btn btn-color" style="margin-right: 10px;">검색</button>
+			<button class="btn btn-color" type="button"
+				style="margin-right: 10px;" onclick="location.href='/user/create'">등록</button>
 		</form>
 
 		<br>
@@ -80,8 +80,7 @@
 				</tr>
 				<tr>
 					<th class="col-sm-2">주소</th>
-					<td class="col-sm-8">${dto.address1}
-						${dto.address2}</td>
+					<td class="col-sm-8">${dto.address1}${dto.address2}</td>
 				</tr>
 			</table>
 		</c:forEach>

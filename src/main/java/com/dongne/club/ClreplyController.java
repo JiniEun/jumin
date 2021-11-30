@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
+import com.dongne.utility.Utility;
 
 @Controller
 @RequestMapping("/club/reply")
@@ -81,31 +82,45 @@ public class ClreplyController {
 
 		String ID = (String) session.getAttribute("ID");
 
-		UserDTO user = uservice.read(ID);
-		String nickname = user.getNickname();
+		if (session.getAttribute("ID") != null) {
+			UserDTO user = uservice.read(ID);
+			String nickname = user.getNickname();
 
-		map.put("clID", clID);
-		map.put("ID", ID);
-		map.put("nickname", nickname);
-		map.put("content", content);
-	
-		return service.create(map);
+			map.put("ID", ID);
+			map.put("nickname", nickname);
+			map.put("clID", clID);
+			map.put("content", content);
+			return service.create(map);
+		} else {
+			return 0;
+		}
 
 	}
 
 	@RequestMapping("/delete/{clrID}")
 	@ResponseBody
-	public void delete(@PathVariable int clrID) {
+	public int delete(@PathVariable int clrID, @RequestParam("replyid") String replyid, HttpSession session) {
 
-		service.delete(clrID);
+		String ID = Utility.checkNull((String) session.getAttribute("ID"));
+
+		System.out.println(ID);
+		System.out.println("여가까자ㅣ");
+
+		if (ID.compareTo(replyid) == 0) {
+			System.out.println("아이디 같음");
+			return service.delete(clrID);
+		} else {
+			System.out.println("아이디 다름");
+			return 0;
+		}
 
 	}
 
 	@RequestMapping("/update/{clrID}")
 	@ResponseBody
 	public int update(ClreplyDTO dto, @PathVariable int clrID, @RequestParam("clID") int clID,
-			@RequestParam("content") String content, HttpSession session) {
-		String id = (String) session.getAttribute("ID");
+			@RequestParam("replyid") String replyid, @RequestParam("content") String content, HttpSession session) {
+		String ID = Utility.checkNull((String) session.getAttribute("ID"));
 
 		dto.setContent(content);
 
@@ -113,7 +128,7 @@ public class ClreplyController {
 
 		dto.setClrID(clrID);
 
-		if (session.getAttribute("ID") != null) {
+		if (ID.compareTo(replyid) == 0) {
 			return service.update(dto);
 		} else {
 			return 0;
