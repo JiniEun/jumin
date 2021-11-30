@@ -32,7 +32,7 @@
 <div id="features-wrapper">
 		<div class="container">
 			<div id="top">
-				<h2 class="col-12 text-center tm-section-title">우리 동네 동호회</h2>
+				<h2 class="col-12 text-center tm-section-title" style="color:#5BA6A6;">우리 동네 동호회</h2>
 				<p class="col-12 text-center">
 					우리 동네 동호회를 소개하고 소식을 공유해보세요! <br> <br>
 					<c:if

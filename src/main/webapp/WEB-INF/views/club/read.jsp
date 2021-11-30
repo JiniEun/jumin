@@ -9,6 +9,7 @@
 <head>
 <title>조회</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/static/css/tour_read.css"> <!-- 일단 tour_read.css 댓글 참조 -->
 <meta charset="utf-8">
 <script type="text/javascript">
@@ -38,7 +39,7 @@
 <body>
 	<div class="container-lg">
 		<div class="card border-light mb-3">
-			<div class="card-header bg-transparent" style="font-size: 20px;">${dto.title }</div>
+			<div class="card-header bg-transparent" style="font-size: 25px;">${dto.title }</div>
 			<input type="hidden" id="clID" name="clID" value="${dto.clID }">
 			<input type="hidden" id="ID" name="ID" value="${dto.ID}">
 			<div class="card-body" style="min-height: 300px;">
@@ -65,6 +66,7 @@
 	    <section class="reply">
 	    	<input type="hidden" name="clID" value="${dto.clID}"/>
 	    	<input type="hidden" name="nickname" value="${dto.nickname}"/>
+	    	<input type="hidden" name="ID" value="${dto.ID}"/>
 	        <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
 	        <button class="rebtn" id="rebtn" name="rebtn">댓글 등록</button>
 	    </section>
