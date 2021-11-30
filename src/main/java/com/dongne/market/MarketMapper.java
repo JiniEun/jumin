@@ -6,6 +6,8 @@ import java.util.Map;
 public interface MarketMapper {
 
 	int total(Map map);
+	
+	int totalRegion(Map map);
 
 	List<MarketDTO> list(Map map);
 

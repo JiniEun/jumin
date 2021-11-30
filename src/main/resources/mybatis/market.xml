@@ -5,83 +5,94 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dongne.market.MarketMapper">
-	<select id="list" parameterType="Map" resultType="com.dongne.market.MarketDTO">
-                select mId, viewcnt, title, content, id, category, rdate, nickname, fileName, r
-                from (
-                    select mId, viewcnt, title, content, id, category, rdate, fileName, nickname, rownum r
-                    from(
-                        select mId, viewcnt, title, content, id, category, rdate, fileName, nickname
-                        from market
-						<where>
-						<choose>
-							<when test="col=='title'">
-								title like '%'||#{word}||'%'
-							</when>
-							<when test="col=='nickname'">
-								nickname like '%'||#{word}||'%'
-							</when>
-							<when test="col=='content'">
-								content like '%'||#{word}||'%'
-							</when>
-							<when test="col=='category'">
-								category like '%'||#{word}||'%'
-							</when>
-						</choose>
-						and regionID = #{regionID}
-					  	</where>
-						order by mId desc
-                        )
+	<select id="list" parameterType="Map"
+		resultType="com.dongne.market.MarketDTO">
+		select mId, viewcnt, title, content, id, category, rdate, nickname, fileName,regionID, r
+		from (
+		select mId, viewcnt, title, content, id, category, rdate, fileName, nickname, regionID, rownum r
+		from(
+		select mId, viewcnt, title, content, id, category, rdate, fileName, nickname, regionID
+		from market
+		<where>
+			<choose>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='nickname'">
+					nickname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+				<when test="col=='category'">
+					category like '%'||#{word}||'%'
+				</when>
+			</choose>
+			and regionID = #{regionID}
+		</where>
+		order by mId desc
+		)
         <![CDATA[       
                 )where r >= #{sno} and r <= #{eno}
-        ]]>     
-     </select>
-     <select id="total" resultType="int" parameterType="Map">
-   		 select count(*) from market              
-     </select>
-     
-<!--      <update id="updateFile" parameterType="Map"> -->
-<!-- 		update market -->
-<!-- 		set filename = #{fname} -->
-<!-- 		where mId = #{mId} -->
-<!-- 	</update> -->
-	
-     <insert id="create" parameterType="com.dongne.market.MarketDTO">
-		insert into market(mId, viewcnt, title, content, id, category, rdate, nickname, fileName)
+        ]]>
+	</select>
+	<select id="total" resultType="int" parameterType="Map">
+		select count(*) from market
+	</select>
+
+	<select id="totalRegion" resultType="int" parameterType="Map">
+		select count(*) from market WHERE regionID = #{regionID}
+	</select>
+
+	<!-- <update id="updateFile" parameterType="Map"> -->
+	<!-- update market -->
+	<!-- set filename = #{fname} -->
+	<!-- where mId = #{mId} -->
+	<!-- </update> -->
+
+	<insert id="create" parameterType="com.dongne.market.MarketDTO">
+		insert into market(mId,
+		viewcnt, title, content, id, category, rdate, nickname, fileName, regionID)
 		values((select nvl(max(mId), 0) + 1 from market), 0 ,
-		#{title}, #{content}, #{id}, #{category}, sysdate, #{nickname}, #{filename})
-  	</insert>
-  	
-  	<update id="upCnt" parameterType="int">
-    update market              
-    set viewcnt = viewcnt + 1 
-    where mid = #{mid}         
-    </update>
-    
-  <select id="read"  parameterType="int" resultType="com.dongne.market.MarketDTO">
-    SELECT mId, title, content, id, nickname, viewcnt, rdate, filename
-    FROM market
-    WHERE mid = #{mid}
-  </select>
-     
-  <update id="update" parameterType="com.dongne.market.MarketDTO" >
+		#{title},
+		#{content}, #{id}, #{category}, sysdate, #{nickname}, #{filename}, #{regionID)
+	</insert>
+
+	<update id="upCnt" parameterType="int">
 		update market
-		set title = #{title}, 
+		set viewcnt = viewcnt + 1
+		where mid = #{mid}
+	</update>
+
+	<select id="read" parameterType="int"
+		resultType="com.dongne.market.MarketDTO">
+		SELECT mId, title, content, id, nickname, viewcnt, rdate, filename, regionID
+		FROM market
+		WHERE mid = #{mid}
+	</select>
+
+	<update id="update" parameterType="com.dongne.market.MarketDTO">
+		update market
+		set title = #{title},
 		content = #{content},
 		nickname = #{nickname},
 		filename = #{filename}
-		where mid = #{mid}
+		regionID = #{regionID}
+		where mid =
+		#{mid}
 	</update>
-	
+
 	<update id="updateFile" parameterType="Map">
 		update market
-		set filename = #{filename},
+		set filename
+		= #{filename},
 		title = #{title},
 		content = #{content}
 		where mid = #{mid}
 	</update>
 
 	<delete id="delete" parameterType="int">
-			delete from market
-			where mid = #{mid}
-	</delete>   
+		delete from market
+		where mid = #{mid}
+	</delete>
 </mapper>

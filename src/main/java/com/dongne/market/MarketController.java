@@ -43,41 +43,38 @@ public class MarketController {
 	@Autowired
 	@Qualifier("com.dongne.region.RegionServiceImpl")
 	private RegionService rservice;
-	
+
 	@RequestMapping("/market/list")
 	public String list(HttpSession session, HttpServletRequest request) {
 		String realLocation = (String) session.getAttribute("realLocation");
 		String regionID = "";
-		
+
 		if ((String) session.getAttribute("ID") == null) {
 			session.setAttribute("region", rservice.read(Utility.getRegionCode(realLocation)).getRegionID());
 			int sv = (Integer) session.getAttribute("region");
-			
-			String myRegionID=Utility.checkNull(Integer.toString(sv));
-			
-			 regionID = Utility.checkNull(request.getParameter("regionID"));
 
-				if (regionID == "") {
-					regionID = myRegionID;
-				}
+			String myRegionID = Utility.checkNull(Integer.toString(sv));
+
+			regionID = Utility.checkNull(request.getParameter("regionID"));
+
+			if (regionID == "") {
+				regionID = myRegionID;
+			}
 		} else {
-		int sv=(Integer)session.getAttribute("region");
-		String myRegionID=Utility.checkNull(Integer.toString(sv));
+			int sv = (Integer) session.getAttribute("region");
+			String myRegionID = Utility.checkNull(Integer.toString(sv));
 
-		    regionID = Utility.checkNull(request.getParameter("regionID"));
+			regionID = Utility.checkNull(request.getParameter("regionID"));
 
-		if (regionID == "") {
-			regionID = myRegionID;
+			if (regionID == "") {
+				regionID = myRegionID;
+			}
+
 		}
 
-		}
-
-		
-		
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
-		
 
 		if (col.equals("total")) {
 			word = "";
@@ -102,7 +99,7 @@ public class MarketController {
 		map.put("cnt", recordPerPage);
 		map.put("regionID", regionID);
 
-		int total = service.total(map);
+		int total = service.totalRegion(map);
 
 		List<MarketDTO> list = service.list(map);
 
@@ -110,12 +107,12 @@ public class MarketController {
 
 		// request에 Model사용 결과 담는다
 		request.setAttribute("list", list);
-		request.setAttribute("nowPage", nowPage);		
+		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
 		request.setAttribute("regionID", regionID);
-		
+
 		return "/market/list";
 
 	}
@@ -157,11 +154,9 @@ public class MarketController {
 		UserDTO user = uservice.read(ID);
 		String nickname = user.getNickname();
 		model.addAttribute("nickname", nickname);
-		
-		int regionID = user.getRegionID();		
-		model.addAttribute("regionID", regionID);
 
-		
+		int regionID = user.getRegionID();
+		model.addAttribute("regionID", regionID);
 
 		return "/market/create";
 	}
@@ -171,6 +166,16 @@ public class MarketController {
 		String filename_ = (String) session.getAttribute("filename");
 		String filename = Utility.checkNulltoDefault(filename_);
 
+		String realLocation = (String) session.getAttribute("realLocation");
+
+		int regionID = 0;
+		if ((String) session.getAttribute("ID") == null) {
+			regionID = rservice.read(Utility.getRegionCode(realLocation)).getRegionID();
+		} else {
+			regionID = uservice.read((String) session.getAttribute("ID")).getRegionID();
+		}
+
+		dto.setRegionID(regionID);
 		dto.setFilename(filename);
 
 		if (service.create(dto) > 0) {
@@ -222,6 +227,7 @@ public class MarketController {
 		String filename = Utility.checkNulltoDefault(filename_);
 
 		dto.setFilename(filename);
+		dto.setRegionID(uservice.read((String) session.getAttribute("ID")).getRegionID());
 
 		session.removeAttribute("filename");
 

@@ -63,7 +63,7 @@
 						test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
 						<a href="${root}/user/mypage" tabindex="-1" aria-disabled="true"
 							class="link-header-right">My Page</a>
-						<a href="${root}/user/mypage" class="btn btn-sm btn-color-header"
+						<a href="${root}/user/list" class="btn btn-sm btn-color-header"
 							tabindex="-1" role="button" aria-disabled="true"
 							style="margin-right: 10px;">setting</a>
 						<a href="${root}/user/logout" class="btn btn-sm btn-color-header"
