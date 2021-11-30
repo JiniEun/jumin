@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +8,9 @@
 	<title>Insert title here</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js">     </script>
     <script type="text/JavaScript">
-	 $(function() {
-         CKEDITOR.replace('content'); // <TEXTAREA>태그 id 값
- 	  });
+    $(function() {
+        CKEDITOR.replace('content'); // <TEXTAREA>태그 id 값
+  });
  </script>
 </head>
 <body>

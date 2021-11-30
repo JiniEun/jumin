@@ -61,9 +61,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 목록 -->
    <select id="list" parameterType="Map" resultType="com.dongne.club.ClubDTO">
-    SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, regionID, r
-    from ( SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, regionID, rownum r
-    	from ( SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, regionID
+    SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, fileName, regionID, r
+    from ( SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, fileName, regionID, rownum r
+    	from ( SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, fileName, regionID
 				FROM club
     <where>
               <choose>

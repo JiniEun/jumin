@@ -5,6 +5,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.dongne.club.Club;
 import com.dongne.market.Market;
 import com.dongne.office.Office;
 import com.dongne.tour.Tour;
@@ -24,6 +25,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		registry.addResourceHandler("/tour/storage/**").addResourceLocations("file:///" + Tour.getUploadDir());
 		registry.addResourceHandler("/office/storage/**").addResourceLocations("file:///" + Office.getUploadDir());
 		registry.addResourceHandler("/market/storage/**").addResourceLocations("file:///" + Market.getUploadDir());
+		registry.addResourceHandler("/club/storage/**").addResourceLocations("file:///" + Club.getUploadDir());
 
 		registry.addResourceHandler("/user/storage/**").addResourceLocations("file:///" + User.getUploadDir());
 		/* '/js/**'로 호출하는 자원은 '/static/js/' 폴더 아래에서 찾는다. */
