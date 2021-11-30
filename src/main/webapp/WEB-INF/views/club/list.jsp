@@ -70,9 +70,9 @@
 			<c:choose>
 				<c:when test="${empty list}">
 					<div class="row">
-						<tr>
-							<td colspan="6">등록된 글이 없습니다.</td>
-						</tr>
+
+						<div>등록된 글이 없습니다.</div>
+
 					</div>
 				</c:when>
 
@@ -119,8 +119,8 @@
 										<!-- Box -->
 										<section class="box feature">
 											<a href="/club/read/${dto.clID}" class="img-rounded"> <img
-												src="/club/storage/${dto.fileName}" alt=""
-												width="236" height="250" />
+												src="/club/storage/${dto.fileName}" alt="" width="236"
+												height="250" />
 											</a>
 											<div class="info">
 

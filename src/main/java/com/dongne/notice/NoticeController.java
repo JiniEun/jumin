@@ -73,7 +73,7 @@ public class NoticeController {
 
 		// DB에서 가져올 순번-----------------
 		int sno = ((nowPage - 1) * recordPerPage) + 1;
-		int eno = nowPage * recordPerPage;
+		int eno = nowPage * recordPerPage -1;
 
 		Map map = new HashMap();
 		map.put("col", col);

@@ -34,7 +34,7 @@
 </script>
 </head>
 <body>
-	<div class="container-lg">
+	<div class="container-lg pb-4">
 		<h2 style="margin-bottom: 20px;">공지사항</h2>
 		<div class="card ">
 			<div class="card-header bg-transparent" style="font-size: 20px;">${dto.title }</div>
