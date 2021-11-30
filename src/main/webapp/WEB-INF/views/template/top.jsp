@@ -4,14 +4,14 @@
 <c:choose>
 	<c:when
 		test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
-		<c:set var="str">관리자로 로그인 하셨습니다.</c:set>
+		<c:set var="str">관리자로 로그인 하셨습니다. ${sessionScope.regionName} 지역 접속 </c:set>
 	</c:when>
 	<c:when
 		test="${not empty sessionScope.ID && sessionScope.grade != 'A'}">
-		<c:set var='str'>안녕하세요  ${sessionScope.ID } 님!</c:set>
+		<c:set var='str'>안녕하세요  ${sessionScope.ID } 님! ${sessionScope.regionName} 지역 접속</c:set>
 	</c:when>
 	<c:otherwise>
-		<c:set var="str">안녕하세요 방문자님!</c:set>
+		<c:set var="str">안녕하세요 방문자님! ${sessionScope.regionName} 지역 접속 </c:set>
 	</c:otherwise>
 </c:choose>
 <!DOCTYPE html>
@@ -85,7 +85,7 @@
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
 			<a class="navbar-brand" href="${root}/" style="color: #027373;">
-				<img src="/images/dongne.gif" width="100%" height="auto" alt="logo" />
+				<img src="/images/title_2.gif" width="100%" height="auto" alt="logo" />
 			</a>
 		</div>
 	</nav>

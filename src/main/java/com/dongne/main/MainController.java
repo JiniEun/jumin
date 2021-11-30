@@ -15,9 +15,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dongne.club.ClubDTO;
+import com.dongne.club.ClubService;
+import com.dongne.community.CommunityDTO;
+import com.dongne.community.CommunityService;
+import com.dongne.fboard.FboardDTO;
+import com.dongne.fboard.FboardService;
+import com.dongne.market.MarketDTO;
+import com.dongne.market.MarketService;
 import com.dongne.notice.NoticeDTO;
 import com.dongne.notice.NoticeService;
 import com.dongne.region.RegionService;
+import com.dongne.tour.TourDTO;
+import com.dongne.tour.TourService;
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 import com.dongne.utility.LocationDTO;
@@ -30,6 +40,26 @@ public class MainController {
 	@Autowired
 	@Qualifier("com.dongne.notice.NoticeServiceImpl")
 	private NoticeService noticeService;
+
+	@Autowired
+	@Qualifier("com.dongne.tour.TourServiceImpl")
+	private TourService tourService;
+
+	@Autowired
+	@Qualifier("com.dongne.market.MarketServiceImpl")
+	private MarketService marketService;
+
+	@Autowired
+	@Qualifier("com.dongne.club.ClubServiceImpl")
+	private ClubService clubService;
+
+	@Autowired
+	@Qualifier("com.dongne.fboard.FboardServiceImpl")
+	private FboardService fboardService;
+
+	@Autowired
+	@Qualifier("com.dongne.community.CommunityServiceImpl")
+	private CommunityService communityService;
 
 	@Autowired
 	@Qualifier("com.dongne.user.UserServiceImpl")
@@ -53,6 +83,7 @@ public class MainController {
 		if ((String) session.getAttribute("ID") == null) {
 			System.out.println("session ID == null");
 			session.setAttribute("region", regionService.read(Utility.getRegionCode(realLocation)).getRegionID());
+			session.setAttribute("regionName", regionService.read(Utility.getRegionCode(realLocation)).getRegion());
 		} else {
 			UserDTO dto = userService.read((String) session.getAttribute("ID"));
 			System.out.println("session ID : " + dto.getID());
@@ -81,8 +112,25 @@ public class MainController {
 
 		List<NoticeDTO> noticelist = noticeService.list(map);
 
+		map.put("districtcode", session.getAttribute("region"));
+
+		List<TourDTO> tourlist = tourService.list(map);
+
+		map.remove("districtcode");
+		map.put("regionID", session.getAttribute("region"));
+
+		List<MarketDTO> marketlist = marketService.list(map);
+		List<ClubDTO> clublist = clubService.list(map);
+		List<FboardDTO> fboardlist = fboardService.list(map);
+		List<CommunityDTO> communitylist = communityService.list(map);
+
 		// request에 Model사용 결과 담는다
 		request.setAttribute("noticelist", noticelist);
+		request.setAttribute("tourlist", tourlist);
+		request.setAttribute("marketlist", marketlist);
+		request.setAttribute("clublist", clublist);
+		request.setAttribute("fboardlist", fboardlist);
+		request.setAttribute("communitylist", communitylist);
 
 		return "/home";
 	}

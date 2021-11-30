@@ -50,7 +50,7 @@ public class FboardController {
 		model.addAttribute("dto", dto);
 		
 		if(session.getAttribute("ID") == null) {
-			return "/user/login";
+			return "redirect:/user/login";
 		}
 		
 		return "/fboard/read";

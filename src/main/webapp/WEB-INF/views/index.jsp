@@ -156,9 +156,18 @@ window.addEventListener('load', () => {
 						<h5 class="card-title">최근 게시물</h5>
 					</div>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+						<c:choose>
+							<c:when test="${empty tourlist}">
+								<li class="list-group-item">등록된 글이 없습니다.</li>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="tdto" items="${tourlist}">
+									<li class="list-group-item"><a
+										href="/tour/read?tid=${tdto.tid}&col=&word=&nowPage=1"
+										class="text-dark">${tdto.title}</a></li>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 				<div class="col card" style="margin: 10px; padding-top: 15px;">
@@ -172,25 +181,58 @@ window.addEventListener('load', () => {
 						<h5 class="card-title">최근 게시물</h5>
 					</div>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+						<c:choose>
+							<c:when test="${empty marketlist}">
+								<li class="list-group-item">등록된 글이 없습니다.</li>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="mdto" items="${marketlist}">
+									<li class="list-group-item"><a
+										href="/market/read?mid=${mdto.mid}&col=&word=&nowPage=1"
+										class="text-dark">${mdto.title}</a></li>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 				<div class="col card" style="margin: 10px; padding-top: 15px;">
-					<img class="card-img-top" src="/images/city.jpg"
-						alt="Card image cap">
 					<div class="card-body">
-						<h5 class="card-title">동네 모임</h5>
-						<p class="card-text">동호회 / 동네 친구</p>
+						<h5 class="card-title">동네 모임 - 동호회</h5>
 					</div>
 					<div class="card-body" style="padding-bottom: 0px;">
 						<h5 class="card-title">최근 게시물</h5>
 					</div>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+						<c:choose>
+							<c:when test="${empty clublist}">
+								<li class="list-group-item">등록된 글이 없습니다.</li>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="cldto" items="${clublist}">
+									<li class="list-group-item"><a
+										href="/club/read/${cldto.clID}" class="text-dark">${cldto.title}</a></li>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+					<div class="card-body">
+						<h5 class="card-title">동네 모임 - 동네 친구</h5>
+					</div>
+					<div class="card-body" style="padding-bottom: 0px;">
+						<h5 class="card-title">최근 게시물</h5>
+					</div>
+					<ul class="list-group list-group-flush">
+						<c:choose>
+							<c:when test="${empty fboardlist}">
+								<li class="list-group-item">등록된 글이 없습니다.</li>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="fdto" items="${fboardlist}">
+									<li class="list-group-item"><a
+										href="/fboard/read?fbID=${fdto.fbID}" class="text-dark">${fdto.title}</a></li>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 				<div class="col card" style="margin: 10px; padding-top: 15px;">
@@ -204,9 +246,17 @@ window.addEventListener('load', () => {
 						<h5 class="card-title">최근 게시물</h5>
 					</div>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+						<c:choose>
+							<c:when test="${empty communitylist}">
+								<li class="list-group-item">등록된 글이 없습니다.</li>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="cdto" items="${communitylist}">
+									<li class="list-group-item"><a
+										href="/community/read/${cdto.cid}" class="text-dark">${cdto.title}</a></li>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 			</div>
