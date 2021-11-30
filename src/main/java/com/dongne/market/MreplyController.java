@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
+import com.dongne.utility.Utility;
 
 @Controller
 @RequestMapping("/market/reply")
@@ -97,17 +98,26 @@ public class MreplyController {
 
 	@RequestMapping("/delete/{mrid}")
 	@ResponseBody
-	public void delete(@PathVariable int mrid) {
+	public int delete(@PathVariable int mrid, @RequestParam("replyid") String replyid, HttpSession session) {
 
-		service.delete(mrid);
+		String ID = Utility.checkNull((String) session.getAttribute("ID"));
+		
+		if (ID.compareTo(replyid) == 0) {
+			
+			return service.delete(mrid);
+			
+		} else {
+		
+			return 0;
+		}
 
 	}
 
 	@RequestMapping("/update/{mrid}")
 	@ResponseBody
 	public int update(MreplyDTO dto, @PathVariable int mrid, @RequestParam("mid") int mid,
-			@RequestParam("content") String content, HttpSession session) {
-		String id = (String) session.getAttribute("ID");
+			@RequestParam("replyid") String replyid, @RequestParam("content") String content, HttpSession session) {
+		String ID = Utility.checkNull((String) session.getAttribute("ID"));
 
 		dto.setContent(content);
 
@@ -115,7 +125,7 @@ public class MreplyController {
 
 		dto.setMrid(mrid);
 
-		if (session.getAttribute("ID") != null) {
+		if (ID.compareTo(replyid) == 0) {
 			return service.update(dto);
 		} else {
 			return 0;

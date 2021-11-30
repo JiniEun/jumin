@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
+import com.dongne.utility.Utility;
 
 @Controller
 @RequestMapping("/community/reply")
@@ -96,17 +97,27 @@ public class CreplyController {
 
 	@RequestMapping("/delete/{crid}")
 	@ResponseBody
-	public void delete(@PathVariable int crid) {
+	public int delete(@PathVariable int crid, @RequestParam("replyid") String replyid, HttpSession session) {
+		
+		String ID = Utility.checkNull((String) session.getAttribute("ID"));
+		
+		if (ID.compareTo(replyid) == 0) {
+			
+			return service.delete(crid);
+			
+		} else {
+		
+			return 0;
+		}
 
-		service.delete(crid);
-
+	
 	}
 
 	@RequestMapping("/update/{crid}")
 	@ResponseBody
 	public int update(CreplyDTO dto, @PathVariable int crid, @RequestParam("cid") int cid,
-			@RequestParam("content") String content, HttpSession session) {
-		String ID = (String) session.getAttribute("ID");
+			@RequestParam("replyid") String replyid, @RequestParam("content") String content, HttpSession session) {
+		String ID = Utility.checkNull((String) session.getAttribute("ID"));
 
 		dto.setContent(content);
 
@@ -114,7 +125,7 @@ public class CreplyController {
 
 		dto.setCrid(crid);
 
-		if (session.getAttribute("ID") != null) {
+		if (ID.compareTo(replyid) == 0) {
 			return service.update(dto);
 		} else {
 			return 0;

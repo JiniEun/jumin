@@ -7,6 +7,7 @@
 <html lang="en">
 <head>	
     <link rel="stylesheet" href="/resources/static/css/market.css">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <meta charset="UTF-8">
     <title>상세페이지</title>    
     <script type="text/javascript">
@@ -93,18 +94,24 @@
 
 
  <div class="card card-default">
-            <div class="card-header" style="font-size:20px;">${dto.title}</div>
-    <div class="card-body">
+    <div class="card-header" style="font-size:18px;">${dto.title}</div>
+    
+    <div class="card-body" style="color:#808088">
+    			
+				<i class="fas fa-user"></i>&nbsp<span class="card-text">${dto.nickname}</span>
+				<p class="card-text"><small class="text-muted">${dto.rdate}</small>
+				<br>						
+ 	</div>
+    
+    <div class="card-body">    
         <p class="card-text">${dto.content}</p>
     </div>
-    <div class="card-body">
-    			
-                <p class="card-text">작성자 : ${dto.nickname}</p>
-                <p class="card-text">조회수 : ${dto.viewcnt}</p>
-                <p class="card-text">등록일자 : ${dto.rdate}</p>
+ 	<div class="card-footer bg-transparent" style="color:#808088" >				
+		<p class="card-text"> 조회수 <small class="text-muted">${dto.viewcnt}</small>
+	</div>    
         
-        
-    </div>
+ </div>   
+    
 <br>
     <!-- reply -->
 	<form name="replyForm">
@@ -123,7 +130,7 @@
 	        <span>${paging}</span>
 	    </section>
 	</form>
-	</div>
+	
     <%@ include file="reply.jsp" %>
 <br>
         <div>

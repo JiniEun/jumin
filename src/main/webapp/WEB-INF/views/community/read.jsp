@@ -6,6 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="/resources/static/css/market.css">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <title>조회</title>
 <meta charset="utf-8">
 
@@ -30,22 +31,23 @@
 		<h2 style="margin-bottom: 20px;">Community</h2>
 
 		<div class="card card-default">
-			<div class="card-header bg-transparent" style="font-size: 20px;">${dto.title}</div>
+			<div class="card-header bg-transparent" style="font-size: 20px;">
+			<span>[${dto.category}]</span>&nbsp<span>${dto.title}</span>
+			
+			</div>
 
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h5 class="card-title">작성자</h5>
-					<p class="card-text">${dto.nickname}</p>
+				<li class="list-group-item" style="color:#808088">
+						<i class="fas fa-user"></i>&nbsp<span class="card-text">${dto.nickname}</span>
+						<p class="card-text"><small class="text-muted">${dto.rdate}</small>
 				</li>
 				<li class="list-group-item" style="min-height: 300px;">
-					<h5 class="card-title">내용</h5>
+					
 					<p class="card-text">${dto.content }</p>
 				</li>
 			</ul>
 
-			<div class="card-footer bg-transparent">
-				<p class="card-text">
-					등록일 <small class="text-muted">${dto.rdate}</small>
+			<div class="card-footer bg-transparent">				
 				<p class="card-text">
 					조회수 <small class="text-muted">${dto.viewcnt}</small>
 			</div>
