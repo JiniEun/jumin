@@ -71,7 +71,6 @@ function fileCheck(e) {
       };
       reader.readAsDataURL(f);
     });
-    console.log(content_files);
     //초기화 한다.
     $("#input_file").val("");
   }
@@ -82,7 +81,6 @@ function fileDelete(fileNum){
     content_files[no].is_delete = true;
 	$('#' + fileNum).remove();
 	fileCount --;
-    console.log(content_files);
 }
 
 /*

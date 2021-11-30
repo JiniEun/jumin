@@ -109,10 +109,9 @@ public class OfficeController {
 		OfficeDTO dto = service.read(oid);
 
 		String upDir = Office.getUploadDir();
-		System.out.println("경로 : " + upDir);
+		
 		// 기존파일 지우고,
 		String oldfile = dto.getFilename();
-		System.out.println("파일명 : " + oldfile);
 		Utility.deleteFile(upDir, oldfile);
 
 		int cnt = 0;
@@ -132,10 +131,6 @@ public class OfficeController {
 		
 		int sv=Utility.checkNulltoint((Integer)session.getAttribute("region"));
 		String mydistrictcode=Utility.checkNull(Integer.toString(sv));
-
-		System.out.println("sv : " + sv);
-		System.out.println("mydistrictcode : " + mydistrictcode);
-
 		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
 
 		if (districtcode == "") {
@@ -156,8 +151,6 @@ public class OfficeController {
 
 	@GetMapping("/office/read")
 	public String read(int oid, Model model) {
-		System.out.println(oid);
-
 		OfficeDTO dto = service.read(oid);
 
 		model.addAttribute("dto", dto);
@@ -169,7 +162,7 @@ public class OfficeController {
 	@RequestMapping(value = "/office/read", method = RequestMethod.POST)
 	public String read(HttpServletRequest request) {
 		String oid = request.getParameter("oid");
-		System.out.println(oid);
+
 
 		return "/office/read";
 	}

@@ -53,9 +53,6 @@ public class TreplyController {
 		dto.setStartpage(startpage);
 		dto.setEndpage(endpage);
 		dto.setMaxpage(maxpage);
-		System.out.println("Page :" + page);
-		System.out.println("startPage :" + startpage);
-		System.out.println("endPage : " + endpage);
 
 		int nowPage = page;// 현재 보고있는 페이지
 
@@ -104,14 +101,9 @@ public class TreplyController {
 	public int delete(@PathVariable int trid, @RequestParam("replyid") String replyid, HttpSession session) {
 		String sid = Utility.checkNull((String) session.getAttribute("ID"));
 
-		System.out.println(sid);
-		System.out.println("여가까자ㅣ");
-
 		if (sid.compareTo(replyid) == 0) {
-			System.out.println("아이디 같음");
 			return service.delete(trid);
 		} else {
-			System.out.println("아이디 다름");
 			return 0;
 		}
 
@@ -123,12 +115,9 @@ public class TreplyController {
 			@RequestParam("replyid") String replyid, @RequestParam("content") String content, HttpSession session) {
 
 		String sid = Utility.checkNull((String) session.getAttribute("ID"));
-		System.out.println(sid);
 
 		dto.setContent(content);
-
 		dto.setTid(tid);
-
 		dto.setTrid(trid);
 
 		if (sid.compareTo(replyid) == 0) {
