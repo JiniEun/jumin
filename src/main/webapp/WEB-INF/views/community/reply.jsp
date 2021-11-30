@@ -35,10 +35,11 @@ function replyList(cid,page){
                 console.log("end : " + endpage);
 
                 a += '<div class="replyArea" style="border-bottom:1px solid darkgray; margin-bottom: 5px;">';
-                a += '<div class="replyInfo'+value.crid+'">'+value.nickname+' '+value.rdate;
+                a += '<input type="hidden" class="id-control" name="id_'+value.crid+'" value="'+value.id+'"/>'
+                a += '<div class="replyInfo'+value.crid+'" style="color:#808088">'+'<i class="fas fa-comments"></i>'+''+value.nickname+' '+value.rdate;
                 a += '<button type="button" onclick="replyUpdate('+value.crid +',\''+value.content+'\');" style=" height : 30px; margin-left : 15px; margin-right : 7px; color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 수정 </button>';
                 a += '<button onclick="replyDelete('+value.crid+');" style="color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 삭제 </button> </div>';
-                a += '<div class="replyContent'+value.crid+'"> <p> 내용 : '+value.content +'</p>';
+                a += '<div class="replyContent'+value.crid+'"> <p>'+value.content +'</p>';
                 a += '</div></div>';
             });
             
@@ -68,6 +69,7 @@ function replyCreate(insertData){
             	replyList(); //댓글 작성 후 댓글 목록 reload
                 $('[name=content]').val('');
             }else{
+            	alert("로그인을 해주세요");
             	console.log("failed")
             }
         }
@@ -75,12 +77,13 @@ function replyCreate(insertData){
 }
  
 //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-function replyUpdate(crid, content){
+function replyUpdate(crid, content, id){
     var a ='';
     
     a += '<div class="input-group">';
+    a += '<input type="hidden" class="id-control" name="id_'+crid+'" value="'+id+'"/>';
     a += '<input type="text" class="form-control" name="content_'+crid+'" value="'+content+'"/>';
-    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="replyUpdateProc('+crid+');">수정</button> </span>';
+    a += '<div class="input-group-btn"><button class="btn" style="width : 60px; height : 38px; background-color : white; border: 2px solid #5BA6A6; color : #5BA6A6; textalign : center; margin-left : 10px; padding-right : 10px; padding-bottom : 5px;" type="button" onclick="replyUpdateProc('+crid+');">수정</button> </div>';
     a += '</div>';
     
     $('.replyContent'+crid).html(a);
@@ -90,27 +93,40 @@ function replyUpdate(crid, content){
 //댓글 수정
 function replyUpdateProc(crid){
     var updateContent = $('[name=content_'+crid+']').val();
+    var replyid = $('[name=id_'+crid+']').val();
+	console.log(replyid);
     
     $.ajax({
         url : '/community/reply/update/'+crid,
         type : 'post',
-        data : {'content' : updateContent, 'cid' : cid},
+        data : {'content' : updateContent, 'cid' : cid, 'replyid': replyid},
         success : function(data){
-            if(data == 1) replyList(cid); //댓글 수정후 목록 출력 
+            if(data == 1) {
+            	replyList(cid); //댓글 수정후 목록 출력
+            }else{
+        		alert("작성자가 아닙니다.");
+        	}
+            
         }
     });
 }
  
 //댓글 삭제 
 function replyDelete(crid){
+	var replyid = $('[name=id_'+crid+']').val();
     $.ajax({
         url : '/community/reply/delete/'+crid,
         type : 'post',
+        data : {'replyid' : replyid },
         success : function(data){
-            if(data == 1) replyList(cid); //댓글 삭제후 목록 출력 
-        }
-    });
-}
+            if(data == 1){ 
+            	replyList(cid); //댓글 삭제후 목록 출력 
+            }else{
+    		alert("작성자가 아닙니다.");
+    	}    
+  	  }}
+   );}
+
  
  
  

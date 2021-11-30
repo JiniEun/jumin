@@ -76,8 +76,8 @@
            
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-5">
-                    <button class="btn">등록</button>
-                    <button type="button" class="btn" onclick="history.back()">취소</button>
+                    <button class="btn btn-color">등록</button>
+                    <button type="button" class="btn btn-color" onclick="history.back()">취소</button>
             </div>
            </div>
         </form>
