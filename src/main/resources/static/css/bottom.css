@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.body-bottom-color {
+	background-color: #f7f7f7; /*#D9BBB4;*/
+}
+
+.l-bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 15px;
+	opacity: 0.7;
+}
+
+.l-help-bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.txt-help {
+	margin-right: 20px;
+}
+
+.link-help-bottom {
+	color: #193c40;
+	margin-right: 10px;
+}
+
+.link-help-bottom:hover {
+	text-decoration: none;
+	color: #5BA6A6;
+}

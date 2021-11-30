@@ -419,5 +419,12 @@ public class UserController {
 
 		return "/user/findresult";
 	}
+	
+
+	@GetMapping("/privacy")
+	public String privacy() {
+
+		return "/user/privacy";
+	}
 
 }
