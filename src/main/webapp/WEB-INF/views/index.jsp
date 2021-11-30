@@ -107,14 +107,14 @@ window.addEventListener('load', () => {
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row" style="height: 150px; margin: 0 30px;">
-			<div class="col-3 justify-content-center">
+		<div class="row l-header-banner">
+			<div class="col-3 justify-content-center l-logo-img">
 				<div>
 					<img src="/images/logo_circle.gif" class="banners" alt="배너" />
 				</div>
 			</div>
 			<div class="col txt-location" style="margin: 10px;">
-				<img class="img-quote" src="/images/double_quote_left.png">
+				<img class="img-quote mr-5" src="/images/double_quote.png">
 				<div class="ml-1 mr-1">
 
 					<div class="l-flex">
@@ -124,37 +124,46 @@ window.addEventListener('load', () => {
 					<p id="rLoc" class="h4">${realLocation}</p>
 
 				</div>
-				<img class="img-quote-r" src="/images/double_quote_left.png">
-			</div>
-			<div class="col-3 align-items-center d-flex-end"
-				style="margin: 10px;">
-				<div class="row mb-3 justify-content-center"></div>
-				<div class="row justify-content-center txt-covid">
-					<div class="col">
-						<h5>COVID-19</h5>
-					</div>
-					<div class="col d-flex">
-						<div id="covid_region" class="h5 mb-0"></div>
-						<div class="ml-20">
-							<p class='font-weight-normal mb-0' id="covid_total"></p>
-							<p class='font-weight-normal mb-0' id="covid_today"></p>
-						</div>
-					</div>
-				</div>
+				<img class="img-quote-r ml-5" src="/images/double_quote.png">
 			</div>
 		</div>
-		<div class="card" style="margin: 30px;">
-			<div class="row" style="margin: 5px;">
-				<div class="col card" style="margin: 10px; padding-top: 15px;">
-					<img class="card-img-top" src="/images/city.jpg"
-						alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">동네 나들이</h5>
-						<p class="card-text">주요 시설 / 동네 스팟</p>
-					</div>
-					<div class="card-body" style="padding-bottom: 0px;">
-						<h5 class="card-title">최근 게시물</h5>
-					</div>
+	</div>
+	<div class="row l-covid" style="margin: 10px;">
+		<div class="d-flex">
+			<div class="h4 mb-0 mr-2">COVID-19</div>
+
+			<div class="h5 mb-0 mr-2" id="covid_region"></div>
+
+			<div class='h5 mb-0 mr-2' id="covid_total"></div>
+			<div class='h5 mb-0 mr-2' id="covid_today"></div>
+		</div>
+
+		<div>
+			<!-- Search Google -->
+			<form method="get" action="http://www.google.com/search"
+				target="_blank" class="form-inline">
+				<div class="form-group mr-1">
+					<input type="text" class="form-control" name="q" size="20"
+						maxlength="255" value="" />
+				</div>
+				<!-- 구글 검색 입력 창 -->
+				<input type="submit" class="btn btn-color" name="btnG"
+					value="Google 검색" />
+				<!-- 검색 버튼 -->
+			</form>
+		</div>
+	</div>
+	<div class="card border-0 mt-2" style="margin: 30px;">
+		<div class="row inner-menu-loc" style="margin: 5px;">
+			<div class="col card inner-card-outline"
+				style="margin: 10px; padding-top: 15px;">
+				<img class="card-img-top" src="/images/city.jpg"
+					alt="Card image cap">
+				<div class="card-body pb-0">
+					<h5 class="card-title">동네 나들이</h5>
+					<p class="card-text">주요 시설 / 동네 스팟</p>
+					<h6 class="card-title">최근 게시물</h6>
+
 					<ul class="list-group list-group-flush">
 						<c:choose>
 							<c:when test="${empty tourlist}">
@@ -170,16 +179,16 @@ window.addEventListener('load', () => {
 						</c:choose>
 					</ul>
 				</div>
-				<div class="col card" style="margin: 10px; padding-top: 15px;">
-					<img class="card-img-top" src="/images/city.jpg"
-						alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">동네 장터</h5>
-						<p class="card-text">동네에서 다양한 물품들을 서로 거래해 보세요.</p>
-					</div>
-					<div class="card-body" style="padding-bottom: 0px;">
-						<h5 class="card-title">최근 게시물</h5>
-					</div>
+			</div>
+			<div class="col card inner-card-outline"
+				style="margin: 10px; padding-top: 15px;">
+				<img class="card-img-top" src="/images/city.jpg"
+					alt="Card image cap">
+				<div class="card-body pb-0">
+					<h5 class="card-title">동네 장터</h5>
+					<p class="card-text">동네에서 다양한 물품들을 서로 거래해 보세요.</p>
+					<h6 class="card-title">최근 게시물</h6>
+
 					<ul class="list-group list-group-flush">
 						<c:choose>
 							<c:when test="${empty marketlist}">
@@ -195,13 +204,13 @@ window.addEventListener('load', () => {
 						</c:choose>
 					</ul>
 				</div>
-				<div class="col card" style="margin: 10px; padding-top: 15px;">
-					<div class="card-body">
-						<h5 class="card-title">동네 모임 - 동호회</h5>
-					</div>
-					<div class="card-body" style="padding-bottom: 0px;">
-						<h5 class="card-title">최근 게시물</h5>
-					</div>
+			</div>
+			<div class="col card inner-card-outline"
+				style="margin: 10px; padding-top: 15px;">
+				<div class="card-body pb-0">
+					<h5 class="card-title">동네 모임 - 동호회</h5>
+					<h6 class="card-title">최근 게시물</h6>
+
 					<ul class="list-group list-group-flush">
 						<c:choose>
 							<c:when test="${empty clublist}">
@@ -215,12 +224,11 @@ window.addEventListener('load', () => {
 							</c:otherwise>
 						</c:choose>
 					</ul>
-					<div class="card-body">
-						<h5 class="card-title">동네 모임 - 동네 친구</h5>
-					</div>
-					<div class="card-body" style="padding-bottom: 0px;">
-						<h5 class="card-title">최근 게시물</h5>
-					</div>
+				</div>
+				<div class="card-body pb-0">
+					<h5 class="card-title">동네 모임 - 동네 친구</h5>
+					<h6 class="card-title">최근 게시물</h6>
+
 					<ul class="list-group list-group-flush">
 						<c:choose>
 							<c:when test="${empty fboardlist}">
@@ -235,16 +243,16 @@ window.addEventListener('load', () => {
 						</c:choose>
 					</ul>
 				</div>
-				<div class="col card" style="margin: 10px; padding-top: 15px;">
-					<img class="card-img-top" src="/images/city.jpg"
-						alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">동네 커뮤니티</h5>
-						<p class="card-text">자유 게시판</p>
-					</div>
-					<div class="card-body" style="padding-bottom: 0px;">
-						<h5 class="card-title">최근 게시물</h5>
-					</div>
+			</div>
+			<div class="col card inner-card-outline"
+				style="margin: 10px; padding-top: 15px;">
+				<img class="card-img-top" src="/images/city.jpg"
+					alt="Card image cap">
+				<div class="card-body pb-0">
+					<h5 class="card-title">동네 커뮤니티</h5>
+					<p class="card-text">자유 게시판</p>
+					<h6 class="card-title">최근 게시물</h6>
+
 					<ul class="list-group list-group-flush">
 						<c:choose>
 							<c:when test="${empty communitylist}">
@@ -261,35 +269,28 @@ window.addEventListener('load', () => {
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
+	<div class="card l-help">
+		<div class="col" style="margin: 10px;">
 
-		<div class="card" style="margin: 30px;">
-			<div class="row" style="margin: 5px;">
-				<div class="col-3 card" style="margin: 10px; text-align: center;">
-					<div class="card-body">
-						<h5 class="card-title">공지사항</h5>
-						<p class="card-text">사이트 공지사항</p>
-					</div>
-				</div>
-				<div class="col-8 card" style="margin: 10px;">
-					<div class="card-body" style="padding-bottom: 0px;">
-						<h5 class="card-title">최근 공지사항</h5>
-					</div>
-					<ul class="list-group list-group-flush">
-						<c:choose>
-							<c:when test="${empty noticelist}">
-								<li class="list-group-item">등록된 글이 없습니다.</li>
-							</c:when>
-							<c:otherwise>
-								<c:forEach var="dto" items="${noticelist}">
-									<li class="list-group-item"><a
-										href="/notice/read?nID=${dto.NID}&col=&word=&nowPage=1"
-										class="text-dark">${dto.title}</a></li>
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
-					</ul>
-				</div>
-			</div>
+			<h5 class="card-title mb-4">최근 공지사항</h5>
+
+			<ul class="list-group list-group-flush">
+				<c:choose>
+					<c:when test="${empty noticelist}">
+						<li class="list-group-item">등록된 글이 없습니다.</li>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="dto" items="${noticelist}">
+							<li class="list-group-item"><a
+								href="/notice/read?nID=${dto.NID}&col=&word=&nowPage=1"
+								class="text-dark">${dto.title}</a></li>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+
 		</div>
 	</div>
 </body>

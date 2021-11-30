@@ -120,15 +120,6 @@
 
 				<li class="nav-item"><a class="nav-link"
 					href="${root}/community/list">동네 커뮤니티</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#"
-					id="navbarDarkDropdownMenuLink" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="${root}/notice/list">공지사항</a> <a
-							class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A
-							Chatbot</a>
-					</div></li>
 			</ul>
 		</div>
 	</nav>
