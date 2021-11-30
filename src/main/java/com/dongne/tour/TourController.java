@@ -209,9 +209,6 @@ public class TourController {
 		int sv=Utility.checkNulltoint((Integer)session.getAttribute("region"));
 		String mydistrictcode=Utility.checkNull(Integer.toString(sv));
 
-		System.out.println("sv : " + sv);
-		System.out.println("mydistrictcode : " + mydistrictcode);
-
 		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
 
 		if (districtcode == "") {
@@ -285,7 +282,6 @@ public class TourController {
 
 				for (MultipartFile file : multipartFile) {
 					fileRoot = upDir;
-					System.out.println(fileRoot);
 
 					String originalFileName = file.getOriginalFilename(); // 오리지날 파일명
 					String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자

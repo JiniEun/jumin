@@ -40,15 +40,24 @@ h1{
   overflow : hidden;
 }
 
+.title span{
+  width: 300px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
 .title a{
 	color: var(--basecolor);
 }
 
 #score{
+  width : 165px;
+  margin-top : -20px;
   font-style : bold;
   color : white;
   background-color: var(--basecolor);
-  border-radius : 5%;
   border : 2px solid var(--basecolor);
   padding : 3px;
 }
