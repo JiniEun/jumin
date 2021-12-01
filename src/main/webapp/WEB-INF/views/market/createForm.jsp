@@ -47,7 +47,6 @@
       enctype="multipart/form-data"
       onsubmit="return checkIn(this)">
 
- 	
           <div class="form-group">
             <label class="control-label col-sm-2" for="cateno">상품분류</label>
             <div class="col-sm-6">

@@ -45,7 +45,8 @@ public class MarketController {
 	private RegionService rservice;
 
 	@RequestMapping("/market/list")
-	public String list(HttpSession session, HttpServletRequest request) {
+	public String list(HttpSession session, HttpServletRequest request, String category) {
+		System.out.println("cate : " + category);
 		String realLocation = (String) session.getAttribute("realLocation");
 		String regionID = "";
 
@@ -75,6 +76,16 @@ public class MarketController {
 		// 검색관련------------------------
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
+
+		if (category != null) {
+			if (category.equals("total")) {
+				word = "";
+			} else {
+				col = "category";
+				word = category;
+			}
+
+		}
 
 		if (col.equals("total")) {
 			word = "";
@@ -353,5 +364,11 @@ public class MarketController {
 
 		return strResult;
 	}
+
+//	@RequestMapping("/market/category")
+//	public String reqAjax1(String category) {
+//		System.out.println(category);
+//		return "redirect:/market/list";
+//	}
 
 }
