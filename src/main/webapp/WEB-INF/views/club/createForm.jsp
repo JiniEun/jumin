@@ -6,81 +6,80 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js">
-	
 </script>
 <script type="text/JavaScript">
 	$(function() {
 		CKEDITOR.replace('content'); // <TEXTAREA>태그 id 값
 	});
+
 </script>
+<style>
+.btn-color2 {
+	background-color: #5BA6A6;
+	color: white;
+}
+.input-form {
+	max-width: 1000px;
+	margin-top: 50px;
+	padding: 30px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+</style>
 </head>
 <body>
-	<div class="container">
-		<h5 class="col-sm-offset-2 col-sm-10">동네모임-동호회 게시글 작성</h5>
+		<div class="container-fluid">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+				<h4 class="mb-3">동호회 글쓰기</h4>
 		<form class="form-horizontal" action="./create" method="post"
 			onsubmit="return checkIn(this)" enctype="multipart/form-data">
-			<div class="form-group" hidden>
-				<label class="control-label col-sm-2" for="id">작성자ID</label>
-				<div class="col-sm-6">
-					<input type="text" readonly name="ID" id="ID" class="form-control"
-						value="${ID}">
-				</div>
+	          
+					<div class="mb-3">
+						<label for="title">제목</label> <input type="text" name="title"
+							id="title" class="form-control">
+					</div>
+					
+					<div class="mb-3" hidden>
+						<label for="ID">작성자ID</label>
+						<p>${ID}</p>
+						<input type="hidden" name="ID" id="ID" value="${ID}">
+					</div>
+					<div class="mb-3" hidden>
+						<label for="regionID">지역</label>
+						<p>${regionID}</p>
+						<input type="hidden" name="regionID" id="regionID" value="${regionID}">
+					</div>
+					<div class="mb-3">
+						<label for="nickname">작성자</label>
+						<input type="text" readonly name="nickname" id="nickname" class="form-control" value="${nickname}">
+					</div>
+					<div class="mb-3">
+						<label for="content">내용</label>
+						<textarea rows="12" cols="7" id="content" name="content"
+							class="form-control"></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="fileNameMF">대표 이미지</label>
+						<input type="file" rows="12" cols="7" id="fileNameMF" name="fileNameMF"
+							class="form-control"></input>
+					</div>
+					<div class="mb-3" style="margin-top:10px;">
+						<button type="submit" class="btn btn-color2">등록</button>
+						<button type="button" class="btn btn-color2"
+							onclick="history.back()">취소</button>
+					</div>
+				</form>
 			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="regionID">지역</label>
-				<div class="col-sm-6">
-					<input type="text" readonly name="regionID" id="regionID"
-						class="form-control" value="${regionID}">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="writer">작성자</label>
-				<div class="col-sm-6">
-					<input type="text" readonly name="nickname" id="nickname"
-						class="form-control" value="${nickname}">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="title">제목</label>
-				<div class="col-sm-8">
-					<input type="text" name="title" id="title" class="form-control">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="content">내용</label>
-				<div class="col-sm-8">
-					<textarea rows="12" cols="7" id="content" name="content"
-						class="form-control"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="fileNameMF">대표
-					이미지</label>
-				<div class="col-sm-6">
-					<input type="file" name="fileNameMF" id="fileNameMF"
-						class="form-control">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-5">
-					<button class="btn">등록</button>
-					<button class="btn" onclick="history.back()">취소</button>
-				</div>
-			</div>
-		</form>
+		</div>
 	</div>
 </body>
 </html>

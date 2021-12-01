@@ -34,7 +34,7 @@ function replyList(clID,page){
 
                 a += 	'<div class="replyArea" style="border-bottom:1px solid darkgray; margin-bottom: 5px; padding : 0px;">';
                 a += 	'<input type="hidden" class="id-control" name="id_'+value.clrID+'" value="'+value.ID+'"/>'
-                a += 	'<div class="replyInfo'+value.clrID+'">'+'<i class="fas fa-comments"></i>'+' '+value.nickname+'<span><input type="text" readonly style="border:none; width : 100px;" class="id-control" name="rdate_'+value.clrID+'" value="'+' '+value.rdate+'"/></span>';
+                a += 	'<div class="replyInfo'+value.clrID+'">'+'<i class="fas fa-comments"></i>'+' '+value.nickname+'<span><input type="text" readonly style="border:none; width : 200px;" class="id-control" name="rdate_'+value.clrID+'" value="'+' '+value.rdate+'"/></span>';
                 a += 	'<button type="button" onclick="replyUpdate('+value.clrID+',\''+value.content+'\',\''+value.ID+'\');" style=" height : 30px; margin-left : 15px; margin-right : 7px; color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 수정 </button>';
                 a += 	'<button onclick="replyDelete('+value.clrID+');" style="color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 삭제 </button> </div>';
                 a += 	'<div class="replyContent'+value.clrID+'" > <p> 내용 : '+value.content +'</p>';

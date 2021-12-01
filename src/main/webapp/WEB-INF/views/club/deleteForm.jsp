@@ -2,37 +2,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>삭제</title>
+<title>친구게시판 삭제</title>
 <meta charset="utf-8">
 <style type="text/css">
 #red {
-  color: red;
+	color: red;
+}
+
+.input-form {
+	max-width: 680px;
+	margin-top: 50px;
+	padding: 30px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+
+.btn-color {
+	border-color: #5BA6A6;
+	color: #5BA6A6;
 }
 </style>
 </head>
 <body>
-  <div class="container">
+	<div class="container-sm">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+				<h3 class="col-sm-offset-2 col-sm-10">동호회 게시물 삭제</h3>
+				<form class="form-horizontal" action="/club/delete" method="post">
+				<input type="hidden" name="clID" value="${dto.clID}">
+				<input type="hidden" name="ID" value="${dto.ID}">
 
-    <h2 class="col-sm-offset-2 col-sm-10">삭제</h2>
-    <form class="form-horizontal" 
-    	action="/club/delete" 
-    	method="post">
-      
-      
-      <input type="hidden" name="clID" value="${dto.clID}">
-	  <input type="hidden" name="ID" value="${dto.ID}">
+					<p id="red" class="col-sm-offset-2 col-sm-6">게시물을 삭제하면 복구할 수 없습니다</p>
 
-
-      <p id="red" class="col-sm-offset-2 col-sm-6">삭제하면 복구할 수 없습니다</p>
-
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-5">
-          <button type="submit" class="btn btn-default">삭제</button>
-          <button type="button" class="btn btn-default" onclick="history.back()">취소</button>
-        </div>
-      </div>
-    </form>
-
-  </div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-5">
+							<button type="submit" class="btn btn-color">삭제</button>
+							<button type="button" class="btn btn-color"
+								onclick="history.back()">취소</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

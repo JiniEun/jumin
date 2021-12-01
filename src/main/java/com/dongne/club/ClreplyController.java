@@ -25,6 +25,7 @@ public class ClreplyController {
 	@Autowired
 	@Qualifier("com.dongne.club.ClreplyServiceImpl")
 	private ClreplyService service;
+	
 	@Autowired
 	@Qualifier("com.dongne.user.UserServiceImpl")
 	private UserService uservice;

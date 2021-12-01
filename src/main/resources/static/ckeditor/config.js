@@ -2,7 +2,7 @@ CKEDITOR.editorConfig = function( config ) {
 // Define changes to default configuration here. For example:
 // config.language = 'fr';
 // config.uiColor = '#AADC6E';
-config.height = 600;
+config.height = 300;
 //config.uiColor = '#9AB8F3';
 config.uiColor = '#D3D3D3';
 config.enterMode = CKEDITOR.ENTER_BR; //엔터키 태그 1:<p>, 2:<br>, 3:<div>
