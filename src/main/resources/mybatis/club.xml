@@ -5,117 +5,123 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dongne.club.ClubMapper">
-  <!-- 패스워드 검사 -->
-  <select id="passwd" resultType="int" parameterType="HashMap">
-    SELECT COUNT(*) AS cnt
-    FROM club
-    WHERE clID=#{clID} AND password=#{password}
-  </select>
-  
-  <!-- 수정 -->
-  <update id="update" parameterType="com.dongne.club.ClubDTO">
-      update club
-      <set>
-         title = #{title},
-         content = #{content},
-         rdate = sysdate
-      </set>
-      where clID = #{clID}
-   </update>
-   
-   <!--대표 이미지 수정-->
-   
-   <update id="updateFile" parameterType="Map">
+
+	<!-- 수정 -->
+	<update id="update" parameterType="com.dongne.club.ClubDTO">
 		update club
-		set fileName = #{fileName}
+		<set>
+			title = #{title},
+			content = #{content},
+			rdate = sysdate
+		</set>
 		where clID = #{clID}
-   </update>
-   
-  <!-- 삭제 -->
-   <delete id="delete" parameterType="int">
-       DELETE FROM club
-       WHERE clID = #{clID}
-    </delete>
-    
-  <!-- 조회수 증가 -->
-    <update id="upViewcnt" parameterType="int">
-    update club              
-    set viewcnt = viewcnt + 1 
-    where clID = #{clID}         
-  </update>
-  
-  <!-- 조회 -->
-  <select id="read" parameterType="int"
-      resultType="com.dongne.club.ClubDTO">
-      SELECT clID, nickname, title, content, viewcnt, rdate, fileName, ID, regionID
-      FROM club
-      WHERE clID = #{clID}
-   </select>
-   
-  <!-- 등록 -->
-  <insert id="create" parameterType="com.dongne.club.ClubDTO">
-      insert into club(clID, ID, nickname, title, content, password, rdate, fileName, regionID)
-      values((select nvl(max(clID),0) + 1 as clID from club),
-      #{ID}, #{nickname}, #{title}, #{content}, #{password} ,sysdate,#{fileName}, #{regionID})
-   </insert>
-  
-  <!-- 목록 -->
-   <select id="list" parameterType="Map" resultType="com.dongne.club.ClubDTO">
-    SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, fileName, regionID, r
-    from ( SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, fileName, regionID, rownum r
-    	from ( SELECT clID, title, content, nickname, password, viewcnt, rdate, ID, fileName, regionID
-				FROM club
-    <where>
-              <choose>
-                  <when test="col=='nickname'">
-                      nickname like '%'||#{word}||'%'
-                  </when>
-                  <when test="col=='title'">
-                      title like '%'||#{word}||'%'
-                  </when>
-                  <when test="col=='content'">
-                      content like '%'||#{word}||'%'
-                  </when>
-                  <when test="col=='title_content'">
-                     title like '%'||#{word}||'%'
-                     or
-                     content like '%'||#{word}||'%'
-                  </when>
-              </choose>
-              and regionID = #{regionID}
-           </where>
-    ORDER BY clID DESC
-    )
+	</update>
+
+	<!--대표 이미지 수정 -->
+
+	<update id="updateFile" parameterType="Map">
+		update club
+		set fileName =
+		#{fileName}
+		where clID = #{clID}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM club
+		WHERE clID = #{clID}
+	</delete>
+
+	<!-- 조회수 증가 -->
+	<update id="upViewcnt" parameterType="int">
+		update club
+		set viewcnt = viewcnt + 1
+		where clID = #{clID}
+	</update>
+
+	<!-- 조회 -->
+	<select id="read" parameterType="int"
+		resultType="com.dongne.club.ClubDTO">
+		SELECT clID, nickname, title, content, viewcnt, rdate, fileName, ID,
+		regionID
+		FROM club
+		WHERE clID = #{clID}
+	</select>
+
+	<!-- 등록 -->
+	<insert id="create" parameterType="com.dongne.club.ClubDTO">
+		insert into club(clID, ID, nickname, title, content, rdate, fileName,
+		regionID)
+		values((select nvl(max(clID),0) + 1 as clID from club),
+		#{ID}, #{nickname}, #{title}, #{content},sysdate,#{fileName}, #{regionID})
+	</insert>
+
+	<!-- 목록 -->
+	<select id="list" parameterType="Map"
+		resultType="com.dongne.club.ClubDTO">
+		SELECT clID, title, content, nickname, viewcnt, rdate, ID, fileName,
+		regionID, r
+		from ( SELECT clID, title, content, nickname, viewcnt, rdate, ID,
+		fileName, regionID, rownum r
+		from ( SELECT clID, title, content, nickname, viewcnt, rdate, ID,
+		fileName, regionID
+		FROM club
+		<where>
+			<choose>
+				<when test="col=='nickname'">
+					nickname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title_content'">
+					title like '%'||#{word}||'%'
+					or
+					content like '%'||#{word}||'%'
+				</when>
+			</choose>
+			and regionID = #{regionID}
+		</where>
+		ORDER BY clID DESC
+		)
     <![CDATA[       
          )where r >= #{sno} and r <= #{eno}
      	]]>
-  </select>
-  
-  <!--total-->
-  <select id="total" resultType="int" parameterType="Map">
-    select count(*) from club
-    <where>
-              <choose>
-                      <when test="col=='nickname'">
-                      nickname like '%'||#{word}||'%'
-                  </when>
-                  <when test="col=='title'">
-                      title like '%'||#{word}||'%'
-                  </when>
-                  <when test="col=='content'">
-                      content like '%'||#{word}||'%'
-                  </when>
-                  <when test="col=='title_content'">
-                     title like '%'||#{word}||'%'
-                     or
-                     content like '%'||#{word}||'%'
-                  </when>
-              </choose>
-           </where>
-  </select>
+	</select>
 
-   
+	<!--total -->
+	<select id="total" resultType="int" parameterType="Map">
+		select count(*) from club
+		<where>
+			<choose>
+				<when test="col=='nickname'">
+					nickname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title_content'">
+					title like '%'||#{word}||'%'
+					or
+					content like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<select id="totalRegion" resultType="int" parameterType="Map">
+		select
+		count(*) from club WHERE regionID = #{regionID}
+	</select>
 
 
-  
+
+
+
 </mapper>

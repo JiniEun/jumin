@@ -8,7 +8,6 @@ public class ClubDTO {
 	private int clID;
 	private String title;
 	private String content;
-	private String password;
 	private int viewcnt;
 	private String rdate;
 	private String fileName;

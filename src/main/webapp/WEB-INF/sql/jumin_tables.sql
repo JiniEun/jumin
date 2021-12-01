@@ -139,6 +139,9 @@ FOREIGN KEY(userID) REFERENCES users(ID) ON DELETE CASCADE
 
 ALTER TABLE fboard ADD nickname VARCHAR2(20)	NOT NULL;
 ALTER TABLE fboard ADD regionID NUMBER NULL;
+ALTER TABLE fboard ADD gender	VARCHAR(10) 	NULL;
+--컬럼 삭제
+ALTER TABLE fboard DROP COLUMN password;
 
 COMMENT ON TABLE fboard is '매칭게시판';
 COMMENT ON COLUMN fboard.fbID is '글 번호';
@@ -164,6 +167,8 @@ FOREIGN KEY(ID) REFERENCES users(ID) ON DELETE CASCADE
 );
 
 ALTER TABLE club ADD nickname VARCHAR2(20)	NOT NULL;
+--컬럼 삭제
+ALTER TABLE club DROP COLUMN password;
 
 COMMENT ON TABLE club is '동호회게시판';
 COMMENT ON COLUMN club.clID is '글 번호';

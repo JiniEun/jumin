@@ -10,14 +10,6 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <meta charset="utf-8">
 <style>
-#form {
-	padding: 2em 0 2em 0;
-}
-
-#top {
-	padding: 2em 0 1em 0;
-}
-
 .btn-color1 {
 	border-color: #5BA6A6;
 	color: #5BA6A6;
@@ -28,6 +20,19 @@
 	color: white;
 }
 </style>
+<script>
+	$(document).ready(function() {
+		// Handle click on paging links
+		$('.tm-paging-link').click(function(e) {
+			e.preventDefault();
+			var page = $(this).text().toLowerCase();
+			$('.tm-gallery-page').addClass('hidden');
+			$('#tm-gallery-page-' + page).removeClass('hidden');
+			$('.tm-paging-link').removeClass('active');
+			$(this).addClass("active");
+		});
+	});
+</script>
 </head>
 
 <body>
@@ -89,12 +94,12 @@
 										<section class="box feature">
 											<div class="mainimg">
 												<a href="/club/read/${dto.clID}" class="img-rounded"> <img
-													src="/club/storage/${dto.fileName}" alt="" width="236"
+													src="/club/storage/${dto.fileName}" alt="" width="250"
 													height="250" />
 												</a>
 											</div>
 											<div class="info">
-												<h6 class="card-title">${dto.title}</h6>
+												<h6 class="card-title2">${dto.title}</h6>
 												<div style="color: #808088">
 													<i class="fas fa-user"></i>&nbsp<span class="card-text">${dto.nickname}
 													</span>
@@ -119,8 +124,9 @@
 										<!-- Box -->
 										<section class="box feature">
 											<a href="/club/read/${dto.clID}" class="img-rounded"> <img
-												src="/club/storage/${dto.fileName}" alt="" width="236"
+												src="/club/storage/${dto.fileName}" alt="" width="250"
 												height="250" />
+
 											</a>
 											<div class="info">
 
@@ -137,7 +143,7 @@
 							</div>
 						</c:forEach>
 					</div>
-					<div style="margin-top: 30px; margin-left: 10px;">${paging4}</div>
+					<div style="margin-top: 30px; margin-left: 10px;">${paging}</div>
 				</c:otherwise>
 			</c:choose>
 		</div>

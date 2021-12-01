@@ -55,14 +55,14 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
-	public int passwd(Map map) {
-		// TODO Auto-generated method stub
-		return mapper.passwd(map);
-	}
-
-	@Override
 	public int delete(int clID) {
 		// TODO Auto-generated method stub
 		return mapper.delete(clID);
+	}
+	
+	@Override
+	public int totalRegion(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.totalRegion(map);
 	}
 }

@@ -1,5 +1,6 @@
 package com.dongne.fboard;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dongne.club.ClubDTO;
 import com.dongne.region.RegionService;
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
@@ -38,16 +40,19 @@ public class FboardController {
 	
 	@GetMapping("/fboard/read")
 	public String read(int fbID, Model model, HttpSession session) {
-
 		service.upCnt(fbID);
 
 		FboardDTO dto = service.read(fbID);
+		
+		UserDTO user = uservice.read(dto.getUserID());
+		String gender = user.getGender();
 
 		String content = dto.getContent().replaceAll("\r\n", "<br>");
 
 		dto.setContent(content);
 
 		model.addAttribute("dto", dto);
+		model.addAttribute("gender", gender);
 		
 		if(session.getAttribute("ID") == null) {
 			return "redirect:/user/login";
@@ -64,10 +69,19 @@ public class FboardController {
 		UserDTO user = uservice.read(userID);
 		String nickname = user.getNickname();
 		int regionID = user.getRegionID();
-
+		String gender = user.getGender();
+		String birth1 = user.getBirth();
+	    int year = Calendar.getInstance().get(Calendar.YEAR);
+	    String age = birth1.substring(0,4);
+	    int birth3 = Integer.parseInt(age);
+	    int birth4 = year - birth3 + 1;
+	    String birth5 = Integer.toString(birth4);
+	
 		model.addAttribute("userID", userID);
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("regionID", regionID);
+		model.addAttribute("gender", gender);
+		model.addAttribute("age", birth5);
 
 		return "/fboard/create";
 	}
@@ -138,6 +152,7 @@ public class FboardController {
 		int total = service.total(map);
 
 		List<FboardDTO> list = service.list(map);
+		
 
 		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
 
@@ -148,7 +163,7 @@ public class FboardController {
 		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
 		request.setAttribute("regionID", regionID);
-
+		
 		return "/fboard/list";
 	}
 	

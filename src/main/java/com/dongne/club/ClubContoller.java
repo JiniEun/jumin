@@ -39,9 +39,12 @@ public class ClubContoller {
 
 	@GetMapping("/club/read/{clID}")
 	public String read(@PathVariable("clID") int clID, Model model, HttpServletRequest request) {
+		
+		
 		service.upViewcnt(clID);
 
 		model.addAttribute("dto", service.read(clID));
+	
 
 		/* 댓글 관련 시작 */
 		int nPage = 1;
@@ -119,18 +122,18 @@ public class ClubContoller {
 		map.put("eno", eno);
 		map.put("regionID", regionID);
 		
-		int total = service.total(map);
+		int total = service.totalRegion(map);
 
 		List<ClubDTO> list = service.list(map);
 		
-		String paging4 = Utility.paging4(total, nowPage, recordPerPage, col, word, regionID);
+		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
 
 		// request에 Model사용 결과 담는다
 		request.setAttribute("list", list);
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
-		request.setAttribute("paging4", paging4);
+		request.setAttribute("paging", paging);
 		request.setAttribute("regionID", regionID);
 		
 	
@@ -212,7 +215,7 @@ public class ClubContoller {
 		
 		System.out.println(ID);
 
-		return "/club/create";
+		return "/club/createForm";
 	}
 
 	@PostMapping("/club/create")
