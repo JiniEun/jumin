@@ -77,11 +77,19 @@
 		<br>
 
 		<div>
+ 			<c:choose>
+         		<c:when test="${sessionScope.ID==dto.id}">
 
-			<button type="button" class="btn btn-color" onclick="updateC()">수정</button>
-			<button type="button" class="btn btn-color" onclick="deleteC()">삭제</button>
-			<button type="button" class="btn btn-color"
-				onclick="location.href='${root}/community/list'">목록</button>
+					<button type="button" class="btn btn-color" onclick="updateC()">수정</button>
+					<button type="button" class="btn btn-color" onclick="deleteC()">삭제</button>
+					<button type="button" class="btn btn-color" onclick="location.href='${root}/community/list'">목록</button>
+			 	</c:when>
+         		<c:otherwise>
+         			<button type="button" class="btn btn-color" onclick="location.href='${root}/community/list'">목록</button>
+         		</c:otherwise>
+       		</c:choose>
+         		
+         		
 		</div>
 	</div>
 </body>

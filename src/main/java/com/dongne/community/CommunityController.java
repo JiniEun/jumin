@@ -129,6 +129,17 @@ public class CommunityController {
 	@PostMapping("/community/create")
 	public String create(CommunityDTO dto, HttpSession session, Model model) {
 
+		String realLocation = (String) session.getAttribute("realLocation");
+
+		int regionID = 0;
+		if ((String) session.getAttribute("ID") == null) {
+			regionID = rservice.read(Utility.getRegionCode(realLocation)).getRegionID();
+		} else {
+			regionID = uservice.read((String) session.getAttribute("ID")).getRegionID();
+		}
+
+		dto.setRegionID(regionID);
+		
 		if (service.create(dto) > 0) {
 			return "redirect:/community/list";
 		} else {

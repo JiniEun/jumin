@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dongne.utility.NaverGeoApi;
 import com.dongne.utility.Utility;
 
 @Controller
@@ -128,9 +129,9 @@ public class OfficeController {
 
 	@RequestMapping("/office/list")
 	public String list(HttpServletRequest request, HttpSession session) {
-		
-		int sv=Utility.checkNulltoint((Integer)session.getAttribute("region"));
-		String mydistrictcode=Utility.checkNull(Integer.toString(sv));
+
+		int sv = Utility.checkNulltoint((Integer) session.getAttribute("region"));
+		String mydistrictcode = Utility.checkNull(Integer.toString(sv));
 		String districtcode = Utility.checkNull(request.getParameter("districtcode"));
 
 		if (districtcode == "") {
@@ -145,11 +146,14 @@ public class OfficeController {
 		request.setAttribute("list", list);
 		request.setAttribute("districtcode", districtcode);
 		request.setAttribute("mydistrictcode", mydistrictcode);
-		
+
 		System.out.println("OFFICE LIST");
-		
-		for(int i = 0; i <= list.size(); i++) {
-			System.out.println(i+"dto" + Utility.getRegionCode(list.get(i).getAddress()));
+
+		if (list != null) {
+			System.out.println( NaverGeoApi.getGeocode(list.get(0).getAddress()));
+//			for (int i = 0; i <= list.size(); i++) {
+//				System.out.println(i + "dto" + NaverGeoApi.getGeocode(list.get(i).getAddress()));
+//			}
 		}
 		return "/office/list";
 	}
