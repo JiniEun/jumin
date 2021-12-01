@@ -26,7 +26,7 @@
 
 </head>
 <body>
-	<div class="container-lg">
+	<div class="container-lg mb-4 pb-4">
 
 		<h2 style="margin-bottom: 20px;">Community</h2>
 

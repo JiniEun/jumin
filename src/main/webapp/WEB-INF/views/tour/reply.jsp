@@ -31,7 +31,7 @@ function replyList(tid,page){
                 a += 	'<div class="replyInfo'+value.trid+'">'+'<i class="fas fa-comments"></i><span><input type="text" readonly style="border:none; width : 100px;" class="id-control" name="nickname_'+value.trid+'" value="'+value.nickname+'"/></span><span style="color : #b0bec5;">'+value.rdate+'</span>';
                 a += 	'<button type="button" onclick="replyUpdate('+value.trid+',\''+value.content+'\',\''+value.id+'\');" style=" height : 30px; margin-left : 15px; margin-right : 7px; color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 수정 </button>';
                 a += 	'<button onclick="replyDelete('+value.trid+');" style="color:#5BA6A6; background-color : white; border: 2px solid #5BA6A6; border-radius:10%;"> 삭제 </button> </div>';
-                a += 	'<div class="replyContent'+value.trid+'" > <p> 내용 : '+value.content +'</p>';
+                a += 	'<div class="mt-3 mb-3 replyContent'+value.trid+'" > <p> 내용 : '+value.content +'</p>';
                 a += '</div></div>';
             });
             

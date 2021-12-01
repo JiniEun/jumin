@@ -101,7 +101,7 @@
 			</c:when>
 			<c:otherwise>
 
-				<div class="container l-container">
+				<div class="container l-container mb-4 pb-4">
 					<section class="api">
 						<button class="street moreBtn" id="street">거리뷰</button>
 						<div class="map" id="map">maparea</div>

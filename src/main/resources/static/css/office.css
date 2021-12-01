@@ -118,6 +118,11 @@
 	border: 6px solid var(--basecolor);
 }
 
+.marker-link{
+	text-decoration: none;
+	color: var(--basecolor);
+}
+
 .detail a{
 	text-decoration: none;
 	color: var(--basecolor);
