@@ -4,7 +4,6 @@
 
 #top {
 	padding: 2em 0 2em 0;
-	
 }
 
 #g1 {
@@ -12,9 +11,9 @@
 }
 
 .tm-paging-item {
-	list-style: none;
-	display: inline-block;
-	margin: 7px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tm-paging-link {
@@ -28,47 +27,65 @@
 	background-color: transparent;
 }
 
-.tm-paging-link.active, .tm-paging-link:hover {
-	background-color: #5BA6A6;
-	color: white;
+.tm-paging-link:focus{
+	background-color: white;
+	color: #5BA6A6;
 	text-decoration: none;
 }
 
-img {
-    
-    border-radius : 1ch;
-    
-  }
- .form-inline {
- 	padding: 0 0 2em 0
- }
- 
- .card-title{
- 	 width: 236px;
- 	 color: #5BA6A6; 	 
- 	 padding: 0 0 0.5em 0;
- 	 border-bottom: 3px solid;
- 	 border-color : #5BA6A6;
- }
- 
-  .card-title2{
-  font-size : 17px;
- 	 width: 236px;
- 	 color: #5BA6A6; 	 
- 	 padding: 0 0 0.5em 0;
- 	 border-bottom: 3px solid;
- 	 border-color : #5BA6A6;
- }
- 
- .info{
- 	padding: 1em 0 1em 0;
- 	
- }
- .card-text{
-  font-size : 15px;
-  color : #808080;
- }
- .card-text2{
-  font-size : 13px;
-  color : #808080;
- }
+.tm-paging-link:visited{
+	background-color: white;
+	color: #5BA6A6;
+	text-decoration: none;
+}
+
+.tm-paging-link:hover {
+	background-color: white;
+	color: #5BA6A6;
+	text-decoration: none;
+}
+
+
+.l-img {
+	border-radius: 1ch;
+}
+
+.form-inline {
+	padding: 0 0 2em 0;
+}
+
+.card-title {
+	width: 236px;
+	color: #5BA6A6;
+	padding: 0 0 0.5em 0;
+	border-bottom: 3px solid;
+	border-color: #5BA6A6;
+}
+
+.card-title2 {
+	font-size: 17px;
+	width: 236px;
+	color: #5BA6A6;
+	padding: 0 0 0.5em 0;
+	border-bottom: 3px solid;
+	border-color: #5BA6A6;
+}
+
+.info {
+	padding: 1em 0 1em 0;
+}
+
+.card-text {
+	font-size: 15px;
+	color: #808080;
+}
+
+.card-text2 {
+	font-size: 13px;
+	color: #808080;
+}
+
+.btn-cg {
+	background-color: #5BA6A6;
+	color: white;
+}

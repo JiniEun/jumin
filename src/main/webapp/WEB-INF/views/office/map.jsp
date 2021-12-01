@@ -49,7 +49,7 @@
 													y[i], x[i]),
 											map : map,
 										}); //marker 생성
-								console.log("atcname[i]", i, atcname[i]);
+								
 								var contentString = [ '<a href="#imgarea'+atcname[i]+'"><div class="marker-link" id="map'+atcname[i]+'" style="border : width:150px;text-align:center;padding:10px;">'
 										+ atcname[i] + '</b></div>' ].join('');
 								var infoWindow = new naver.maps.InfoWindow({
@@ -81,7 +81,6 @@
 
 							for (i = 0; i < marker_array.length; i++) {
 								const marker_ = marker_array[i];
-								console.log("marker_", marker_);
 								const infoWindow_ = infoWindow_array[i];
 
 								naver.maps.Event.addListener(marker_,

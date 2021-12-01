@@ -77,12 +77,13 @@ public class MarketController {
 		String col = Utility.checkNull(request.getParameter("col"));
 		String word = Utility.checkNull(request.getParameter("word"));
 
+		String cate = "";
 		if (category != null) {
 			if (category.equals("total")) {
-				word = "";
+				cate = "";
 			} else {
 				col = "category";
-				word = category;
+				cate = category;
 			}
 
 		}
@@ -105,6 +106,7 @@ public class MarketController {
 		Map map = new HashMap();
 		map.put("col", col);
 		map.put("word", word);
+		map.put("cate", cate);
 		map.put("sno", sno);
 		map.put("eno", eno);
 		map.put("cnt", recordPerPage);
@@ -121,6 +123,7 @@ public class MarketController {
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
+		request.setAttribute("cate", cate);
 		request.setAttribute("paging", paging);
 		request.setAttribute("regionID", regionID);
 

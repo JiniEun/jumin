@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					content like '%'||#{word}||'%'
 				</when>
 				<when test="col=='category'">
-					category like '%'||#{word}||'%'
+					category like '%'||#{cate}||'%'
 				</when>
 			</choose>
 			and regionID = #{regionID}

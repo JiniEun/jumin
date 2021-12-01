@@ -19,41 +19,25 @@
 		location.href = url;
 	}
 	$(document).ready(function() {
-		// Handle click on paging links
-		$('.tm-paging-link').click(function(e) {
-			e.preventDefault();
-			var page = $(this).text().toLowerCase();
-			$('.tm-gallery-page').addClass('hidden');
-			$('#tm-gallery-page-' + page).removeClass('hidden');
-			$('.tm-paging-link').removeClass('active');
-			$(this).addClass("active");
-
-			var sendData = {
-				"category" : $(this).attr("value")
-			};
-			$.ajax({
-				type : 'post', //post방식으로 명시
-				url : 'list', //이동할 jsp 파일 주소
-				data : sendData, //문자형식으로 받기
-				success : function(data) { //데이터 주고받기 성공했을 경우 실행할 결과
-					//function(data)를 쓰게 되면 전달받은 데이터가 data안에 담아서 들어오게 된다. 
-					//$('#category_now').val(data);
-					location.reload;
-				},
-				error : function() { //데이터 주고받기가 실패했을 경우 실행할 결과
-					console.log('실패');
-				}
-			})
-
-		});
+		var value = $('#category').val();
+		if (value == "") {
+			$('#ct').focus();
+		} else if (value == "가구") {
+			$('#c1').focus();
+		} else if (value == "전자") {
+			$('#c2').focus();
+		} else if (value == "의류") {
+			$('#c3').focus();
+		} else if (value == "기타") {
+			$('#c4').focus();
+		}
 	});
 </script>
 </head>
 <body>
-
 	<div id="features-wrapper">
 		<div class="container-lg">
-			<div id="top mb-4">
+			<div id="top" class="mb-4">
 				<h2 class="col-12 text-center tm-section-title">동네 장터</h2>
 				<p class="col-12 text-center">
 					다양한 물품들을 서로 거래해 보세요.<br> <br>
@@ -73,25 +57,26 @@
 
 				</p>
 			</div>
-			<div class="tm-paging-links">
-				<nav>
-					<input type="hidden" id="category_now" value="" />
-					<ul id="g1" class="col-12 text-center">
-						<li class="tm-paging-item" id="one"><button
-								class="btn tm-paging-link active" value="total">전체</button></li>
-						<li class="tm-paging-item" id="one"><button
-								class="btn tm-paging-link" value="가구">가구</button></li>
-						<li class="tm-paging-item"><button class="btn tm-paging-link"
-								value="전자">전자</button></li>
-						<li class="tm-paging-item"><button class="btn tm-paging-link"
-								value="의류">의류</button></li>
-						<li class="tm-paging-item"><button class="btn tm-paging-link"
-								value="기타">기타</button></li>
-					</ul>
+			<div class="tm-paging-links m-4">
+				<input type="hidden" id="category" name="category" value="${cate }" />
+				<form class="tm-paging-item" method="post" name="form">
+					<input type="submit" class="btn btn-cg tm-paging-link mr-3"
+						name="col" value="total" id="ct"
+						onclick="javascript: form.action='./list';" /><input
+						type="submit" class="btn btn-cg tm-paging-link mr-3"
+						name="category" id="c1" value="가구"
+						onclick="javascript: form.action='./list';" /> <input
+						type="submit" class="btn btn-cg tm-paging-link mr-3"
+						name="category" id="c2" value="전자"
+						onclick="javascript: form.action='./list';" /> <input
+						type="submit" class="btn btn-cg tm-paging-link mr-3"
+						name="category" id="c3" value="의류"
+						onclick="javascript: form.action='./list';" /> <input
+						type="submit" class="btn btn-cg tm-paging-link" name="category"
+						id="c4" value="기타" onclick="javascript: form.action='./list';" />
 
-				</nav>
+				</form>
 			</div>
-
 			<form class="form-inline" action="./list">
 				<div class="form-group">
 					<select class="form-control" name="col" style="margin-right: 10px;">
@@ -101,8 +86,6 @@
 							<c:if test= "${col=='nickname'}"> selected </c:if>>닉네임</option>
 						<option value="title"
 							<c:if test= "${col=='title'}"> selected </c:if>>제목</option>
-
-
 					</select>
 				</div>
 				<div class="form-group">
@@ -112,19 +95,6 @@
 				<button type="submit" class="btn"
 					style="background-color: #5BA6A6; color: white; margin-right: 10px;">검색</button>
 			</form>
-			<!-- 			<div class="tm-paging-links"> -->
-			<!-- 				<nav>					 -->
-			<!-- 					<ul id="g1" class="col-12 text-center"> -->
-			<!-- 						<li class="tm-paging-item" id="one" ><a href="#" class="tm-paging-link active" >가구</a></li> -->
-			<!-- 						<li class="tm-paging-item" ><a href="#" class="tm-paging-link" >전자</a></li> -->
-			<!-- 						<li class="tm-paging-item" ><a href="#" class="tm-paging-link" >의류</a></li> -->
-			<!-- 						<li class="tm-paging-item" ><a href="#" class="tm-paging-link" >기타</a></li> -->
-
-			<!-- 					</ul> -->
-
-			<!-- 				</nav> -->
-			<!-- 			</div> -->
-
 			<c:set var="list" value="${list}" />
 			<div class="row">
 
@@ -137,6 +107,7 @@
 								<section class="box feature">
 									<div class="mainimg">
 										<a href="javascript:read('${dto.mid}')" class="images"> <img
+											class="l-img"
 											src="/market/storage/${fn:split(dto.filename,',')[0]}" alt=""
 											width="236" height="250" />
 										</a>
@@ -167,6 +138,7 @@
 								<!-- Box -->
 								<section class="box feature">
 									<a href="javascript:read('${dto.mid}')" class="images"> <img
+										class="l-img"
 										src="/market/storage/${fn:split(dto.filename,',')[0]}" alt=""
 										width="236" height="306" />
 									</a>
