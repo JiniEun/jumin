@@ -68,19 +68,41 @@ public class FboardController {
 		UserDTO user = uservice.read(userID);
 		String nickname = user.getNickname();
 		int regionID = user.getRegionID();
+		//나이 관련
 		String gender = user.getGender();
-		String birth1 = user.getBirth();
+		String birth = user.getBirth();
 	    int year = Calendar.getInstance().get(Calendar.YEAR);
-	    String age = birth1.substring(0,4);
-	    int birth3 = Integer.parseInt(age);
-	    int birth4 = year - birth3 + 1;
-	    String birth5 = Integer.toString(birth4);
+	    String birth1 = birth.substring(0,4);
+	    int birth2 = Integer.parseInt(birth1);
+	    int birth3 = year - birth2 + 1;
+	    
+	    String age = "";
+	    if (birth3 >= 10 && birth3 <20)
+	    { age = "10대";}
+	    else if(birth3 >= 20 && birth3 <30)
+	    { age = "20대";}
+	    else if(birth3 >= 30 && birth3 <40)
+	    { age = "30대";}
+	    else if(birth3 >= 40 && birth3 <50)
+	    { age = "40대";}
+	    else if(birth3 >= 50 && birth3 <60)
+	    { age = "50대";}
+	    else if(birth3 >= 60 && birth3 <70)
+	    { age = "60대";}
+	    else if(birth3 >= 70 && birth3 <80)
+	    { age = "70대";}
+	    else if(birth3 >= 80 && birth3 <90)
+	    { age = "80대";}
+	    else if(birth3 < 10)
+	    { age = "9세 이하 어린이";}
+	    else
+	    { age = "90세 이상 노인";}
 	
 		model.addAttribute("userID", userID);
 		model.addAttribute("nickname", nickname);
 		model.addAttribute("regionID", regionID);
 		model.addAttribute("gender", gender);
-		model.addAttribute("age", birth5);
+		model.addAttribute("age", age);
 
 		return "/fboard/create";
 	}

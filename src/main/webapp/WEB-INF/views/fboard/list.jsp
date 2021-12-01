@@ -43,6 +43,10 @@ function deleteM(fbID) {
 	$(function(){
 		 $("a[data-toggle='tooltip']").tooltip();
 		});
+	function SetAge(age) {
+		var Newage = age.char(0);
+		return Newage;
+      }
 </script>
 </head>
 <body>
@@ -63,28 +67,39 @@ function deleteM(fbID) {
             <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="/images/profile.png" alt="Image Description">
             <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
               <div class="g-mb-15">
-              	<h8> &nbsp ${dto.category} </h8> 
+              	<h8> # ${dto.category} </h8> 
 
-                <h5 class="h5 g-color-gray-dark-v1 mb-0">${dto.content}</h5>
-                				<h6 class="h5 g-color-gray-dark-v1 mb-0">${dto.title}</h6>
+                
+                <ul class="list-inline d-sm-flex my-0">
+                <h5 class="h5 g-color-gray-dark-v1 mb-0">${dto.title}</h5>
+                <li class="list-inline-item ml-auto">
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                    <i class="far fa-clock"></i>
+                    ${dto.rdate }
+                           </a>
+                </li>
+                </ul>
+                <hr>
+                				<p>${dto.content}</p>       
                 <br>
       
               </div>
-        
-              <p>${dto.age} ${dto.gender} ${dto.nickname} </p>
+              
               <hr>
               <ul class="list-inline d-sm-flex my-0">
                 <li class="list-inline-item g-mr-20">
                   <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                <c:choose>
-                <c:when test="${sessionScope.ID==dto.userID}">
-                <button type="button" class="btn btn-color2" onclick="updateM('${dto.fbID}')">수정</button>
-                <button type="button" class="btn btn-color2" onclick="deleteM('${dto.fbID}')">삭제</button>
-                </c:when>
-                <c:otherwise>
-                <button type="button" class="btn btn-color2" onclick="updateM('${dto.fbID}')">신청</button>
-                </c:otherwise>
-                </c:choose>
+   					<span>${dto.nickname } ·</span>
+              		<span>${dto.age} ·</span>
+              		<c:set var = "gender" value = "${dto.gender}"/>
+              		<c:choose>
+              			<c:when test="$(gender == 'Female')">
+              	 		<span>여성</span>
+              			</c:when>
+              			<c:otherwise>
+              	 		<span>남성</span>
+              			</c:otherwise>
+              		</c:choose>
                   </a>
                 </li>
                 <li class="list-inline-item g-mr-20">
@@ -93,9 +108,16 @@ function deleteM(fbID) {
                 </li>
                 <li class="list-inline-item ml-auto">
                   <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                    <i class="far fa-clock"></i>
-                    ${dto.rdate }
-                  </a>
+                    <c:choose>
+                <c:when test="${sessionScope.ID==dto.userID}">
+                <button type="button" class="btn btn-color2" onclick="updateM('${dto.fbID}')">수정</button>
+                <button type="button" class="btn btn-color2" onclick="deleteM('${dto.fbID}')">삭제</button>
+                </c:when>
+                <c:otherwise>
+                <button type="button" class="btn btn-color2" onclick="updateM('${dto.fbID}')">신청</button>
+                </c:otherwise>
+                </c:choose>
+                           </a>
                 </li>
               </ul>
             </div>
