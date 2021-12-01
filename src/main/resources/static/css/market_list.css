@@ -14,7 +14,6 @@
 .tm-paging-item {
 	list-style: none;
 	display: inline-block;
-	border: 1px solid #5BA6A6;
 	margin: 7px;
 }
 
@@ -25,6 +24,7 @@
 	justify-content: center;
 	text-decoration: none;
 	color: #5BA6A6;
+	border: 1px solid #5BA6A6;
 	background-color: transparent;
 }
 
