@@ -32,13 +32,14 @@
 				<h4 class="mb-3">동네친구 게시물 수정</h4>
 				<form class="validation-form" novalidate action="/fboard/update"
 					method="post" name='frm' enctype="multipart/form-data">
+					<input type="hidden" name="fbID" value="${dto.fbID}">
+					<div class="form-group" hidden>
+						<label class="control-label col-sm-2" for="userID">작성자ID</label>
+				 		<input type="text" readonly name="userID" id="userID" class="form-control" value="${dto.userID}">
+					</div>
 					<div class="mb-3">
 						<label for="title">제목</label> <input type="text" name="title"
-							id="title" class="form-control" value="${dto.title}">
-					</div>
-					<div class="form-group" hidden>
-						<label class="control-label col-sm-2" for="id">작성자ID</label>
-				 		<input type="text" readonly name="ID" id="ID" class="form-control" value="${dto.userID}">
+							id="title" class="form-control" value="${dto.title }">
 					</div>
 					<div class="mb-3">
 						<label for="nickname">작성자</label>
@@ -48,15 +49,6 @@
 						<label for="content">내용</label>
 						<textarea rows="12" cols="7" id="content" name="content"
 							class="form-control">${dto.content }</textarea>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<label for="password">비밀번호</label>
-						</div>
-						<div class="col-md-4">
-							<input type="password" name="password" id="password"
-								class="form-control">
-						</div>
 					</div>
 					<div class="mb-3" style="margin-top:10px;">
 						<button type="submit" class="btn btn-color">등록</button>

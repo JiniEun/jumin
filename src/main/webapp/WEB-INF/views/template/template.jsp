@@ -14,8 +14,8 @@
 	height:10%;
 } 
 .body{
-	min-height: 550px;
-	height:80%;
+ 	min-height: 550px; 
+ 	height:80%; 
 }
 </style>
 </head>

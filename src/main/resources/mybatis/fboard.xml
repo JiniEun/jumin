@@ -6,12 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.dongne.fboard.FboardMapper">
 	<insert id="create" parameterType="com.dongne.fboard.FboardDTO">
-		insert into fboard(fbID, category, title, content, viewcnt, rdate, userID, nickname, regionID, gender, age)
-		values((select nvl(max(fbID),0)+1 from fboard), #{category}, #{title}, #{content},0,sysdate, #{userID}, #{nickname}, #{regionID}, #{gender}, #{age})
+		insert into fboard(fbID, category, title, content, rdate, userID, nickname, regionID, gender, age)
+		values((select nvl(max(fbID),0)+1 from fboard), #{category}, #{title}, #{content}, sysdate, #{userID}, #{nickname}, #{regionID}, #{gender}, #{age})
 	</insert>
 	<update id="update" parameterType="com.dongne.fboard.FboardDTO">
 		update fboard
-		set title=#{title}, content=#{content}, userID=#{userID}
+		set title = #{title}, content=#{content}, userID=#{userID}
 		where fbID =#{fbID}
 	</update>
 	<!-- 삭제 -->
@@ -22,17 +22,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="read" parameterType="int"
 		resultType="com.dongne.fboard.FboardDTO">
-		select fbID, title, content, viewcnt, rdate, userID, nickname, category, gender, age
+		select fbID, title, content, rdate, userID, nickname, category, gender, age
 		from fboard
 		where fbID = #{fbID}
 	</select>
-	<!-- 조회수 증가 -->
-	<update id="upCnt" parameterType="int">
-		update fboard
-		set viewcnt = viewcnt + 1
-		where fbID = #{fbID}
-	</update>
-	<select id="total" parameterType="Map" resultType="int">
+
+		<select id="total" parameterType="Map" resultType="int">
 		select count(*) from fboard
 		<where>
 			<choose>
@@ -47,11 +42,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="list" parameterType="Map"
 		resultType="com.dongne.fboard.FboardDTO">
-		select fbID, title, content, viewcnt, rdate, userID, nickname, category, gender, age, regionID, r
+		select fbID, title, content, rdate, userID, nickname, category, gender, age, regionID, r
 		from (
-			select fbID, title, content, viewcnt, rdate, userID, nickname, category, gender, age, regionID, rownum r
+			select fbID, title, content, rdate, userID, nickname, category, gender, age, regionID, rownum r
 			from(
-				select fbID, title, content, viewcnt, rdate, userID, nickname, category, gender, age, regionID
+				select fbID, title, content, rdate, userID, nickname, category, gender, age, regionID
 				from fboard
 				<where>
 				<choose>

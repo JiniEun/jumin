@@ -29,10 +29,6 @@ public class FboardServiceImpl implements FboardService {
 		return mapper.read(fbID);
 	}
 
-	@Override
-	public void upCnt(int fbID) {
-		mapper.upCnt(fbID);
-	}
 
 	@Override
 	public int create(FboardDTO dto) {
@@ -51,10 +47,5 @@ public class FboardServiceImpl implements FboardService {
 		return mapper.delete(fbID);
 	}
 
-	@Override
-	public int checkPassword(Map map) {
-		// TODO Auto-generated method stub
-		return mapper.checkPassword(map);
-	}
 	
 }

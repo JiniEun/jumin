@@ -40,7 +40,6 @@ public class FboardController {
 	
 	@GetMapping("/fboard/read")
 	public String read(int fbID, Model model, HttpSession session) {
-		service.upCnt(fbID);
 
 		FboardDTO dto = service.read(fbID);
 		

@@ -10,13 +10,10 @@ public interface FboardMapper {
 
 	FboardDTO read(int fbID);
 
-	void upCnt(int fbID);
-
 	int create(FboardDTO dto);
 
 	int update(FboardDTO dto);
 
 	int delete(int fbID);
 	
-	int checkPassword(Map map);
 }

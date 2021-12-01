@@ -215,7 +215,7 @@ public class ClubContoller {
 		
 		System.out.println(ID);
 
-		return "/club/createForm";
+		return "/club/create";
 	}
 
 	@PostMapping("/club/create")

@@ -10,7 +10,7 @@
 <title>조회</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-<link rel="stylesheet" href="/resources/static/css/tour_read.css"> <!-- 일단 tour_read.css 댓글 참조 -->
+<link rel="stylesheet" href="/resources/static/css/club_reply.css"> <!-- 일단 tour_read.css 댓글 참조 -->
 <meta charset="utf-8">
 <script type="text/javascript">
 	function updateM() {
@@ -37,28 +37,35 @@
   </style>
 </head>
 <body>
-	<div class="container-lg">
-		<div class="card border-light mb-3">
-			<div class="card-header bg-transparent" style="font-size: 25px;">${dto.title }</div>
+	<div class="container-lg pb-4">
+		<div class="card">
+			<div class="card-header bg-transparent" style="font-size: 20px;">${dto.title }</div>
 			<input type="hidden" id="clID" name="clID" value="${dto.clID }">
 			<input type="hidden" id="ID" name="ID" value="${dto.ID}">
 			<div class="card-body" style="min-height: 300px;">
-				<h5 class="card-title">내용</h5>
 				<p class="card-text">${dto.content }</p>
 			</div>
-			<div class="card-footer bg-transparent">
+			<div class="card-footer bg-transparent" style="font-size: 14px;"> 
 				<p class="card-text">
-					작성자 <small class="text-muted">${dto.nickname}</small>
+					<i class="fas fa-user"></i> 작성자 <small class="text-muted">${dto.nickname}</small>
 				<p class="card-text">
-					등록일 <small class="text-muted">${dto.rdate}</small>
+					<i class="far fa-clock"></i> 등록일 <small class="text-muted">${dto.rdate}</small>
 				<p class="card-text">
-					조회수 <small class="text-muted">${dto.viewcnt}</small>
+					<i class="fa fa-align-justify"></i> 조회 <small class="text-muted">${dto.viewcnt}</small>
 			</div>
 		</div>
+		<br>
 		<div>
+		<c:choose>
+			<c:when test="${sessionScope.ID==dto.ID}">
 				<button type="button" class="btn btn-color" onclick="updateM()">수정</button>
 				<button type="button" class="btn btn-color" onclick="deleteM()">삭제</button>
 			    <button type="button" class="btn btn-color" onclick="listM()">목록</button>
+			</c:when>
+			<c:otherwise>
+				<button type="button" class="btn btn-color" onclick="listM()">목록</button>
+			</c:otherwise>
+	    </c:choose>
 		</div>
 		<!-- reply -->
              <br>

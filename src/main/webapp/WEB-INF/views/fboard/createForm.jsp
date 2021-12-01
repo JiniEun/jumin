@@ -30,8 +30,8 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">동네친구 등록</h4>
-				<form class="validation-form" novalidate action="create"
-					method="post" name='frm' enctype="multipart/form-data">
+		<form class="form-horizontal" action="./create" method="post"
+			onsubmit="return checkIn(this)" enctype="multipart/form-data">
 					
 					<div class="form-group">
 	            <label for="category">카테고리</label>
@@ -45,21 +45,19 @@
 	              </select>
 	            </div>
 	          </div>
-	          
-					<div class="mb-3">
-						<label for="title">제목</label> <input type="text" name="title"
-							id="title" class="form-control">
-					</div>
-					
 					<div class="mb-3" hidden>
 						<label for="ID">작성자ID</label>
-						<p>${ID}</p>
-						<input type="hidden" name="userID" id="userID" value="${ID}">
+						<p>${userID}</p>
+						<input type="hidden" name="userID" id="userID" value="${userID}">
 					</div>
 					<div class="mb-3" hidden>
 						<label for="regionID">지역</label>
 						<p>${regionID}</p>
 						<input type="hidden" name="regionID" id="regionID" value="${regionID}">
+					</div>
+					<div class="mb-3">
+						<label for="title">제목</label> <input type="text" name="title"
+							id="title" class="form-control">
 					</div>
 					<div class="mb-3">
 						<label for="nickname">작성자</label>

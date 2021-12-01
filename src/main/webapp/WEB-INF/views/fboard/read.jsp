@@ -38,9 +38,6 @@
 <body>
 <div class="container col-md-6">
     <div class="card">
-    	<div class="card-header">
-    	            <h5>[${dto.category}] ${dto.title}</h5>
-    	</div>
         <div class="card-body">
             <h6 class="card-subtitle text-muted mb-4">
             	<div hidden>
@@ -50,7 +47,6 @@
                 
                 <i class="far fa-clock"></i> ${dto.rdate} &nbsp;&nbsp;
                 
-                <span>조회 ${dto.viewcnt} </span>
             </h6>
             <p class="card-text">${dto.content}</p>
         </div>

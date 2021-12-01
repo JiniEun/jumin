@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <insert id="create"
 		parameterType="Map">
 		insert into clreply(clrID, clID, content, rdate, ID, nickname)
-		values((select nvl(max(clrID),0)+1 from clreply),
+		values((select nvl(max(clrID),0)+1 from clreply where clID=#{clID}),
 		#{clID},#{content}, sysdate, #{ID}, #{nickname})
 </insert>
 
@@ -32,6 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 from(
 			select clrID, clID, content, rdate, ID, nickname from clreply
 			where clID=#{clID})
+			order by clrID desc
 	<![CDATA[       
          )where r >= #{sno} and r<= #{eno}
      	]]>

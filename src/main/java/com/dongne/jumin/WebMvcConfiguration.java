@@ -26,6 +26,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		registry.addResourceHandler("/office/storage/**").addResourceLocations("file:///" + Office.getUploadDir());
 		registry.addResourceHandler("/market/storage/**").addResourceLocations("file:///" + Market.getUploadDir());
 		registry.addResourceHandler("/club/storage/**").addResourceLocations("file:///" + Club.getUploadDir());
+		//registry.addResourceHandler("/ckstorage/**").addResourceLocations("file:///" + Club.getUploadDir());
 
 		registry.addResourceHandler("/user/storage/**").addResourceLocations("file:///" + User.getUploadDir());
 		/* '/js/**'로 호출하는 자원은 '/static/js/' 폴더 아래에서 찾는다. */
@@ -40,6 +41,12 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 				.setCachePeriod(60 * 60 * 24 * 365);
 		/* '/font/**'로 호출하는 자원은 '/static/font/' 폴더 아래에서 찾는다. */
 		registry.addResourceHandler("/font/**").addResourceLocations("classpath:/static/font/")
+				.setCachePeriod(60 * 60 * 24 * 365);
+		registry.addResourceHandler("/ckeditor/**").addResourceLocations("classpath:/static/ckeditor/")
+				.setCachePeriod(60 * 60 * 24 * 365);
+		registry.addResourceHandler("/ckfinder/**").addResourceLocations("classpath:/static/ckfinder/")
+				.setCachePeriod(60 * 60 * 24 * 365);
+		registry.addResourceHandler("/ckstorage/**").addResourceLocations("classpath:/static/ckstorage/")
 				.setCachePeriod(60 * 60 * 24 * 365);
 		// registry.addResourceHandler("/attachfile/storage/**").addResourceLocations("file:///"
 		// + Attachfile.getUploadDir());

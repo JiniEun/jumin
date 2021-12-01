@@ -32,7 +32,7 @@
 	<div class="container-sm">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				<h2 class="col-sm-offset-2 col-sm-10">친구게시판 삭제</h2>
+				<h3 class="col-sm-offset-2 col-sm-10">동네친구 게시물 삭제</h3>
 				<form class="form-horizontal" action="/fboard/delete" method="post">
 				<input type="hidden" name="fbID" value="${dto.fbID}">
 				<input type="hidden" name="userID" value="${dto.userID}">
