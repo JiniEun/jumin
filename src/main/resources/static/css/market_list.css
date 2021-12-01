@@ -51,6 +51,15 @@ img {
  	 border-color : #5BA6A6;
  }
  
+  .card-title2{
+  font-size : 17px;
+ 	 width: 236px;
+ 	 color: #5BA6A6; 	 
+ 	 padding: 0 0 0.5em 0;
+ 	 border-bottom: 3px solid;
+ 	 border-color : #5BA6A6;
+ }
+ 
  .info{
  	padding: 1em 0 1em 0;
  	
