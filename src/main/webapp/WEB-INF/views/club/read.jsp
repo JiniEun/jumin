@@ -37,7 +37,7 @@
   </style>
 </head>
 <body>
-	<div class="container-lg pb-4">
+	<div class="container-lg pb-4 pt-4 mt-4">
 		<div class="card">
 			<div class="card-header" style="font-size: 20px;">${dto.title }</div>
 			<input type="hidden" id="clID" name="clID" value="${dto.clID }">

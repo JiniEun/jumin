@@ -36,13 +36,12 @@
   </style>
 </head>
 <body>
-<div class="container col-md-6">
+<div class="container col-md-6 mt-4">
     <div class="card">
         <div class="card-body">
             <h6 class="card-subtitle text-muted mb-4">
-            	<div hidden>
-            	${dto.userID}
-            	</div>
+            	<input type="hidden" id="userID" name="userID" value="${dto.userID}" />
+
                 <i class="far fa-user"></i> ${dto.nickname} ${gender} &nbsp;&nbsp;
                 
                 <i class="far fa-clock"></i> ${dto.rdate} &nbsp;&nbsp;
