@@ -101,7 +101,6 @@ body{
 }
 
 .reshow{
-    
     width : 90%;
     margin : auto;
 }
@@ -144,31 +143,28 @@ body{
     margin-left : 15px;
 }
 
-.container .btn{
-    display : flex;
-    justify-content: flex-end;
-    height : 3%;
-    width : 95%;
-   padding-right : 0px;
-}
-
-
-.btn .movebtn button{
+.movebtn{
     background-color: var(--basecolor);
     color : white;
-    border : 3px solid white;
-    border-radius: 5%;
+    width: fit-content;
+   /*  border : 3px solid white;
+    border-radius: 5%; */
 }
+
+.movebtn:hover{
+    background-color : var(--secondcolor);
+    color : white;
+}
+
 
 .scrbtn{
     height : 3%;
     background-color: var(--basecolor);
 }
 
-img{
+.l-img{
     border-radius: 5%;
 }
-
 
 
 .reply textarea:focus{
@@ -183,16 +179,21 @@ img{
 	border-bottom: 3px solid var(--secondcolor);
 }
 
-img:hover{
+.l-img:hover{
     transition : 0.5s; 
-    transform: scale(1.2); 
-}
-
-
-.btn button:hover{
-    background-color : var(--secondcolor);
+    transform: scale(1.1); 
 }
 
 .reply button:hover{
     background-color : var(--secondcolor);
+}
+
+.l-section-btn{
+	
+	display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+     margin-top : 10px;
+    margin : 10px auto;
+    padding : 5px;
 }

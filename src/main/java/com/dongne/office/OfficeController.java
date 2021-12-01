@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -128,7 +129,7 @@ public class OfficeController {
 	}
 
 	@RequestMapping("/office/list")
-	public String list(HttpServletRequest request, HttpSession session) {
+	public String list(HttpServletRequest request, HttpSession session) throws ParseException {
 
 		int sv = Utility.checkNulltoint((Integer) session.getAttribute("region"));
 		String mydistrictcode = Utility.checkNull(Integer.toString(sv));
@@ -150,10 +151,10 @@ public class OfficeController {
 		System.out.println("OFFICE LIST");
 
 		if (list != null) {
-			System.out.println( NaverGeoApi.getGeocode(list.get(0).getAddress()));
-//			for (int i = 0; i <= list.size(); i++) {
-//				System.out.println(i + "dto" + NaverGeoApi.getGeocode(list.get(i).getAddress()));
-//			}
+
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println(i + " ) dto : " + list.get(i).getAddress());
+			}
 		}
 		return "/office/list";
 	}
