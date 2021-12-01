@@ -4,14 +4,14 @@
 <c:choose>
 	<c:when
 		test="${not empty sessionScope.ID && sessionScope.grade == 'A'}">
-		<c:set var="str">관리자로 로그인 하셨습니다.</c:set>
+		<c:set var="str">관리자로 로그인 하셨습니다. ${sessionScope.regionName} 지역 접속 </c:set>
 	</c:when>
 	<c:when
 		test="${not empty sessionScope.ID && sessionScope.grade != 'A'}">
-		<c:set var='str'>안녕하세요  ${sessionScope.ID } 님!</c:set>
+		<c:set var='str'>안녕하세요  ${sessionScope.ID } 님! ${sessionScope.regionName} 지역 접속</c:set>
 	</c:when>
 	<c:otherwise>
-		<c:set var="str">안녕하세요 방문자님!</c:set>
+		<c:set var="str">안녕하세요 방문자님! ${sessionScope.regionName} 지역 접속 </c:set>
 	</c:otherwise>
 </c:choose>
 <!DOCTYPE html>
@@ -26,8 +26,7 @@
 	crossorigin="anonymous">
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
 	integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
@@ -85,7 +84,7 @@
 	<nav class="navbar-nav">
 		<div class="nav justify-content-center">
 			<a class="navbar-brand" href="${root}/" style="color: #027373;">
-				<img src="/images/dongne.gif" width="100%" height="auto" alt="logo" />
+				<img src="/images/title_2.gif" width="100%" height="auto" alt="logo" />
 			</a>
 		</div>
 	</nav>
@@ -120,15 +119,6 @@
 
 				<li class="nav-item"><a class="nav-link"
 					href="${root}/community/list">동네 커뮤니티</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#"
-					id="navbarDarkDropdownMenuLink" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false"> 고객센터 </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="${root}/notice/list">공지사항</a> <a
-							class="dropdown-item" href="${root}/notice/chatbot">Q&amp;A
-							Chatbot</a>
-					</div></li>
 			</ul>
 		</div>
 	</nav>

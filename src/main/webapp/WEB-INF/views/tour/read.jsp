@@ -144,7 +144,7 @@
     
     <!-- 내용 -->
 	<section class="title">
-        <div><i class="fab fa-slack-hash"></i>&nbsp${dto.title}</div>
+        <span class="stitle"><i class="fab fa-slack-hash"></i>&nbsp${dto.title}</span>
         <div class = "sharebtn">
 	    	<a href="https://map.naver.com/v5/search/${dto.addname}" target="_blank"><i class="fas fa-map-marked"></i></a>
 	    	<button onclick="snsShare('kakao')"><img src="/resources/static/images/logo/kakao_logo.png"></button>
@@ -166,14 +166,14 @@
     </section>
 
     <section class="contents">
-        <article>${dto.contents}</article>
+        <article><p style="white-space: pre-line;">${dto.contents}</p></article>
     </section>
 
 	<!-- reply -->
 	<form name="replyForm">
 	    <section class="reply">
 	    	<input type="hidden" name="tid" value="${dto.tid}"/>
-	        <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+	        <input type="text" class="form-control" id="content" name="content" placeholder="로그인 후 댓글을 달아주세요">
 	        <button class="rebtn" id="rebtn" name="rebtn">댓글 등록</button>
 	    </section>
 	

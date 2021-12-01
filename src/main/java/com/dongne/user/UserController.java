@@ -79,6 +79,7 @@ public class UserController {
 			session.setAttribute("ID", map.get("ID"));
 			session.setAttribute("grade", grade);
 			session.setAttribute("region", user.getRegionID());
+			session.setAttribute("regionName", regionservice.read(user.getRegionID()).getRegion());
 
 			// Cookie 저장, id 저장 여부 및 id
 			Cookie cookie = null;
@@ -417,6 +418,13 @@ public class UserController {
 	public String findresult() {
 
 		return "/user/findresult";
+	}
+	
+
+	@GetMapping("/privacy")
+	public String privacy() {
+
+		return "/user/privacy";
 	}
 
 }

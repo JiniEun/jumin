@@ -32,9 +32,13 @@
 
 </head>
 <body>
+	<div id="top">
+		<h2 style="margin: 5px; text-align: center;">동네스팟</h2>
+		<p class="col-12 text-center mb-0">우리 지역의 여행지와 맛집을 찾아보세요</p>
+		<br>
+	</div>
+	<section class='mtitle'>
 
-	<section class=mtitle>
-		<h1 style="margin: 20px 0;">동네스팟</h1>
 
 		<!-- 검색 -->
 		<form class="search-form" action="/tour/list">
@@ -86,7 +90,7 @@
 
 	</section>
 
-	<div class="container">
+	<div class="container mt-4 l-container">
 		<div class="images">
 			<div class="imageFlex1">
 				<c:choose>
@@ -96,22 +100,28 @@
 					<c:otherwise>
 
 						<c:forEach var="dto" items="${list}" begin="0" step="3">
-							<img src="/tour/storage/${fn:split(dto.filename,',')[0]}"
+							<img class="l-img-title"
+								src="/tour/storage/${fn:split(dto.filename,',')[0]}"
 								alt="${dto.title}">
 							<section class=title>
-								<a href="javascript:read('${dto.tid}')"><i
-									class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a> <span
-									id="score" style="color : #fffde7;"> <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
-									<c:if test="${dto.score=='2'}">★★☆☆☆</c:if> <c:if
-										test="${dto.score=='3'}">★★★☆☆</c:if> <c:if
-										test="${dto.score=='4'}">★★★★☆</c:if> <c:if
-										test="${dto.score=='5'}">★★★★★</c:if>
-								</span>
+
+								<span><a class="a-link"
+									href="javascript:read('${dto.tid}')"><i
+										class="fab fa-slack-hash"></i>&nbsp${dto.title}</a> </span>
+
 							</section>
-							<section class=info style="color:#808088">
-								<span style="width: 100; overflow: hidden;"><i class="fas fa-user" ></i>
-									${dto.nickname}</span><br> <span>Date :
-									${dto.rdate.substring(0,10)}</span>
+							<div id="score" style="color: #fffde7;">
+								평점 :
+								<c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+								<c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
+								<c:if test="${dto.score=='3'}">★★★☆☆</c:if>
+								<c:if test="${dto.score=='4'}">★★★★☆</c:if>
+								<c:if test="${dto.score=='5'}">★★★★★</c:if>
+							</div>
+							<section class=info style="color: #808088">
+								<span style="width: 100; overflow: hidden;"><i
+									class="fas fa-user"></i> ${dto.nickname}</span><br> <span>Date
+									: ${dto.rdate.substring(0,10)}</span>
 							</section>
 						</c:forEach>
 
@@ -132,23 +142,28 @@
 					<c:otherwise>
 
 						<c:forEach var="dto" items="${list}" begin="1" step="3">
-							<img src="/tour/storage/${fn:split(dto.filename,',')[0]}"
+							<img class="l-img-title"
+								src="/tour/storage/${fn:split(dto.filename,',')[0]}"
 								alt="${dto.title }">
 
 							<section class=title>
 
-								<a href="javascript:read('${dto.tid}')"><i
-									class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a> <span
-									id="score" style="color : #fffde7;"> <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
-									<c:if test="${dto.score=='2'}">★★☆☆☆</c:if> <c:if
-										test="${dto.score=='3'}">★★★☆☆</c:if> <c:if
-										test="${dto.score=='4'}">★★★★☆</c:if> <c:if
-										test="${dto.score=='5'}">★★★★★</c:if>
-								</span>
+								<span><a class="a-link"
+									href="javascript:read('${dto.tid}')"><i
+										class="fab fa-slack-hash"></i>&nbsp${dto.title}</a> </span>
+
 							</section>
-							<section class=info style="color:#808088">
-								<span style="width: 100; overflow: hidden;"><i class="fas fa-user"></i>
-									${dto.nickname}</span> <span>Date :
+							<div id="score" style="color: #fffde7;">
+								평점 :
+								<c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+								<c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
+								<c:if test="${dto.score=='3'}">★★★☆☆</c:if>
+								<c:if test="${dto.score=='4'}">★★★★☆</c:if>
+								<c:if test="${dto.score=='5'}">★★★★★</c:if>
+							</div>
+							<section class=info style="color: #808088">
+								<span style="width: 100; overflow: hidden;"><i
+									class="fas fa-user"></i> ${dto.nickname}</span> <span>Date :
 									${dto.rdate.substring(0,10)}</span>
 							</section>
 						</c:forEach>
@@ -169,21 +184,27 @@
 					<c:otherwise>
 
 						<c:forEach var="dto" items="${list}" begin="2" step="3">
-							<img src="/tour/storage/${fn:split(dto.filename,',')[0]}"
+							<img class="l-img-title"
+								src="/tour/storage/${fn:split(dto.filename,',')[0]}"
 								alt="${dto.title }">
 							<section class=title>
-								<a href="javascript:read('${dto.tid}')"><i
-									class="fab fa-slack-hash"></i>&nbsp<span>${dto.title}</span></a> <span
-									id="score" style="color : #fffde7;"> <c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
-									<c:if test="${dto.score=='2'}">★★☆☆☆</c:if> <c:if
-										test="${dto.score=='3'}">★★★☆☆</c:if> <c:if
-										test="${dto.score=='4'}">★★★★☆</c:if> <c:if
-										test="${dto.score=='5'}">★★★★★</c:if>
-								</span>
+
+								<span><a class="a-link"
+									href="javascript:read('${dto.tid}')"><i
+										class="fab fa-slack-hash"></i>&nbsp${dto.title}</a> </span>
+
 							</section>
-							<section class=info style="color:#808088">
-								<span style="width: 100; overflow: hidden;"><i class="fas fa-user"></i>
-									${dto.nickname}</span> <span>Date :
+							<div id="score" style="color: #fffde7;">
+								평점 :
+								<c:if test="${dto.score=='1'}">★☆☆☆☆</c:if>
+								<c:if test="${dto.score=='2'}">★★☆☆☆</c:if>
+								<c:if test="${dto.score=='3'}">★★★☆☆</c:if>
+								<c:if test="${dto.score=='4'}">★★★★☆</c:if>
+								<c:if test="${dto.score=='5'}">★★★★★</c:if>
+							</div>
+							<section class=info style="color: #808088">
+								<span style="width: 100; overflow: hidden;"><i
+									class="fas fa-user"></i> ${dto.nickname}</span> <span>Date :
 									${dto.rdate.substring(0,10)}</span>
 							</section>
 						</c:forEach>

@@ -72,4 +72,9 @@
     <put-attribute name="body"
       value="/WEB-INF/views/user/findResult.jsp" />
   </definition>
+  <definition name="/user/privacy" extends="main">
+    <put-attribute name="title" value="이용약관"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/user/privacy.jsp" />
+  </definition>
 </tiles-definitions>

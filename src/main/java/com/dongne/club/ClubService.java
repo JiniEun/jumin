@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 public interface ClubService {
+	int totalRegion(Map map);
+	
 	int create(ClubDTO dto);
 
 	int update(ClubDTO dto);
@@ -19,8 +21,6 @@ public interface ClubService {
 	ClubDTO read(int clID);
 
 	void upViewcnt(int clID);
-
-	int passwd(Map map);
 
 	int delete(int clID);
 }

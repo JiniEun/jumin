@@ -3,149 +3,143 @@
   --secondcolor : #027373;
 }
 
-
-.header{
-  height:100px;
-  background-color:red;
-  top: 0px;
+#top {
+	padding: 2em 0 10px 0;
+	
 }
 
-.footer{
-  height:100px;
-  background-color:red;
-  margin-top : 20px;
+.mtitle {
+	margin: auto;
+	width: 70%;
+	align-items: center;
+	display: flex;
+	justify-content: flex-end;
 }
 
-h1{
-  color : var(--basecolor);
-  font-size : 36px;
+.title {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: solid;
+	border-color: var(--basecolor);
+	color: var(--basecolor);
+	overflow: hidden;
 }
 
-.mtitle{
-  margin: auto;
-  width : 70%;
-  align-items:center;
-  display : flex;
-  justify-content: space-between;
+.title span {
+	width: 300px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
 }
 
-
-
-.title{
-  display : flex;
-  justify-content: space-between;
-  border-bottom:solid;
-  border-color : var(--basecolor);
-  color: var(--basecolor);
-  overflow : hidden;
-}
-
-.title a{
+.title .a-link {
 	color: var(--basecolor);
 }
 
-#score{
-  font-style : bold;
-  color : white;
-  background-color: var(--basecolor);
-  border-radius : 5%;
-  border : 2px solid var(--basecolor);
-  padding : 3px;
+#score {
+	width: 165px;
+	margin-top: -20px;
+	font-style: bold;
+	color: white;
+	background-color: var(--basecolor);
+	border: 2px solid var(--basecolor);
+	padding: 3px;
 }
 
 body {
-    font-family : Roboto Mono;
-    margin: 0;
-  }
-  .container {
-    padding:10px;
-    width: 70%;
-    margin: auto;
-    overflow: hidden;
-  }
-  .images {
-    width: 100%;
-    height: auto;
-  }
-  .images img {
-    width: 100%;
-    height: 100%;
-    border-radius : 1ch;
-    object-fit: contain;
-  }
-
-img:hover{ 
-  transition : 0.5s; 
-  transform: scale(1.2); 
-  overflow : hidden;
+	font-family: Roboto Mono;
+	margin: 0;
 }
 
-.container a:hover{
-  color : var(--secondcolor);
-  font-size : 20px;
+.l-container {
+	padding: 10px;
+	width: 70%;
+	margin: auto;
+	overflow: hidden;
 }
 
-a{
-    text-decoration:none;
-    border:none;
-    padding : 0px;
-    cursor:pointer;
-    outline : none;
-    background-color : white;
+.images {
+	width: 100%;
+	height: auto;
 }
 
-.search button:hover{
-  background-color : var(--secondcolor);
+.images img {
+	width: 100%;
+	height: 100%;
+	border-radius: 1ch;
+	object-fit: contain;
 }
 
-  .info{
-    margin-top:-15px;
-    display:flex;
-    align-items:end;
-    justify-content: space-between;
-    
-  }
+.l-img-title:hover {
+	transition: 0.5s;
+	transform: scale(1.2);
+	overflow: hidden;
+}
 
-  .search{
-    width : 550px;
-    display : flex;
-    align-items : center;
-    justify-content: space-between;
-  }
+.l-container .a-link:hover {
+	color: var(--secondcolor);
+	font-size: 20px;
+}
 
-  .search button{
-    width : 70px;
-    height : 40px;
-    background-color: var(--basecolor);
-    color : white;
-    border : 3px solid white;
-    border-radius : 10%;
-  }
-  
-  .search select{
-    width : 100px;
-    height : 40px;
-  }
+.a-link {
+	text-decoration: none;
+	border: none;
+	padding: 0px;
+	cursor: pointer;
+	outline: none;
+	background-color: white;
+}
 
-  
-  @media (min-width: 640px) {
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 30px;
-      grid-auto-flow: row dense;
-    }
-    .imageFlex1 {
-      display: grid;
-      row-gap: 20px;
-    }
-    .imageFlex2 {
-      display: grid;
-      row-gap: 20px;
-    }
-    .imageFlex3 {
-      display: grid;
-      row-gap: 20px;
-    }
-  }
+.search button:hover {
+	background-color: var(--secondcolor);
+}
 
+.info {
+	margin-top: -15px;
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+}
+
+.search {
+	width: 550px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.search button {
+	width: 70px;
+	height: 40px;
+	background-color: var(--basecolor);
+	color: white;
+	border: 3px solid white;
+	border-radius: 10%;
+}
+
+.search select {
+	width: 100px;
+	height: 40px;
+}
+
+@media ( min-width : 640px) {
+	.l-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 30px;
+		grid-auto-flow: row dense;
+	}
+	.imageFlex1 {
+		display: grid;
+		row-gap: 20px;
+	}
+	.imageFlex2 {
+		display: grid;
+		row-gap: 20px;
+	}
+	.imageFlex3 {
+		display: grid;
+		row-gap: 20px;
+	}
+}

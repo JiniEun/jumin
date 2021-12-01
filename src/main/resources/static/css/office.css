@@ -1,161 +1,155 @@
-:root{
-    --basecolor : #5BA6A6;
-    --secondcolor : #027373;
-  }
-
-
-
-
-.pagetitle{
-	margin : auto;
-	width : 70%;
-    padding-top : 50px;
-    text-align : center;
-    color : var(--basecolor);
+:root { 
+	--basecolor: #5BA6A6; 
+	--secondcolor: #027373;
 }
 
-.pagetitle button{
-    margin-top : 5px;
-    margin-left : 10px;
-    width : 100px;
-    height : 30px;
-    background-color: var(--basecolor);
-    color : white;
-    outline : 0;
-    border : 1px solid var(--basecolor);
-    border-radius : 5%;
-    margin-bottom : 3px;
+.pagetitle {
+	margin: auto;
+	width: 70%;
+	padding-top: 50px;
+	text-align: center;
 }
 
-.search-form{
-	width : 300px;
-	display : flex;
-	margin : 5px auto;
-	justify-content : space-between;
+.pagetitle button {
+	margin-top: 5px;
+	margin-left: 10px;
+	width: 100px;
+	height: 30px;
+	background-color: var(--basecolor);
+	color: white;
+	outline: 0;
+	border: 1px solid var(--basecolor);
+	border-radius: 5%;
+	margin-bottom: 3px;
+}
+
+.search-form {
+	width: 300px;
+	display: flex;
+	margin: 5px auto;
+	justify-content: space-between;
 	align-items: center;
 }
 
-.api button{
-    width : 100px;
-    height : 30px;
-    background-color: var(--basecolor);
-    color : white;
-    outline : 0;
-    border : 1px solid var(--basecolor);
-    border-radius : 5%;
-    margin-bottom : 3px;
+.api button {
+	width: 100px;
+	height: 30px;
+	background-color: var(--basecolor);
+	color: white;
+	outline: 0;
+	border: 1px solid var(--basecolor);
+	border-radius: 5%;
+	margin-bottom: 3px;
 }
 
-.loop button{
-    width : 100px;
-    height : 30px;
-    background-color: var(--basecolor);
-    color : white;
-    outline : 0;
-    border : 1px solid var(--basecolor);
-    border-radius : 5%;
-    margin-bottom : 3px;
+.loop button {
+	width: 100px;
+	height: 30px;
+	background-color: var(--basecolor);
+	color: white;
+	outline: 0;
+	border: 1px solid var(--basecolor);
+	border-radius: 5%;
+	margin-bottom: 3px;
 }
 
-  .container{
-      display : flex;
-      margin : 1px auto;
-      height : 100%;
-      width : 100%;
-      justify-content: space-between;
-  }
-  .api{
-      height : 100%;
-      width : 61%;
-      top : 0px;
-      position :sticky;
-  }
-
-.api .map{
-    
-    border : 3px solid var(--basecolor);
-    width : 100%;
-    height : 500px;
-    
+.l-container {
+	display: flex;
+	margin: 1px auto;
+	height: 100%;
+	width: 100%;
+	justify-content: space-between;
 }
 
-.api .pano{
-    border : 3px solid var(--basecolor);
-    width : 100%;
-    height : 400px;
+.api {
+	height: 100%;
+	width: 61%;
+	top: 0px;
+	position: sticky;
 }
 
-.looparea{
-	
-    height : 100%;
-    width : 38%;
-    padding-top : 30px;
+.api .map {
+	border: 3px solid var(--basecolor);
+	width: 100%;
+	height: 500px;
 }
 
-.loop{
-    display : flex;
-    flex-direction : column;
-    justify-content: space-between;
+.api .pano {
+	border: 3px solid var(--basecolor);
+	width: 100%;
+	height: 400px;
 }
 
-.loop .imgarea{
-    border : 3px solid var(--basecolor);
-    border-radius : 4%;
-    height : 300px;
-    width : 98%;
+.looparea {
+	height: 100%;
+	width: 38%;
+	padding-top: 30px;
 }
 
-.loop .detail{
-    display : flex;
-    flex-direction : column;
-    justify-content: space-between;
-    border : 3px solid var(--basecolor);
-    border-radius : 3%;
-    height : 200px;
-    width : 98%;
-    margin-top : 10px;
-    margin-bottom : 20px;
-    padding : 5px;
-    color : var(--basecolor);
-    padding-left : 27px;
+.loop {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
-.loop .detail:hover{
-    border : 6px solid var(--basecolor);
+.loop .imgarea {
+	border: 3px solid var(--basecolor);
+	border-radius: 4%;
+	height: 300px;
+	width: 98%;
+}
+
+.loop .detail {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border: 3px solid var(--basecolor);
+	border-radius: 3%;
+	height: 200px;
+	width: 98%;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	padding: 5px;
+	color: var(- -basecolor);
+	padding-left: 27px;
+}
+
+.loop .detail:hover {
+	border: 6px solid var(--basecolor);
 }
 
 .detail a{
-	text-decoration : none;
-	color : var(--basecolor);
+	text-decoration: none;
+	color: var(--basecolor);
 }
 
-.detail a:hover{
-	background-color : var(--secondcolor);
-	color : white;
+.detail a:hover {
+	background-color: var(--secondcolor);
+	color: white;
 }
 
-button:hover{
-    background-color: var(--secondcolor);
+.moreBtn:hover {
+	background-color: var(--secondcolor);
 }
 
-img {
-    width: 100%;
-    height:100%;
-    object-fit: fill;
-    border-radius:3%;
-    border-color : #0077c2;
-  }
-  
-.loop .detail .contents{
-    width: 400px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-  }
+.l-img {
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+	border-radius: 3%;
+	border-color: #0077c2;
+}
 
-.loop .detail .contents_clamp{
-    width: 1000px;
-    display: -webkit-box;
-    overflow: visible;
+.loop .detail .contents {
+	width: 400px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+.loop .detail .contents_clamp {
+	width: 1000px;
+	display: -webkit-box;
+	overflow: visible;
 }

@@ -6,8 +6,6 @@
 
 
 $(window).load(function () {
-	console.log("장소명 목록 : " + atcname);
-	console.log("주소 목록 : " + atcadd);
 	
 	// 맵, 마커 생성
 	var map = new naver.maps.Map('map', {
@@ -178,12 +176,6 @@ function ATC(address,name) {
         var htmlAddresses = [],
             item = response.v2.addresses[0],
             point = new naver.maps.Point(item.x, item.y);
-	   
-       console.log("-----함수내부------");
-       console.log("주소 : " + address);
-       console.log("x좌표 : " + item.x);
-       console.log("y좌표 : " + item.y);
-       console.log("-----함수end------");
 
        atcname.push(name);
 	   atcadd.push(address);
@@ -194,7 +186,6 @@ function ATC(address,name) {
     
 }
 
-	var ad='부산광역시 남구 용호4동 용호로232번길 25-14'
 	var x=[];
 	var y=[];
 	var name_array=[], address_array=[];

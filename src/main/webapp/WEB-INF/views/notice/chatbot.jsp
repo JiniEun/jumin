@@ -54,27 +54,37 @@
 			<div class="input-form col-md-4 mx-auto">
 				<div class="card-title">자주 하는 질문 목록</div>
 				<ul class="list-group list-group-flush">
-					<li class="question list-group-item"><a class="txt-question">Q. 로그인이 안 돼요</a>
+					<li class="question list-group-item"><a class="txt-question">Q.
+							로그인이 안 돼요</a>
 						<ul class="hide">
-							<li class="list">A. 고객센터로 문의 메일 부탁드립니다.</li>
+							<li class="list">A. 로그인 시 해당 아이디가 존재하는 지 확인해주세요.<br>
+								가입하실 때의 아이디와 비밀번호가 맞는 지 다시 한번 확인해주세요
+							</li>
 						</ul></li>
 
-					<li class="question list-group-item"><a class="txt-question">Q. 회원가입이 안됩니다</a>
+					<li class="question list-group-item"><a class="txt-question">Q.
+							회원가입이 안됩니다</a>
+						<ul class="hide">
+							<li>A. 회원가입 시 모든 문항을 잘 작성했는 지 확인해주세요. <br>이미 존재하는 아이디와
+								이메일을 입력하시면 가입하실 수 없습니다.<br> 본인의 이메일이 존재한다고 할 경우 아이디 찾기를
+								진행해주세요.
+							</li>
+						</ul></li>
+
+					<li class="question list-group-item"><a class="txt-question">Q.
+							친구매칭이 안 돼요</a>
 						<ul class="hide">
 							<li>A. 회원가입이 되지 않을 경우 문의 주세요</li>
 						</ul></li>
 
-					<li class="question list-group-item"><a class="txt-question">Q. 친구매칭이 안 돼요</a>
+					<li class="question list-group-item"><a class="txt-question">Q.
+							고객센터 문의할게 있어요</a>
 						<ul class="hide">
 							<li>A. 회원가입이 되지 않을 경우 문의 주세요</li>
 						</ul></li>
 
-					<li class="question list-group-item"><a class="txt-question">Q. 고객센터 문의할게 있어요</a>
-						<ul class="hide">
-							<li>A. 회원가입이 되지 않을 경우 문의 주세요</li>
-						</ul></li>
-
-					<li class="question list-group-item"><a class="txt-question">Q. 관리자로 어떻게 등록하나요</a>
+					<li class="question list-group-item"><a class="txt-question">Q.
+							관리자로 어떻게 등록하나요</a>
 						<ul class="hide">
 							<li>A. 회원가입이 되지 않을 경우 문의 주세요</li>
 						</ul></li>

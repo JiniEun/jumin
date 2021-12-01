@@ -46,13 +46,22 @@ body{
     flex : auto;
 }
 
+.stitle{
+  width: 700px;
+  height : 40px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
 
 .title{
     display : flex;
     width : 90%;
     margin : auto;
+    margin-top : 20px;
     align-items : center;
-    font-size : 36px;
+    font-size : 24px;
     height : 60px;
     color : var(--secondcolor);
     justify-content : space-between;
@@ -70,6 +79,7 @@ body{
     display : flex;
     width : 90%;
     margin : auto;
+    margin-top : 10px;
     align-items : center;
     justify-content: space-between;
     border :3px solid var(--basecolor);
@@ -87,6 +97,7 @@ body{
     height : 300px;
     width : 90%;
     border : 3px solid var(--basecolor);
+    overflow : scroll;
 }
 
 .reshow{

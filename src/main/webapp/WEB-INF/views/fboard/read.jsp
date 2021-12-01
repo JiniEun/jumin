@@ -46,7 +46,7 @@
             	<div hidden>
             	${dto.userID}
             	</div>
-                <i class="far fa-user"></i> ${dto.nickname} &nbsp;&nbsp;
+                <i class="far fa-user"></i> ${dto.nickname} ${gender} &nbsp;&nbsp;
                 
                 <i class="far fa-clock"></i> ${dto.rdate} &nbsp;&nbsp;
                 

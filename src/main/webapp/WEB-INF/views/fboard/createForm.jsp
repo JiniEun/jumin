@@ -50,6 +50,7 @@
 						<label for="title">제목</label> <input type="text" name="title"
 							id="title" class="form-control">
 					</div>
+					
 					<div class="mb-3" hidden>
 						<label for="ID">작성자ID</label>
 						<p>${ID}</p>
@@ -64,19 +65,18 @@
 						<label for="nickname">작성자</label>
 						<input type="text" readonly name="nickname" id="nickname" class="form-control" value="${nickname}">
 					</div>
+										<div class="mb-3">
+						<label for="age">나이</label>
+						<input type="text" readonly name="age" id="age" class="form-control" value="${age}">
+					</div>
+					<div class="mb-3" hidden>
+						<label for="gender">성별</label>
+						<input type="text" readonly name="gender" id="gender" class="form-control" value="${gender}">
+					</div>
 					<div class="mb-3">
 						<label for="content">내용</label>
 						<textarea rows="12" cols="7" id="content" name="content"
 							class="form-control"></textarea>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<label for="password">비밀번호</label>
-						</div>
-						<div class="col-md-4">
-							<input type="password" name="password" id="password"
-								class="form-control">
-						</div>
 					</div>
 					<div class="mb-3" style="margin-top:10px;">
 						<button type="submit" class="btn btn-color">등록</button>
