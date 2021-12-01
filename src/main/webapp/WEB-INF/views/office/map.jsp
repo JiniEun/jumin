@@ -51,7 +51,7 @@
 										}); //marker 생성
 								console.log("atcname[i]", i, atcname[i]);
 								var contentString = [ '<a href="#imgarea'+atcname[i]+'"><div class="marker-link" id="map'+atcname[i]+'" style="border : width:150px;text-align:center;padding:10px;">'
-										+ atcname[i] + '</b>.</div>' ].join('');
+										+ atcname[i] + '</b></div>' ].join('');
 								var infoWindow = new naver.maps.InfoWindow({
 									content : contentString,
 									maxWidth : 200,
