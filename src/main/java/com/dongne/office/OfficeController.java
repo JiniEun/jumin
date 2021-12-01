@@ -109,7 +109,7 @@ public class OfficeController {
 		OfficeDTO dto = service.read(oid);
 
 		String upDir = Office.getUploadDir();
-		
+
 		// 기존파일 지우고,
 		String oldfile = dto.getFilename();
 		Utility.deleteFile(upDir, oldfile);
@@ -145,7 +145,12 @@ public class OfficeController {
 		request.setAttribute("list", list);
 		request.setAttribute("districtcode", districtcode);
 		request.setAttribute("mydistrictcode", mydistrictcode);
-
+		
+		System.out.println("OFFICE LIST");
+		
+		for(int i = 0; i <= list.size(); i++) {
+			System.out.println(i+"dto" + Utility.getRegionCode(list.get(i).getAddress()));
+		}
 		return "/office/list";
 	}
 
@@ -162,7 +167,6 @@ public class OfficeController {
 	@RequestMapping(value = "/office/read", method = RequestMethod.POST)
 	public String read(HttpServletRequest request) {
 		String oid = request.getParameter("oid");
-
 
 		return "/office/read";
 	}

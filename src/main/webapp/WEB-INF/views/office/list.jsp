@@ -21,11 +21,11 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap"
 	rel="stylesheet">
 <script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92xk29w19e"></script>
+<script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92xk29w19e&submodules=geocoder"></script>
 <script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=YOUR_CLIENT_ID&submodules=panorama"></script>
-
-
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=92xk29w19e&submodules=panorama"></script>
 <script type="text/javascript">
 
 	function updateM(oid) {
@@ -43,6 +43,7 @@
 
 </head>
 <body>
+
 	<div class="pb-4">
 		<div class="pagetitle">
 			<h2 style="margin: 20px 0; text-align: center;">동네 주요시설</h2>

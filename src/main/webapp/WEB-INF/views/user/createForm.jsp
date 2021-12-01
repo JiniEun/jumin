@@ -108,7 +108,7 @@
   </script>
 </head>
 <body>
-	<div class="container-sm">
+	<div class="container-sm pb-5 mb-5">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">회원가입</h4>

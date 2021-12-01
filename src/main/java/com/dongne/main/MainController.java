@@ -76,7 +76,7 @@ public class MainController {
 		String realLocation = (String) session.getAttribute("realLocation");
 
 		if (realLocation == null) {
-			realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(37.541, 126.986));
+			realLocation = NaverGeoApi.getAddress(NaverGeoApi.getReverseGeocode(37.541, 126.986));
 
 		}
 
@@ -143,7 +143,8 @@ public class MainController {
 
 		LocationDTO loc = new LocationDTO(Double.parseDouble(latitude), Double.parseDouble(longitude));
 
-		String realLocation = NaverGeoApi.getAddress(NaverGeoApi.getlocation(loc.getLatitude(), loc.getLongitude()));
+		String realLocation = NaverGeoApi
+				.getAddress(NaverGeoApi.getReverseGeocode(loc.getLatitude(), loc.getLongitude()));
 		System.out.println("realLocation : " + realLocation);
 		System.out.println("region : " + session.getAttribute("region"));
 
