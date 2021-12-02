@@ -80,9 +80,9 @@
 										<!-- Box -->
 										<section class="box feature">
 											<div class="mainimg">
-												<a href="/club/read/${dto.clID}" class="img-rounded"> <img
+												<a href="/club/read/${dto.clID}"> <img
 													src="/club/storage/${dto.fileName}" alt="" width="250"
-													height="250" />
+													height="250" class="l-img"/>
 												</a>
 											</div>
 											<div class="info">
@@ -110,9 +110,9 @@
 									<div class="col-10 col-10-medium">
 										<!-- Box -->
 										<section class="box feature">
-											<a href="/club/read/${dto.clID}" class="img-rounded"> <img
+											<a href="/club/read/${dto.clID}"> <img
 												src="/club/storage/${dto.fileName}" alt="" width="250"
-												height="250" />
+												height="250" class="l-img"/>
 
 											</a>
 											<div class="info">
