@@ -111,7 +111,9 @@ public class MessageController {
 
 			dto.setReceiver(otherID);
 			dto.setRoomID(0);
+			dto.setContent("");
 			
+			System.out.println("dto : " + dto.toString());
 			int flag = messageDao.messageSendInlist(dto);
 			
 			return flag;
