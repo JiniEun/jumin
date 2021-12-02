@@ -3,11 +3,6 @@
     --secondcolor : #027373;
   }
 
-body{
-    font-family :roboto mono;
-}
-
-
 .container{
     margin : 5px auto;
     width : 80%;

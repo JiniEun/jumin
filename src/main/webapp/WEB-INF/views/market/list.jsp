@@ -140,7 +140,7 @@
 									<a href="javascript:read('${dto.mid}')" class="images"> <img
 										class="l-img"
 										src="/market/storage/${fn:split(dto.filename,',')[0]}" alt=""
-										width="236" height="306" />
+										width="236" height="250" />
 									</a>
 									<div class="info">
 

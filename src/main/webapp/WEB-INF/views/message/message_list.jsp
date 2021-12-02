@@ -8,13 +8,10 @@
 <title>Insert title here</title>
 <link href="/resources/static/css/message_list.css" rel="stylesheet">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"/>
-
-
-</head>
-
-<body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<div class='msg-container'>
+</head>
+<body>
+<div class='msg-container mt-5 mb-5'>
 	<div class="messaging">
 	<div class="inbox_msg">
 	<!-- 메세지 목록 영역 -->

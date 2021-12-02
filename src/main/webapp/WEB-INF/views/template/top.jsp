@@ -89,7 +89,7 @@
 		</div>
 	</nav>
 
-	<nav class="navbar navbar-expand-lg navbar-light">
+	<nav class="navbar sticky-top bg-light-color navbar-expand-lg navbar-light">
 		<div class="navbar-collapse collapse justify-content-center"
 			id="navbarSupportedContent">
 			<ul class="nav navbar-nav navbar-center justify-content-center">
