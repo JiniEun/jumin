@@ -69,7 +69,7 @@
 </script>
 </head>
 <body>
-	<div class="container-lg" style="margin-top: 10px;">
+	<div class="container-lg mb-4 pb-2" style="margin-top: 10px;">
 		<h2>회원 정보 변경</h2>
 		<div class="card card-default" style="max-width: 900px;">
 			<form class="updateform" novalidate action="${root}/user/update"

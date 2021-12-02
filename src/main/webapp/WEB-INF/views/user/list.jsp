@@ -60,9 +60,15 @@
 		<c:forEach var="dto" items="${list}">
 			<table class="table table-bordered">
 				<tr>
-					<td rowspan="5" class="col-sm-2"><img
-						src="/user/storage/${dto.fileName}" class="img-rounded"
-						width="200px" height="200px"></td>
+					<td rowspan="5" class="col-sm-2">
+					<c:if test="${dto.fileName == null}">
+					<img src="/images/profile.png" class="img-rounded"
+								width="200px" height="200px">
+					</c:if>
+					<c:if test="${dto.fileName != null}">
+							<img src="/user/storage/${dto.fileName}" class="img-rounded"
+								width="200px" height="200px">
+						</c:if></td>
 					<th class="col-sm-2">아이디</th>
 					<td class="col-sm-8"><a href="javascript:read('${dto.ID}')">${dto.ID}</a></td>
 				</tr>

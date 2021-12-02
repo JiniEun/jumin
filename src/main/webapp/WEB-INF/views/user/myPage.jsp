@@ -27,7 +27,7 @@
 </style>
 </head>
 <body>
-	<div class="container-lg" style="margin-top: 10px;">
+	<div class="container-lg mb-4 pb-2" style="margin-top: 10px;">
 		<h2>나의 정보</h2>
 		<div class="card card-default" style="max-width: 900px;">
 			<div class="row g-0">
