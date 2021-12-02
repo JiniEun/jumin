@@ -170,7 +170,7 @@ public class FboardController {
 		map.put("eno", eno);
 		map.put("regionID", regionID);
 
-		int total = service.total(map);
+		int total = service.totalRegion(map);
 
 		List<FboardDTO> list = service.list(map);
 		

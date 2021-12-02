@@ -46,6 +46,12 @@ public class FboardServiceImpl implements FboardService {
 		// TODO Auto-generated method stub
 		return mapper.delete(fbID);
 	}
+	
+	@Override
+	public int totalRegion(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.totalRegion(map);
+	}
 
 	
 }

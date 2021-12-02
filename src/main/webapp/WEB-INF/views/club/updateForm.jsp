@@ -9,6 +9,12 @@
 	 $(function() {
          CKEDITOR.replace('content'); // <TEXTAREA>태그 id 값
  	  });
+		function popup() {
+			var url = "./uploadfile";
+			var name = "popup test";
+			var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+			window.open(url, name, option);
+		}
    </script>
    <style>
    .input-form {
@@ -58,8 +64,15 @@
 						<textarea rows="12" cols="7" id="content" name="content"
 							class="form-control">${dto.content }</textarea>
 					</div>
+					<label class="control-label col-sm-2" for="fileNameMF">대표이미지</label>
+						<div class="col-sm-8" id="pop">
+						<div>
+						<input type="button" class="imgbutton" value="이미지 수정"
+						onclick="popup()"><br>
+						</div>
+						</div>
 					<div class="mb-3" style="margin-top:10px;">
-						<button type="submit" class="btn btn-color">수정</button>
+						<button type="submit" class="btn btn-color">등록</button>
 						<button type="button" class="btn btn-color"
 							onclick="history.back()">취소</button>
 					</div>

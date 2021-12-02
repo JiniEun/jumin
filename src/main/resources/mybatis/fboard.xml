@@ -38,6 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					content like '%'||#{word}||'%'
 				</when>
 			</choose>
+			and regionID = #{regionID}
 		</where>
 	</select>
 	<select id="list" parameterType="Map"
@@ -64,5 +65,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      	<![CDATA[       
          )where r >= #{sno} and r <= #{eno}
      	]]>
+	</select>
+	
+	<select id="totalRegion" resultType="int" parameterType="Map">
+		select count(*) from fboard WHERE regionID = #{regionID}
 	</select>
 </mapper>

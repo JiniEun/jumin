@@ -16,7 +16,7 @@
         enctype="multipart/form-data"
         >   
     <input type="hidden" name="oldfile" value="${oldfile}">    
-    <input type="hidden" name="clID" value="${clID}">    
+    <input type="hidden" name="clID" value="${dto.clID}">    
         
     <div class="form-group">
       <label class="control-label col-sm-2" for="oldfile">원본파일</label>
