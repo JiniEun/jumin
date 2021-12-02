@@ -84,8 +84,8 @@
 		if (title === null)
 			return false;
 
-		//var link=window.location.host+window.location.pathname+window.location.search
-		var link = "www.naver.com"
+		var link=window.location.host+window.location.pathname+window.location.search
+		//var link = "www.naver.com"
 		var snsPopUp;
 		var _width = '500';
 		var _height = '450';

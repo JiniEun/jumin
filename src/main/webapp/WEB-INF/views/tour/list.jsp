@@ -100,11 +100,11 @@
 					<c:otherwise>
 
 						<c:forEach var="dto" items="${list}" begin="0" step="3">
-							<div>
+							<div style="min-height: 500px;">
 								<img class="l-img-title"
 									src="/tour/storage/${fn:split(dto.filename,',')[0]}"
 									alt="${dto.title}">
-								<section class=title>
+								<section class="title">
 
 									<span><a class="a-link"
 										href="javascript:read('${dto.tid}')"><i
@@ -119,7 +119,7 @@
 									<c:if test="${dto.score=='4'}">★★★★☆</c:if>
 									<c:if test="${dto.score=='5'}">★★★★★</c:if>
 								</div>
-								<section class=info style="color: #808088">
+								<section class="info" style="color: #808088">
 									<span style="width: 100; overflow: hidden;"><i
 										class="fas fa-user"></i> ${dto.nickname}</span><br> <span>Date
 										: ${dto.rdate.substring(0,10)}</span>
@@ -145,7 +145,7 @@
 									src="/tour/storage/${fn:split(dto.filename,',')[0]}"
 									alt="${dto.title }">
 
-								<section class=title>
+								<section class="title">
 
 									<span><a class="a-link"
 										href="javascript:read('${dto.tid}')"><i
@@ -160,7 +160,7 @@
 									<c:if test="${dto.score=='4'}">★★★★☆</c:if>
 									<c:if test="${dto.score=='5'}">★★★★★</c:if>
 								</div>
-								<section class=info style="color: #808088">
+								<section class="info" style="color: #808088">
 									<span style="width: 100; overflow: hidden;"><i
 										class="fas fa-user"></i> ${dto.nickname}</span> <span>Date :
 										${dto.rdate.substring(0,10)}</span>
@@ -184,7 +184,7 @@
 								<img class="l-img-title"
 									src="/tour/storage/${fn:split(dto.filename,',')[0]}"
 									alt="${dto.title }">
-								<section class=title>
+								<section class="title">
 
 									<span><a class="a-link"
 										href="javascript:read('${dto.tid}')"><i
@@ -199,7 +199,7 @@
 									<c:if test="${dto.score=='4'}">★★★★☆</c:if>
 									<c:if test="${dto.score=='5'}">★★★★★</c:if>
 								</div>
-								<section class=info style="color: #808088">
+								<section class="info" style="color: #808088">
 									<span style="width: 100; overflow: hidden;"><i
 										class="fas fa-user"></i> ${dto.nickname}</span> <span>Date :
 										${dto.rdate.substring(0,10)}</span>
