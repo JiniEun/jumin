@@ -76,10 +76,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set title = #{title},
 		content = #{content},
 		nickname = #{nickname},
-		filename = #{filename}
+		filename = #{filename},
 		regionID = #{regionID}
-		where mid =
-		#{mid}
+		where mid = #{mid}
 	</update>
 
 	<update id="updateFile" parameterType="Map">
