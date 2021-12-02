@@ -48,6 +48,28 @@
 	$(function() {
 		$("a[data-toggle='tooltip']").tooltip();
 	});
+	function sendMessageFirst(fbID) {
+		console.log("fbid:",fbID);
+			$.ajax({
+				url:"../message/message_send_first",
+				method:"POST",
+				data:{
+					'fbID':fbID
+				},
+				success:function(data){
+					console.log("data:",data);
+					if(confirm("신청이 완료되었습니다. 메세지함을 확인하세요.")){
+					location.href="../message/list";
+					} else {
+						console.log("취소");
+					}
+				},
+				error: function() {
+					alert('서버 에러');
+				}
+			});
+
+	}
 </script>
 </head>
 <body>
@@ -133,7 +155,7 @@
 												</c:when>
 												<c:otherwise>
 													<button type="button" class="btn btn-color2"
-														onclick="updateM('${dto.fbID}')">신청</button>
+													onclick="sendMessageFirst('${dto.fbID}')">신청</button>
 												</c:otherwise>
 											</c:choose>
 									</a></li>

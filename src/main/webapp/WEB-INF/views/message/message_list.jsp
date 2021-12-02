@@ -106,7 +106,7 @@ const FirstMessageList = function(){
 				});
 				
 				//메세지 내용을 불러오는 함수 호출
-				MessageContentList(roomID);
+				MessageContentList(roomID, otherID);
 			});
 			
 			// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라짐
@@ -115,7 +115,6 @@ const FirstMessageList = function(){
 		}
 	})
 };
-
 //메세지 리스트를 다시 가져온다.
 const MessageList = function(){
 	$.ajax({
@@ -167,7 +166,7 @@ const MessageList = function(){
 				});
 				
 				//메세지 내용을 불러오는 함수 호출
-				MessageContentList(roomID);
+				MessageContentList(roomID, otherID);
 			});
 			
 			// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라짐
@@ -176,16 +175,16 @@ const MessageList = function(){
 		}
 	})
 };
-
 // 메세지 내용을 가져온다.
 // 읽지 않은 메세지들을 읽음으로 바꾼다.
-const MessageContentList = function(roomID) {
+const MessageContentList = function(roomID, otherID) {
 	
 	$.ajax({
 		url:"message_content_list.do",
 		method:"GET",
 		data:{
 			roomID : roomID,
+			otherID : otherID
 		},
 		success:function(data){
 			console.log("메세지 내용 가져오기 성공");
@@ -201,9 +200,8 @@ const MessageContentList = function(roomID) {
 		}
 	})
 	
-	$('.unread'+roomID).empty();
+// 	$('.unread'+roomID).empty();
 };
-
 //메세지를 전송하는 함수
 const SendMessage = function(roomID, otherID) {
 	let content = $('.write_msg').val();
@@ -215,7 +213,7 @@ const SendMessage = function(roomID, otherID) {
 		alert("메세지를 입력하세요!");
 	}else{
 		$.ajax({
-			url:"message_send_inlist.do",
+			url:"message_send_inlist",
 			method:"GET",
 			data:{
 				roomID:roomID,
@@ -229,7 +227,7 @@ const SendMessage = function(roomID, otherID) {
 				$('.wirte_msg').val("");
 				
 				//메세지 내용 리로드
-				MessageContentList(roomID);
+				MessageContentList(roomID, otherID);
 				
 				//메세지 리스트 리로드
 				MessageList();
@@ -240,12 +238,10 @@ const SendMessage = function(roomID, otherID) {
 		});
 	}
 };
-
 $(document).ready(function(){
 	console.log('hi');
 	//메세지 리스트 리로드
 	FirstMessageList();
-
 });
 </script>
 </body>
