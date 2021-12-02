@@ -20,11 +20,11 @@
 							<p>${tmp.content }</p>
 						</div>
 						<!-- 만약 현재 사용자가 안읽은 메세지 개수가 0보다 클 때만 badge 표시 -->
-						<c:if test="${tmp.unread>0 }">
-							<div class="col-2 unread${tmp.roomID }">
-								<span class="badge bg-warning">${tmp.unread }</span>
-							</div>
-						</c:if>
+<%-- 						<c:if test="${tmp.unread>0 }"> --%>
+<%-- 							<div class="col-2 unread${tmp.roomID }"> --%>
+<%-- 								<span class="badge bg-warning">${tmp.unread }</span> --%>
+<!-- 							</div> -->
+<%-- 						</c:if> --%>
 					</div>
 				</div>
 			</div>

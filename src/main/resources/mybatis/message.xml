@@ -32,7 +32,6 @@
  	</choose>
  </select>
  
- <!--메세지 읽음 처리-->
  <update id="message_read_chk" parameterType="com.dongne.message.MessageDTO">
  	update message set readChk=1
  	<choose>
@@ -49,10 +48,10 @@
  <insert id="messageSendInlist" parameterType="com.dongne.message.MessageDTO">
  	<choose>
  		<when test="roomID != 0">
- 			insert into message values(0, #{sender}, #{receiver}, #{content}, sysdate, #{roomID}, sysdate, 0);
+ 			insert into message values((select nvl(max(meID), 0) + 1 from message), #{sender}, #{receiver}, #{content}, sysdate, #{roomID}, sysdate, 0)
  		</when>
  		<otherwise>
- 			insert into message values(0, #{sender}, #{receiver}, #{content}, sysdate, #{roomID}, sysdate, 0);
+ 			insert into message values((select nvl(max(meID), 0) + 1 from message), #{sender}, #{receiver}, #{content}, sysdate, #{roomID}, sysdate, 0)
  		</otherwise>
  	</choose>
  </insert>

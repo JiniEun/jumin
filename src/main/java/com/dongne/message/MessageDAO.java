@@ -46,8 +46,10 @@ public class MessageDAO {
 			//메세지 내역을 가져온다.
 			ArrayList<MessageDTO> clist = (ArrayList) sqlSession.selectList("room_content_list",dto);
 			
+			
 			//해당 방의 메세지들 중 받는 사람이 현재 사용자의 ID인 메세지를 모두 읽음 처리
-			sqlSession.update("message_read_chk", dto);
+			int flag = sqlSession.update("message_read_chk", dto);
+			System.out.println("read_chk: "+flag);
 			
 			return clist;
 		}
@@ -55,19 +57,26 @@ public class MessageDAO {
 		//메세지 list에서 메세지를 보낸다.
 		public int messageSendInlist(MessageDTO dto) {
 			//메세지리스트에서 보낸건지 프로필에서 보낸건지 구분하기 위함
+			int flag = 0;
 			if(dto.getRoomID() == 0) { //roomID가 0이라면 프로필에서 보낸것
 				int exist_chat = sqlSession.selectOne("exist_chat", dto);
 				//프로필에서 보낸 것 중 메세지 내역이 없어서 첫 메세지가 될 경우 구분
 				if(exist_chat ==0) { //메세지 내역이 없어서 0이면 message 테이블의 roomID 최댓값을 구해서 dto에 set
 					int max_room = sqlSession.selectOne("max_room",dto);
 					dto.setRoomID(max_room+1);
+					dto.setContent("신청합니다");
+					flag = sqlSession.insert("messageSendInlist", dto);
 				}else { //메세지 내역이 있다면 해당 room번호 가져옴
 					int room = Integer.parseInt(sqlSession.selectOne("select_room", dto));
 					dto.setRoomID(room);
 				}
+			}else {
+			
+			  flag = sqlSession.insert("messageSendInlist", dto);
 			}
 			
-			int flag = sqlSession.insert("messageSendInlist", dto);
 			return flag;
 		}
+		
+
 }
