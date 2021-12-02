@@ -37,3 +37,7 @@
 .nav-item {
 	margin: 0 5px;
 }
+
+.bg-light-color{
+	background-color: white; /*#D9BBB4;*/
+}
