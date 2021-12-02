@@ -10,7 +10,7 @@
 
 .mtitle {
 	margin: auto;
-	width: 70%;
+	width: 80%;
 	align-items: center;
 	display: flex;
 	justify-content: flex-end;
@@ -39,7 +39,7 @@
 
 #score {
 	width: 165px;
-	margin-top: -20px;
+	margin-top: 20px;
 	font-style: bold;
 	color: white;
 	background-color: var(--basecolor);
@@ -49,9 +49,13 @@
 
 .l-container {
 	padding: 10px;
-	width: 70%;
-	margin: auto;
-	overflow: hidden;
+	width: 100%;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.l-contents{
+	display:contents;
 }
 
 .images {
@@ -68,7 +72,7 @@
 
 .l-img-title:hover {
 	transition: 0.5s;
-	transform: scale(1.2);
+	transform: scale(1.1);
 	overflow: hidden;
 }
 

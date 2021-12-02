@@ -146,8 +146,8 @@
 										class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">
 											<c:choose>
 												<c:when test="${sessionScope.ID==dto.userID}">
-													<button type="button" class="btn btn-color2"
-														onclick="updateM('${dto.fbID}')">신청마감</button>
+									<%-- 				<button type="button" class="btn btn-color2"
+														onclick="updateM('${dto.fbID}')">신청마감</button> --%>
 													<button type="button" class="btn btn-color2"
 														onclick="updateM('${dto.fbID}')">수정</button>
 													<button type="button" class="btn btn-color2"

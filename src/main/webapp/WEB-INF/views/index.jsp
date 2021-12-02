@@ -157,7 +157,7 @@ window.addEventListener('load', () => {
 		<div class="row inner-menu-loc" style="margin: 5px;">
 			<div class="col card inner-card-outline"
 				style="margin: 10px; padding-top: 15px;">
-				<img class="card-img-top" src="/images/city.jpg"
+				<img class="card-img-top" src="/images/moon.png"
 					alt="Card image cap">
 				<div class="card-body pb-0">
 					<h5 class="card-title">동네 나들이</h5>
@@ -182,7 +182,7 @@ window.addEventListener('load', () => {
 			</div>
 			<div class="col card inner-card-outline"
 				style="margin: 10px; padding-top: 15px;">
-				<img class="card-img-top" src="/images/city.jpg"
+				<img class="card-img-top" src="/images/main_market.jpg"
 					alt="Card image cap">
 				<div class="card-body pb-0">
 					<h5 class="card-title">동네 장터</h5>
@@ -246,7 +246,7 @@ window.addEventListener('load', () => {
 			</div>
 			<div class="col card inner-card-outline"
 				style="margin: 10px; padding-top: 15px;">
-				<img class="card-img-top" src="/images/city.jpg"
+				<img class="card-img-top" src="/images/communication.jpg"
 					alt="Card image cap">
 				<div class="card-body pb-0">
 					<h5 class="card-title">동네 커뮤니티</h5>
