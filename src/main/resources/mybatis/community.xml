@@ -27,6 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<when test="col=='content'">
 					content like '%'||#{word}||'%'
 				</when>
+				<when test="col=='title_content'">
+					title like '%'||#{word}||'%'
+					or
+					content like '%'||#{word}||'%'
+				</when>
 				<when test="col=='category'">
 					category like '%'||#{word}||'%'
 				</when>
