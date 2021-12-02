@@ -17,7 +17,7 @@
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
-	<baseDir>C:\AIstudy\jumin_clone\jumin\bin\main\static\ckstorage</baseDir>
+	<baseDir>/Users/AIstudy/ojt/jumin/bin/main/static/ckstorage</baseDir>
 	<baseURL>/ckstorage</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
