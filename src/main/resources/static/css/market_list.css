@@ -3,17 +3,18 @@
 }
 
 #top {
-	padding: 2em 0 2em 0;
+	padding: 2em 0 1em 0;
 }
 
 #g1 {
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 }
 
 .tm-paging-item {
 	display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 0 1em 0;
 }
 
 .tm-paging-link {
@@ -27,23 +28,19 @@
 	background-color: transparent;
 }
 
+.tm-paging-link:hover{
+	background-color: white;
+	color: #5BA6A6;
+	text-decoration: none;
+}
+
 .tm-paging-link:focus{
 	background-color: white;
 	color: #5BA6A6;
 	text-decoration: none;
 }
 
-.tm-paging-link:visited{
-	background-color: white;
-	color: #5BA6A6;
-	text-decoration: none;
-}
 
-.tm-paging-link:hover {
-	background-color: white;
-	color: #5BA6A6;
-	text-decoration: none;
-}
 
 
 .l-img {

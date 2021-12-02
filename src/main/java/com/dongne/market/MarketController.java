@@ -219,18 +219,14 @@ public class MarketController {
 	}
 
 	@PostMapping("/market/update")
-	public String update(int mid, HttpSession session) {
-
-		MarketDTO dto = service.read(mid);
+	public String update(MarketDTO dto, int mid, HttpSession session) {
 
 		System.out.println(dto.toString());
-
-		int cnt = 0;
 
 		String upDir = Market.getUploadDir();
 
 		// 기존파일 지우고,
-		String oldfile = dto.getFilename();
+		String oldfile = Utility.checkNull(dto.getFilename());
 		String[] filenameArr = oldfile.split(",");
 
 		for (int i = 0; i < filenameArr.length; i++) {
@@ -242,13 +238,12 @@ public class MarketController {
 
 		dto.setFilename(filename);
 		dto.setRegionID(uservice.read((String) session.getAttribute("ID")).getRegionID());
-
-		session.removeAttribute("filename");
-
-		Map map = new HashMap();
-		map.put("mid", dto.getMid());
+	
+		int cnt = 0;
 
 		cnt = service.update(dto);
+		
+		session.removeAttribute("filename");
 
 		System.out.println(dto.toString());
 
