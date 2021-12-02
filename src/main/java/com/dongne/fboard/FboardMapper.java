@@ -16,4 +16,5 @@ public interface FboardMapper {
 
 	int delete(int fbID);
 	
+	int totalRegion(Map map);
 }

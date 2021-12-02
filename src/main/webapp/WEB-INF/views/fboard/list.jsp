@@ -25,16 +25,16 @@
 }
 </style>
 <script type="text/javascript">
-function updateM(fbID) {
-	var url = "/fboard/update";
-	url += "?fbID=" + fbID;
-	location.href = url;
-}
-function deleteM(fbID) {
-	var url = "/fboard/delete";
-	url += "?fbID=" + fbID;
-	location.href = url;
-}
+	function updateM(fbID) {
+		var url = "/fboard/update";
+		url += "?fbID=" + fbID;
+		location.href = url;
+	}
+	function deleteM(fbID) {
+		var url = "/fboard/delete";
+		url += "?fbID=" + fbID;
+		location.href = url;
+	}
 
 	function read(fbID) {
 		var url = "read";
@@ -45,28 +45,44 @@ function deleteM(fbID) {
 		location.href = url;
 
 	}
-	$(function(){
-		 $("a[data-toggle='tooltip']").tooltip();
-		});
-	function SetAge(age) {
-		var Newage = age.char(0);
-		return Newage;
-      }
+	$(function() {
+		$("a[data-toggle='tooltip']").tooltip();
+	});
 </script>
 </head>
 <body>
 
-	<div id="features-wrapper">
-		<h2 class="col-12 text-center tm-section-title mt-5">동네친구</h2>
+	<div id="features-wrapper" class="mt-4">
+		<h2 class="col-12 text-center tm-section-title">동네친구</h2>
 		<p class="col-12 text-center">
 			가까이 있는 동네 친구를 만나보세요! <br> <br>
 			<c:if test="${not empty sessionScope.ID}">
 				<button type="button" class="btn btn-color1"
 					onclick="location.href='../fboard/create'">글 등록하기</button>
 			</c:if>
-		<div class="container mb-4 pb-4">
+		<div class="container">
+			<form class="form-inline" action="list">
+				<div class="form-group">
+					<select class="form-control" name="col" style="margin-right: 10px;">
+						<option value="total"
+							<c:if test= "${col=='total'}"> selected </c:if>>전체출력</option>
+						<option value="title"
+							<c:if test= "${col=='title'}"> selected </c:if>>제목</option>
+						<option value="content"
+							<c:if test= "${col=='content'}"> selected </c:if>>내용</option>
+						<option value="title_content"
+							<c:if test= "${col=='title_content'}"> selected</c:if>>제목+내용</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="검색어를 입력하세요"
+						name="word" style="margin-right: 10px;" value="${word}">
+				</div>
+				<button type="submit" class="btn btn-color2"
+					style="margin-right: 10px;">검색</button>
+			</form>
 			<div class="row">
-				<div class="col-md-10">
+				<div class="col-md-11">
 					<c:forEach var="dto" items="${list}">
 						<div class="media g-mb-30 media-comment">
 							<img
@@ -74,29 +90,29 @@ function deleteM(fbID) {
 								src="/images/profile.png" alt="Image Description">
 							<div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
 								<div class="g-mb-15">
-									<h8> # ${dto.category} </h8>
-
-
+									<div class="h8" style="color: #5BA6A6">
+										<b> # ${dto.category} </b>
+									</div>
+									<h5 class="h5 g-color-gray-dark-v1 mb-0">${dto.title}</h5>
+									<input type="hidden" name="regionID" id="regionID"
+										value="${dto.regionID}" />
 									<ul class="list-inline d-sm-flex my-0">
-										<h5 class="h5 g-color-gray-dark-v1 mb-0">${dto.title}</h5>
+
 										<li class="list-inline-item ml-auto"><a
-											class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
-											href="#!"> <i class="far fa-clock"></i> ${dto.rdate }
+											class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">
+												<i class="far fa-clock"></i> ${dto.rdate }
 										</a></li>
 									</ul>
 									<hr>
 									<p>${dto.content}</p>
-									<br>
-
 								</div>
-
 								<hr>
 								<ul class="list-inline d-sm-flex my-0">
 									<li class="list-inline-item g-mr-20"><a
-										class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
-										href="#!"> <span>${dto.nickname } ·</span> <span>${dto.age}
-												·</span> <c:set var="gender" value="${dto.gender}" /> <c:choose>
-												<c:when test="$(gender == 'Female')">
+										class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">
+											<span>${dto.nickname } ·</span> <span>${dto.age} ·</span> <c:set
+												var="gender" value="${dto.gender}" /> <c:choose>
+												<c:when test="${gender == 'Female'}">
 													<span>여성</span>
 												</c:when>
 												<c:otherwise>
@@ -104,13 +120,12 @@ function deleteM(fbID) {
 												</c:otherwise>
 											</c:choose>
 									</a></li>
-									<li class="list-inline-item g-mr-20"><a
-										class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
-										href="#!"> </a></li>
 									<li class="list-inline-item ml-auto"><a
-										class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
-										href="#!"> <c:choose>
+										class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">
+											<c:choose>
 												<c:when test="${sessionScope.ID==dto.userID}">
+													<button type="button" class="btn btn-color2"
+														onclick="updateM('${dto.fbID}')">신청마감</button>
 													<button type="button" class="btn btn-color2"
 														onclick="updateM('${dto.fbID}')">수정</button>
 													<button type="button" class="btn btn-color2"
@@ -128,6 +143,7 @@ function deleteM(fbID) {
 					</c:forEach>
 				</div>
 			</div>
+			<br> ${paging }
 		</div>
 	</div>
 </body>

@@ -16,10 +16,6 @@
 	<put-attribute name="title" value="친구게시판삭제" ></put-attribute> 
 	<put-attribute name="body" value="/WEB-INF/views/fboard/deleteForm.jsp" /> 
   </definition> 
-  <definition name="/fboard/read" extends="main"> 
-	<put-attribute name="title" value="친구게시판조회" ></put-attribute> 
-	<put-attribute name="body" value="/WEB-INF/views/fboard/read.jsp" /> 
-  </definition> 
   <definition name="/fboard/update" extends="main"> 
 	<put-attribute name="title" value="친구게시판수정" ></put-attribute> 
 	<put-attribute name="body" value="/WEB-INF/views/fboard/updateForm.jsp" /> 

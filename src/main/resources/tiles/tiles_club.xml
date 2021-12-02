@@ -24,6 +24,11 @@
     <put-attribute name="body"
       value="/WEB-INF/views/club/updateForm.jsp" />
   </definition>
+    <definition name="/club/updateFile" extends="main">
+    <put-attribute name="title" value="동호회대표이미지수정"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/club/updateFileForm.jsp" />
+  </definition>
   <definition name="/club/delete" extends="main">
     <put-attribute name="title" value="동호회삭제"></put-attribute>
     <put-attribute name="body"

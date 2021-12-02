@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dongne.region.RegionService;
+import com.dongne.tour.Tour;
+import com.dongne.tour.TourDTO;
 import com.dongne.user.UserDTO;
 import com.dongne.user.UserService;
 import com.dongne.utility.Utility;
@@ -167,7 +169,7 @@ public class ClubContoller {
 	}
 
 	@GetMapping("/club/updateFile/{clID}/{oldfile}")
-	public String updateFileForm(@PathVariable("clID") int clID, @PathVariable("oldfile") String oldfile, Model model) {
+	public String updateFile(@PathVariable("clID") int clID, @PathVariable("oldfile") String oldfile, Model model) {
 		model.addAttribute("clID", clID);
 		model.addAttribute("oldfile", oldfile);
 
@@ -175,14 +177,31 @@ public class ClubContoller {
 	}
 
 	@PostMapping("/club/update")
-	public String update(ClubDTO dto, Model model, HttpSession session) {
+	public String update(ClubDTO dto, int clID, HttpSession session) {
+		String basePath = Club.getUploadDir();
+
+		// 기존파일 지우고,
+		String oldfile = Utility.checkNull(dto.getFileName());
+		
+		if (oldfile != null) { // 원본파일 삭제
+			Utility.deleteFile(basePath, oldfile);
+		}
+
+		// 아이디 체크하고
 		String ID = dto.getID();
 		String sID = (String) session.getAttribute("ID");
 
 		int cnt = 0;
 
 		if (ID.compareTo(sID) == 0) {
+			// 새로운 파일 업로드
+			String fileName_ = (String) session.getAttribute("fileName");
+			String fileName = Utility.checkNulltoDefault(fileName_);
+
+			dto.setFileName(fileName);
+
 			cnt = service.update(dto);
+			session.removeAttribute("fileName");
 		}
 
 		if (cnt == 1) {
@@ -193,11 +212,18 @@ public class ClubContoller {
 	}
 
 	@GetMapping("/club/update")
-	public String update(int clID, Model model) {
+	public String update(int clID, Model model, HttpSession session) {
 
-		model.addAttribute("dto", service.read(clID));
+		ClubDTO dto = service.read(clID);
+		String ID = dto.getID();
+		String sID = Utility.checkNull((String) session.getAttribute("ID"));
 
-		return "/club/update";
+		model.addAttribute("dto", dto);
+
+		if (ID.compareTo(sID) != 0) {
+			return "error";
+		} else
+			return "/club/update";
 	}
 
 	@GetMapping("/club/create")

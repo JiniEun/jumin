@@ -13,6 +13,11 @@
 <link rel="stylesheet" href="/resources/static/css/club_reply.css"> <!-- 일단 tour_read.css 댓글 참조 -->
 <meta charset="utf-8">
 <script type="text/javascript">
+function updateFM() {
+	var url = "/club/updateFile";
+	url += "?clID=${dto.clID}";
+	location.href = url;
+}
 	function updateM() {
 		var url = "/club/update";
 		url += "?clID=${dto.clID}";
@@ -58,6 +63,7 @@
 		<div>
 		<c:choose>
 			<c:when test="${sessionScope.ID==dto.ID}">
+				<button type="button" class="btn btn-color" onclick="updateFM()">이미지수정</button>
 				<button type="button" class="btn btn-color" onclick="updateM()">수정</button>
 				<button type="button" class="btn btn-color" onclick="deleteM()">삭제</button>
 			    <button type="button" class="btn btn-color" onclick="listM()">목록</button>
