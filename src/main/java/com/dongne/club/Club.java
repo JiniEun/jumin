@@ -15,9 +15,9 @@ public class Club {
 
 		} else {
 			// System.out.println("Linux");
-			path = "/home/ubuntu/deploy/jumin/club/storage/";
+//			path = "/home/ubuntu/deploy/jumin/club/storage/";
 			// 은진 - mac 경로
-//			path = "/Users/AIstudy/deploy/jumin/club/storage/";
+			path = "/Users/AIstudy/deploy/jumin/club/storage/";
 		}
 
 		return path;

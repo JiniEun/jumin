@@ -15,9 +15,9 @@ public class Tour {
             
         } else {
 //            // System.out.println("Linux");
-            path = "/home/ubuntu/deploy/jumin/tour/storage/";
+//            path = "/home/ubuntu/deploy/jumin/tour/storage/";
 			// 은진 - mac 경로
-//			path = "/Users/AIstudy/deploy/jumin/tour/storage/";
+			path = "/Users/AIstudy/deploy/jumin/tour/storage/";
         }
         
         return path;

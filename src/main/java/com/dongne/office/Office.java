@@ -15,9 +15,9 @@ public class Office {
 
 		} else {
 			// System.out.println("Linux");
-            path = "/home/ubuntu/deploy/jumin/office/storage/";
+//            path = "/home/ubuntu/deploy/jumin/office/storage/";
 			// 은진 - mac 경로
-//			path = "/Users/AIstudy/deploy/jumin/office/storage/";
+			path = "/Users/AIstudy/deploy/jumin/office/storage/";
 		}
 
 		return path;
