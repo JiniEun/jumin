@@ -1,4 +1,4 @@
-# Dongne
+# 📌 Dongne
    
 > ## Spring Boot 기반 웹 프로젝트
 
@@ -12,7 +12,19 @@
 
 <br><br>
 
-## Project 개요
+## ⚙ Organization & Used Technique
+
+| Development Area | Element | Role Officer |
+| :--: | :-----: | :--: |
+| <center> SpringBoot </center> | <center> 동호회, 동네친구 게시판 </center> | <center> 변*림 </center> |
+| <center> SpringBoot, AWS </center> | <center> 로그인, 회원가입, 고객센터, 위치 제공 기능 </center> | <center> **🐧김은진🐧** </center> |
+| <center> SpringBoot </center> | <center> 메인 페이지의 날씨 구현, 실시간 위치, 로고, 배너 디자인 </center> | <center> 강*용 </center> |
+| <center> SpringBoot </center> | <center> 동네장터, 커뮤니티 게시판 </center> | <center> 김*희 </center> |
+| <center> SpringBoot </center> | <center> 주요시설 정보, 동네 스팟 게시판 (+Map) </center> | <center> 손*빈 </center> |
+
+<br><br>
+
+## ⚙ Project 개요
 
 ### 주요 구현 기능
 
@@ -118,13 +130,13 @@ Naver Clova Chatbot을 이용해 서비스 제공.
 
 <br><br><br>
 
-### DB ERD
+## ⚙ DB ERD
 
 <img src="https://user-images.githubusercontent.com/49184115/144734084-8a610498-ceb3-4f26-a698-33333c925cff.png" alt="main" style="width:600px;"/>
 
 <br><br>
 
-> ## 개발 환경
+## ⚙ 개발 환경
 
 <br>
 
