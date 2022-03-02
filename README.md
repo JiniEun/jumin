@@ -24,15 +24,35 @@
 
 <br><br>
 
-## ⚙ Project 개요
+## ⚙ DB ERD
 
-### 주요 구현 기능
+<img src="https://user-images.githubusercontent.com/49184115/144734084-8a610498-ceb3-4f26-a698-33333c925cff.png" alt="main" style="width:600px;"/>
 
-- UI 계층도 (홈페이지 계층 구조도)
+<br><br>
+
+## ⚙ 개발 환경
+
+<br>
+
+- ![Java](https://img.shields.io/badge/-Java-007396?logo=java&logoColor=white&style=flat-square&logoHeight=50) / ![SpringBoot](https://img.shields.io/badge/-Springboot-6DB33F?logo=springboot&logoColor=white&style=flat-square&logoHeight=50)
+- AWS - Oracle DB
+- ![JSP](https://img.shields.io/badge/-Jsp-F7DF1E?logo=jsp&logoColor=white&style=flat-square&logoHeight=50)
+- ![Bootstrap](https://img.shields.io/badge/-Bootstrap-7952B3?logo=Bootstrap&logoColor=white&style=flat-square&logoHeight=50)
+
+<img src="https://user-images.githubusercontent.com/49184115/144734852-2c8a54e5-f320-40e4-8fa8-467e10b9bb2a.png" alt="main" style="width:600px;"/>
+
+
+
+
+## 주요 구현 기능
+
+### UI 계층도 (홈페이지 계층 구조도)
 
 <img src="https://user-images.githubusercontent.com/49184115/144734032-3a5a0fdc-bf93-4323-a8a8-2b3ac713e370.png" alt="main" style="width:600px;"/>
 
 <br>
+
+### UI/UX
 
 1. 메인 페이지 (코로나 정보, 날씨, 각 게시판 최근 게시물) 
 
@@ -130,20 +150,4 @@ Naver Clova Chatbot을 이용해 서비스 제공.
 
 <br><br><br>
 
-## ⚙ DB ERD
-
-<img src="https://user-images.githubusercontent.com/49184115/144734084-8a610498-ceb3-4f26-a698-33333c925cff.png" alt="main" style="width:600px;"/>
-
-<br><br>
-
-## ⚙ 개발 환경
-
-<br>
-
-- ![Java](https://img.shields.io/badge/-Java-007396?logo=java&logoColor=white&style=flat-square&logoHeight=50) / ![SpringBoot](https://img.shields.io/badge/-Springboot-6DB33F?logo=springboot&logoColor=white&style=flat-square&logoHeight=50)
-- AWS - Oracle DB
-- ![JSP](https://img.shields.io/badge/-Jsp-F7DF1E?logo=jsp&logoColor=white&style=flat-square&logoHeight=50)
-- ![Bootstrap](https://img.shields.io/badge/-Bootstrap-7952B3?logo=Bootstrap&logoColor=white&style=flat-square&logoHeight=50)
-
-<img src="https://user-images.githubusercontent.com/49184115/144734852-2c8a54e5-f320-40e4-8fa8-467e10b9bb2a.png" alt="main" style="width:600px;"/>
 
